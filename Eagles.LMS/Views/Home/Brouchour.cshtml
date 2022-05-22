@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Brouchour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string host = Request.Url.Host;
+
+    bool en = true;
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+
+    UnitOfWork ctx = new UnitOfWork();
+    var Broushour = ctx.BrochuresManager.GetAll().FirstOrDefault();
+}
+
+<div class="header-bc">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="title-header">
+                    <h3>@Resources.Global.EMPCBrochure</h3>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="/">@Resources.Global.Home</a> > </li>
+                            <li>@Resources.Global.Mulimedia</li>
+                        </ul>
+                    </div>
+                    <!--end breadcrumb-->
+                </div>
+                <!--end title-header-->
+            </div>
+            <!--end col-6-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</div>
+<!--end header-bc-->
+
+
+<section class="who Brouchour">
+    <div class="container">
+        <div class="whooocontent">
+            <div class="row">
+
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="border-top"></div>
+                    <div class="wearecont">
+                        <div class="images">
+                            <img src="@Broushour.Image" class="img-responsive img-who" />
+                        </div>
+                    </div>
+
+                    <div class="border-top-1"></div>
+
+                </div>
+                <!--end col-6-->
+
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+
+
+                    <!--                    <div class="red-line1"></div>-->
+
+                    <div class="overflowheightabout">
+                        <h2 class="headh2"><span>EMPC</span> @Resources.Global.Brochure</h2>
+
+                        @if (en)
+                        {
+                            <p class="headp1">@Broushour.DescriptionEnglish</p>
+
+                        }
+                        else
+                        {
+                            <p class="headp1">@Broushour.DescriptionArabic</p>
+                        }
+
+                    </div>
+
+                    <Div class="width-btn-who">
+                        <a href="@Broushour.PdfLink" download="" class="btn btn-danger btn-block btn-theme"> @Resources.Global.DawenloadBrochure</a>
+                    </Div>
+                    <!--end width-btn-->
+
+
+                </div>
+
+
+            </div>
+            <!--end row-->
+        </div>
+    </div>
+    <!--end conatiner-->
+</section>
+<!--end who-->

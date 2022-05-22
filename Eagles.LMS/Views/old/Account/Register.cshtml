@@ -1,0 +1,941 @@
+﻿@using Eagles.LMS
+@using  Eagles.LMS.BLL
+@{
+    Layout = null;
+
+    bool en = true;
+    string lang = "";
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+    lang = en == true ? "en" : "ar";
+    var allGov = new UnitOfWork().CountryManager.GetAll();
+
+    var IsUseOnlineAcdmicOption = Shared.IsUseOnlineAcdmicOption();
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eaglez-academy | Register</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/StaticFiles/css/bootstrap.css" rel="stylesheet">
+    <link rel="icon" href="~/assets/demo/demo8/media/img/logo/unnamed.jpg">
+
+    <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700,900" rel="stylesheet">
+    <!-- <link href="/StaticFiles/css/font-awesome.min.css" rel="stylesheet">-->
+    <link href="/StaticFiles/css/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="/StaticFiles/css/hover.css" rel="stylesheet">
+
+    @if (en)
+    {
+        <link href="/StaticFiles/css/login-register.css" rel="stylesheet">
+
+    }
+    else
+    {
+        <link href="/StaticFiles/css/login-register-rtl.css" rel="stylesheet">
+    }
+
+    @if (IsUseOnlineAcdmicOption)
+    {
+        <style>
+            #box_StudentType {
+                display: block;
+            }
+        </style>
+    }
+    else
+    {
+        <style>
+            #box_StudentType {
+                display: none;
+            }
+        </style>
+    }
+    <link href="/StaticFiles/css/animate.css" rel="stylesheet">
+
+    <!-- <link href="/StaticFiles///maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">-->
+    <!--[if lt IE 9]>
+    <script href="/StaticFiles/js/html5shiv.min.js"></script>
+    <script href="/StaticFiles/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .gg {
+            display: block !important;
+            visibility: visible !important;
+        }
+    </style>
+    <link href="~/StaticFiles/toastr.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/StaticFiles/css/bootstrap4/bootstrap.min.css">
+
+
+
+    <style>
+        .alert-danger {
+            background-color: #ff172eb8 !important;
+            color: #fff;
+        }
+
+        .alert-success {
+            background-color: #11da3f !important
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="log-reg">
+        <div class="log-back">
+            <div class="log-box regester-box wow zoomIn">
+                <div class="row other-row">
+
+                    <div class="col-sm-12 other-col">
+                        <div class="inputes">
+                            <div class="titels wow bounceIn  -05">
+                                <h3>@Resources.Global.Createaccount</h3>
+                                <p>@Resources.Global.Aleadyhaveaccount <span><a href="/Account/PublicLogin"> @Resources.Global.LoginFree</a></span></p>
+                            </div>
+                            <div class="inp-content">
+                                <!--
+                                <img src="~/StaticFiles/man.png" />
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">-->
+                                <ul id="myTabs" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+                                    <li><a class="active" href="#student" data-toggle="tab"><img src="/StaticFiles/student (1).png" alt="Alternate Text" /> <span>@Resources.Global.Student</span> </a></li>
+                                    <li><a href="#man" data-toggle="tab"><img src="/StaticFiles/man.png" alt="Alternate Text" /> <span>@Resources.Global.Parent</span></a></li>
+                                    <li style="display:none"><a href="#visitor" data-toggle="tab"><img src="/StaticFiles/student.png" alt="Alternate Text" /> <span>@Resources.Global.Visitor</span></a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active" id="student">
+                                        <form id="StudentForm">
+
+                                            <div class="form-group row ">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="pwdMask">
+                                                        <label>@Resources.Global.FullName</label>
+                                                        <input type="text" id="FullNameStudent" class="form-control " autocomplete="" name="username" placeholder=" @Resources.Global.FullName">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label>@Resources.Global.Email</label>
+                                                    <input type="text" id="EmailStudent" class="form-control email" autocomplete="" name="username" placeholder="name@example.com">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row ">
+                                                <div class="col-xs-12">
+                                                    <label>@Resources.Global.phone</label>
+                                                    <input type="number" id="PhoneNumberStudent" class="form-control " autocomplete="" name="username" placeholder="@Resources.Global.phone">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row ">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="pwdMask">
+                                                        <label>@Resources.Global.Password</label>
+                                                        <input type="password" id="PasswordStudent" class="form-control password" name="password" placeholder=" @Resources.Global.Password">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="pwdMask">
+                                                        <label>@Resources.Global.ConfirmPassword</label>
+                                                        <input type="password" id="ConfirmPasswordStudent" class="form-control password" name="password" placeholder="@Resources.Global.ConfirmPassword">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row ">
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="box_StudentType">
+                                                    <label class="block">@Resources.Global.StudentType</label>
+                                                    <div class="d-w">
+
+
+
+
+
+                                                        <div class="in-bl chiller_cb">
+
+
+                                                            <label class="checkbox mr" for="myCheckbox4">@Resources.Global.AcademicStudents</label>
+                                                            <input checked class="custom" id="myCheckbox4" type="radio" value="AcademicStudents" name="radio">
+                                                            <span style="top:5px;"></span>
+                                                        </div>
+                                                        <div class="in-bl chiller_cb">
+
+
+                                                            <label class="checkbox mr" for="myCheckbox3">@Resources.Global.OnlineStudents</label>
+                                                            <input class="custom" id="myCheckbox3" type="radio" value="OnlineStudents" name="radio">
+                                                            <span style="top:5px;"></span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label class="block">@Resources.Global.Gender</label>
+                                                    <div class="d-w">
+                                                        <div class="in-bl chiller_cb">
+
+
+                                                            <label class="checkbox mr" for="myCheckbox1">@Resources.Global.Male</label>
+                                                            <input class="custom" id="myCheckbox1" type="radio" value="6" name="Gender" checked>
+                                                            <span style="top:5px;"></span>
+                                                        </div>
+
+
+                                                        <div class="in-bl chiller_cb">
+
+
+                                                            <label class="checkbox mr" for="myCheckbox2">@Resources.Global.Female</label>
+                                                            <input class="custom" id="myCheckbox2" type="radio" value="6" name="Gender">
+                                                            <span style="top:5px;"></span>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row ">
+
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 boxLocation">
+                                                    <label>@Resources.Global.Governorate</label>
+                                                    <select class="form-control custom-select  " id="ddl_gov">
+                                                        <option selected="selected" disabled="disabled">@Resources.Global.ChooseGovernorate</option>
+                                                        @if (lang == "en")
+                                                        {
+                                                            foreach (var gov in allGov)
+                                                            {
+                                                                <option value="@gov.Id">@gov.Name</option>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            foreach (var gov in allGov)
+                                                            {
+                                                                <option value="@gov.Id">@gov.NameAr</option>
+                                                            }
+                                                        }
+
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  boxLocation">
+                                                    <label>@Resources.Global.City</label>
+                                                    <select class="form-control custom-select  " id="ddl_cities">
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label>@Resources.Global.Grades</label>
+                                                    <select class="form-control custom-select  " id="GradeList" name="grade" required>
+                                                        <option disabled="disabled" selected>Choose Grade</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label>@Resources.Global.Groups</label>
+                                                    <select class="form-control custom-select  " id="GroupList" name="grade" required>
+                                                        <option disabled="disabled" selected>Choose Group</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <label>@Resources.Global.chooseimage</label>
+                                                <input class="file" type="file" accept="image/*" id="imageUploadForm" />
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <button class="login-buton form-control" type="submit"> @Resources.Global.Send</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="man" style="display:none">
+                                        <form id="ParentForm">
+                                            <div class="form-group row  ">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="pwdMask">
+                                                        <label>@Resources.Global.FullName</label>
+                                                        <input type="text" class="form-control " id="ParentName" autocomplete="" name="username" placeholder="@Resources.Global.FullName">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="pwdMask">
+                                                        <label>@Resources.Global.Job</label>
+                                                        <input type="text" class="form-control email" id="JobName" autocomplete="" name="username" placeholder="@Resources.Global.Job">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group  ">
+                                                <label>@Resources.Global.Email</label>
+                                                <input type="text" class="form-control email" id="ParentEmail" autocomplete="" name="username" placeholder="name@example.com">
+                                            </div>
+                                            <div class="form-group row ">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="pwdMask">
+                                                        <label>@Resources.Global.Password</label>
+                                                        <input type="password" class="form-control password" id="ParentPassword" name="password" placeholder=" @Resources.Global.Password">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="pwdMask">
+                                                        <label>@Resources.Global.ConfirmPassword</label>
+                                                        <input type="password" class="form-control password" id="ParentConfirmPassword" name="password" placeholder="@Resources.Global.ConfirmPassword">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row ">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label>@Resources.Global.phone</label>
+                                                    <input type="number" class="form-control email" autocomplete="" id="ParentPhoneNumber" name="username" placeholder="@Resources.Global.phone">
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label>@Resources.Global.SonPhoneNumber</label>
+                                                    <input type="number" class="form-control email" autocomplete="" id="AddnewSonNumber" name="username" placeholder="@Resources.Global.phone">
+                                                    <input class="add-num" type="button" value="+" id="btn_addSonNumber">
+                                                    <ul id="number"></ul>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label>@Resources.Global.chooseimage</label>
+                                                <input class="file" type="file" accept="image/*" id="ParentimageUploadForm" />
+                                            </div>
+
+                                            <div class="form-group ">
+                                                <button class="login-buton form-control" type="submit"> @Resources.Global.Send</button>
+                                            </div>
+                                        </form>
+
+
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="visitor" style="display:none">
+                                        <br /> <br /> <br /> <br />
+                                        <form id="VisitorForm">
+
+                                            <div class="form-group row">
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="pwdMask">
+                                                        <label>@Resources.Global.FullName</label>
+                                                        <input type="text" class="form-control email" id="VisitorFullName" autocomplete="" name="username" required placeholder="@Resources.Global.FullName">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label>@Resources.Global.phone</label>
+                                                    <input type="number" class="form-control email" id="VisitorPhoneNumber" autocomplete="" name="username" required placeholder="@Resources.Global.phone">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group ">
+                                                <button class="login-buton form-control" type="submit"> @Resources.Global.Send</button>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+                                <!--
+                                                                        </div>
+                                                                    </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="watting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color:transparent; z-index:9999999999999">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="">
+
+                </div>
+                <div class="modal-body">
+                    <div id='' style="text-align:center">
+
+                        <img src="/StaticFiles/images/giphy.gif" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/StaticFiles/js/jquery-3.3.1.min.js"></script>
+    <script src="/StaticFiles/js/jquery.waypoints.min.js"></script>
+    <script src="/StaticFiles/js/jquery.countup.js"></script>
+    <script>
+        $('.counter').countUp();
+    </script>
+
+    <script src="/StaticFiles/css/bootstrap4/popper.js"></script>
+    <script src="/StaticFiles/css/bootstrap4/bootstrap.min.js"></script>
+    <script src="/StaticFiles/js/bootstrap.min.js"></script>
+    <script src="/StaticFiles/js/main.js"></script>
+
+    <script src="/StaticFiles/js/bootstrap-select.min.js"></script><!--https://silviomoreto.github.io/bootstrap-select/examples/ -->
+    <script src="/StaticFiles/js/wow.min.js"></script>
+    <script>new WOW().init();</script>
+
+    @*<script>new WOW().init();</script>*@
+
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <script src="~/StaticFiles/toastr.js"></script>
+
+    @*@if (!IsUseOnlineAcdmicOption)
+    {
+        <script>
+            $(".boxLocation").slideDown('slow');
+        </script>
+    }*@
+    <script>
+        function deleteli(el) {
+            $(el).parent().parent().remove();
+
+
+
+        }
+
+        $(document).ready(function () {
+            $("input[name='radio']").change(s => {
+                s.preventDefault();
+                if (getUserType() != "AcademicStudents") {
+                    $(".boxLocation").slideUp('slow');
+                } else {
+                    $(".boxLocation").slideDown('slow');
+
+                }
+                $("#GroupList").children("option").eq(0).nextAll().remove();
+
+                $("#GradeList").children("option").removeAttr("selected").eq(0).attr("selected", "selected");
+            });
+            function getUserType() {
+                return $("input[name='radio']:checked").val();
+            }
+            $("#ddl_cities").change(s => {
+                                $("#GroupList").children("option").eq(0).nextAll().remove();
+            });
+            $("#ddl_gov").change(s => {
+                s.preventDefault();
+                $("#ddl_cities").children().remove();
+                $("#GroupList").children("option").eq(0).nextAll().remove();
+
+                let countryId = $(s.currentTarget).val();
+                $.ajax({
+                    type: "GET",
+                    url: "/api/Country/" + countryId + "/GetAll",
+                    success: function (response) {
+
+                        let opts;
+                        if ('@lang' == "en") {
+                            for (var i = 0; i < response.length; i++) {
+                                opts = `<option value="${response[i].Id}">${response[i].Name}</option>`;
+                                $("#ddl_cities").append(opts);
+                            }
+                        } else {
+                            for (var i = 0; i < response.length; i++) {
+                                opts = `<option value="${response[i].Id}">${response[i].NameAr}</option>`;
+                                $("#ddl_cities").append(opts);
+                            }
+                        }
+                        $("#modal_cities").modal()
+                    }
+                })
+            });
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-full-width",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            $('#btn_addSonNumber').click(function () {
+
+                let PhoneNumber = $('#AddnewSonNumber').val();
+                   intRegex = /[0-9 -()+]+$/;
+                   if ((PhoneNumber.length != 11) || (!intRegex.test(PhoneNumber))) {
+
+            pushNotification("danger", '@Resources.Global.sonPhoneNumberRequired');
+
+                    return false;
+                }
+
+                if (PhoneNumber === '') {
+
+
+            pushNotification("danger", '@Resources.Global.sonPhoneNumberRequired');
+
+
+
+                    return;
+                }
+
+                $('#number').append(`<li><div><b class="sonnumbers">${PhoneNumber}</b> </div> <div><input type="button" onclick="deleteli(this)" value="@Resources.Global.Delete" /></div></li>`);
+
+
+                $('#AddnewSonNumber').val('');
+
+            });
+
+
+            function validateEmail(sEmail) {
+
+    var filter = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+    if (filter.test(sEmail)) {
+
+        return true;
+
+    }
+
+    else {
+
+        return false;
+
+    }
+}
+
+
+
+            //--------------------------- register Student------------------------------
+            // lol
+            $("#StudentForm").submit(function (e) {
+                e.preventDefault();
+
+                var phone = $('#PhoneNumberStudent').val(),
+                    EmailStudent = $('#EmailStudent').val(),
+                    fullName = $("#FullNameStudent"),
+                    intRegex = /[0-9 -()+]+$/;
+
+                if (fullName == null || fullName.val() == "" || typeof (fullName.val()) == "undefined") {
+
+            pushNotification("danger", '@Resources.Global.PleaseenterfullName');
+
+                    return false;
+                }
+                if (!validateEmail(EmailStudent)) {
+
+
+            pushNotification("danger", '@Resources.Global.InvalidEmailAddress');
+
+                    return false;
+
+                }
+                if ((phone.length < 11 || phone.length > 11) || (!intRegex.test(phone))) {
+
+            pushNotification("danger", '@Resources.Global.PleaseEnterAValidPhoneNumber');
+
+
+                    return false;
+                }
+                let PasswordStudent = $('#PasswordStudent').val();
+                let ConfirmPasswordStudent = $('#ConfirmPasswordStudent').val();
+                if (PasswordStudent == null || PasswordStudent == "" || typeof (PasswordStudent) == "undefined" || PasswordStudent.length < 5) {
+
+            pushNotification("danger", '@Resources.Global.invalid_password');
+
+
+                    return false;
+                }
+                if (PasswordStudent != ConfirmPasswordStudent) {
+
+                           pushNotification("danger", '@Resources.Global.notMatchPassword');
+
+                    return false;
+                }
+
+                let formData = new FormData();
+                let file = document.getElementById("imageUploadForm").files[0];
+                let FullNameStudent = $('#FullNameStudent').val();
+
+                let PhoneNumberStudent = $('#PhoneNumberStudent').val();
+                let GradeId = $("#GradeList").val();
+                let GroupId = $("#GroupList").val();
+
+                if (GradeId == null || GradeId == "" || typeof (GradeId) == "undefined") {
+
+                        pushNotification("danger", '@Resources.Global.SelectGrade_required');
+                        return false;
+                    }
+                    if (GroupId == null || GroupId == "" || typeof (GroupId) == "undefined") {
+                                   pushNotification("danger", '@Resources.Global.SelectGroup_required');
+
+
+                        return false;
+                    }
+                    let Gender = $("[name=Gender]:checked").val();
+
+
+                    formData.append("imageUploadForm", file);
+
+                    formData.append("FullNameStudent", FullNameStudent);
+
+                    formData.append("EmailStudent", EmailStudent);
+
+                    formData.append("PasswordStudent", PasswordStudent);
+
+                    formData.append("PhoneNumberStudent", PhoneNumberStudent);
+
+                    formData.append("GradeId", GradeId);
+
+                    formData.append("GroupId", GroupId);
+
+                    formData.append("Gender", Gender);
+
+
+
+
+                    $.ajax({
+                        url: "/api/Studnets/CreateFromWeb",
+                        type: "Post",
+                        data: formData,
+                        beforeSend: function () {
+
+                            // Show image container
+
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+
+                            if (data.State == 400) {
+
+                                            pushNotification("danger", `${data.Message}`);
+
+                            }
+                            else {
+                                window.location.href = '/Account/AccountIsPending'
+
+                            }
+
+                        }, error: (data) => {
+                            // unauthorize
+                            let errorMessage = manageAjaxError(data);
+                            pushNotification("danger", errorMessage);
+                        },
+                        complete: function (data) {
+
+
+                        }
+
+                    });
+                });
+
+            $.ajax({
+                url:"/api/Grades/GetAll/lang/@lang",
+                type: "Get",
+                beforeSend: function () {
+
+                    // Show image container
+
+                },
+                cache: false,
+                success: function (res) {
+                    debugger;
+
+                    let option = "";
+                    for (var i = 0; i < res.length; i++) {
+                        option = `<option value="${res[i].Id}">${res[i].Name}</option>`;
+                        $('#GradeList').append(option);
+
+                    }
+
+                },
+                error: function () {
+
+
+                },
+                complete: function (data) {
+                    // Hide image container
+
+                }
+            });
+
+            $('#GradeList').change(function () {
+                  $("#GroupList").children("option").eq(0).nextAll().remove();
+
+                var GradeID = $(this).val();
+
+                let StudentType = $("[name=radio]:checked").val();
+                let _url = "";
+                if (StudentType == "AcademicStudents") {
+                    let cityId = $("#ddl_cities").val();
+                    if (cityId == null || cityId == "" || typeof (cityId) == "undefined") {
+                        pushNotification("danger", '@Resources.Global.governorateand_city_required');
+                        return false;
+                    }
+             _url = "/api/web/Grade/" + GradeID + "/AllGroup/@lang/StudentType/" + StudentType + "/city/"+cityId+"";
+                } else {
+                    _url = "/api/web/Grade/" + GradeID + "/AllGroup/@lang/StudentType/" + StudentType + "";
+                }
+                $.ajax({
+                    url: _url,
+                    type: "Get",
+                    beforeSend: function () {
+
+                        // Show image container
+
+                    },
+                    cache: false,
+                    success: function (res) {
+
+                        let option = "";
+                        debugger;
+
+                        for (var i = 0; i < res.length; i++) {
+                            option = `<option value="${res[i].GroupId}">${res[i].GroupName}</option>`;
+                            $('#GroupList').append(option);
+
+                        }
+                    },
+                    error: function () {
+
+                    },
+                    complete: function (data) {
+                        // Hide image container
+
+                    }
+                });
+
+
+
+            });
+
+
+            //------------------------------------------------------------
+
+            ///-------------------------- Register  parent ---------------------------
+
+            //lol2
+
+
+            $("#ParentForm").submit(function (e) {
+
+                e.preventDefault();
+
+                var phone = $('#ParentPhoneNumber').val(),
+                    intRegex = /[0-9 -()+]+$/;
+
+
+                e.preventDefault();
+                let formData = new FormData();
+                let file = document.getElementById("ParentimageUploadForm").files[0];
+                let ParentName = $('#ParentName').val();
+                let ParentEmail = $('#ParentEmail').val();
+                let ParentPassword = $('#ParentPassword').val();
+                let ParentConfirmPassword = $('#ParentConfirmPassword').val();
+                let JobName = $('#JobName').val();
+                let ParentPhoneNumber = $('#ParentPhoneNumber').val();
+
+                if (ParentName == null || ParentName == "" || typeof (ParentName) == "undefined") {
+
+                    pushNotification("danger", '@Resources.Global.PleaseenterfullName');
+
+                    return false;
+                }
+
+
+                if (JobName == null || JobName == "" || typeof (JobName) == "undefined") {
+
+                    pushNotification("danger", '@Resources.Global.Job_required');
+
+                    return false;
+                }
+                if (!validateEmail(ParentEmail)) {
+
+
+
+                    pushNotification("danger", '@Resources.Global.InvalidEmailAddress');
+
+
+
+                    return false;
+
+                }
+
+                if (ParentPassword == null || ParentPassword == "" || typeof (ParentPassword) == "undefined" || ParentPassword.length < 5) {
+
+                    pushNotification("danger", '@Resources.Global.invalid_password');
+
+
+                    return false;
+                }
+                if (ParentConfirmPassword != ParentPassword) {
+
+                    pushNotification("danger", '@Resources.Global.notMatchPassword');
+
+                    return false;
+                }
+                if ((ParentPhoneNumber.length < 11 || ParentPhoneNumber.length > 11) || (!intRegex.test(ParentPhoneNumber))) {
+
+                    pushNotification("danger", '@Resources.Global.PleaseEnterAValidPhoneNumber');
+
+
+                    return false;
+                }
+
+
+                let numbers = [];
+                var sonnumbers = $('.sonnumbers');
+                for (var i = 0; i < sonnumbers.length; i++) {
+                    // Using $() to re-sonnumbers the element.
+                    numbers.push($(sonnumbers[i]).text());
+                }
+                console.log(numbers);
+                if (numbers == null || numbers.length == 0) {
+                    let childPhone = $("#AddnewSonNumber").val();
+                    if (childPhone != null && childPhone != "" && typeof (childPhone) != "undefined") {
+                        if (childPhone.length != 11) {
+                            pushNotification("danger", '@Resources.Global.sonPhoneNumberRequired');
+                            return false;
+                        } else {
+                             numbers.push(childPhone);
+                        }
+                    }
+                }
+
+                formData.append("imageUploadForm", file);
+
+                formData.append("ParentName", ParentName);
+
+                formData.append("ParentEmail", ParentEmail);
+
+                formData.append("ParentPassword", ParentPassword);
+
+                formData.append("ParentPhoneNumber", ParentPhoneNumber);
+                formData.append("SonNumbers", numbers);
+
+                $.ajax({
+                    url: "/api/Parent/CreateFromWeb",
+                    type: "Post",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+
+                        if (data.State == 400) {
+
+                                   pushNotification("danger",data.Message);
+
+                        }
+                        else {
+                            window.location.href = '/Account/PublicLogin'
+
+                        }
+
+                    },
+                    error: function (xhr, error, status) {
+
+                    },
+                });
+
+
+
+            });
+
+
+            //------------------------------------------------------------------------------
+
+
+
+            $("#VisitorForm").submit(function (e) {
+
+                var phone = $('#VisitorPhoneNumber').val(),
+                    intRegex = /[0-9 -()+]+$/;
+                if ((phone.length < 6) || (!intRegex.test(phone))) {
+
+
+
+            pushNotification("danger", '@Resources.Global.PleaseEnterAValidPhoneNumber');
+
+
+
+                    return false;
+                }
+                debugger;
+                e.preventDefault();
+
+                let VisitorFullName = $('#VisitorFullName').val();
+
+                let VisitorPhoneNumber = $('#VisitorPhoneNumber').val();
+                $.ajax({
+                    url: "/api/VisitorUsers/LogStatusFromWeb",
+                    type: "Post",
+                    data: { "FullName": VisitorFullName, "Mobile": VisitorPhoneNumber },
+                    datatype: "json",
+                    success: function (data) {
+
+                        if (data.State == 400) {
+            pushNotification("danger", data.Message);
+
+                        }
+                        else
+                        {
+                            window.location.href ='/Home/Index'
+
+                        }
+
+                    },
+                    error: function (xhr, error, status) {
+
+                    },
+                });
+
+
+
+            });
+
+
+        });
+
+
+
+    </script>
+    <script src="~/assets/app/custome/login/bootstrap-notify.min.js"></script>
+    <script src="~/StaticFiles/js/notfication.js"></script>
+</body>
+</html>

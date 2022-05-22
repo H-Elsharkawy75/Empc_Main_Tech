@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "StudiosServices";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool en = true;
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+}
+
+@section EndHeader{
+<link href="~/assets_NewPublic/libs/magnific-popup/magnific-popup.css" rel="stylesheet" />
+<style>
+    .menu li a.active-a3 {
+        color: #af7a2c;
+        border-bottom: 1px solid #fff0;
+        font-weight: 500;
+    }
+</style>
+
+
+}
+<div class="header-bc">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="title-header">
+                    <h3>Studios</h3>
+
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="/Home">@Resources.Global.Home</a> > </li>
+                            <li>@Resources.Global.services</li>
+                        </ul>
+                    </div>
+                    <!--end breadcrumb-->
+                </div>
+                <!--end title-header-->
+            </div>
+            <!--end col-6-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</div>
+<!--end header-bc-->
+
+
+
+
+<div class="gallerySection mt-5 gallaryPag">
+    <div class="container">
+        <div class="row">
+
+
+            @*<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="sendmessage">
+                    <select>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <A href="#" class="btn btn-black">Select</A>
+            </div>*@
+            <!--end col-3-->
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div class="gallerys">
+
+                    <div class=" popup-gallery2">
+
+
+
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/bg_2.jpg">
+                                <img src="~/assets_NewPublic/images/bg_2.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl1.jpg">
+                                <img src="~/assets_NewPublic/images/gl1.jpg" class="img-responsive" alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl13.jpg">
+                                <img src="~/assets_NewPublic/images/gl13.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl20.jpg">
+                                <img src="~/assets_NewPublic/images/gl20.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+
+
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl11.jpg">
+                                <img src="~/assets_NewPublic/images/gl11.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/Mask_Group_18.png">
+                                <img src="~/assets_NewPublic/images/Mask_Group_18.png" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/bg_2.jpg">
+                                <img src="~/assets_NewPublic/images/bg_2.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl11.jpg">
+                                <img src="~/assets_NewPublic/images/gl11.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/bg_2.jpg">
+                                <img src="~/assets_NewPublic/images/bg_2.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl1.jpg">
+                                <img src="~/assets_NewPublic/images/gl1.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl13.jpg">
+                                <img src="~/assets_NewPublic/images/gl13.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl20.jpg">
+                                <img src="~/assets_NewPublic/images/gl20.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+
+
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl11.jpg">
+                                <img src="~/assets_NewPublic/images/gl11.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/Mask_Group_18.png">
+                                <img src="~/assets_NewPublic/images/Mask_Group_18.png" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/gl11.jpg">
+                                <img src="~/assets_NewPublic/images/gl11.jpg" class="img-responsive" alt="" title="" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="~/assets_NewPublic/images/bg_2.jpg" class="big">
+                                <img src="~/assets_NewPublic/images/bg_2.jpg" class="img-responsive " alt="" title="" />
+                            </a>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+                <!--end items-->
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="buttonToogle" style="display: none;"><a href="javascript:;" class="showMore">Load More</a></div>
+
+            </div>
+
+
+
+            <Div class="cleaner-h4"></Div>
+        </div>
+
+
+
+    </div>
+    <!--end row-->
+
+</div>
+<!--end container-->
+@section EndBody{
+<script src="~/assets_NewPublic/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="~/assets_NewPublic/libs/magnific-popup/lightbox.init.js"></script>
+}
+

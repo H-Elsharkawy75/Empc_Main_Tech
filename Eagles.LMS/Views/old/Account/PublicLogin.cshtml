@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "PublicLogin";
+    Layout = null;
+    bool en = true;
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teatchers-login-2019</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/StaticFiles/css/bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700,900" rel="stylesheet">
+    <!-- <link href="/StaticFiles/css/font-awesome.min.css" rel="stylesheet">-->
+    <link href="/StaticFiles/css/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="/StaticFiles/css/hover.css" rel="stylesheet">
+    @if (en)
+    {
+        <link href="/StaticFiles/css/login-register.css" rel="stylesheet">
+    }
+    else
+    {
+        <link href="/StaticFiles/css/login-register-rtl.css" rel="stylesheet">
+    }
+    <style>
+        .alert-danger {
+            background-color: #ff172eb8 !important;
+            color: #fff;
+        }
+
+        .alert-success {
+            background-color: #11da3f !important
+        }
+    </style>
+    <link href="/StaticFiles/css/animate.css" rel="stylesheet">
+    @*<link rel="stylesheet" type="text/css" href="/StaticFiles/css/bootstrap4/bootstrap.min.css">*@
+    <link href="~/StaticFiles/toastr.css" rel="stylesheet" />
+
+    <!-- <link href="/StaticFiles///maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">-->
+    <!--[if lt IE 9]>
+    <script src="/StaticFiles/js/html5shiv.min.js"></script>
+    <script src="/StaticFiles/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="log-reg">
+        <div class="log-back">
+            <div class="log-box wow zoomIn">
+                <div class="row other-row">
+                    <div class="col-lg-12 other-col">
+                        <div class="inputes">
+                            <div class="titels wow bounceIn delay-05">
+                                <h3>@Resources.Global.Logintoyouraccount</h3>
+                                <p>@Resources.Global.Donhaveanaccount <span><a href="/Account/Register"> @Resources.Global.SiginupFree</a></span></p>
+                            </div>
+                            <div class="inp-content">
+
+                                <div class="form-group wow zoomInRight" style="animation-delay:.5s">
+                                    <label class="loglable">@Resources.Global.Email</label>
+                                    <input type="text" id="Email" class="form-control email" autocomplete="" name="username" required placeholder="@Resources.Global.EmailOrPhone">
+                                </div>
+
+                                <div class="form-group wow zoomInRight" style="animation-delay:.75s">
+                                    <div class="pwdMask">
+                                        <label class="loglable">@Resources.Global.Password</label>
+                                        <input type="password" id="Password" class="form-control password" required name="password" placeholder="@Resources.Global.Password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group wow zoomInRight" style="animation-delay:1s">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="chiller_cb">
+                                                <label class="checkbox mr" for="myCheckbox1">@Resources.Global.RemmeberMe</label>
+                                                <input id="myCheckbox1" type="checkbox">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-6" style="display:none">
+                                            <p class="forget"><a href="#"> Forgot Password?</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group wow zoomInRight" style="animation-delay:1s">
+                                    <button class="login-buton form-control" type="button" id="btn_PublicLogin"> @Resources.Global.LogIn</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="/StaticFiles/js/jquery-3.3.1.min.js"></script>
+    <script src="/StaticFiles/css/bootstrap4/popper.js"></script>
+    <script src="/StaticFiles/css/bootstrap4/bootstrap.min.js"></script>
+    <script src="/StaticFiles/js/bootstrap.min.js"></script>
+    <script src="/StaticFiles/js/main.js"></script>
+    <script src="/StaticFiles/js/bootstrap-select.min.js"></script><!--https://silviomoreto.github.io/bootstrap-select/examples/ -->
+    <script src="/StaticFiles/js/wow.min.js"></script>
+    <script>new WOW().init();</script>
+
+    <script src="~/StaticFiles/toastr.js"></script>
+
+    <script>
+
+        $("#btn_PublicLogin").click(function (e) {
+            debugger;
+            e.preventDefault();
+            let Email = $('#Email').val();
+            if (Email === "") {
+
+                //toastr.error('Email is Required')
+				pushNotification("danger", 'Email is Required');
+                return;
+            }
+            let Password = $('#Password').val();
+            if (Password === "") {
+
+                //toastr.error('Password is Required')
+				pushNotification("danger", 'Password is Required');
+
+                return;
+            }
+            let remember = false;
+            if ($('#myCheckbox1').is(":checked")) {
+                // it is checked
+                remember = true;
+            }
+
+            $.ajax({
+                url: "/Account/PublicLogin",
+                type: "Post",
+                beforeSend: function () {
+                    // Show image container
+
+                },
+                cache: false,
+                datatype: "json",
+                data: { "LoginName": Email, "Password": Password, "Rememberme": remember },
+                success: function (res) {
+                 
+                    if (res === "Sucess") {
+                        window.location.href = '@Url.Action("Index","Home")'
+                        //  alert(res)
+                    }
+                    else if (res === "SucessAdmin") {
+                        window.open("/Admission", "_self");
+
+                    }
+                    else {
+                        if (res === "Your account is suspended pending approval from the admin") {
+                            window.location.href = '@Url.Action("AccountIsPending", "Account");'
+
+                        }
+                                   pushNotification("danger",`${res}`);
+
+
+                    }
+                }, error: (error) => {
+                    // unauthorize
+                    let errorMessage = manageAjaxError(error);
+                    pushNotification("danger", errorMessage);
+                },
+                complete: function (data) {
+                    // Hide image container
+
+                }
+            });
+
+
+        });
+    </script>
+
+
+    <script src="/StaticFiles/js/bootstrap-notify.min.js"></script>
+    <script src="/StaticFiles/js/notfication.js"></script>
+</body>
+</html>

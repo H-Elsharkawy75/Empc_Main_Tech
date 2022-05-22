@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "VideoDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    UnitOfWork ctx = new UnitOfWork();
+    bool en = true;
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+    }
+
+
+
+    var Id = ViewBag.Id;
+    var albumId = ViewBag.AlbumId;
+
+    List<Galary> videos;
+    if (albumId != null)
+    {
+        videos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage && s.AlbumId == albumId).OrderByDescending(s => s.Order).ToList();
+    }
+    else
+    {
+        videos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage).OrderByDescending(s => s.Order).ToList();
+
+    }
+}
+
+
+@section EndHeader{
+    <style>
+        .menu li a.active-a5 {
+            color: #af7a2c;
+            border-bottom: 1px solid #fff0;
+            font-weight: 500;
+        }
+    </style>
+}
+
+<div class="header-bc">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="title-header">
+                    <h3> @Resources.Global.Videos</h3>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="/Home">@Resources.Global.Home</a> > </li>
+                            <li>  @Resources.Global.Videos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="gallaySection gallaryPag">
+    <div class="container">
+        <div class="VideogallaryCont">
+            <div class="row">
+
+
+
+                <div class="col-lg-12 col-md-12" style="">
+
+                    <div class="gallerys zoom-gallery">
+
+
+                        @foreach (var vidoe in videos)
+                        {
+
+                            
+
+
+
+
+                            <div class="item">
+                                <a href="#">
+                                    <iframe class="" src="@vidoe.VideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </a>
+                                
+                            </div>
+                            
+                        }
+
+                    </div>
+                    <!--end items-->
+                </div>
+
+
+
+
+
+                @*@foreach (var Video in videos)
+                {
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="VedioIemGaleeary">
+                            <div class="images">
+                                <img src="~/assets_NewPublic/images/bg_2.jpg" />
+                            </div>
+                            <div class="buttonPopUp">
+                                <a href="@Video.Image" type="button" class="vediobtn" target="_blank">
+                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }*@
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div class="modal fade Vediomodal" id="VedioPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="vedioIframe">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/4AO7Pz-ArE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>*@

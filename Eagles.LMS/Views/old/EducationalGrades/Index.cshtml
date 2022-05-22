@@ -1,0 +1,897 @@
+﻿
+@{
+    ViewBag.Title = Resources.Global.Grades;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
+  
+
+    string en = "en";
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? "en" : "ar";
+
+    }
+    bool isUserLogin = false;
+    if (Request.Cookies["UserId"] != null)
+    {
+        isUserLogin = true;
+    }
+    int GradeId = ViewBag.GradeId;
+}
+<style>
+    .grades-groups .content-grades .group-content-apoint {
+        padding-bottom: 15px;
+        border-bottom: 3px solid #6f3394;
+        margin-bottom: 15px;
+    }
+
+    .btn_dawnloadPdfFile {
+        cursor: pointer;
+    }
+    .tabcontent-grids{
+        direction:ltr !important;
+    }
+</style>
+<link href="~/StaticFiles/toastr.css" rel="stylesheet" />
+
+
+<div class="titlepage">
+    <div class="container">
+        <div class="links">
+            <ul>
+                <li>
+                    <a href="/Home/Index">@Resources.Global.Home</a>
+                </li>
+                <li>
+                    <span>@Resources.Global.Grades</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="grades-groups">
+    <div class="container">
+        <div class="content-grades">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="allgrades">
+                        <div class="allgrades-content">
+                            <h4 class="allgradess"> <span>@Resources.Global.Grades</span></h4>
+                            <ul id="gradesItem"></ul>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <!------------------ Start skills -------->
+                    <div class="skills ">
+                        <div class="">
+                            <div class="skills-agileinfo">
+                                <div class="col-md-12">
+                                    <h4 id="gradtitle" class="gradtiel"> </h4>
+                                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                                        <ul id="myTab" class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" data-type="Group" class="active"><a href="#home" id="home-tab" data-gradeId="" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">@Resources.Global.Groups</a></li>
+                                            <li role="presentation" data-type="units"><a href="#carl" data-gradeId="" role="tab" id="carl-tab" data-toggle="tab" aria-controls="carl">@Resources.Global.Units</a></li>
+                                            <li role="presentation" data-type="playlist" style=""><a href="#james" data-gradeId="" role="tab" id="james-tab" data-toggle="tab" aria-controls="james">@Resources.Global.Playlist</a></li>
+                                        </ul>
+                                        <div id="myTabContent" class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                                                <div id="Groups" class="tabcontent-grids">
+
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="carl" aria-labelledby="carl-tab">
+                                                <div class="tabcontent-grids unitsgrids">
+                                                    <div class="units" id="UniteData">
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="james" aria-labelledby="james-tab">
+                                                <div class="tabcontent-grids">
+                                                    <div id="youtubeData">
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!------------------ End skills -------->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Our Locations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="map"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="loading">
+
+
+</div>
+
+
+
+<div class="modal fade" id="watting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color:transparent; z-index:999999">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="">
+
+            </div>
+            <div class="modal-body">
+                <div id='' style="text-align:center">
+
+                    <div class="container-loading ">
+                        <div class="row">
+                            <div id="loader">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="lading"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <h2 class="alamloading">Hesham Allam 4 Edu</h2>
+                    <span class="plreaas">
+                        Please wait...
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--The div element for the map -->
+
+<script>
+
+
+    function initMap() {
+        var myLatLng = { lat: 30.560914, lng: 31.010510 };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDz5TCEihOcoK8XWOL-qGWhaoSGZUm9qcU&callback=initMap">
+</script>
+
+<script src="/StaticFiles/js/jquery-3.3.1.min.js"></script>
+<script src="~/StaticFiles/toastr.js"></script>
+
+<script>
+
+    //nap location
+    $(document).ready(function () {
+
+        $("body").on("click", ".Groubmap",
+
+
+            function initMap()
+            {
+                var lan = $(this).attr("data-lan");
+                var long = $(this).attr("data-long");
+                var myLatLng = { lat: parseFloat(lan), lng: parseFloat(long) };
+                debugger;
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 13,
+                    center: myLatLng
+                });
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: 'Hello World!'
+                });
+
+                $('#exampleModal').modal('show');
+            });
+
+
+
+
+
+
+
+       $.ajax({
+           url: "/api/web/Grades/GetAll/@en",
+                type: "Get",
+                beforeSend: function () {
+
+                    // Show image container
+
+                },
+                cache: false,
+           success: function (res) {
+
+               let li = "";
+               $("#gradesItem").children().remove();
+               console.log(res);
+               for (let i = 0; i < res.length; i++)
+                    {
+
+                   if (res[i].Id == '@GradeId') {
+
+
+                       li = ` <li >
+                                    <a  class="active GradeID" data-id="${res[i].Id}">${res[i].Name}</a>
+                                </li>`
+
+                       $('#gradtitle').text(`${res[i].Name}`);
+                       $('#home-tab').attr('data-gradeId', res[i].Id);
+                       $('#carl-tab').attr('data-gradeId', res[i].Id);
+                       $('#james-tab').attr('data-gradeId', res[i].Id);
+
+                   }
+                   else {
+
+                       li = ` <li>
+                                    <a  class="GradeID" data-id="${res[i].Id}">${res[i].Name}</a>
+                                </li>`
+                   }
+                   $('#gradesItem').append(li);
+
+                    }
+
+                },
+                error: function () {
+                    alert('error');
+                },
+                complete: function (data) {
+                    // Hide image container
+
+                }
+        });
+
+
+       let isfirstgrade = true;
+
+       $.ajax({
+           url: "/api/web/Grade/@GradeId/AllGroup/@en/" + isfirstgrade + "",
+           type: "Get",
+           beforeSend: function () {
+
+               // Show image container
+
+           },
+           cache: false,
+           success: function (res) {
+               let display = "",
+                   display_signUp = "";
+                  if ('@isUserLogin' == "True") {
+                       display_signUp = "none";
+                   } else {
+                       display_signUp = "block";
+
+                   }
+               let row = "";
+               let tr = "";
+               debugger;
+
+
+               //lol
+               for (let i = 0; i < res.length; i++)
+               {
+                   if (res[i].StudentType.toLowerCase() == "AcademicStudents".toLowerCase()) {
+                       display = "block";
+                   }
+                   else {
+                       display = "none";
+
+                   }
+
+                   row =`<div class="group-content-apoint"><div class="row cssssss">
+                                         <div class="col-lg-7 col-md-7">
+                                                                <div class="groupnamee">
+                                                                    <h4>${ res[i].GroupName}</h4>
+                                                                </div>
+                                                                <div class="locationsnum">
+                                                                 <div class="loc">
+                                                                        <button style="display:${display}" type="button" data-lan="${res[i].Latitude}" data-long="${res[i].Longitude}" class="btn btn-primary Groubmap" >
+                                                                            <i class="fas fa-map-marker-alt"></i> @Resources.Global.location
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <div style="display:${display_signUp}" class="complet">
+                                                                        <a href="/Account/Register">@Resources.Global.SignUp</a>
+                                                                    </div>
+                                                                    <div class="numberstu">
+                                                                        <i class="fas fa-users"></i> ${res[i].StudentCount} @Resources.Global.Student
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-5 col-md-5">
+                                                                <div class="appointtable">
+                                                                    <table class="table table-hover wow zoomIn">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th> @Resources.Global.Day </th>
+                                                                                <th> @Resources.Global.Hour </th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody class="appointGroup${i}">
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+															</div>
+                                                        </div>`
+
+
+                   $('#Groups').append(row);
+                   debugger;
+                   for (let j = 0; j < res[i].AppointmentsTimeingGroup.length; j++) {
+
+                       tr=`<tr>
+                                                                                <td> ${j+1} </td>
+                                                                                <td>
+                                                                                    <i class="far fa-calendar-alt"></i> ${res[i].AppointmentsTimeingGroup[j].Day}
+                                                                                </td>
+                                                                   <td>
+                                                                                        <i class="far fa-clock"></i>${res[i].AppointmentsTimeingGroup[j].From} - ${res[i].AppointmentsTimeingGroup[j].To}
+                                                                                    </td>
+
+                                                                            </tr>`
+                       $(`.appointGroup${i}`).append(tr);
+                   }
+
+
+
+               }
+
+
+           },
+           error: function () {
+               alert('error');
+           },
+           complete: function (data) {
+               // Hide image container
+
+           }
+       });
+
+
+
+       $('body').on('click', '.GradeID', function (e) {
+
+
+           debugger;
+           e.preventDefault();
+           var gradid = $(this).attr('data-id');
+           $('#home-tab').attr('data-gradeId', gradid);
+           $('#carl-tab').attr('data-gradeId', gradid);
+           $('#james-tab').attr('data-gradeId', gradid);
+           $('.active').removeClass('active');
+           $(this).addClass("active");
+           document.getElementById('home-tab').click();
+
+
+
+
+           // code
+       });
+
+
+
+       document.getElementById('home-tab').onclick = function ()
+       {
+           $(this).closest('li').addClass("active");
+           $("[data-type=units]").removeClass("active");
+           $("[data-type=playlist]").removeClass("active");
+
+
+           //debugger;
+           $('#Groups').html('');
+           var gradeid = $(this).attr('data-gradeId');
+           if (gradeid === "" || gradeid=="undefined")
+           {
+               alert("Must Select Grade")
+           }
+
+           let isfirstgrade = false;
+           let display_signUp = "",
+               display = "";
+           $.ajax({
+               url: "/api/web/Grade/" + gradeid+"/AllGroup/@en/" + isfirstgrade + "",
+               type: "Get",
+               beforeSend: function () {
+
+               //lol2
+
+               },
+               cache: false,
+               success: function (res) {
+                          if ('@isUserLogin' == "True") {
+                       display_signUp = "none";
+                   } else {
+                       display_signUp = "block";
+
+                   }
+                   let row = "";
+                   let tr = "";
+                   debugger;
+                   let display = "";
+                   for (var i = 0; i < res.length; i++) {
+                       if (res[i].StudentType.toLowerCase() == "AcademicStudents".toLowerCase()) {
+                           display = "block";
+                       }
+                       else {
+                           display = "none";
+
+                       }
+                       row = `<div class="group-content-apoint"><div class="row">
+                                         <div class="col-lg-7 col-md-7">
+                                                                <div class="groupnamee">
+                                                                    <h4>${ res[i].GroupName}</h4>
+                                                                </div>
+                                                                <div class="locationsnum">
+                                                                    <div class="loc">
+                                                                        <button style="display:${display}" type="button" data-lan="${res[i].Latitude}" data-long="${res[i].Longitude}" class="btn btn-primary Groubmap" >
+                                                                            <i class="fas fa-map-marker-alt"></i> @Resources.Global.location
+                                                                        </button>
+                                                                    </div>
+
+                                                                <div style="display:${display_signUp}" class="complet">
+                                                                        <a href="/Account/Register">@Resources.Global.SignUp</a>
+                                                                    </div>
+                                                                    <div class="numberstu">
+                                                                        <i class="fas fa-users"></i> ${res[i].StudentCount} @Resources.Global.Student
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-5 col-md-5">
+                                                                <div class="appointtable">
+                                                                    <table class="table table-hover wow zoomIn">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th> @Resources.Global.Day </th>
+                                                                                <th> @Resources.Global.Hour </th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody class="appointGroup${i}">
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>`
+
+
+                       $('#Groups').append(row);
+                       debugger;
+                       for (let j = 0; j < res[i].AppointmentsTimeingGroup.length; j++) {
+
+                           tr = `<tr>
+                                                                                <td> ${j + 1} </td>
+                                                                                <td>
+                                                                                    <i class="far fa-calendar-alt"></i> ${res[i].AppointmentsTimeingGroup[j].Day}
+                                                                                </td>
+                                                                   <td>
+                                                                                        <i class="far fa-clock"></i>${res[i].AppointmentsTimeingGroup[j].From} - ${res[i].AppointmentsTimeingGroup[j].To}
+                                                                                    </td>
+
+                                                                            </tr>`
+                           $(`.appointGroup${i}`).append(tr);
+                       }
+
+                   }
+
+
+               },
+               error: function () {
+                   toastr.error('error')
+               },
+               complete: function (data) {
+                   // Hide image container
+
+               }
+           });
+
+
+           // end -----------------------------
+           ///start--------------------------
+
+
+       };
+
+    });
+    document.getElementById('carl-tab').onclick = function () {
+
+        $(this).closest('li').addClass("active");
+
+        $("[data-type=Group]").removeClass("active");
+        $("[data-type=playlist]").removeClass("active");
+
+        debugger;
+        $('#UniteData').html('');
+        var gradeid = $(this).attr('data-gradeId');
+        if (gradeid === "" || gradeid == "undefined") {
+            toastr.error("Must Select Grade")
+        }
+        $.ajax({
+            url: "/api/Grade/" + gradeid + "/GetAllUnitsData",
+            type: "Get",
+            beforeSend: function () {
+
+                // Show image container
+
+            },
+            cache: false,
+            success: function (res) {
+                debugger;
+                var data = '';
+                var files = ''
+                // var firstterm = '';
+
+                if (res.gradetype == true) {
+
+
+                    data = `<div class="skills-agileinfo">
+                                    <div class="col-md-12">
+                                        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                                            <ul id="myTab" class="nav nav-tabs" role="tablist">
+                                                <li role="presentation" data-type="first" class="active" style="width:50%"><a href="#firstterm" id="unitfirstterm" role="tab" data-toggle="tab" aria-controls="home3" aria-expanded="false">First Term</a></li>
+
+                                                <li role="presentation" data-type="second" style="width:50%" ><a href="#secodterm" role="tab" id="unitsecondterm" data-toggle="tab" aria-controls="james" aria-expanded="true">Second Term</a></li>
+                                            </ul>
+                                            <div id="myTabContent" class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade active show" id="firstterm" aria-labelledby="unitdatasecond">
+                                                    <div class="tabcontent-grids">`
+
+
+
+                    for (var i = 0; i < res.FirstTermSystem.length; i++) {
+
+                        debugger;
+
+                        data += `
+                                                            <div class="col-lg-4 col-md-6 othercol10">
+                                                                <div class="unit-content">
+                                                                    <div class="details">
+                                                                        <h4 class="unit-name">${res.FirstTermSystem[i].Name}</h4>`
+                        for (var j = 0; j < res.FirstTermSystem[i].file.length; j++) {
+
+
+                            data += `<a class="btn_dawnloadPdfFile"  data-href="${res.FirstTermSystem[i].file[j].Path}"><i class="fas fa-download"></i> Dowenload </a>`
+                        }
+                        data += `</div>
+                                                                </div>
+                                                            </div>`
+                    }
+
+
+
+                    data += ` </div>
+
+                                                </div>
+
+
+                                                <div role="tabpanel" class="tab-pane fade in" id="secodterm" aria-labelledby="secondtem">
+
+                                                        <div class="tabcontent-grids">`
+
+
+
+
+                    for (var i = 0; i < res.SecondTermSystem.length; i++) {
+
+                        debugger;
+
+                        data += `
+                                                            <div class="col-lg-4 col-md-6 othercol10">
+                                                                <div class="unit-content">
+                                                                    <div class="details" >
+                                                                        <h4 class="unit-name">${res.SecondTermSystem[i].Name}</h4>`
+                        for (var j = 0; j < res.SecondTermSystem[i].file.length; j++) {
+
+
+
+                            data += `<a class="btn_dawnloadPdfFile"  data-href="${res.SecondTermSystem[i].file[j].Path}"><i class="fas fa-download"></i> Dowenload </a>`
+                        }
+                        data += `</div>
+                                                                </div>
+                                                            </div>`
+                    }
+
+
+
+
+                    data += `</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>`
+
+
+
+                    $('#UniteData').html(data);
+
+
+                }
+                else {
+
+
+                    for (var i = 0; i < res.Other.length; i++) {
+
+                        debugger;
+
+
+
+                        data += `
+                                                            <div class="col-lg-4 col-md-6 othercol10">
+                                                                <div class="unit-content">
+                                                                    <div class="details">
+                                                                        <h4 class="unit-name">${res.Other[i].Name}</h4>`
+                        for (var j = 0; j < res.Other[i].file.length; j++) {
+
+                            debugger;
+
+                            data += `<a class="btn_dawnloadPdfFile"  data-href="${res.Other[i].file[j].Path}"><i class="fas fa-download"></i> Dowenload </a>`
+
+                        }
+                        data += `</div>
+                                                                </div>
+                                                            </div>`
+                    }
+                }
+                data += `</div>`
+
+                $('#UniteData').html(data);
+
+
+
+
+            },
+            error: function () {
+                toastr.error('error');
+                alert('error');
+            },
+            complete: function (data) {
+                // Hide image container
+
+            }
+        });
+    }
+    //lolo
+    document.getElementById('james-tab').onclick = function () {
+
+        $(this).closest('li').addClass("active");
+
+        $("[data-type=Group]").removeClass("active");
+        $("[data-type=units]").removeClass("active");
+
+        debugger;
+        $('#youtubeData').html('');
+        var gradeid = $(this).attr('data-gradeId');
+        if (gradeid === "" || gradeid == "undefined") {
+            toastr.error("Must Select Grade")
+        }
+
+        $.ajax({
+            url: "/api/Grade/" + gradeid + "/GetAllYouTubeData",
+            type: "Get",
+            success: function (res) {
+
+                console.log(res);
+                if (res.IsUsedTermSystem == true) {
+                    let firtTerm = false,
+                        url = "";
+                        url2 = "";
+
+                        secondTerm = false;
+                    let design = `<div class="skills-agileinfo">
+                                                            <div class="col-md-12">
+                                                                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                                                                    <ul id="myTab" class="nav nav-tabs" role="tablist">`;
+                    if (res.List[0]!=null && res.List[0].Term=="FirstTerm" && res.List[0].YouTubeListId != null && typeof (res.List[0].YouTubeListId) != 'undefined') {
+                        firtTerm = true;
+                        url = res.List[0].YouTubeListId;
+                        design += `<li id="li_firstYoutubeTerm" role="presentation" data-type="first" class="active" style="width:50%"><a href="#firtsYoutubeTerm" id="firtsYoutubeTerm_id" role="tab" data-toggle="tab" aria-controls="home3" aria-expanded="false">First Term</a></li>`;
+                    }
+                    else if (res.List[0] != null && res.List[0].Term == "SecondTerm" && res.List[0].YouTubeListId != null && typeof (res.List[0].YouTubeListId) != 'undefined') {
+                          secondTerm = true;
+                        url = res.List[0].YouTubeListId;
+
+                        design += `<li id="li_secondYoutubeTerm" role="presentation" data-type="second" style="width:50%"><a href="#secondYoutubeTerm" role="tab" id="secondYoutubeTerm_id" data-toggle="tab" aria-controls="james" aria-expanded="true">Second Term</a></li>`;
+                }
+                    if (res.List[1] != null && res.List[1].Term=="SecondTerm" && res.List[1].YouTubeListId != null && typeof (res.List[1].YouTubeListId) != 'undefined') {
+                        secondTerm = true;
+                        url2 = res.List[1].YouTubeListId;
+                        design += `<li id="li_secondYoutubeTerm" role="presentation" data-type="second" style="width:50%"><a href="#secondYoutubeTerm" role="tab" id="secondYoutubeTerm_id" data-toggle="tab" aria-controls="james" aria-expanded="true">Second Term</a></li>`;
+                    }
+
+
+                    design += `</ul ><div id="myTabContent" class="tab-content">`;
+                    if (firtTerm) {
+                       design+= `<div role="tabpanel" class="tab-pane fade active show" id="firtsYoutubeTerm" aria-labelledby="firtsYoutubeTerm_id">
+                            <div class="tabcontent-grids">
+                                <div class="col-lg-4 col-md-6 othercol10">
+                                    <div class="vid-container">
+                                        <iframe id="vid_frame" src="https://www.youtube.com/embed/videoseries?list=${url}" width="560" height="315" frameborder="0"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>`
+                    }
+                    if (secondTerm) {
+                        design += `<div role="tabpanel" class="tab-pane" id="secondYoutubeTerm" aria-labelledby="secondYoutubeTerm_id">
+                                                                            <div class="tabcontent-grids">
+                                                                                <div class="col-lg-4 col-md-6 othercol10">
+                                                                                    <div class="vid-container">
+                                                                                        <iframe id="vid_frame" src="https://www.youtube.com/embed/videoseries?list=${url2}" width="560" height="315" frameborder="0"></iframe>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>`;
+                    }
+                    design += `</div ></div> </div></div>`;
+                    $('#youtubeData').append(design);
+
+
+                } else {
+               if (res.List[0] != null &&res.List[0].YouTubeListId != null && typeof (res.List[0].YouTubeListId) != 'undefined') {
+                        $('#youtubeData').append(`<div class="col-lg-4 col-md-6 othercol10">
+                                                            <div class="vid-container">
+                                                                <iframe id="vid_frame" src="https://www.youtube.com/embed/videoseries?list=${res.List[0].YouTubeListId}" width="560" height="315" frameborder="0"></iframe>
+                                                            </div>
+
+                                                        </div>`);
+                    }
+                }
+            }
+        });
+    }
+
+</script>
+<script>
+
+    $('body').on('click', '#unitsecondterm', function (e) {
+
+
+        $("[data-type=first]").removeClass("active");
+        $("[data-type=second]").addClass("active");
+
+    });
+
+    $('body').on('click', '#unitfirstterm', function (e) {
+
+
+        $("[data-type=second]").removeClass("active");
+        $("[data-type=first]").addClass("active");
+
+    });
+
+    $("body").on("click", ".btn_dawnloadPdfFile", (s) => {
+        s.preventDefault();
+        let path = $(s.currentTarget).attr('data-href'),
+            link = document.createElement('a')
+        link.href = path;
+        link.download = path.split('/')[2];
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+
+    $("body").on("click", "#li_secondYoutubeTerm", function (e) {
+        e.preventDefault();
+        $("#li_firstYoutubeTerm").removeClass('active');
+        $(this).addClass('active');
+    });
+    $("body").on("click", "#li_firstYoutubeTerm", function (e) {
+        e.preventDefault();
+        $("#li_secondYoutubeTerm").removeClass('active');
+        $(this).addClass('active');
+    })
+</script>
+

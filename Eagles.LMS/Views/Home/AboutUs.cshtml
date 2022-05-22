@@ -1,0 +1,374 @@
+﻿@{
+    ViewBag.Title = "AboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@using Eagles.LMS.BLL
+@using Eagles.LMS.App_GlobalResources
+
+@{
+    UnitOfWork ctx = new UnitOfWork();
+    var setting = ctx.SettingsManager.GetAll().FirstOrDefault();
+    var aboutUs = ctx.AboutUsManager.GetAll().FirstOrDefault();
+    bool en = true;
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+
+    var teams = ctx.TeamManager.GetAllBind().OrderByDescending(s => s.Id).ToList();
+
+
+
+
+}
+@section EndHeader{
+    <style>
+        .news {
+            margin-top: -100px;
+        }
+
+        .menu li a.active-a2 {
+            color: #af7a2c;
+            border-bottom: 1px solid #fff0;
+            font-weight: 500;
+        }
+
+
+    </style>
+}
+
+<div class="header-bc">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="title-header">
+
+                    <h3>@Resources.Global.Aboutus</h3>
+
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="#">@Resources.Global.Home</a> > </li>
+                            <li>@Resources.Global.Aboutus</li>
+                        </ul>
+                    </div>
+                    <!--end breadcrumb-->
+
+                </div>
+                <!--end title-header-->
+
+            </div>
+            <!--end col-6-->
+
+
+
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</div>
+<!--end header-bc-->
+
+
+<div class="news">
+    <div class="container">
+        <Div class="row">
+
+            <div class="col-md-6">
+
+                <img src="~/assets_NewPublic/images/bg_2.jpg" class="img-responsive img-about" />
+            </div>
+            <div class="col-md-6">
+                <img src="~/assets_NewPublic/images/bg_2.jpg" class="img-responsive img-about" />
+            </div>
+
+
+            <div class="col-md-2 hidden-xs">
+            </div>
+            <!--end col-2-->
+
+
+            <div class="col-md-8 col-xs-12">
+                <Div class="data-about">
+                    <h2>@Resources.Global.AboutCreate</h2>
+                    @if (en)
+                    {
+                        @*<h2>
+                                @aboutUs.TitleEnglish
+                            </h2>*@
+
+
+                        <p>
+                            @Html.Raw(@aboutUs.DescriptionEnglish)
+                        </p>
+                    }
+                    else
+                    {
+                        @*<h2>
+                                @aboutUs.TitleArabic
+                            </h2>*@
+
+
+                        <p>
+                            @Html.Raw(@aboutUs.DescriptionArabic)
+                        </p>
+                    }
+
+
+
+
+                </Div>
+                <!--end data-about-->
+            </div>
+            <!--end col-12-->
+
+            <div class="col-md-2 hidden-xs">
+            </div>
+            <!--end col-2-->
+
+        </Div>
+        <!--end row-->
+    </div>
+    <!--end continer-->
+</div>
+
+
+
+<Div class="about-bk">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-2">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active first-li">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+
+                            @Resources.Global.Home
+                        </a>
+                    </li>
+                    <li class="second-li" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">@Resources.Global.Profile</a></li>
+                    <li class="third-li" role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">@Resources.Global.Messages</a></li>
+                </ul>
+
+
+            </div>
+            <!--end col-2-->
+
+
+            <Div class="col-md-10">
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    @if (en)
+                    {
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <p>
+                                @Html.Raw(@aboutUs.HomeTapDescriptionEnglish)
+                            </p>
+                        </div>
+                        <!--end tab1--->
+
+
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <p>
+                                @Html.Raw(@aboutUs.ProfileDescriptionEnglish)
+                            </p>
+                        </div>
+                        <!--end tab2-->
+
+
+                        <div role="tabpanel" class="tab-pane" id="messages">
+                            <p>
+                                @Html.Raw(@aboutUs.MessageTapDescriptionEnglish)
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <p>
+                                @Html.Raw(@aboutUs.HomeTapDescriptionArabic)
+                            </p>
+                        </div>
+                        <!--end tab1--->
+
+
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <p>
+                                @Html.Raw(@aboutUs.ProfileDescriptionArabic)
+                            </p>
+                        </div>
+                        <!--end tab2-->
+
+
+                        <div role="tabpanel" class="tab-pane" id="messages">
+                            <p>
+                                @Html.Raw(@aboutUs.MessageTapDescriptionArabic)
+                            </p>
+                        </div>
+                    }
+                    <!--end tab-3-->
+
+
+                </div>
+
+
+            </Div>
+            <!--end col10--->
+
+
+
+            <Div class="cleaner-h4"></Div>
+
+
+
+            <!--end col-12-->
+
+
+
+
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</Div>
+<!--end about-bk-->
+
+@if (setting.ShowTeams)
+{
+
+
+    <div class="gallery-section testimony-section ">
+
+
+
+
+        <div class="team-section">
+            <h2 class="mb-4 headh2">@Resources.Global.MeetOurTeam</h2>
+
+            <div class="container">
+
+                <div class="row ftco-animate">
+                    <div class="col-md-12">
+                        <div class="carousel-team owl-carousel ftco-owl">
+
+                            @foreach (var team in teams)
+                            {
+
+
+                                <div class="item">
+                                    <div class="testimony-wrap teamItem">
+                                        <div>
+                                            <img src="@team.Image" class="img-responsive" />
+                                            <div class="text">
+                                                @if (en)
+                                                {
+
+
+                                                    <p class="mb-1 name">@team.NameEnglish</p>
+
+
+                                                    <p class="job">@team.JobTitleEnglish</p>
+                                                    @*<p class="job">@team.JobDescriptionEnglish</p>*@
+
+                                                }
+                                                else
+                                                {
+                                                    <p class="mb-1 name">@team.NameArabic</p>
+
+
+                                                    <p class="job">@team.JobTitleArabic</p>
+                                                    @*<p class="job">@team.JobDescriptionEnglish</p>*@
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+}
+
+@*<div class="vedioAboutSc" style="background-image: url(@aboutUs.Image)">*@
+<div class="vedioAboutSc" style="background-image: url(/assets_NewPublic/images/f14.jpeg); display:none">
+
+    <div class="overlay">
+        <div class="container">
+            <div class="secvedcont">
+                <div class="fordflex">
+                    <div class="title">
+                        <h2>@Resources.Global.DesignAbout</h2>
+                        <br />
+                        @*@if (en)
+                            {
+                                <h2>@aboutUs.TitleEnglish</h2>
+
+
+
+                            }
+                            else
+
+                            {
+                                <h2>@aboutUs.TitleArabic</h2>
+
+
+                            }*@
+                    </div>
+                    <div class="vediobutton">
+                        <button type="button" class="vediobtn" data-toggle="modal" data-target="#VedioPopup">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade Vediomodal" id="VedioPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="vedioIframe">
+                    <iframe width="560" height="315" src="@aboutUs.YouTubeFrame" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

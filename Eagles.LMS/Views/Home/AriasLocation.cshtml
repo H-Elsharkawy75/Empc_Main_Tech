@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "AriasLocation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    UnitOfWork ctx = new UnitOfWork();
+
+    var locations = ctx.LocationManager.GetAll().OrderByDescending(s => s.Id).ToList();
+    bool en = true;
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+    var Id = ViewBag.Id;
+}
+
+<div class="header-bc">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="title-header">
+                    <h3>Shooting Areas</h3>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="/Home">@Resources.Global.Home</a> > </li>
+                            <li><a href="/Home/Locations">@Resources.Global.Locations</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="news">
+    <div class="container">
+        <div class="row">
+
+
+
+            @foreach (var location in locations)
+            {
+
+
+            <div class="col-md-6 newsServicesCoool">
+                <a class="new new-small small-location location-new" href="/Home/LocationDetails/@location.Id">
+                    <img src="@location.MainImage" class="img-responsive img-services" />
+                    <h3>
+                        @if (en)
+                        {
+                        <span>
+                            @location.TitleEnglish
+                        </span>
+
+                        }
+                        else
+                        {
+                        <span>
+                            @location.TitleArabic
+                        </span>
+                        }
+                        <p>></p>
+                    </h3>
+                </a>
+            </div>
+            }
+
+
+
+
+
+            @*@foreach (var location in locations)
+            {
+
+
+            <div class="col-md-6 newsServicesCoool">
+                <a class="new new-small small-location location-new" href="/Home/LocationDetails/@location.Id">
+                    <img src="@location.MainImage" class="img-responsive img-services" />
+                    <h3>
+                        @if (en)
+                        {
+                        <span>
+                            @location.TitleEnglish
+                        </span>
+
+                        }
+                        else
+                        {
+                        <span>
+                            @location.TitleArabic
+                        </span>
+                        }
+                        <p>></p>
+                    </h3>
+                </a>
+            </div>
+            }*@
+
+
+
+
+
+
+        </div>
+        <!--end row-->
+    </div>
+    <!--end continer-->
+</div>
+
+

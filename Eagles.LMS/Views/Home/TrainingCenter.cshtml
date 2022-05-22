@@ -1,0 +1,228 @@
+﻿@{
+    ViewBag.Title = "TrainingCenter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool en = true;
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+}
+
+@section EndHeader{
+
+<link href="~/assets_NewPublic/css/lightgallery.css" rel="stylesheet" />
+
+<style>
+    .menu li a.active-a3 {
+        color: #af7a2c;
+        border-bottom: 1px solid #fff0;
+        font-weight: 500;
+    }
+</style>
+
+}
+
+<div class="header-bc">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="title-header">
+                    <h3>training Center</h3>
+
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="/Home">@Resources.Global.Home</a> > </li>
+                            <li>@Resources.Global.services</li>
+                        </ul>
+                    </div>
+                    <!--end breadcrumb-->
+
+                </div>
+                <!--end title-header-->
+
+            </div>
+            <!--end col-6-->
+
+
+
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</div>
+<!--end header-bc-->
+
+
+
+
+
+<div class="gallaySection">
+    <div class="container">
+        <div class="row">
+
+            <div class="cleaner-h4"></div>
+
+            <div class="col-md-3">
+                <div class="sendmessage">
+                    <select>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                    </select>
+
+                </div>
+
+            </div>
+            <!--end col-3-->
+            <div class="col-lg-9 col-md-9">
+                <a href="#" class="btn btn-black">Select</a>
+            </div>
+
+
+
+
+            <div class="col-lg-12 col-md-12" style="">
+
+
+                <div class="demo-gallery">
+                    <div id="lightgallery" class="row list-unstyled oterrow">
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/10.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/10.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/11.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/11.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/12.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/12.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/13.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/13.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/14.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/14.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/15.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/15.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/16.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/16.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/17.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/17.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/18.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/18.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/19.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/19.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/5.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/5.JPG" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/6.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/6.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/7.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/7.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/8.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/8.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/9.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/9.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 othercol" data-src="/assets_NewPublic/images/newimg/new/10.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                            <a href="" class="imagesitem">
+                                <img class="img-responsive" src="~/assets_NewPublic/images/newimg/new/10.jpg" alt="Thumb-1">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <Div class="cleaner-h4"></Div>
+
+            <div class="buttonToogle" style="display: none;"><a href="javascript:;" class="showMore">Load More</a></div>
+
+            <Div class="cleaner-h4"></Div>
+        </div>
+
+
+
+    </div>
+    <!--end row-->
+</div>
+
+
+
+
+@section EndBody{
+<!--        <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>-->
+<script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-pager.js/master/dist/lg-pager.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-zoom.js/master/dist/lg-zoom.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-hash.js/master/dist/lg-hash.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-share.js/master/dist/lg-share.js"></script>
+<!--        <script src="../demo/js/lg-rotate.js"></script>-->
+<script>
+    lightGallery(document.getElementById('lightgallery'));
+</script>
+}

@@ -1,0 +1,521 @@
+﻿@using Eagles.LMS.BLL
+@using Eagles.LMS.App_GlobalResources
+
+@{
+    UnitOfWork ctx = new UnitOfWork();
+    string UserID;
+    User user = new User();
+    if (Request.Cookies["UserId"] != null)
+    {
+        UserID = Request.Cookies["UserId"].Value.ToString();
+        user = ctx.UserManager.GetBy(int.Parse(UserID));
+
+    }
+    var social = ctx.SocialRefernceManager.GetAll().FirstOrDefault();
+    var siteInfo = ctx.SiteinfoManger.GetAll().FirstOrDefault();
+
+    bool en = true;
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+    var grades = ctx.GradeManager.GetAllIncluding(containGroupsOnly: false);
+    string lang = en == true ? "en" : "ar";
+
+    var url = Context.Request.CurrentExecutionFilePath;
+}
+<html>
+<head>
+
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/StaticFiles/css/bootstrap.css" rel="stylesheet">
+     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="/StaticFiles/css/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="/StaticFiles/css/hover.css" rel="stylesheet">
+    <link rel="icon" href="~/@siteInfo.Logo">
+
+    <!---hussein-->
+    <link href="/StaticFiles/css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/StaticFiles/css/bootstrap4/bootstrap.min.css">
+    @* <link href="~/assets/demo/demo8/base/bootstrap-select.min.css" rel="stylesheet" />*@
+
+
+
+    @*@if (en)
+           {
+               <link href="~/StaticFiles/css/style.css" rel="stylesheet">
+        }
+           else
+           {
+               <link href="~/StaticFiles/css/style-rtl.css" rel="stylesheet">
+
+           }*@
+
+
+    <link href="~/StaticFiles/css/publickpage style/main_styles.css" rel="stylesheet" />
+    <link href="~/StaticFiles/css/publickpage style/responsive.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700,900" rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Cairo|Tajawal&display=swap" rel="stylesheet">
+
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">-->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        #chartdiv {
+            width: 100%;
+            height: 500px;
+        }
+
+        .alert-danger {
+            background-color: #ff172eb8 !important
+        }
+
+        .alert-success {
+            background-color: #11da3f !important
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal fade" id="loadingDiv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color:transparent; z-index:999999">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="">
+
+                </div>
+                <div class="modal-body">
+                    <div id='' style="text-align:center">
+
+                        <div class="container-loading ">
+                            <div class="row">
+                                <div id="loader">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="lading"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <h2 class="alamloading">Eaglez-academy 4 Edu</h2>
+                        <span class="plreaas">
+                            Please wait...
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="super_container">
+
+
+        <div class="container con-full">
+            <header class="header">
+
+                <!-- Top Bar -->
+                <div class="top_bar">
+                    <div class="top_bar_container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+                                        <ul class="top_bar_contact_list">
+
+                                            <li>
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                <div>001-1234-88888</div>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-home" aria-hidden="true"></i>
+                                                <div>12K Street, 45 Building Road</div>
+                                            </li>
+                                            <li><a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#" class="googlepluse"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                            <li><a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                            <li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                        <div class="top_bar_login ml-auto">
+                                            <div class="login_button"><a href="/Admission">Register or Login</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Header Content -->
+                <div class="header_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                                    <div class="logo_container">
+                                        <!--
+                                                                        <a href="#">
+                                                                                <span class="the">the </span>
+                                                                            <div class="logo_text">Big Store<span></span></div>
+                                                                            <p class="somtitle">The best subermarket</p>
+                                                                        </a>
+                                        -->
+                                        <a href="#" class="imagelogo">
+
+                                            <img src="~/StaticFiles/images/publick new images/unnamed.jpg" />
+                                        </a>
+                                    </div>
+                                    <nav class="main_nav_contaner ml-auto">
+                                        <ul class="main_nav">
+                                            <li class="active "><a href="#tf-Home" class="page-scroll">Home</a></li>
+                                            <li><a href="#tf-about" class="page-scroll">About Me</a></li>
+                                            <li><a href="#tf-Application" class="page-scroll"> Application</a></li>
+                                            <li><a href="#contact" class="page-scroll">Contact</a></li>
+                                        </ul>
+                                        <!--								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>-->
+                                        <!-- Hamburger -->
+                                        <!--								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>8</span></div>-->
+                                        <div class="hamburger menu_mm">
+                                            <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+                                        </div>
+                                    </nav>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Header Search Panel -->
+                <div class="header_search_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="header_search_content d-flex flex-row align-items-center justify-content-end">
+                                    <form action="#" class="header_search_form">
+                                        <input type="search" class="search_input" placeholder="Search" autofocus autocomplete="" required="required">
+                                        <button class="header_search_button d-flex flex-column align-items-center justify-content-center">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Menu -->
+
+            <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+                <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+                <div class="search">
+                    <form action="#" class="header_search_form menu_mm">
+                        <input type="search" class="search_input menu_mm" placeholder="Search" required="required">
+                        <button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+                            <i class="fa fa-search menu_mm" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+                <nav class="menu_nav">
+                    <ul class="menu_mm">
+                        <li class="menu_mm"><a href="index.html">Home</a></li>
+                        <li class="menu_mm"><a href="#">About</a></li>
+                        <li class="menu_mm"><a href="#">Courses</a></li>
+                        <li class="menu_mm"><a href="#">Blog</a></li>
+                        <li class="dropdown">
+                            <!---اول dropdowen-->
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wed Design<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Design</a></li>
+                                <li><a href="#">Wed Design</a></li>
+                                <li><a href="#">PhotoShoop</a></li>
+                                <li role="separator" class="divider"></li><!---خط بيفصل بيم اللينكات-->
+                                <li><a href="#">Illustarato</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu_mm"><a href="#">Page</a></li>
+                        <li class="menu_mm"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+
+        @RenderBody()
+
+        <footer class="footer">
+            <div class="imge-top">
+
+                <img src="~/StaticFiles/images/publick new images/DropLinkshort2.png" />
+            </div>
+            <div class="footer_background" style="background-image: url('../../StaticFiles/images/publick new images/footer_background.png')"></div>
+            <div class="container">
+                <div class="row footer_row">
+                    <div class="col">
+                        <div class="footer_content">
+                            <div class="row">
+
+                                <div class="col-lg-3 footer_col">
+
+                                    <!-- Footer About -->
+                                    <div class="footer_section footer_about">
+                                        <div class="footer_logo_container">
+                                            <a href="#" class="imagelogo">
+
+                                                <img src="~/StaticFiles/images/publick new images/unnamed.jpg" />
+                                            </a>
+                                        </div>
+                                        <div class="footer_about_text">
+                                            <p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+                                        </div>
+                                        <div class="footer_social">
+                                            <ul>
+                                                <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-google-plus-g" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-3 footer_col">
+
+                                    <!-- Footer Contact -->
+                                    <div class="footer_section footer_contact">
+                                        <div class="footer_title">Contact Us</div>
+                                        <div class="footer_contact_info">
+                                            <ul>
+                                                <li>Email: Info.deercreative@gmail.com</li>
+                                                <li>Phone:  +(88) 111 555 666</li>
+                                                <li>40 Baria Sreet 133/2 New York City, United States</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-3 footer_col">
+
+                                    <!-- Footer links -->
+                                    <div class="footer_section footer_links">
+                                        <div class="footer_title">Contact Us</div>
+                                        <div class="footer_links_container">
+                                            <ul>
+                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="about.html">About</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="#">Features</a></li>
+                                                <li><a href="courses.html">Courses</a></li>
+                                                <li><a href="#">Events</a></li>
+                                                <li><a href="#">Gallery</a></li>
+                                                <li><a href="#">FAQs</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-3 footer_col clearfix">
+
+                                    <!-- Footer links -->
+                                    <div class="footer_section footer_mobile">
+                                        <div class="footer_title">Mobile</div>
+                                        <div class="footer_mobile_content">
+                                            <div class="footer_image">
+                                                <a href="#">
+                                             
+                                                    <img src="~/StaticFiles/images/publick new images/mobile_1.png" />
+                                                </a>
+                                            </div>
+                                            <div class="footer_image">
+                                                <a href="#">
+                                               
+                                                    <img src="~/StaticFiles/images/publick new images/mobile_2.png" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row copyright_row">
+                    <div class="col-lg-12">
+                        <div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
+                            <div class="cr_text">
+                                <!-- Link back to Eaglez Group can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://eaglez-group.com" target="_blank">Eaglez Group</a>
+                                <!-- Link back to Eaglez Group can't be removed. Template is licensed under CC BY 3.0. -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
+
+    <script src="~/StaticFiles/js/jquery-3.2.1.min.js"></script>
+    <script src="/StaticFiles/js/jquery.waypoints.min.js"></script>
+    <script src="/StaticFiles/js/jquery.countup.js"></script>
+
+
+
+
+    <script src="~/StaticFiles/js/maintwo.js"></script>
+
+    <!-- Start Writing functon---->
+
+    <script src="~/StaticFiles/js/typed.js"></script>
+    <script>
+        $(function () {
+
+            $("#typed").typed({
+                // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+                stringsElement: $('#typed-strings'),
+                typeSpeed: 30,
+                backDelay: 700,
+                loop: true,
+                contentType: 'html', // or text
+                // defaults to false for infinite loop
+                loopCount: false,
+                callback: function () { foo(); },
+                resetCallback: function () { newTyped(); }
+            });
+
+            $(".reset").click(function () {
+                $("#typed").typed('reset');
+            });
+
+        });
+        function newTyped() { /* A new typed object */ }
+
+        function foo() { console.log("Callback"); }
+    </script>
+    <!-- End Writing functon---->
+
+
+
+
+
+
+
+    <script>
+        $('.counter').countUp();
+    </script>
+
+    <script src="/StaticFiles/css/bootstrap4/popper.js"></script>
+    <script src="/StaticFiles/css/bootstrap4/bootstrap.min.js"></script>
+    <script src="/StaticFiles/js/bootstrap.min.js"></script>
+    <script src="/StaticFiles/js/main.js"></script>
+    <script src="/StaticFiles/js/bootstrap-select.min.js"></script><!--https://silviomoreto.github.io/bootstrap-select/examples/ -->
+    @*<script src="/StaticFiles/js/wow.min.js"></script>
+        <script>new WOW().init();</script>*@
+
+
+
+
+
+
+
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+    <script src="~/StaticFiles/js/bootstrap-notify.min.js"></script>
+    <script src="~/StaticFiles/js/notfication.js"></script>
+    @RenderSection("EndBody", required: false)
+
+
+
+    <script>
+
+        var $loading = $('#loadingDiv').modal('hide');
+
+        $(document)
+            .ajaxStart(function () {
+                $loading.modal('show');
+
+
+
+            })
+            .ajaxStop(function () {
+
+                $loading.modal('hide');
+
+
+            });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!---------------------sdfsdfsdf-->
+    <script src="~/StaticFiles/js/easing/easingtwo/easing.js"></script>
+    <script src="~/StaticFiles/js/maintreewo.js"></script>
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+
+
+</body>
+</html>

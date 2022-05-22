@@ -1,0 +1,190 @@
+﻿@model Question
+@{
+    ViewBag.Title = "Show Question Answer";
+    Layout = "~/Views/Shared/_StudentsLayout.cshtml";
+
+}
+
+
+<style>
+    .kt-header__topbar-item--langs {
+        display: none !important;
+    }
+
+    video::-internal-media-controls-download-button {
+        display: none;
+    }
+
+    video::-webkit-media-controls-enclosure {
+        overflow: hidden;
+    }
+
+    video::-webkit-media-controls-panel {
+        width: calc(100% + 30px); /* Adjust as needed */
+    }
+</style>
+
+
+<link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/videojs-mobile-ui/dist/videojs-mobile-ui.css">
+
+<style>
+
+    .video-js .vjs-big-play-button {
+        font-size: 3em;
+        line-height: 1.5em;
+        height: 50px;
+        width: 100px;
+        top: calc(50% - 25px);
+        left: calc(50% - 50px);
+    }
+
+    .vedioifraaameee {
+        margin: 25px 0;
+    }
+
+        .vedioifraaameee .vedioconrr {
+            display: block;
+            width: 90%;
+            margin: auto;
+            height: 500px;
+        }
+
+            .vedioifraaameee .vedioconrr video {
+                display: block;
+                width: 100%;
+                margin: auto;
+                height: 100%;
+            }
+
+    .video-js {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    @@media(max-width:768px) {
+        .vedioifraaameee .vedioconrr {
+            width: 100%;
+            height: auto;
+        }
+
+        .video-js {
+            height: 250px;
+        }
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="dashboard_wrap">
+            <div class="showAnswerVideo">
+                <h1 class="questionDisk">
+
+                    @Model.Value <span>?</span>
+                </h1>
+                <div class="veidids">
+                    <video id="my-video" class="video-js vjs-big-centered" fullscreen preload="auto" width="500px" height="250" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+
+                        <source src="/api/media/playAnswer?id=@Model.Id" type="video/mp4" />
+
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a
+                            web browser that
+                            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                        </p>
+                    </video>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="Student_body">
+    <div class="vedioifraaameee">
+        <div class="container">
+            <div class="vedioconrr">-->
+@*<h1 class="questionDisk">
+
+        @Model.Value <span>?</span>
+    </h1>*@
+@*<video id="my-video" class="video-js vjs-big-centered" preload="auto" width="100%" height="100%" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+        <source src="/api/media/play?id=@Model.Id" type="video/mp4" />
+    </video>*@
+
+@*<video id="my-video" class="video-js vjs-big-centered" fullscreen preload="auto" width="500px" height="250" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+
+        <source src="/api/media/playAnswer?id=@Model.Id" type="video/mp4" />
+
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>*@
+<!--</div>
+
+    </div>
+</div>-->
+
+
+<script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
+<script src="https://cdn.sc.gl/videojs-hotkeys/0.2/videojs.hotkeys.min.js"></script>
+<script src="~/assets_2/staticFiles/publickpage_style/videojs-mobile-ui.min.js"></script>
+<script src="~/assets_2/staticFiles/publickpage_style/videoJs.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-mobile-ui/dist/videojs-mobile-ui.min.js"></script>
+<script>
+    var player = videojs('my-video');
+
+    player.mobileUi();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<script>
+
+            $(document).ready(function () {
+                $('#mainPlayer').bind('contextmenu', function () { return false; });
+
+            });
+
+        </script>
+
+
+    }
+*@

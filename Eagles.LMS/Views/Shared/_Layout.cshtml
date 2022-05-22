@@ -1,0 +1,878 @@
+﻿@using Eagles.LMS.BLL
+@using Eagles.LMS.App_GlobalResources
+
+@{
+    UnitOfWork ctx = new UnitOfWork();
+    var setting = ctx.SettingsManager.GetAll().FirstOrDefault();
+    string UserID;
+    User user = null;
+    if (Session["User_Key"] != null)
+    {
+        UserID = Session["User_Key"].ToString();
+        user = ctx.UserManager.GetBy(int.Parse(UserID));
+
+    }
+
+
+    bool en = true;
+    var url = Context.Request.CurrentExecutionFilePath;
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+
+    var _contactUs = ctx.ContactUsManager.GetAll().FirstOrDefault();
+    //var _services = ctx.ServiceManager.GetAll().OrderByDescending(s => s.Id).ToList();
+    var _services = ctx.ServiceManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).ToList();
+
+    var _Applicaions = ctx.ApplicationManager.GetAll().OrderByDescending(s => s.Id).ToList();
+    var _galaries = ctx.GalaryManager.GetAll().Where(s => s.IsImage).OrderByDescending(s => s.Order).ToList();
+    var allSocialMedia = ctx.SocialMediaManager.GetAll().ToList();
+
+}
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+    @*<title>@ViewBag.Title</title>*@
+    <title>EMPC Main</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    @if (!string.IsNullOrEmpty(setting.MegaTags))
+    {
+        <meta name="viewport" content="@setting.MegaTags">
+    }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+
+
+
+    @*<link rel="stylesheet" href="~/assets_NewPublic/css/gallery-jquery.flipster.min.css">
+        <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/assets_NewPublic/css/ionicons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/font-awesome.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/7ecf8dac4e.js" crossorigin="anonymous"></script>*@
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="~/assets_NewPublic/css/gallery-jquery.flipster.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets_NewPublic/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7ecf8dac4e.js" crossorigin="anonymous"></script>
+
+    <link href="~/assets_NewPublic/libs/VideoPopUp/css/jquery.fancybox.css" rel="stylesheet" />
+    @if (en)
+    {
+        <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/style.css" />
+    }
+    else
+    {
+        <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700,900" rel="stylesheet">
+        <link href="~/assets_NewPublic/css/Style_RTL.css" rel="stylesheet" />
+
+    }
+
+    <link href="~/assets_NewPublic/css/ResponsivePublic.css" rel="stylesheet" />
+    <link rel="icon" href="~/assets_NewDash/images/NewImg/logoIcon.png">
+    @RenderSection("EndHeader", required: false)
+
+    @*<script src="https://cdn.tiny.cloud/1/darv2hkyj2fhq6bcw9dvds7nq95xpa5p19zfb5q6ybjadm5z/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '.textarea',
+            height: 500,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor  advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable ',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste imagetools wordcount',
+                'image code',
+            ],
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |  code',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+
+    </script>*@
+</head>
+
+<body>
+    <nav class="navbar visible-xs">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img class="img-responsive logo" src="@_contactUs.Logo" /></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                    <li><a class="active-a1" href="/"> @Resources.Global.Home </a></li>
+                    @if (setting.ShowAboutUs)
+                    {
+                        <li><a class="active-a2" href="/Home/AboutUs"> @Resources.Global.Aboutus </a></li>
+                    }
+                    @if (setting.ShowServices)
+                    {
+                        <li class="dropdown">
+                            @* <a class="dropdown-toggle" href="Services.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> @Resources.Global.services  </a>*@
+                            <a class="dropdown-toggle active-a3" href="/Home/Services"> @Resources.Global.services</a>
+                            <ul class="dropdown-menu">
+
+                                @for (int i = 0; i < _services.Count; i++)
+                                {
+
+
+                                    <li><a href="/home/ServicesDetails/@_services[i].Id">@_services[i].TitleArabic</a></li>
+
+                                    if (i == 6)
+                                    {
+                                        break;
+                                    }
+                                }
+
+
+                                @*<li><a href="ServicesDetail_Iams.html">Iaems</a></li>
+                    <li><a href="TrainingCenterServices.html"> training Center</a></li>
+                    <li><a href="CRC.html">CRC</a></li>
+                    <li><a href="PreProduction.html"> Pre-Production</a></li>
+                    <li><a href="postProduction.html">Post Production</a></li>
+                    <li><a href="StudioServices.html"> Studios</a></li>
+                    <li><a href="DolbyAtoms.html">Dolby Atoms</a></li>
+                    <li><a href="Sound.html"> Sound Studio</a></li>
+                    <li><a href="OBVan.html">O.B Van</a></li>
+                    <li><a href="MovempinkHotelServices.html"> Mövenpick Hotel</a></li>*@
+                            </ul>
+                        </li>
+                        @*<li><a href="/Home/Services">  @Resources.Global.services </a></li>*@
+
+                    }
+                    @if (setting.ShowLocations)
+                    {
+                        <li class="dropdown">
+                            <!--                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Locations </a>-->
+                            <a class="dropdown-toggle active-a4" href="/Home/Locations"> @Resources.Global.Locations </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Home/Locations?type=OutDoor">Outdoor</a></li>
+                                <li><a href="/Home/Locations?type=ShootingAreas"> Shooting Areas</a></li>
+                            </ul>
+                        </li>
+                        @*<li><a href="/Home/Locations"> @Resources.Global.Locations  </a></li>*@
+
+                    }
+                    <li class="dropdown">
+                        <a class="dropdown-toggle active-a5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> @Resources.Global.Mulimedia </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Home/VideoAlbums">@Resources.Global.Video</a></li>
+                            <li><a href="/Home/Albums"> @Resources.Global.Images</a></li>
+                            @*<li><a href="/Home/Brouchour"> @Resources.Global.EMPCBrochure</a></li>*@
+                        </ul>
+                    </li>
+                    @if (setting.ShowNews)
+                    {
+
+                        <li><a class="active-a6" href="/Home/News">@Resources.Global.News </a></li>
+                    }
+                    <li class="dropdown">
+                        <a class="dropdown-toggle active-a7" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> @Resources.Global.applications  </a>
+                        <ul class="dropdown-menu">
+
+                            @if (en)
+                            {
+                                for (int i = 0; i < _Applicaions.Count; i++)
+                                {
+
+                                    <li><a href="@_Applicaions[i].Link">@_Applicaions[i].TitleEnglish</a></li>
+
+
+                                    if (i == 4)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = 0; i < _Applicaions.Count; i++)
+                                {
+
+                                    <li><a href="@_Applicaions[i].Link">@_Applicaions[i].TitleArabic</a></li>
+
+
+                                    if (i == 4)
+                                    {
+                                        break;
+                                    }
+                                }
+
+                            }
+
+
+
+
+                            @*<li><a href="#">VMS</a></li>
+        <li><a href="#"> Investor Realation</a></li>
+        <li><a href="#">Supplier Register</a></li>
+        <li><a href="#"> EMPC Filming Website</a></li>
+        <li><a href="#">EMPC News Website</a></li>*@
+                        </ul>
+                    </li>
+                    @if (setting.ShowContactUs)
+                    {
+                        <li><a class="active-a8" href="/Home/ContactUsHome">@Resources.Global.ContactUs</a></li>
+
+                    }
+
+                    <li><a href="/Home/Booking">@Resources.Global.Careers</a></li>
+                    @if (en)
+                    {
+                        <li><a href="/Home/ChangeLanguage?SelectedLanguage=ar-EG&redirect=@url">@Resources.Global.Arabic</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/Home/ChangeLanguage?SelectedLanguage=en&redirect=@url">@Resources.Global.English</a></li>
+                    }
+
+
+                </ul>
+
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+
+    @if (setting.ShowSocialMedias)
+    {
+        <div class="position-1">
+            <ul>
+                @*<li>
+                        <a style="background: #af7a2c;width: 40px;display: block;height: 40px;">1</a>
+                    </li>
+                    <li>
+                        <a style="background: #1d1f4f;width: 40px;display: block;height: 40px;">1</a>
+                    </li>*@
+
+                @if (allSocialMedia != null && allSocialMedia.Any())
+                {
+                    foreach (var social in allSocialMedia)
+                    {
+                        <li>
+                            <a title="@social.NameEnglish" href="@social.Link" target="_blank">
+                                <img src="@social.Image" />
+                            </a>
+                        </li>
+
+                    }
+                }
+
+
+            </ul>
+        </div>
+        <!--end position-->
+    }
+    <div class="strip visible-lg">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="cleaner-h1-1"></div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="search-input" style="display:none">
+                        <input type="text" placeholder="Search" />
+                    </div>
+                    @if (setting.ShowSocialMedias)
+                    {
+                        <ul class="buttons">
+
+                            @if (allSocialMedia != null && allSocialMedia.Any())
+                            {
+                                foreach (var social in allSocialMedia)
+                                {
+                                    <li>
+                                        <a class="" title="@social.NameEnglish" href="@social.Link" target="_blank">
+                                            <img src="@social.Image" />
+                                        </a>
+                                    </li>
+
+                                }
+                            }
+
+
+                        </ul>
+                    }
+                </div>
+                <!--end col-3-->
+
+
+
+
+
+
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+
+
+                    <!--end Search-input-->
+                    @*<div class="language">
+
+
+                            <a class="img_lang" href="/Home/ChangeLanguage?SelectedLanguage=en&redirect=@url">@Resources.Global.English</a>
+                            <a class="img_lang" href="/Home/ChangeLanguage?SelectedLanguage=ar-EG&redirect=@url">@Resources.Global.Arabic</a>
+                        </div>*@
+                    <div class="language">
+                        @if (en)
+                        {
+                            @*<a href="/Home/ChangeLanguage?SelectedLanguage=en&redirect=@url"><img class="img_lang" src="~/assets_NewPublic/images/buying4.png" /> <p> EN</p></a>*@
+                            <a href="/Home/ChangeLanguage?SelectedLanguage=ar-EG&redirect=@url"><img class="img_lang" src="~/assets_NewPublic/images/buying4.png" /> <p> @Resources.Global.Arabic</p></a>
+                        }
+                        else
+                        {
+                            <a href="/Home/ChangeLanguage?SelectedLanguage=en&redirect=@url"><img class="img_lang" src="~/assets_NewPublic/images/buying4.png" /> <p> @Resources.Global.English</p></a>
+                            @*<a href="/Home/ChangeLanguage?SelectedLanguage=ar-EG&redirect=@url"><img class="img_lang" src="~/assets_NewPublic/images/buying4.png" /> <p> AR</p></a>*@
+
+                        }
+
+
+                    </div>
+
+
+
+
+
+
+                    <!--end language-->
+
+                    <Div class="strip-white"></Div>
+
+                    <div class="language lefr">
+                        <a href="/Home/Booking">
+                            <p> @Resources.Global.Careers</p>
+                        </a>
+                    </div>
+                    <!--end language-->
+
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+            <!--end row-->
+
+        </div>
+        <!--end container-->
+    </div>
+    <!--end strip-->
+    <div class="header hidden-xs">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-lg-3 col-md-2">
+                    <div class="LogoHader">
+                        <a href="/">
+                            <img src="@_contactUs.Logo" class="img-responsive logo wow fadeInRight" />
+                        </a>
+
+                    </div>
+                </div>
+                <!--end logo-->
+
+                <div class="col-lg-9 col-md-10">
+
+                    <div class="cleaner-h4"></div>
+
+                    <ul class="menu pull-right wow fadeInLeft">
+                        <li><a class="active-a1" href="/"> @Resources.Global.Home </a></li>
+                        @if (setting.ShowAboutUs)
+                        {
+                            <li><a class="active-a2" href="/Home/AboutUs"> @Resources.Global.Aboutus </a></li>
+                        }
+                        @if (setting.ShowServices)
+                        {
+                            <li class="dropdown">
+                                @* <a class="dropdown-toggle" href="Services.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> @Resources.Global.services  </a>*@
+                                <a class="dropdown-toggle active-a3" href="/Home/Services"> @Resources.Global.services</a>
+                                <ul class="dropdown-menu">
+
+                                    @for (int i = 0; i < _services.Count; i++)
+                                    {
+
+
+                                        <li><a href="/home/ServicesDetails/@_services[i].Id">@_services[i].TitleArabic</a></li>
+
+                                        if (i == 6)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    @*<li><a href="ServicesDetail_Iams.html">Iaems</a></li>
+                                    <li><a href="/Home/TrainingCenter"> training Center</a></li>
+                                    <li><a href="CRC.html">CRC</a></li>
+                                    <li><a href="PreProduction.html"> Pre-Production</a></li>
+                                    <li><a href="postProduction.html">Post Production</a></li>
+                                    <li><a href="/Home/StudiosServices">Studios </a></li>
+                                    <li><a href="DolbyAtoms.html">Dolby Atoms</a></li>
+                                    <li><a href="Sound.html"> Sound Studio</a></li>
+                                    <li><a href="OBVan.html">O.B Van</a></li>
+                                    <li><a href="MovempinkHotelServices.html"> Mövenpick Hotel</a></li>*@
+                                </ul>
+                            </li>
+                            @*<li><a href="/Home/Services">  @Resources.Global.services </a></li>*@
+
+                        }
+                        @if (setting.ShowLocations)
+                        {
+                            <li class="dropdown">
+                                <!--                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Locations </a>-->
+                                <a class="dropdown-toggle active-a4" href="/Home/Locations"> @Resources.Global.Locations </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/Home/Locations?type=OutDoor">Outdoor</a></li>
+                                    <li><a href="/Home/Locations?type=ShootingAreas"> Shooting Areas</a></li>
+                                </ul>
+                            </li>
+                            @*<li><a href="/Home/Locations"> @Resources.Global.Locations  </a></li>*@
+
+                        }
+                        <li class="dropdown">
+                            <a class="dropdown-toggle active-a5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> @Resources.Global.Mulimedia </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Home/VideoAlbums">@Resources.Global.Video</a></li>
+                                <li><a href="/Home/Albums"> @Resources.Global.Images</a></li>
+                                @*<li><a href="/Home/Brouchour"> @Resources.Global.EMPCBrochure</a></li>*@
+                            </ul>
+                        </li>
+                        @if (setting.ShowNews)
+                        {
+
+                            <li><a class="active-a6" href="/Home/News">@Resources.Global.News </a></li>
+                        }
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle active-a7" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> @Resources.Global.applications  </a>
+                            <ul class="dropdown-menu">
+
+                                @if (en)
+                                {
+                                    for (int i = 0; i < _Applicaions.Count; i++)
+                                    {
+
+                                        <li><a href="@_Applicaions[i].Link">@_Applicaions[i].TitleEnglish</a></li>
+
+
+                                        if (i == 4)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    for (int i = 0; i < _Applicaions.Count; i++)
+                                    {
+
+                                        <li><a href="@_Applicaions[i].Link">@_Applicaions[i].TitleArabic</a></li>
+
+
+                                        if (i == 4)
+                                        {
+                                            break;
+                                        }
+                                    }
+
+                                }
+
+
+
+                            </ul>
+                        </li>
+                        @if (setting.ShowContactUs)
+                        {
+                            <li><a class="active-a8" href="/Home/ContactUsHome">@Resources.Global.ContactUs</a></li>
+
+                        }
+
+
+
+                    </ul>
+                </div>
+                <!--end col-8-->
+
+
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </div>
+    <!--end header-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="pageCOntentdd">
+        @RenderBody()
+    </div>
+
+    @if (setting.ShowContactUs)
+    {
+
+        <!-- start of wpo-site-footer-section -->
+        <footer class="wpo-site-footer" style="display">
+            <div class="wpo-upper-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 footercol">
+                            <div class="widget about-widget">
+                                <div class="logo widget-title">
+                                    <a class="logo" href="index.html"><img src="@_contactUs.Logo" alt=""></a>
+                                </div>
+                                @if (en)
+                                {
+                                    <p>@_contactUs.CompanyTitleEnglish</p>
+                                }
+                                else
+                                {
+                                    <p>@_contactUs.CompanyTitleArabic</p>
+
+                                }
+                                <ul>
+
+
+                                    @if (allSocialMedia != null && allSocialMedia.Any())
+                                    {
+                                        foreach (var social in allSocialMedia)
+                                        {
+                                            <li>
+                                                <a href="@social.Link" title="@social.NameEnglish" target="_blank">
+                                                    <img src="@social.Image" />
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+
+
+
+                                    @*<li>
+                                            <a href="">
+                                                <img src="~/assets_NewPublic/images/newimg/Social/instgram.jpg" />
+                                            </a>
+                                        </li>*@
+
+                                </ul>
+                            </div>
+                        </div>
+                        @if (en)
+                        {
+                            <div class="col col-xl-3  col-lg-4 col-md-6 col-sm-12 col-12 footercol">
+                                <div class="widget link-widget">
+                                    <div class="widget-title">
+                                        <h3>@Resources.Global.OurServices</h3>
+                                    </div>
+                                    <ul>
+                                        @for (int i = 0; i < _services.Count; i++)
+                                        {
+
+
+                                            <li><a href="/home/ServicesDetails/@_services[i].Id">@_services[i].TitleEnglish</a></li>
+
+                                            if (i == 3)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col col-xl-3  col-lg-4 col-md-6 col-sm-12 col-12 footercol">
+                                <div class="widget wpo-service-link-widget">
+                                    <div class="widget-title">
+                                        <h3>@Resources.Global.ContactUs </h3>
+                                    </div>
+                                    <div class="contact-ft">
+                                        <ul>
+                                            <li>@_contactUs.AddressEnglish</li>
+                                            <li>
+                                                @_contactUs.Phone<br>
+                                            </li>
+                                            <li>@_contactUs.Email</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col col-xl-3  col-lg-4 col-md-6 col-sm-12 col-12 footercol">
+                                <div class="widget link-widget">
+                                    <div class="widget-title">
+                                        <h3>@Resources.Global.OurServices</h3>
+                                    </div>
+                                    <ul>
+                                        @for (int i = 0; i < _services.Count; i++)
+                                        {
+
+
+                                            <li><a href="/home/ServicesDetails/@_services[i].Id">@_services[i].TitleArabic</a></li>
+
+                                            if (i == 3)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col col-xl-3  col-lg-4 col-md-6 col-sm-12 col-12 footercol">
+                                <div class="widget wpo-service-link-widget">
+                                    <div class="widget-title">
+                                        <h3>@Resources.Global.ContactUs </h3>
+                                    </div>
+                                    <div class="contact-ft">
+                                        <ul>
+                                            <li><i class="fi flaticon-location"></i>@_contactUs.AddressArabic</li>
+                                            <li>
+                                                <i class="fi flaticon-telephone"></i>@_contactUs.Phone<br>
+                                            </li>
+                                            <li><i class="fi flaticon-email"></i>@_contactUs.Email</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col col-xl-3  col-lg-4 col-md-6 col-sm-12 col-12 footercol">
+                            <div class="widget instagram">
+                                <div class="widget-title">
+                                    <h3>@Resources.Global.Gallery</h3>
+                                </div>
+                                <ul class="d-flex">
+                                    @for (int i = 0; i < _galaries.Count; i++)
+                                    {
+
+
+                                        <li>
+                                            <a href="/home/picture/@_galaries[i].Id">
+                                                <img src="@_galaries[i].Image"
+                                                     alt="">
+                                            </a>
+                                        </li>
+                                        if (i == 5)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end container -->
+            </div>
+            <div class="wpo-lower-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <ul>
+                                <li> @Resources.Global.copyRight</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end of wpo-site-footer-section -->
+    }
+    <!--<section class="fotter-pyri">
+
+        <div class="fotter-opacity"></div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 about-fotter hidden-xs border_right">
+                    <img src="~/assets_NewPublic/images/gold-logo-small.png" class="img-responsive logo-fotter" />
+                    <p>EMPC is currently encouraging foreign production houses to shoot in Egypt and hopes to meet the production houses' goals regarding versatility,</p>
+
+                </div>
+
+                <div class="col-md-4 menu-fotter hidden-xs border_right">
+                    <ul>
+                        <li>
+                            <A href="#">Home</A>
+                        </li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Locations</a></li>
+                        <li>
+                            <A href="#">Services</A>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+
+                <div class="col-md-4 menu-fotter hidden-xs ">
+                    <ul>
+                        <li>
+                            <A href="#"> News & Events  </A>
+                        </li>
+                        <li><a href="#"> Gallery  </a></li>-->
+    <!--
+                            <li>
+                                <A href="#">Movempick</A>
+                            </li>
+    -->
+    <!--<li><a href="#">Contact us</a></li>
+
+        </ul>
+    </div>-->
+    <!--
+                    <div class="col-md-3  menu-fotter border_right">
+                        <ul>
+                            <li><i class="fa fa-phone"></i>+202 333 62 000</li>
+                            <li><i class="fa fa-envelope"></i> booking@empcnews.com</li>
+                            <li><i class="fa fa-location-arrow"></i>
+                                <div> 160 Nile street, Agouza, Giza, Egypt. Maspiro Branch: 1127 Nile Cornish, 3rd floor.</div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+    -->
+    <!--<Div class="col-xs-12 visible-xs socialmob">
+            <ul>
+                <li><a data-toggle="tooltip" data-placement="left" title="Facebook" href="https://www.facebook.com/empcfilming"><img src="images/Social/facebook.jpg" /></a></li>
+                <li><a data-toggle="tooltip" data-placement="left" title="Instgram" href="https://www.instagram.com/empcfilming"><img src="images/Social/instgram.jpg" /></a></li>
+                <li><a data-toggle="tooltip" data-placement="left" title="Twitter" href="https://twitter.com/empcegypt"><img src="images/Social/twitter.jpg" /></a></li>
+                <li><a data-toggle="tooltip" data-placement="left" title="youtube" href="https://www.youtube.com/channel/UC8NzMl_1Y50qjLYPoxW17MA"><img src="images/Social/youtube.jpg" /></a></li>
+            </ul>
+        </Div>
+
+    </div>-->
+    <!--end row-->
+    <!--</div>-->
+    <!--end container-->
+    <!--</section>
+    <div class="strip-footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <p>© Copyright 2022. All Rights Reserved.</p>
+                </div>-->
+    <!--enbd col-6-->
+    <!--<div class="col-md-6">
+        <ul class="buttons">
+            <li>
+                <a class="Facebook" title="Facebook" href="https://www.facebook.com/empcfilming">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </li>
+            <li>
+                <a class="Instgram" title="Instgram" href="https://www.instagram.com/empcfilming">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </li>
+            <li>
+                <a class="Twitter" title="Twitter" href="https://twitter.com/empcegypt">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </li>
+            <li>
+                <a class="youtube" title="youtube" href="https://www.youtube.com/channel/UC8NzMl_1Y50qjLYPoxW17MA">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </li>
+        </ul>
+    </div>-->
+    <!--enbd col-6-->
+    <!--</div>-->
+    <!--end row-->
+    <!--</div>-->
+    <!--end container-->
+    <!--</div>-->
+    <!--end strip-fotter-->
+    <!--Start Gallery section -->
+    <script src="~/assets_NewPublic/js/gallery-jquery.min.js"></script>
+    <script src="~/assets_NewPublic/js/gallery-jquery.flipster.min.js"></script>
+
+    <script>
+        var coverflow = $("#coverflow").flipster({
+            style: 'carousel',
+            spacing: -0.3,
+            nav: true,
+            buttons: true,
+        });
+    </script>
+
+    <script src="~/assets_NewPublic/js/jquery.min.js"></script>
+    <script src="~/assets_NewPublic/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/assets_NewPublic/js/bootstrap.min.js"></script>
+    <script src="~/assets_NewPublic/libs/bootstrap.bundle.min.js"></script>
+    <script src="~/assets_NewPublic/js/jquery.stellar.min.js"></script>
+    <script src="~/assets_NewPublic/js/owl.carousel.min.js"></script>
+    <script src="~/assets_NewPublic/js/scrollax.min.js"></script>
+    <script src="~/assets_NewPublic/js/main.js"></script>
+    @RenderSection("EndBody", required: false)
+    <script src="~/assets_NewPublic/libs/VideoPopUp/js/jquery-plugin-collection.js"></script>
+    <script src="~/assets_NewPublic/libs/VideoPopUp/js/script.js"></script>
+
+
+</body>
+</html>

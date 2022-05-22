@@ -1,0 +1,250 @@
+﻿
+@{
+    ViewBag.Title = "AboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="titlepage">
+    <div class="container">
+        <div class="links">
+            <ul>
+                <li>
+                    <a href="/Home/Index">@Resources.Global.Home</a>
+                </li>
+                <li>
+                    <span>ِ@Resources.Global.Aboutus</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!----------------about us--------->
+<div class="aboutus">
+    <div class="container">
+        <div class="aboutcontent">
+            <div class="row">
+                <div class="col-lg-6 ">
+                    <div class="detailsus">
+                        <h6 class="allabut">@Resources.Global.Aboutus</h6>
+                        <h2 class="promoword">@Resources.Global.abouttitel</h2>
+                    </div>
+                    <div class="information">
+                  
+                    </div>
+                </div>
+                <div class="col-lg-6 ">
+                    <div class="vedio">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/GcrAZKBqUo8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="watting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color:transparent; z-index:999999">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="">
+
+            </div>
+            <div class="modal-body">
+                <div id='' style="text-align:center">
+
+                    <img src="/StaticFiles/images/giphy.gif" style="width:100px; height:100px" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/StaticFiles/js/jquery-3.3.1.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        let information = $('.information');
+        $.ajax({
+            url: "/api/GetAboutUsInformation",
+                type: "Get",
+                beforeSend: function () {
+                    
+                  
+                },
+                cache: false,          
+                success: function (res)
+                {                  
+                    information.html('');
+                    for (var i = 0; i < res.length; i++)
+                    {
+                        if (res[i].Key === "RightIcon")
+                        {
+                            information.append(`<div class="ifoarticle">
+                            <span class="float-right">
+                                <i class="fas fa-arrow-left"></i>
+                            </span>
+                            <p>${res[i].Value}</p>
+                        </div>`);
+                        }
+                        else if (res[i].Key === "LeftIcon")
+                        {
+                            information.append(`<div class="ifoarticle">
+                            <span>
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+
+                            <p>${res[i].Value}</p>
+
+                        </div>`);
+
+                        }
+                        else
+                            information.append(`<h2>${res[i].Key} : <span>${res[i].Value} </span></h2>`);
+                    }
+
+                },
+                error: function () {
+                    alert('error');
+                },
+                complete: function (data) {
+                 
+                   
+                }
+            });
+    });
+</script>
+
+
+
+
+
+<!--------------------------ss------->
+<div class="featchers">
+    <div class="container">
+        <div class="feattitle">
+            <h4 class="tiltt">  <span> @Resources.Global.OurFeatures </span> </h4>
+        </div>
+        <div class="featcontent">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="details">
+                        <a class="icon" href="#">
+                            <i class="fas fa-graduation-cap"></i>
+                        </a>
+                        <div class="icon-box-details">
+                            <h4 class="icon-box-title">@Resources.Global.EasyEducation</h4>
+                            <p class="text-gray">@Resources.Global.EasyEducationdetalies</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="details">
+                        <a class="icon" href="#">
+                            <i class="fab fa-android"></i>
+                        </a>
+                        <div class="icon-box-details">
+                            <h4 class="icon-box-title">@Resources.Global.android</h4>
+                            <p class="text-gray">@Resources.Global.androiddetaile</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="details">
+                        <a class="icon" href="#">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                        <div class="icon-box-details">
+                            <h4 class="icon-box-title">@Resources.Global.Ios</h4>
+                            <p class="text-gray">@Resources.Global.iosdetailes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="details">
+                        <a class="icon" href="#">
+                            <i class="fab fa-windows"></i>
+                        </a>
+                        <div class="icon-box-details">
+                            <h4 class="icon-box-title">@Resources.Global.Windows</h4>
+                            <p class="text-gray">@Resources.Global.Windowsdetailes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="details">
+                        <a class="icon" href="#">
+                            <i class="fas fa-mobile-alt"></i>
+                        </a>
+                        <div class="icon-box-details">
+                            <h4 class="icon-box-title">@Resources.Global.responsive</h4>
+                            <p class="text-gray">@Resources.Global.responsivedetailes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="details">
+                        <a class="icon" href="#">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </a>
+                        <div class="icon-box-details">
+                            <h4 class="icon-box-title">@Resources.Global.location</h4>
+                            <p class="text-gray">@Resources.Global.locationdetailes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!----------------->
+<div class="stats jarallax">
+    <div class="darckback">
+        <div class="container">
+            <div class="col-md-3 col-sm-6 col-xs-12 w3_counter_grid">
+                <div class="icon">
+                    <img src="/StaticFiles/images/smile.png">
+                </div>
+                <p class="counter">1,965</p>
+                <h3>HAPPY STUDENTS</h3>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 w3_counter_grid">
+                <div class="icon">
+                    <img src="/StaticFiles/images/script.png">
+                </div>
+                <p class="counter">432</p>
+                <h3>OUR COURSES</h3>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 w3_counter_grid">
+                <div class="icon">
+                    <img src="/StaticFiles/images/like.png">
+                </div>
+                <p class="counter">690</p>
+                <h3>Like</h3>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 w3_counter_grid">
+                <div class="icon">
+                    <img src="/StaticFiles/images/medal.png">
+                </div>
+                <p class="counter">124</p>
+                <h3>Certifications</h3>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,225 @@
+﻿
+@{
+    ViewBag.Title = "Albums";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    UnitOfWork ctx = new UnitOfWork();
+
+    var albums = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Order).ToList();
+    //var vidoes = ctx.GalaryManager.GetAll().Where(s =>! s.IsImage).OrderBy(s => s.Order).ToList();
+
+    Galary active_galary;
+    bool en = true;
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+    var Id = ViewBag.Id;
+}
+
+
+@section EndHeader {
+    @*<link href="~/assets_NewPublic/css/lightgallery.css" rel="stylesheet">*@
+    <link rel="stylesheet" href="~/assets_NewPublic/libs/magnific-popup/magnific-popup.css">
+}
+<div class="header-bc">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="title-header">
+
+                    <h3>@Resources.Global.Albums</h3>
+
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="/Home">Home</a> > </li>
+                            <li>@Resources.Global.Albums</li>
+                        </ul>
+                    </div>
+                    <!--end breadcrumb-->
+
+                </div>
+                <!--end title-header-->
+
+            </div>
+            <!--end col-6-->
+
+
+
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</div>
+<!--end header-bc-->
+
+
+
+
+
+
+
+<div class="news">
+    <div class="container">
+        <Div class="row">
+
+
+            <div class="cleaner-h3 visible-xs"></div>
+
+
+            @foreach (var picture in albums)
+            {
+                <Div class="col-md-4">
+                    <a class="new new-small small-location location-new" href="/Home/Picture?albumId=@picture.Id">
+                        <img src="@picture.Image" class="img-responsive img-services" />
+                        <h3>
+                            @if (en)
+                            {
+                                <span>
+                                    @picture.TitleEnglish
+                                </span>
+
+                            }
+                            else
+                            {
+                                <span>
+                                    @picture.TitleArabic
+                                </span>
+                            }
+                            <p>></p>
+                        </h3>
+                    </a>
+                </Div>
+            }
+            <!--end col-4-->
+            <!--end col-4-->
+
+            <div class="cleaner-h3"></div>
+
+
+
+
+
+
+
+
+
+        </Div>
+        <!--end row-->
+    </div>
+    <!--end continer-->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="gallaySection" style="display:none;">
+    <div class="container">
+        <div class="row">
+
+            <div class="cleaner-h4"></div>
+
+            <div style="display:none" class="col-md-3">
+                <div class="sendmessage">
+                    <select>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                        <option>categories</option>
+                    </select>
+
+                </div>
+
+            </div>
+            <!--end col-3-->
+            <div style="display:none" class="col-lg-9 col-md-9">
+                <A href="#" class="btn btn-black">Select</A>
+            </div>
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="vediossowlwl">
+                    <div class="carousel-vedios owl-carousel zoom-gallery">
+                        @foreach (var picture in albums)
+                        {
+
+
+                            <div class="item">
+                                <div class="frmadevsmall">
+                                    <div class="images">
+                                        <a href="@picture.Image">
+                                            <img src="@picture.Image">
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<!--end row-->
+<!--end container-->
+
+
+@section EndBody{
+    <!--        <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>-->
+    <!--<script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-pager.js/master/dist/lg-pager.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-zoom.js/master/dist/lg-zoom.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-hash.js/master/dist/lg-hash.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-share.js/master/dist/lg-share.js"></script>-->
+    <!--        <script src="../demo/js/lg-rotate.js"></script>-->
+    <!--<script>
+        lightGallery(document.getElementById('lightgallery'));
+    </script>-->
+
+
+    <script src="~/assets_NewPublic/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets_NewPublic/libs/magnific-popup/lightbox.init.js"></script>
+}

@@ -1,0 +1,316 @@
+﻿@model Service
+@{
+    ViewBag.Title = "ServicesDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool en = true;
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+}
+
+@section EndHeader{
+
+    <link href="~/assets_NewPublic/libs/magnific-popup/magnific-popup.css" rel="stylesheet" />
+    <style>
+        .threecitizenimgadetails .images:hover .discription {
+            background: #fff;
+        }
+
+            .threecitizenimgadetails .images:hover .discription h2 {
+                color: #1e1f4e;
+            }
+
+            .threecitizenimgadetails .images:hover .discription p {
+                color: #1e1f4e;
+            }
+
+
+
+        .menu li a.active-a3 {
+            color: #af7a2c;
+            border-bottom: 1px solid #fff0;
+            font-weight: 500;
+        }
+
+
+    </style>
+
+}
+<div class="header-bc">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="title-header">
+
+
+                    @if (en)
+                    {
+
+
+                        <h3>@Model.TitleEnglish</h3>
+                    }
+                    else
+                    {
+
+                        <h3>@Model.TitleArabic</h3>
+                    }
+
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="/Home">@Resources.Global.Home</a> > </li>
+                            <li><a href="/Home/Services">@Resources.Global.services</a></li>
+                        </ul>
+                    </div>
+                    <!--end breadcrumb-->
+
+                </div>
+                <!--end title-header-->
+
+            </div>
+            <!--end col-6-->
+
+
+
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</div>
+<!--end header-bc-->
+
+
+
+
+
+<div class="news servicesDetails">
+    <div class="container">
+        <div class="row">
+
+            <div class="new-description pad-bottm">
+
+                <div class="images">
+                    <div class=" imagsBG" style="background-image: url(@Model.MainImage)">
+
+
+                        @if (!string.IsNullOrEmpty(@Model.ServicesIframe))
+                        {
+                            <div class="overlayServices">
+                                <div class="buttonPopUp">
+
+                                    <a href="@Model.ServicesIframe" class="vediobtn btnvediopopup" data-type="iframe" tabindex="0">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+
+
+
+                    </div>
+                    @*<img src="@Model.MainImage" class="img-responsive" />*@
+                </div>
+
+
+                <div class="data-new">
+                    @if (en)
+                    {
+
+
+                        <h3>@Model.TitleEnglish</h3>
+                        <div class="ServDiscription">
+                            <p>@Html.Raw(@Model.DescriptionEnglish)</p>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <h3>@Model.TitleArabic</h3>
+                        <div class="ServDiscription">
+                            <p>@Html.Raw(@Model.DescriptionArabic)</p>
+                        </div>
+                    }
+
+
+
+
+
+
+
+
+
+                    <div class="MoreImages">
+                        <h3>@Resources.Global.MorePhoto</h3>
+
+                        <div class="MorGallaryImg">
+                            <div class="carousel-GallaryItems owl-carousel zoom-gallery">
+
+
+                                @if (Model.ServiceImages != null && Model.ServiceImages.Any())
+                                {
+                                    foreach (var item in Model.ServiceImages)
+                                    {
+
+                                        <div class="item">
+                                            <div class="imagesItem">
+                                                <a href="@item.Path">
+                                                    <img src="@item.Path">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--end data-new-->
+            </div>
+            <!--end new-description-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</div>
+<!--end news-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="threecitizenimgadetails servicesDetails" style="display:none">
+    <div class="overlay">
+        <div class="container">
+            <div class="ciciccont">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="bigimg images" style="margin-bottom: 30px;">
+                            <!-- <img src="images/f1c.jpeg">-->
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="@Model.MainImage" alt="...">
+
+                                    </div>
+
+                                    @if (Model.ServiceImages != null && Model.ServiceImages.Any())
+                                    {
+                                        foreach (var item in Model.ServiceImages)
+                                        {
+                                            <div class="item">
+                                                <img src="@item.Path" alt="...">
+
+                                            </div>
+                                        }
+                                    }
+                                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+
+
+                                </div>
+
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+
+                            </div>
+
+
+                            <div class="discription">
+                                @if (en)
+                                {
+
+
+                                    <h2>@Model.TitleEnglish</h2>
+                                    <p>@Html.Raw(@Model.DescriptionEnglish)</p>
+                                }
+                                else
+                                {
+
+                                    <h2>@Model.TitleArabic</h2>
+                                    <p>@Html.Raw(@Model.DescriptionArabic)</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section EndBody{
+    <script src="~/assets_NewPublic/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets_NewPublic/libs/magnific-popup/lightbox.init.js"></script>
+    @*<script>
+            var coverflow = $("#coverflow").flipster({
+                style: 'carousel',
+                spacing: -0.3,
+                nav: true,
+                buttons: true,
+            });
+        </script>*@
+    <script>
+        $('.carousel').carousel()
+    </script>
+
+
+    @*<script>
+            $('.carousel').carousel()
+        </script>*@
+}

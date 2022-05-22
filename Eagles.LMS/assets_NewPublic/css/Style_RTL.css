@@ -1,0 +1,250 @@
+﻿body {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Cairo', sans-serif;
+}
+.buttons {
+    float: right;
+}
+.language {
+    float: left;
+}
+.strip-white {
+    float: left;
+}
+.pull-right {
+    float: left !important;
+}
+.owl-carousel .owl-stage-outer {
+    direction: ltr;
+}
+.owl-carousel.home-slider .slider-item .overlay {
+    padding: 0 70px 0 10px;
+    left: auto;
+    right: 0;
+}
+.owl-carousel.home-slider .slider-item .slider-text h1 {
+    text-align: center;
+    letter-spacing: 0;
+    font-family: 'Cairo';
+}
+.owl-carousel.home-slider .slider-item .slider-text h2 {
+    text-align: center;
+    letter-spacing: 0;
+    font-family: 'Cairo';
+}
+.owl-carousel.home-slider .slider-item .slider-text .RerdrrdMore {
+    right: 0;
+    float: none;
+}
+.owl-carousel .owl-dots .owl-dot:after {
+
+    right: -2px;
+}
+.menu li {
+    margin-left: 25px;
+    margin-right:0;
+}
+    .menu li a {
+        font-weight: 600;
+    }
+    .menu li a.active-a, .menu li a:hover {
+        font-weight: 600;
+    }
+
+.border-top {
+
+    right: -12px;
+    left: auto;
+}
+.who p.headp1 {
+    font-size: 16px;
+    line-height: initial;
+}
+h2.headh2 {
+    font-weight: bold;
+    letter-spacing: 0;
+}
+
+p.headp {
+    margin-right: 25%;
+    margin-left:0;
+
+}
+
+.img-div {
+    float: right;
+    margin-left: 30px;
+    margin-right:0;
+}
+    .img-div:hover {
+        float: right;
+        margin-left: 30px;
+        margin-right: 0;
+    }
+.pyrimidis-title h4{
+    letter-spacing:0;
+}
+.relatedwebsite .relatedCOntent .relatedCOntentItemSec:nth-child(even) .relateditem {
+    display: flex;
+    direction: ltr;
+}
+
+    .relatedwebsite .relatedCOntent .relatedCOntentItemSec:nth-child(even) .relateditem .rightside {
+
+        left: -40px;
+        right: auto;
+
+    }
+        .relatedwebsite .relatedCOntent .relatedCOntentItemSec:nth-child(even) .relateditem .rightside .wecont {
+
+            padding-left: 50px;
+            padding-right: 10px;
+
+        }
+
+.relatedwebsite .relatedCOntent .relateditem .rightside .wecont h2 {
+
+    text-align: right;
+}
+.relatedwebsite .relatedCOntent .relateditem .rightside .wecont p {
+    text-align: right;
+}
+.relatedwebsite .relatedCOntent .relateditem .rightside .wecont .btns {
+    float: right;
+}
+
+.relatedwebsite .relatedCOntent .relateditem .rightside .wecont {
+
+    padding-right: 50px;
+    padding-left: 10px;
+}
+
+.relatedwebsite .relatedCOntent .relateditem .rightside {
+
+    right: -40px;
+}
+.opacity-map h2.headh2 {
+    padding: 0px 138px 0px 8px;
+}
+.location-map {
+    padding: 0px 138px 0px 8px;
+}
+    .location-map i {
+        float: right;
+        margin-left: 25px;
+    }
+    .location-map p {
+        padding-right: 45px;
+        padding-left: 0;
+    }
+.wpo-site-footer .about-widget ul li, .wpo-site-footer-s2 .about-widget ul li {
+    float: right;
+}
+.wpo-site-footer .about-widget ul li + li, .wpo-site-footer-s2 .about-widget ul li + li {
+    margin-right: 10px;
+    margin-left: 0;
+}
+a:focus{
+    text-decoration:none;
+}
+.breadcrumbs ul li {
+
+    margin-left: 10px;
+}
+    .breadcrumbs ul li a {
+        margin: 10px;
+    }
+
+.data-about p {
+    color: #7d7979;
+    font-size: 16px;
+    line-height: initial;
+    font-weight: 500;
+}
+.nav-tabs > li > a {
+    margin-right: 0;
+}
+
+.location-new p {
+    float: left;
+}
+.small-location h3 {
+    right: 20px !important;
+    left: 0 !IMPORTANT;
+}
+
+
+
+.bookingform .chiller_cb label {
+    padding-right: 25px;
+    padding-left:0;
+    text-align: right;
+    right: 0;
+    left: auto;
+}
+.bookingform .chiller_cb span {
+    right: 0;
+    left:auto;
+}
+.dropdown-menu {
+    left:auto;
+    right: 0;
+    float: right;
+
+    text-align: right;
+
+}
+
+.footercol {
+    border-left: 1px solid #5F5E5E;
+    border-left:0;
+    border-right:0;
+}
+
+.footercol:last-child{
+    border-left: none;
+}
+
+
+.ftco-section {
+    direction: ltr;
+}
+    .ftco-section p.headp{
+        margin:auto;
+    }
+.newlocation .newlocConte .LocDataDeis h2{
+    letter-spacing:0;
+
+}
+.newlocation .newlocConte .LocDataDeis p {
+    letter-spacing: 0;
+    text-align: right;
+}
+.text-muted i {
+    margin: 0 10px;
+}
+.gallery-section .width-btn-who {
+    margin: auto;
+    margin-top: 30px;
+}
+
+
+.swiper-button-next {
+    left: 50px !important;
+    right: auto !important;
+}
+.owl-carousel.home-slider .slider-item .slider-text h1 p {
+    font-size: 25px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 0px 3px 25px rgb(0 0 0 / 10%);
+}
+
+.timelines .btn-gemy {
+    float: right;
+}
