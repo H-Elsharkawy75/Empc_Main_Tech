@@ -2336,9 +2336,9 @@ left: 10px;
     .header-bc h3 {
         color: white;
         font-size: 30px;
-        font-weight: bold;
+        font-weight: 400;
         margin-bottom: 15px;
-        height: 40px;
+        height: auto;
         overflow: hidden;
     }
 
@@ -5820,12 +5820,18 @@ border: 1px solid #f1f1f1;
     font-size: 30px;
     margin-bottom: 10px;
 }
+    .servicesDetails .new-description .images .imagsBG2 {
+        background-size: contain;
+        background-position: center center;
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-color: #eee;
+    }
 
 
-
-.servicesDetails .ServDiscription{
-    
-}
+    .servicesDetails .ServDiscription {
+    }
 .servicesDetails .ServDiscription p{
         font-size: 15px;
     line-height: 25px;
