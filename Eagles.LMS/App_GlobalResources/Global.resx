@@ -1927,4 +1927,19 @@ EXCITED ABOUT</value>
   <data name="Mulimedia" xml:space="preserve">
     <value>Mulimedia</value>
   </data>
+  <data name="Outdoor" xml:space="preserve">
+    <value>Outdoor</value>
+  </data>
+  <data name="ReadDetails" xml:space="preserve">
+    <value>Read Details</value>
+  </data>
+  <data name="ShootingAreas" xml:space="preserve">
+    <value>ShootingAreas</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="Vision" xml:space="preserve">
+    <value>Vision</value>
+  </data>
 </root>

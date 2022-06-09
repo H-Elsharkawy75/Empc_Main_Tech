@@ -1879,4 +1879,19 @@
   <data name="DawenloadBrochure" xml:space="preserve">
     <value>تحميل الكتيب</value>
   </data>
+  <data name="Outdoor" xml:space="preserve">
+    <value>مواقع خارجيه</value>
+  </data>
+  <data name="ReadDetails" xml:space="preserve">
+    <value>اقرء التفاصيل</value>
+  </data>
+  <data name="ShootingAreas" xml:space="preserve">
+    <value>مواقع التصوير المفتوحة</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>المهمه</value>
+  </data>
+  <data name="Vision" xml:space="preserve">
+    <value>الرؤيه</value>
+  </data>
 </root>

@@ -126,6 +126,7 @@ p.headp {
 }
 .opacity-map h2.headh2 {
     padding: 0px 138px 0px 8px;
+    letter-spacing:0 !important
 }
 .location-map {
     padding: 0px 138px 0px 8px;
@@ -247,4 +248,9 @@ a:focus{
 
 .timelines .btn-gemy {
     float: right;
+}
+
+
+.relatedwebsite .relatedCOntent .relateditem .rightside .wecont .btns a{
+    float:right;
 }

@@ -46,11 +46,15 @@
 @section EndHeader{
     <style>
         .menu li a.active-a1 {
-            color: #af7a2c;
+            color: #af7a2c !important;
             border-bottom: 1px solid #fff0;
-            font-weight: 500;
+            font-weight: 600;
         }
     </style>
+
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 }
 
 
@@ -158,10 +162,10 @@
                                                 {
                                                     <h2>@slider.DescriptionEnglish</h2>
                                                 }
-                                                if (!string.IsNullOrEmpty(slider.Link))
+                                                @*if (!string.IsNullOrEmpty(slider.Link))
                                                 {
                                                     <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
-                                                }
+                                                }*@
                                             }
                                             else
                                             {
@@ -174,10 +178,10 @@
                                                     <h2>@slider.DescriptionArabic</h2>
 
                                                 }
-                                                if (!string.IsNullOrEmpty(slider.Link))
+                                                @*if (!string.IsNullOrEmpty(slider.Link))
                                                 {
                                                     <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
-                                                }
+                                                }*@
                                             }
                                         </div>
                                     </div>
@@ -204,17 +208,17 @@
 
                     <!--                    <div class="red-line"></div>-->
                     <h2 class="mb-4 headh2">@Resources.Global.services</h2>
-                    <p class="headp">
+                    <p class="headp" style="display:none">
                         @Resources.Global.ContPagrgraph
 
                     </p>
                 </div>
             </div>
         </div>
-        <div id="Gallery-area" class="our_feature_area">
+        <div id="Gallery-area22" class="our_feature_area">
             <div class="container">
-                <div id="demo-default" class="demo s_black_title" style="padding-top:0px">
-                    <div id="coverflow">
+                <div id="demo-default22" class="demo s_black_title" style="padding-top:0px">
+                    <div id="coverflow22">
                         <ul class="flip-items">
 
                             @foreach (var service in services)
@@ -367,73 +371,77 @@
 @if (setting.ShowAboutUs)
 {
 
-    <section class="who">
-        <div class="container">
-            <div class="row">
+    <section class="who" style="background-image: url(/assets_NewPublic/images/newimg/about.jpeg)">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+
+                    <!--end col-6-->
 
 
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                    <div class="border-top"></div>
-                    <div class="wearecont">
-                        <div class="images">
-                            <img src="@aboutUs.Image" class="img-responsive img-who" />
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+
+
+                        <!--                    <div class="red-line1"></div>-->
+
+                        <div class="overflowheightabout">
+                            @if (en)
+                            {
+                                <h2 class="headh2">@aboutUs.TitleEnglish</h2>
+
+
+                                <p class="headp1">
+                                    @Html.Raw(@aboutUs.DescriptionEnglish)
+                                </p>
+                            }
+                            else
+
+                            {
+                                <h2 class="headh2">@aboutUs.TitleArabic</h2>
+
+                                <p class="headp1">
+
+                                    @Html.Raw(@aboutUs.DescriptionArabic)
+                                </p>
+                            }
                         </div>
-                        <div class="buttonpopupvedio">
-                            @*<button type="button" class="btnvediopopup" data-toggle="modal" data-target="#VedioPopup">
+
+                        <Div class="width-btn-who">
+                            <a href="/Home/AboutUs" class="btn btn-danger btn-block btn-theme"> @Resources.Global.ReadMore</a>
+                        </Div>
+                        <!--end width-btn-->
+
+
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="border-top"></div>
+                        <div class="border-top-1"></div>
+                        <div class="wearecont">
+                            <div class="images">
+                                <img src="@aboutUs.Image" class="img-responsive img-who" />
+                            </div>
+                            <div class="buttonpopupvedio" style="display:none">
+                                @*<button type="button" class="btnvediopopup" data-toggle="modal" data-target="#VedioPopup">
+                                        <i class="fas fa-play"></i>
+                                    </button>*@
+                                <a href="@aboutUs.YouTubeFrame" class="btnvediopopup" data-type="iframe" tabindex="0">
                                     <i class="fas fa-play"></i>
-                                </button>*@
-                            <a href="@aboutUs.YouTubeFrame" class="btnvediopopup" data-type="iframe" tabindex="0">
-                                <i class="fas fa-play"></i>
-                            </a>
+                                </a>
+                            </div>
                         </div>
+
+
+
                     </div>
-
-                    <div class="border-top-1"></div>
-
-                </div>
-                <!--end col-6-->
-
-
-                <div class="col-md-6 col-sm-12 col-xs-12">
-
-
-                    <!--                    <div class="red-line1"></div>-->
-
-                    <div class="overflowheightabout">
-                        @if (en)
-                        {
-                            <h2 class="headh2">@aboutUs.TitleEnglish</h2>
-
-
-                            <p class="headp1">
-                                @Html.Raw(@aboutUs.DescriptionEnglish)
-                            </p>
-                        }
-                        else
-
-                        {
-                            <h2 class="headh2">@aboutUs.TitleArabic</h2>
-
-                            <p class="headp1">
-
-                                @Html.Raw(@aboutUs.DescriptionArabic)
-                            </p>
-                        }
-                    </div>
-
-                    <Div class="width-btn-who">
-                        <a href="/Home/AboutUs" class="btn btn-danger btn-block btn-theme"> @Resources.Global.ReadMore</a>
-                    </Div>
-                    <!--end width-btn-->
 
 
                 </div>
-
-
+                <!--end row-->
             </div>
-            <!--end row-->
+            <!--end conatiner-->
         </div>
-        <!--end conatiner-->
+
     </section>
     <!--end who-->
 
@@ -507,9 +515,83 @@
     <!--end who-->
 }
 
+
+
+<div class="NewStyleLocation newlocation" style="background-image: url(/assets_NewPublic/images/newimg/2.jpg)">
+
+    <!--Start Services Sections-->
+    <section class="ftco-section overlay">
+        <div id="Gallery-area" class="our_feature_area">
+            <div class="container-fluid">
+                <div id="demo-default" class="demo s_black_title newlocConte" style="padding-top:40px;">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="LocDataDeis">
+                                <div class="LocDiscForflex">
+                                    <h2>@Resources.Global.Locations</h2>
+                                    <p style="display:none" >@Resources.Global.ContPagrgraph</p>
+                                    <a href="/Home/Locations" style="margin-top:30px;" class="ReadMore">@Resources.Global.ReadMore</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
+                            <div id="coverflow">
+                                <ul class="flip-items">
+
+                                    @foreach (var location in _locations)
+                                    {
+                                        <li data-flip-title="Red">
+                                            <div class="servItem">
+                                                <div class="images">
+                                                    <img src="@location.MainImage" style="width:335px ; height:450px">
+                                                    @*<div class="BGIMG" style="background-image:url(@location.MainImage);width:350px ; height:450px"></div>*@
+                                                </div>
+                                                <div class="titile" style="">
+                                                    <a href="/Home/LocationDetails/@location.Id" class="titiflex">
+                                                        @if (en)
+                                                        {
+                                                            <h2>@location.TitleEnglish</h2>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h2>@location.TitleArabic</h2>
+                                                        }
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </li>
+
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <Div class="width-btn">
+                        <a href="#" class="btn btn-danger btn-block btn-theme"> Read More</a>
+                    </Div>
+                    <!--end width-btn-->
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End services section -->
+
+
+
+</div>
+
+
+
 @if (setting.ShowLocations)
 {
-    <div class="newlocation" style="background-image: url(/assets_NewPublic/images/newimg/2.jpg)">
+    <div class="newlocation" style="background-image: url(/assets_NewPublic/images/newimg/2.jpg); display:none">
 
         <div class="overlay">
             <div class="container-fluid">
@@ -519,7 +601,7 @@
                             <div class="LocDataDeis">
                                 <div class="LocDiscForflex">
                                     <h2>@Resources.Global.Locations</h2>
-                                    <p>@Resources.Global.ContPagrgraph</p>
+                                    <p style="display:none;">@Resources.Global.ContPagrgraph</p>
                                     <a href="/Home/Locations" class="ReadMore">More Details</a>
                                 </div>
                             </div>
@@ -629,97 +711,99 @@
 
 @if (setting.ShowNews)
 {
-    <section class="timelines" style="">
+    <section class="timelines" style="background-image: url(/assets_NewPublic/images/bg_2.jpg)">
 
+        <div class="overlay">
+            <div class="container">
+                <div class="row justify-content-center mb-3 pb-3">
+                    <div class="col-md-12 heading-section text-center ftco-animate">
 
-        <div class="container">
-            <div class="row justify-content-center mb-3 pb-3">
-                <div class="col-md-12 heading-section text-center ftco-animate">
-
-                    <!--                    <div class="red-line"></div>-->
-                    <h2 class="mb-4 headh2">@Resources.Global.Latestnews</h2>
-                    <p class="headp">@Resources.Global.ContPagrgraph</p>
+                        <!--                    <div class="red-line"></div>-->
+                        <h2 class="mb-4 headh2">@Resources.Global.Latestnews</h2>
+                        <p class="headp" style="display:none">@Resources.Global.ContPagrgraph</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="container">
-
-
+            <div class="container">
 
 
 
-            <div class="row">
-                @for (int i = 0; i < _news.Count; i++)
-                {
-                    <div class="col-md-6">
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <div class="imageesNews">
-                                    <div class="imagsBG" style="background-image: url( @_news[i].MainImage )"></div>
+
+
+                <div class="row">
+                    @for (int i = 0; i < _news.Count; i++)
+                    {
+                        <div class="col-md-6">
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <div class="imageesNews">
+                                        <div class="imagsBG" style="background-image: url( @_news[i].MainImage )"></div>
+                                    </div>
+
+                                    @*<img src="" class="img-responsive news-img" />*@
+
+
+                                    @if (@_news[i].CreatedTime != null)
+                                    {
+                                        <p><small class="text-muted"><i class=" fa fa-calendar"></i>@_news[i].NewsDate.ToShortDateString()</small></p>
+                                    }
+                                    @if (en)
+                                    {
+
+
+                                        <h4 class="timeline-title">@_news[i].TitleEnglish</h4>
+
+                                    }
+                                    else
+                                    {
+
+
+                                        <h4 class="timeline-title">@_news[i].TitleArabic</h4>
+                                    }
+
                                 </div>
-                                
-                                @*<img src="" class="img-responsive news-img" />*@
+                                <div class="timeline-body">
+                                    @if (en)
+                                    {
 
+                                        <p>@_news[i].ShortDescriptionEnglish</p>
+                                    }
+                                    else
+                                    {
 
-                                @if (@_news[i].CreatedTime != null)
-                                {
-                                    <p><small class="text-muted"><i class=" fa fa-calendar"></i>@_news[i].NewsDate.ToShortDateString()</small></p>
-                                }
-                                @if (en)
-                                {
-
-
-                                    <h4 class="timeline-title">@_news[i].TitleEnglish</h4>
-
-                                }
-                                else
-                                {
-
-
-                                    <h4 class="timeline-title">@_news[i].TitleArabic</h4>
-                                }
-
-                            </div>
-                            <div class="timeline-body">
-                                @if (en)
-                                {
-
-                                    <p>@_news[i].ShortDescriptionEnglish</p>
-                                }
-                                else
-                                {
-
-                                    <p>@_news[i].ShortDescriptionArabic</p>
-                                }
-                                <div class="cleaner-h1"></div>
-                                <a href="#" class="btn btn-danger btn-share" style="display:none"><i class="fa fa-share-alt"></i></a>
-                                <a href="/Home/NewsDetails/@_news[i].Id" class="btn btn-block btn-danger btn-theme btn-gemy btn-block-final">@Resources.Global.ReadMore</a>
+                                        <p>@_news[i].ShortDescriptionArabic</p>
+                                    }
+                                    <div class="cleaner-h1"></div>
+                                    <a href="#" class="btn btn-danger btn-share" style="display:none"><i class="fa fa-share-alt"></i></a>
+                                    <a href="/Home/NewsDetails/@_news[i].Id" class="btn btn-block btn-danger btn-theme btn-gemy btn-block-final">@Resources.Global.ReadMore</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    if (i == 1)
-                    {
-                        break;
+                        if (i == 1)
+                        {
+                            break;
+                        }
                     }
-                }
 
 
-                <!--end col-6-->
-
-
+                    <!--end col-6-->
 
 
 
 
 
 
+
+
+                </div>
+                <!--end row-->
             </div>
-            <!--end row-->
+            <!--end conatiner-->
         </div>
-        <!--end conatiner-->
+
 
     </section>
 
@@ -805,7 +889,7 @@
 
                         <!--                    <div class="red-line"></div>-->
                         <h2 class="mb-4 headh2">@Resources.Global.Gallery</h2>
-                        <p class="headp">@Resources.Global.ContPagrgraph</p>
+                        <p class="headp" style="display:none">@Resources.Global.ContPagrgraph</p>
                     </div>
                     <div class="col-md-12">
                         <div class="carousel-testimony owl-carousel ftco-owl">
@@ -853,6 +937,9 @@
         </div>
 
     </section>
+
+
+
 
 
     <div class="newLatestNews" style="display:none">
@@ -1035,11 +1122,11 @@
                                                 }
                                                 else
                                                 {
-                                                    <h2>@_relatedWerbsites[i].TitleEnglish</h2>
+                                                    <h2>@_relatedWerbsites[i].TitleArabic</h2>
                                                     <p>@Html.Raw(@_relatedWerbsites[i].DescriptionArabic)</p>
                                                 }
                                                 <div class="btns">
-                                                    <a href="#" class="theme-btn" tabindex="0"> @Resources.Global.MoreDetails</a>
+                                                    <a href="@_relatedWerbsites[i].Link" class="theme-btn" tabindex="0"> @Resources.Global.MoreDetails</a>
                                                 </div>
                                             </div>
 
@@ -1292,6 +1379,62 @@
 
 
 @section EndBody{
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+    <!-- Initialize Swiper -->
+    @*<script>
+            var swiper = new Swiper(".mySwiper", {
+                effect: "cards",
+                grabCursor: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>*@
+
+
+    @*<script>
+            var swiper = new Swiper(".mySwiper", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: "auto",
+                coverflowEffect: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                },
+            });
+        </script>*@
+
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+        });
+    </script>
 }
 

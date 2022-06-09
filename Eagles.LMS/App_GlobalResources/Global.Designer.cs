@@ -2789,6 +2789,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mission.
+        /// </summary>
+        public static string Mission {
+            get {
+                return ResourceManager.GetString("Mission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mobile.
         /// </summary>
         public static string Mobile {
@@ -3329,6 +3338,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Outdoor.
+        /// </summary>
+        public static string Outdoor {
+            get {
+                return ResourceManager.GetString("Outdoor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parent.
         /// </summary>
         public static string Parent {
@@ -3806,6 +3824,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Read Details.
+        /// </summary>
+        public static string ReadDetails {
+            get {
+                return ResourceManager.GetString("ReadDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Read More.
         /// </summary>
         public static string ReadMore {
@@ -4225,6 +4252,15 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string Share {
             get {
                 return ResourceManager.GetString("Share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ShootingAreas.
+        /// </summary>
+        public static string ShootingAreas {
+            get {
+                return ResourceManager.GetString("ShootingAreas", resourceCulture);
             }
         }
         
@@ -5296,6 +5332,15 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string Videos {
             get {
                 return ResourceManager.GetString("Videos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision.
+        /// </summary>
+        public static string Vision {
+            get {
+                return ResourceManager.GetString("Vision", resourceCulture);
             }
         }
         
