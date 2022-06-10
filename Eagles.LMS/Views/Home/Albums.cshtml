@@ -5,7 +5,7 @@
 
     UnitOfWork ctx = new UnitOfWork();
 
-    var albums = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Order).ToList();
+    var albums = new List<Album>();
     //var vidoes = ctx.GalaryManager.GetAll().Where(s =>! s.IsImage).OrderBy(s => s.Order).ToList();
 
     Galary active_galary;
@@ -15,6 +15,14 @@
     {
         en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
 
+    }
+    if(en==true)
+    {
+        albums = ctx.AlbumManager.GetAll().Where(s=>s.TitleEnglish!=null).OrderByDescending(s => s.Order).ToList();
+    }
+    else
+    {
+        albums = ctx.AlbumManager.GetAll().Where(s => s.TitleArabic != null).OrderByDescending(s => s.Order).ToList();
     }
     var Id = ViewBag.Id;
 }

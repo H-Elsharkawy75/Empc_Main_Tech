@@ -28,7 +28,15 @@
 
     }
 
+    if (en == true)
+    {
+        locations =locations.Where(s => s.TitleEnglish != null).ToList();
+    }
+    else
+    {
+        locations = locations.Where(s => s.TitleArabic != null).ToList();
 
+    }
 }
 
 @section EndHeader{

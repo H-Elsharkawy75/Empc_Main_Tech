@@ -8,6 +8,7 @@
 
 @{
     UnitOfWork ctx = new UnitOfWork();
+    var teams=new  List<Team>();
     var setting = ctx.SettingsManager.GetAll().FirstOrDefault();
     var aboutUs = ctx.AboutUsManager.GetAll().FirstOrDefault();
     bool en = true;
@@ -17,9 +18,14 @@
         en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
 
     }
-
-    var teams = ctx.TeamManager.GetAllBind().OrderByDescending(s => s.Id).ToList();
-
+    if (en == true)
+    {
+        teams   = ctx.TeamManager.GetAllBind().OrderByDescending(s => s.Id).Where(s=>s.NameEnglish!=null).ToList();
+    }
+    else
+    {
+        teams = ctx.TeamManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.NameArabic != null).ToList();
+    }
 
 
 

@@ -14,21 +14,21 @@ namespace Eagles.LMS.Models
         public int Id { get; set; }
 
         public string MainImage { get; set; }
-        [Required(ErrorMessage = "Title Arabic Is Required")]
+        //[Required(ErrorMessage = "Title Arabic Is Required")]
 
         public string TitleArabic { get; set; }
-        [Required(ErrorMessage = "Title English Is Required")]
+        //[Required(ErrorMessage = "Title English Is Required")]
 
         public string TitleEnglish { get; set; }
 
 
 
-        [Required(ErrorMessage = "Description Arabic Is Required")]
+        //[Required(ErrorMessage = "Description Arabic Is Required")]
         [AllowHtml]
 
         public string DescriptionArabic { get; set; }
 
-        [Required(ErrorMessage = "Description English Is Required")]
+        //[Required(ErrorMessage = "Description English Is Required")]
         [AllowHtml]
 
         public string DescriptionEnglish { get; set; }
@@ -53,10 +53,10 @@ namespace Eagles.LMS.Models
         public int UserEditId { get; set; }
 
 
-        [Required(ErrorMessage = "Short Description Arabic Is Required")]
+        //[Required(ErrorMessage = "Short Description Arabic Is Required")]
         public string ShortDescriptionArabic { get; set; }
 
-        [Required(ErrorMessage = "Short Description English Is Required")]
+        //[Required(ErrorMessage = "Short Description English Is Required")]
         public string ShortDescriptionEnglish { get; set; }
 
         public EntityStatus Status { get; set; }

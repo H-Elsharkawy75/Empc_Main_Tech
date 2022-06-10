@@ -375,13 +375,9 @@
     <Compile Include="BLL\ClientsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
     <Compile Include="BLL\SettingsManager.cs" />
-    <Compile Include="Migrations\202204262232432_intial.cs" />
-    <Compile Include="Migrations\202204262232432_intial.designer.cs">
-      <DependentUpon>202204262232432_intial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204270100144_tststs.cs" />
-    <Compile Include="Migrations\202204270100144_tststs.designer.cs">
-      <DependentUpon>202204270100144_tststs.cs</DependentUpon>
+    <Compile Include="Migrations\202206100035210_Annotations.cs" />
+    <Compile Include="Migrations\202206100035210_Annotations.designer.cs">
+      <DependentUpon>202206100035210_Annotations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -1998,6 +1994,7 @@
     <Content Include="Views\Home\AriasLocation.cshtml" />
     <Content Include="Views\Home\Brouchour.cshtml" />
     <Content Include="Views\Home\LocationOutdoor.cshtml" />
+    <Content Include="Views\Home\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2094,11 +2091,8 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204262232432_intial.resx">
-      <DependentUpon>202204262232432_intial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204270100144_tststs.resx">
-      <DependentUpon>202204270100144_tststs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206100035210_Annotations.resx">
+      <DependentUpon>202206100035210_Annotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

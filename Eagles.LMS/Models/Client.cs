@@ -15,9 +15,9 @@ namespace Eagles.LMS.Models
 
         public string Image { get; set; }
 
-        [Required(ErrorMessage = "Name Arabic Is Required")]
+        //[Required(ErrorMessage = "Name Arabic Is Required")]
         public string NameArabic { get; set; }
-        [Required(ErrorMessage = "Name English Is Required")]
+        //[Required(ErrorMessage = "Name English Is Required")]
         public string NameEnglish { get; set; }
 
         public DateTime CreateTime { get; set; }

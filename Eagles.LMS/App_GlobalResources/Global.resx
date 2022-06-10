@@ -1942,4 +1942,10 @@ EXCITED ABOUT</value>
   <data name="Vision" xml:space="preserve">
     <value>Vision</value>
   </data>
+  <data name="Not Found Page" xml:space="preserve">
+    <value>Not Found Page</value>
+  </data>
+  <data name="This Page Is Not Found" xml:space="preserve">
+    <value>Sorry, This New Is Not Found</value>
+  </data>
 </root>

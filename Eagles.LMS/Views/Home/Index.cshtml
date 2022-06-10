@@ -23,23 +23,42 @@
 @{
     UnitOfWork ctx = new UnitOfWork();
     var setting = ctx.SettingsManager.GetAll().FirstOrDefault();
-
-    var allSliders = ctx.SliderManager.GetAllBind().OrderByDescending(S => S.Order).ToList();
     var aboutUs = ctx.AboutUsManager.GetAll().FirstOrDefault();
-    //var services = ctx.ServiceManager.GetAllBind().OrderByDescending(s => s.Id).ToList();
-    //var _news = ctx.NewManager.GetAll().OrderByDescending(S => S.NewsDate).ToList();
-    var services = ctx.ServiceManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).ToList();
-    var _news = ctx.NewManager.GetAll().Where(s => s.ShowInHomePage && s.Status == EntityStatus.Approval).OrderByDescending(S => S.Order).ToList();
-
-    //var _locations = ctx.LocationManager.GetAllBind().OrderByDescending(s => s.Id).ToList();
-    var _locations = ctx.LocationManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).ToList();
-    var _galaries = ctx.GalaryManager.GetAllBind().OrderByDescending(S => S.Order).ToList();
-    var _relatedWerbsites = ctx.RelatedWebSiteManager.GetAllBind().OrderByDescending(s => s.Id).ToList();
     var _contactUs = ctx.ContactUsManager.GetAll().FirstOrDefault();
+    var allSliders = new List<Slider>();
+    var services = new List<Service>();
+    var _relatedWerbsites = new List<RelatedWebSite>();
+    var _Clients = new List<Client>();
+    var _galaries = new List<Album>();
+    var _locations = new List<Location>();
+    var _news = new List<New>();
 
+    var allPictures = ctx.GalaryManager.GetAll().Select(s => s.AlbumId).Distinct();
 
+    if (en == true)
+    {
+        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.TitleEnglish != null).ToList();
+        services = ctx.ServiceManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).Where(s => s.TitleEnglish != null).ToList();
+        _news = ctx.NewManager.GetAll().Where(s => s.ShowInHomePage && s.Status == EntityStatus.Approval).OrderByDescending(S => S.Order).Where(s => s.TitleEnglish != null).ToList();
+        _locations = ctx.LocationManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).Where(s => s.TitleEnglish != null).ToList();
+        //var _galaries = ctx.GalaryManager.GetAllBind().OrderBy(S => S.Order).ToList();
 
-
+        _galaries = _galaries = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Id).Where(s => allPictures.Contains(s.Id) && s.TitleEnglish != null).ToList();
+        //var _galaries = ctx.GalaryManager.GetAll().Where(s => s.IsImage).OrderByDescending(s => s.Id).ToList();
+        _Clients = ctx.ClientsManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.NameEnglish != null).ToList();
+        _relatedWerbsites = ctx.RelatedWebSiteManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.TitleEnglish != null).ToList();
+    }
+    else
+    {
+        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.TitleArabic != null).ToList();
+        services = ctx.ServiceManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).Where(s => s.TitleArabic != null).ToList();
+        _news = ctx.NewManager.GetAll().Where(s => s.ShowInHomePage && s.Status == EntityStatus.Approval).OrderByDescending(S => S.Order).Where(s => s.TitleArabic != null).ToList();
+        _locations = ctx.LocationManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).Where(s => s.TitleArabic != null).ToList();
+        //var _galaries = ctx.GalaryManager.GetAllBind().OrderBy(S => S.Order).ToList();
+        _galaries = _galaries = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Id).Where(s => allPictures.Contains(s.Id) && s.TitleArabic != null).ToList();
+        _Clients = ctx.ClientsManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.NameArabic != null).ToList();
+        _relatedWerbsites = ctx.RelatedWebSiteManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.TitleArabic != null).ToList();
+    }
 }
 
 
@@ -163,9 +182,9 @@
                                                     <h2>@slider.DescriptionEnglish</h2>
                                                 }
                                                 @*if (!string.IsNullOrEmpty(slider.Link))
-                                                {
-                                                    <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
-                                                }*@
+                                                    {
+                                                        <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
+                                                    }*@
                                             }
                                             else
                                             {
@@ -179,9 +198,9 @@
 
                                                 }
                                                 @*if (!string.IsNullOrEmpty(slider.Link))
-                                                {
-                                                    <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
-                                                }*@
+                                                    {
+                                                        <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
+                                                    }*@
                                             }
                                         </div>
                                     </div>
@@ -529,7 +548,7 @@
                             <div class="LocDataDeis">
                                 <div class="LocDiscForflex">
                                     <h2>@Resources.Global.Locations</h2>
-                                    <p style="display:none" >@Resources.Global.ContPagrgraph</p>
+                                    <p style="display:none">@Resources.Global.ContPagrgraph</p>
                                     <a href="/Home/Locations" style="margin-top:30px;" class="ReadMore">@Resources.Global.ReadMore</a>
                                 </div>
                             </div>

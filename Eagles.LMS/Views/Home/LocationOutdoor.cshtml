@@ -3,12 +3,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     UnitOfWork ctx = new UnitOfWork();
 
-    var locations = ctx.LocationManager.GetAll().Where(s => s.Type.ToLower() == ViewBag.Type).OrderByDescending(s => s.Id).ToList();
     bool en = true;
 
     if (Request.Cookies["Language"] != null)
     {
         en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+    var locations = new List<Location>();
+    if (en == true)
+    {
+        locations = ctx.LocationManager.GetAll().Where(s => s.Type.ToLower() == ViewBag.Type).OrderByDescending(s => s.Id).Where(s => s.TitleEnglish != null).ToList();
+    }
+    else
+    {
+        locations = ctx.LocationManager.GetAll().Where(s => s.Type.ToLower() == ViewBag.Type).OrderByDescending(s => s.Id).Where(s => s.TitleArabic != null).ToList();
 
     }
     var Id = ViewBag.Id;

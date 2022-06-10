@@ -19,7 +19,7 @@ namespace Eagles.LMS.App_GlobalResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Global {
@@ -3050,6 +3050,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not Found Page.
+        /// </summary>
+        public static string Not_Found_Page {
+            get {
+                return ResourceManager.GetString("Not Found Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
         public static string Notes {
@@ -4963,6 +4972,15 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string Theunithasbeensuccessfullydeleted {
             get {
                 return ResourceManager.GetString("Theunithasbeensuccessfullydeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, This New Is Not Found.
+        /// </summary>
+        public static string This_Page_Is_Not_Found {
+            get {
+                return ResourceManager.GetString("This Page Is Not Found", resourceCulture);
             }
         }
         

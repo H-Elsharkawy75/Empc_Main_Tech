@@ -7,7 +7,7 @@
 }
 @section EndHeader{
 
-    @*<script src="https://cdn.tiny.cloud/1/darv2hkyj2fhq6bcw9dvds7nq95xpa5p19zfb5q6ybjadm5z/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/darv2hkyj2fhq6bcw9dvds7nq95xpa5p19zfb5q6ybjadm5z/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: '.textarea',
@@ -22,7 +22,7 @@
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         });
 
-    </script>*@
+    </script>
 }
 
 <div class="container-fluid">
@@ -46,7 +46,7 @@
     <!-- end page title -->
     <div class="row">
         <div class="MaxOrder">
-            <div class="alert-danger">
+            <div @*class="alert-danger"*@>
                 Max-Order : @ViewBag.MaxOrder
             </div>
 

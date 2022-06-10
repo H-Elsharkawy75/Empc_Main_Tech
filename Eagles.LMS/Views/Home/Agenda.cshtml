@@ -14,12 +14,12 @@
     }
 
     var _date = ViewBag.Date ;
- 
+
     List<Agenda> _Agendas;
 
     if (_date != null)
     {
-        
+
         var _x = Convert.ToDateTime(_date).Date;
 
         _Agendas = ctx.AgendaManager.GetAll().Where(s => s.AgendaDate.Date == _x).ToList();
@@ -28,6 +28,18 @@
     {
         _Agendas = ctx.AgendaManager.GetAll().OrderByDescending(s => s.AgendaDate).ToList();
 
+    }
+
+    //
+
+ 
+    if (en == true)
+    {
+        _Agendas = _Agendas.Where(s => s.TitleEnglish != null).ToList();
+    }
+    else
+    {
+        _Agendas = _Agendas.Where(s => s.TitleArabic != null).ToList();
     }
 
 }

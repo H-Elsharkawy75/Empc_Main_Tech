@@ -22,6 +22,8 @@
     else
     {
         videos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage).OrderByDescending(s => s.Order).ToList();
+        //very imp
+        //videos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage && s.AlbumId == Id).OrderByDescending(s => s.Order).ToList();
 
     }
 }

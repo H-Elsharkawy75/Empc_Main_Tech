@@ -12,6 +12,15 @@
         en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
 
     }
+    if (en == true)
+    {
+        _Citizens = _Citizens.Where(s => s.TitleEnglish != null).ToList();
+    }
+    else
+    {
+        _Citizens = _Citizens.Where(s => s.TitleArabic != null).ToList();
+
+    }
 }
 
 @section EndHeader{
