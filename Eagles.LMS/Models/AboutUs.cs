@@ -15,21 +15,21 @@ namespace Eagles.LMS.Models
 
         public string Image { get; set; }
 
-        [Required(ErrorMessage = "Title Arabic Is Required")]
+//        //[Required(ErrorMessage = "Title Arabic Is Required")]
 
 
         public string TitleArabic { get; set; }
-        [Required(ErrorMessage = "Title English Is Required")]
+        //[Required(ErrorMessage = "Title English Is Required")]
 
 
         public string TitleEnglish { get; set; }
 
 
-        [Required(ErrorMessage = "Description Arabic Is Required")]
+        //[Required(ErrorMessage = "Description Arabic Is Required")]
         [AllowHtml]
         public string DescriptionArabic { get; set; }
 
-        [Required(ErrorMessage = "Description English Is Required")]
+        //[Required(ErrorMessage = "Description English Is Required")]
         [AllowHtml]
         public string DescriptionEnglish { get; set; }
 
@@ -38,26 +38,26 @@ namespace Eagles.LMS.Models
         public string YouTubeFrame { get; set; }
 
 
-        [Required(ErrorMessage = "Home Tap Description Arabic Is Required")]
+        //[Required(ErrorMessage = "Home Tap Description Arabic Is Required")]
         [AllowHtml]
         public string HomeTapDescriptionArabic { get; set; }
-        [Required(ErrorMessage = "Home Tap Description English Is Required")]
+        //[Required(ErrorMessage = "Home Tap Description English Is Required")]
         [AllowHtml]
 
         public string HomeTapDescriptionEnglish { get; set; }
-        [Required(ErrorMessage = "Profile Description Arabic Is Required")]
+        //[Required(ErrorMessage = "Profile Description Arabic Is Required")]
         [AllowHtml]
         public string ProfileDescriptionArabic { get; set; }
-        [Required(ErrorMessage = "Profile Description English Is Required")]
+        //[Required(ErrorMessage = "Profile Description English Is Required")]
         [AllowHtml]
 
         public string ProfileDescriptionEnglish { get; set; }
 
-        [Required(ErrorMessage = "Message Tap Description Arabic Is Required")]
+        //[Required(ErrorMessage = "Message Tap Description Arabic Is Required")]
         [AllowHtml]
 
         public string MessageTapDescriptionArabic { get; set; }
-        [Required(ErrorMessage = "Message Tap Description English Is Required")]
+        //[Required(ErrorMessage = "Message Tap Description English Is Required")]
         [AllowHtml]
 
         public string MessageTapDescriptionEnglish { get; set; }

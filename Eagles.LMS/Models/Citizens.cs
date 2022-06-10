@@ -13,16 +13,16 @@ namespace Eagles.LMS.Models
     {
         public int Id { get; set; }
         public string TitleArabic { get; set; }
-        [Required(ErrorMessage = "Title English Is Required")]
+        //[Required(ErrorMessage = "Title English Is Required")]
 
 
         public string TitleEnglish { get; set; }
 
-        [Required(ErrorMessage = "Description Arabic Is Required")]
+        //[Required(ErrorMessage = "Description Arabic Is Required")]
         [AllowHtml]
         public string DescriptionArabic { get; set; }
 
-        [Required(ErrorMessage = "Description English Is Required")]
+        //[Required(ErrorMessage = "Description English Is Required")]
         [AllowHtml]
         public string DescriptionEnglish { get; set; }
 

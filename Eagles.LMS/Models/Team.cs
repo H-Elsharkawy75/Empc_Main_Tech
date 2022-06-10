@@ -15,28 +15,28 @@ namespace Eagles.LMS.Models
 
         public string Image { get; set; }
 
-        [Required(ErrorMessage = "Name Arabic Is Required")]
+        //[Required(ErrorMessage = "Name Arabic Is Required")]
 
         public string NameArabic { get; set; }
-        [Required(ErrorMessage = "Name English Is Required")]
+        //[Required(ErrorMessage = "Name English Is Required")]
 
         public string NameEnglish { get; set; }
 
-        [Required(ErrorMessage = "Job Title Arabic Is Required")]
+        //[Required(ErrorMessage = "Job Title Arabic Is Required")]
 
 
         public string JobTitleArabic { get; set; }
-        [Required(ErrorMessage = "Job Title English Is Required")]
+        //[Required(ErrorMessage = "Job Title English Is Required")]
 
 
         public string JobTitleEnglish { get; set; }
 
 
-        [Required(ErrorMessage = "Job Description Arabic Is Required")]
+        //[Required(ErrorMessage = "Job Description Arabic Is Required")]
         [AllowHtml]
         public string JobDescriptionArabic { get; set; }
 
-        [Required(ErrorMessage = "Job Description English Is Required")]
+        //[Required(ErrorMessage = "Job Description English Is Required")]
         [AllowHtml]
         public string JobDescriptionEnglish { get; set; }
         //[Required]

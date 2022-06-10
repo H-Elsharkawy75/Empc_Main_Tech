@@ -15,12 +15,36 @@
 
     //var vidoes = ctx.GalaryManager.GetAll().Where(s =>! s.IsImage).OrderBy(s => s.Order).ToList();
 
+    //very important
+
+    //List<Galary> videos;
+    //if (albumId != null)
+    //{
+    //    videos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage && s.AlbumId == albumId).OrderBy(s => s.Order).ToList();
+    //}
+    //else
+    //{
+    //    //var firstvideo = new Galary();
+    //    //firstvideo = ctx.GalaryManager.GetBy(Id);
+
+    //    videos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage && s.AlbumId == Id).OrderBy(s => s.Order).ToList();
+
+    //}
     Galary active_galary;
     bool en = true;
 
     if (Request.Cookies["Language"] != null)
     {
         en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+    if (en == true)
+    {
+        albums_videos = albums_videos.Where(s => s.TitleEnglish != null).ToList();
+    }
+    else
+    {
+        albums_videos = albums_videos.Where(s => s.TitleArabic != null).ToList();
 
     }
     var Id = ViewBag.Id;

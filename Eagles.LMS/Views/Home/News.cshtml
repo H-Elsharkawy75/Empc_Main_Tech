@@ -5,12 +5,22 @@
     UnitOfWork ctx = new UnitOfWork();
 
     //var _news = ctx.NewManager.GetAll().OrderByDescending(s => s.NewsDate).ToList();
-    var _news = ctx.NewManager.GetAll().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Order).ToList();
     bool en = true;
 
     if (Request.Cookies["Language"] != null)
     {
         en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+    var _news = new List<New>();
+    if (en == true)
+    {
+        _news = ctx.NewManager.GetAll().Where(s => s.Status == EntityStatus.Approval && s.TitleEnglish != null).OrderByDescending(s => s.Order).ToList();
+
+    }
+    else
+    {
+        _news = ctx.NewManager.GetAll().Where(s => s.Status == EntityStatus.Approval && s.TitleArabic != null).OrderByDescending(s => s.Order).ToList();
 
     }
 }

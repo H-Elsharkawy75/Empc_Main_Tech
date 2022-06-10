@@ -10,12 +10,12 @@ namespace Eagles.LMS.Models
     public class Brochure
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Description Arabic Is Required")]
+        //[Required(ErrorMessage = "Description Arabic Is Required")]
         [AllowHtml]
 
         public string DescriptionArabic { get; set; }
 
-        [Required(ErrorMessage = "Description English Is Required")]
+        //[Required(ErrorMessage = "Description English Is Required")]
         [AllowHtml]
 
         public string DescriptionEnglish { get; set; }

@@ -14,11 +14,11 @@ namespace Eagles.LMS.Models
 
         [Required]
         public string Phone { get; set; }
-        [Required(ErrorMessage = "Address Arabic Is Required")]
+        //[Required(ErrorMessage = "Address Arabic Is Required")]
 
 
         public string AddressArabic { get; set; }
-        [Required(ErrorMessage = "Address English Is Required")]
+        //[Required(ErrorMessage = "Address English Is Required")]
 
 
         public string AddressEnglish { get; set; }
@@ -31,12 +31,12 @@ namespace Eagles.LMS.Models
         public string Logo { get; set; }
 
       
-        [Required(ErrorMessage = "Company Title Arabic Is Required")]
+        //[Required(ErrorMessage = "Company Title Arabic Is Required")]
 
 
 
         public string CompanyTitleArabic { get; set; }
-        [Required(ErrorMessage = "Company Title English Is Required")]
+        //[Required(ErrorMessage = "Company Title English Is Required")]
 
 
         public string CompanyTitleEnglish { get; set; }

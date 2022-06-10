@@ -7288,6 +7288,50 @@ height: auto;
     }
 }
 
+.BAgeItemNotFound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    background: #f9f9f9;
+}
+
+    .BAgeItemNotFound h1 {
+        color: #1d1f4f;
+        font-size: 55px;
+        margin-bottom: 30px;
+        font-size: 55px;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+    .BAgeItemNotFound h2 {
+        text-align: center;
+        font-size: 35px;
+        color: #af7a2c;
+        margin-bottom: 30px;
+    }
+
+    .BAgeItemNotFound button {
+        display: block;
+        width: max-content;
+        margin: auto;
+        padding: 0 45px;
+        height: 45px;
+        border-radius: 25px;
+        border: 1px solid #1d1f4f;
+        color: #fff;
+        background: #1d1f4f;
+        font-size: 17px;
+        transition: all .4s ease-in-out;
+    }
+
+        .BAgeItemNotFound button:hover {
+            border: 1px solid #af7a2c;
+            color: #fff;
+            background: #af7a2c;
+        }
+
 
 
 

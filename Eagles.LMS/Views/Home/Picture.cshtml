@@ -29,6 +29,14 @@
         pictures = ctx.GalaryManager.GetAll().Where(s => s.IsImage).OrderByDescending(s => s.Order).ToList();
 
     }
+    if (en == true)
+    {
+        pictures = pictures.Where(s => s.TitleEnglish != null).ToList();
+    }
+    else
+    {
+        pictures = pictures.Where(s => s.TitleArabic != null).ToList();
+    }
 }
 
 @section EndHeader {

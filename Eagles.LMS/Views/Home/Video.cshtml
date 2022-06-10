@@ -6,7 +6,7 @@
     UnitOfWork ctx = new UnitOfWork();
 
     //var pictures = ctx.GalaryManager.GetAll().Where(s => s.IsImage).OrderBy(s => s.Order).ToList();
-    var vidoes = ctx.GalaryManager.GetAll().Where(s => !s.IsImage).OrderByDescending(s => s.Order).ToList();
+    var vidoes = new List<Galary>();
 
     Galary active_galary;
     bool en = true;
@@ -17,6 +17,14 @@
 
     }
     var Id = ViewBag.Id;
+    if (en == true)
+    {
+        vidoes = ctx.GalaryManager.GetAll().Where(s => !s.IsImage && s.TitleEnglish != null).OrderBy(s => s.Order).ToList();
+    }
+    else
+    {
+        vidoes = vidoes.Where(s => s.TitleArabic != null).ToList();
+    }
 }
 
 @section EndHeader{

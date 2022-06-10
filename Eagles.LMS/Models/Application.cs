@@ -12,10 +12,10 @@ namespace Eagles.LMS.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Title Arabic Is Required")]
+        //[Required(ErrorMessage = "Title Arabic Is Required")]
 
         public string TitleArabic { get; set; }
-        [Required(ErrorMessage = "Title English Is Required")]
+        //[Required(ErrorMessage = "Title English Is Required")]
 
         public string TitleEnglish { get; set; }
         [Required(ErrorMessage = "Link Is Required")]
