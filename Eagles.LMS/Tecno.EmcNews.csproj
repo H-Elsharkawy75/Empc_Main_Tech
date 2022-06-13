@@ -838,6 +838,8 @@
     <Content Include="assets_NewDash\libs\spectrum-colorpicker2\spectrum.min.css" />
     <Content Include="assets_NewDash\libs\spectrum-colorpicker2\spectrum.min.js" />
     <Content Include="assets_NewDash\libs\summernote\summernote-bs4.min.html" />
+    <Content Include="assets_NewDash\libs\summernote\summernote.min.css" />
+    <Content Include="assets_NewDash\libs\summernote\summernote.min.js" />
     <Content Include="assets_NewDash\libs\sweetalert2\sweetalert2.min.css" />
     <Content Include="assets_NewDash\libs\sweetalert2\sweetalert2.min.js" />
     <Content Include="assets_NewDash\libs\table-edits\build\table-edits.min.js" />
@@ -1068,6 +1070,8 @@
     <Content Include="assets_NewPublic\libs\magnific-popup\jquery.magnific-popup.min.js" />
     <Content Include="assets_NewPublic\libs\magnific-popup\lightbox.init.js" />
     <Content Include="assets_NewPublic\libs\magnific-popup\magnific-popup.css" />
+    <Content Include="assets_NewPublic\libs\Summernots\summernote.min.css" />
+    <Content Include="assets_NewPublic\libs\Summernots\summernote.min.js" />
     <Content Include="assets_NewPublic\libs\VideoPopUp\css\jquery.fancybox.css" />
     <Content Include="assets_NewPublic\libs\VideoPopUp\js\jquery-plugin-collection.js" />
     <Content Include="assets_NewPublic\libs\VideoPopUp\js\script.js" />
@@ -1690,6 +1694,11 @@
     <Content Include="Areas\Admission\Views\Applications\Edit.cshtml" />
     <Content Include="Areas\Admission\Views\Applications\Index.cshtml" />
     <Content Include="Areas\Admission\Views\Brochures\Index.cshtml" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernote.eot" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernote.ttf" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernote.woff" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernote.woff2" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernoted41d.eot" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

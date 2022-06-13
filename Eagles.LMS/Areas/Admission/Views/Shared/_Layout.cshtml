@@ -95,10 +95,11 @@
 
     <link href="~/assets_NewDash/libs/VideoPopUp/css/jquery.fancybox.css" rel="stylesheet" />
 
+    <link href="~/assets_NewDash/libs/summernote/summernote.min.css" rel="stylesheet" />
 
     <link href="~/assets_2/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />
     @*<link href="~/assets_2/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />*@
-    <link href="~/assets_NewDash/css/app.css" id="app-style" rel="stylesheet" type="text/css" />
+    @*<link href="~/assets_NewDash/css/app.css" id="app-style" rel="stylesheet" type="text/css" />*@
     <link href="~/assets_NewDash/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700,900" rel="stylesheet">
     @if (!en)
@@ -200,8 +201,7 @@
         }
     </style>
 
-    <script src="https://cdn.tiny.cloud/1/wx0aodd3nuedt6ulruvw9e1iervh6wmezdwlofx09t5tkivw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    @*<script src="https://cdn.tiny.cloud/1/atq73pqlxm6o48zz52pwgoigtuw4hp81nyvfeahu1b8xtl4i/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>*@
+    @*<script src="https://cdn.tiny.cloud/1/wx0aodd3nuedt6ulruvw9e1iervh6wmezdwlofx09t5tkivw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: '.textarea',
@@ -216,11 +216,11 @@
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         });
 
-    </script>
+    </script>*@
 
 
     @RenderSection("EndHeader", required: false)
-
+    <link href="~/assets_NewDash/libs/summernote/summernote.min.css" rel="stylesheet" />
 </head>
 
 
@@ -289,7 +289,7 @@
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
                             @*<a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a>
-                            <div class="dropdown-divider"></div>*@
+                                <div class="dropdown-divider"></div>*@
                             <a class="dropdown-item text-danger" href="/Account/LogOut"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">@Resources.Global.LogOut</span></a>
                         </div>
                     </div>
@@ -805,7 +805,7 @@
         <script src="~/assets_2/plugins/datatables new/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
         <script src="~/assets_2/plugins/datatables new/datatables-init.js"></script>*@
 
-    <script>
+    @*<script>
         anime.timeline({ loop: true })
             .add({
                 targets: '.ml8 .circle-white',
@@ -852,7 +852,7 @@
             easing: "linear",
             loop: true
         });
-    </script>
+    </script>*@
 
     <script src="/angular.min.js"></script>
 
@@ -883,11 +883,11 @@
 
     <script src="~/assets/demo/demo8/base/imagepreview/jpreview.js"></script>
     <script src="~/assets/demo/demo8/base/imagepreview/bootstrap-prettyfile.js"></script>
-    <script>
+    @*<script>
         $('input[type="file"]').prettyFile();
         $('.demo').jPreview();
-    </script>
-    <script type="text/javascript">
+    </script>*@
+    @*<script type="text/javascript">
 
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-36251023-1']);
@@ -900,9 +900,9 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
 
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
 
         $('.totop').on("click", function (e) {
             e.preventDefault();
@@ -910,17 +910,17 @@
             return false;
         });
 
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
 
         $('.tobottom').on("click", function (e) {
             e.preventDefault();
             $('html, body').animate({ scrollTop: $(document).height() }, 500);
             return false;
         });
-    </script>
-    <script>
+    </script>*@
+    @*<script>
         $(".kt-aside,#kt_quick-nav").niceScroll({
             zindex: "-1",
             cursorwidth: 8,
@@ -929,9 +929,9 @@
             cursorborderradius: 2
         });
 
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $("#example-sticky-notes-1").niceScroll({
             zindex: "9999999999999",
             cursorwidth: 8,
@@ -940,23 +940,23 @@
             cursorborderradius: 2
         });
 
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(".kt-widget--users-scroll").niceScroll({
             cursorcolor: "#7295a7",
             cursorwidth: "5px"
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(".scroll2").niceScroll({
             cursorcolor: "#7295a7",
             cursorwidth: "5px"
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("input").attr("autocomplete", "off");
         });
@@ -972,7 +972,7 @@
                 $loading.hide();
 
             });
-    </script>
+    </script>*@
 
     <script>
         function calC(c) {
@@ -1014,7 +1014,7 @@
         <script src="~/assets_2/staticFiles/NewFiles/libs/select2/form-advanced.init.js"></script>
         <script src="~/assets_2/staticFiles/NewFiles/libs/app.js"></script>*@
 
-    <script>
+    @*<script>
         $('.quick-nav').click(function () {
             $("#kt_quick-nav").addClass("kt-quick-panel--on");
             $(".overlay").addClass("kt-quick-panel-overlay");
@@ -1033,18 +1033,18 @@
                 $(".overlay").removeClass("kt-quick-panel-overlay");
             }
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
 
         $("#kt_aside_mobile_toggler2").click(function () {
             $("body").toggleClass("kt-aside--minimize")
         });
-    </script>
+    </script>*@
 
 
 
-    <script>
+    @*<script>
         $(() => {
 
             let _url = location.pathname.split('?')[0];
@@ -1059,7 +1059,7 @@
                 link.addClass(" acivetwo");
             }
         })
-    </script>
+    </script>*@
 
 
     @RenderSection("CustomfeScripts_2", required: false)
@@ -1070,6 +1070,10 @@
     <script src="~/Scripts_2/bootbox.min.js"></script>
     <script src="~/Scripts_2/datatables.js"></script>
 
+    <script src="~/assets_NewDash/libs/summernote/summernote.min.js"></script>
+    <script>
+        $('.textarea').summernote();
+    </script>
     @RenderSection("EndBody", required: false)
     <script src="~/assets_NewDash/libs/VideoPopUp/js/jquery-plugin-collection.js"></script>
     <script src="~/assets_NewDash/libs/VideoPopUp/js/script.js"></script>
