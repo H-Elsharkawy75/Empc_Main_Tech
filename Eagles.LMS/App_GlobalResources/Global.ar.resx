@@ -1903,4 +1903,49 @@
   <data name="This Page Is Not Found" xml:space="preserve">
     <value>عفوا،هذا الخبر غير موجود</value>
   </data>
+  <data name="Browse" xml:space="preserve">
+    <value>اختيار</value>
+  </data>
+  <data name="certification" xml:space="preserve">
+    <value>المؤهل الدراسى</value>
+  </data>
+  <data name="certificationYeears" xml:space="preserve">
+    <value>سنة التخرج</value>
+  </data>
+  <data name="CV" xml:space="preserve">
+    <value>السيرة الذاتية</value>
+  </data>
+  <data name="dateOfBirth" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
+  <data name="ExperianceLevel" xml:space="preserve">
+    <value>مستوى الخبرة</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>الاسم الاول</value>
+  </data>
+  <data name="from1to3" xml:space="preserve">
+    <value>من 1 لـ 3 سنوات</value>
+  </data>
+  <data name="From3To5Years" xml:space="preserve">
+    <value>من 3 الى 5 سنوات</value>
+  </data>
+  <data name="Hattef" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="JobName" xml:space="preserve">
+    <value>الوظيفة المتقدم لها</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>الاسم الاخير</value>
+  </data>
+  <data name="MoreThan5Years" xml:space="preserve">
+    <value>اكثر من 5 سنوات</value>
+  </data>
+  <data name="SelectYear" xml:space="preserve">
+    <value>اختر</value>
+  </data>
+  <data name="YourMessage" xml:space="preserve">
+    <value>رسالتك</value>
+  </data>
 </root>

@@ -19,7 +19,7 @@ namespace Eagles.LMS.App_GlobalResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Global {
@@ -852,6 +852,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        public static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Buy your copy now.
         /// </summary>
         public static string Buyyourcopynow {
@@ -884,6 +893,24 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string Careers {
             get {
                 return ResourceManager.GetString("Careers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certification.
+        /// </summary>
+        public static string certification {
+            get {
+                return ResourceManager.GetString("certification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Graduation Years.
+        /// </summary>
+        public static string certificationYeears {
+            get {
+                return ResourceManager.GetString("certificationYeears", resourceCulture);
             }
         }
         
@@ -1302,6 +1329,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CV.
+        /// </summary>
+        public static string CV {
+            get {
+                return ResourceManager.GetString("CV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily Quizzes.
         /// </summary>
         public static string DailyQuizzes {
@@ -1361,6 +1397,15 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string DateFrom {
             get {
                 return ResourceManager.GetString("DateFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Of Birth.
+        /// </summary>
+        public static string dateOfBirth {
+            get {
+                return ResourceManager.GetString("dateOfBirth", resourceCulture);
             }
         }
         
@@ -1825,6 +1870,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Experiance Level.
+        /// </summary>
+        public static string ExperianceLevel {
+            get {
+                return ResourceManager.GetString("ExperianceLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EXPERIENCE YOURSELF.
         /// </summary>
         public static string EXPERIENCEYOURSELF {
@@ -1897,6 +1951,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Term.
         /// </summary>
         public static string FirstTerm {
@@ -1929,6 +1992,24 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string From {
             get {
                 return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From 1 To 3 Years.
+        /// </summary>
+        public static string from1to3 {
+            get {
+                return ResourceManager.GetString("from1to3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From 3 To 5 Years.
+        /// </summary>
+        public static string From3To5Years {
+            get {
+                return ResourceManager.GetString("From3To5Years", resourceCulture);
             }
         }
         
@@ -2257,6 +2338,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string Hattef {
+            get {
+                return ResourceManager.GetString("Hattef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hesham Allam.
         /// </summary>
         public static string heshamallam {
@@ -2464,6 +2554,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Job Name.
+        /// </summary>
+        public static string JobName {
+            get {
+                return ResourceManager.GetString("JobName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Join.
         /// </summary>
         public static string join {
@@ -2487,6 +2586,15 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         
@@ -2839,6 +2947,15 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string MorePhoto {
             get {
                 return ResourceManager.GetString("MorePhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More Than 5 Years.
+        /// </summary>
+        public static string MoreThan5Years {
+            get {
+                return ResourceManager.GetString("MoreThan5Years", resourceCulture);
             }
         }
         
@@ -4162,6 +4279,15 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string SelectStudent {
             get {
                 return ResourceManager.GetString("SelectStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string SelectYear {
+            get {
+                return ResourceManager.GetString("SelectYear", resourceCulture);
             }
         }
         
@@ -5512,6 +5638,15 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string YourCode {
             get {
                 return ResourceManager.GetString("YourCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Message.
+        /// </summary>
+        public static string YourMessage {
+            get {
+                return ResourceManager.GetString("YourMessage", resourceCulture);
             }
         }
         
