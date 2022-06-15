@@ -227,6 +227,10 @@ namespace Eagles.LMS.Controllers
             //return Redirect("/Admission");
             if (albumId != null)
                 ViewBag.AlbumId = albumId;
+            if (id == null && albumId == null)
+            {
+                return View("NotFound");
+            }
             return View();
         }
         public ActionResult Picture(int? id, int? albumId)

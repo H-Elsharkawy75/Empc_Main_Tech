@@ -9,9 +9,7 @@
 
     //var albums_img = ctx.AlbumManager.GetAll().OrderBy(s => s.Order).Where(s => allPictures.Contains(s.Id)).ToList();
 
-    var allvideos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage).Select(s => s.AlbumId).Distinct();
 
-    var albums_videos = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Order).Where(s => allvideos.Contains(s.Id)).ToList();
 
     //var vidoes = ctx.GalaryManager.GetAll().Where(s =>! s.IsImage).OrderBy(s => s.Order).ToList();
 
@@ -38,15 +36,19 @@
         en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
 
     }
+    var allvideoslist = ctx.GalaryManager.GetAll().Where(s => !s.IsImage).Distinct().ToList();
+    var allvideos = new List<int?>();
     if (en == true)
     {
-        albums_videos = albums_videos.Where(s => s.TitleEnglish != null).ToList();
+        allvideos = allvideoslist.Where(s => s.TitleEnglish!= null).Select(s => s.AlbumId).ToList();
     }
     else
     {
-        albums_videos = albums_videos.Where(s => s.TitleArabic != null).ToList();
+        allvideos = allvideoslist.Where(s => s.TitleArabic != null).Select(s => s.AlbumId).ToList();
 
     }
+    var albums_videos = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Order).Where(s => allvideos.Contains(s.Id)).ToList();
+
     var Id = ViewBag.Id;
 }
 
