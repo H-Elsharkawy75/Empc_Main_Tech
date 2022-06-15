@@ -157,14 +157,25 @@
                         @*<video id="video" preload autoplay width="100%" muted>
                                 <source src="@slider.Image" type='video/mp4' />
                             </video>*@
+                        @if (en)
+                        {
 
+                            <div class="video_background">
+                                <div class="video_foreground">
 
-                        <div class="video_background">
-                            <div class="video_foreground">
-
-                                <iframe src="https://www.youtube.com/embed/@slider.Iframe?playlist=@slider.Iframe&controls=0&autoplay=1&loop=1&rel=0&showinfo=0&mute=1 " frameborder="0" allow='autoplay' allowfullscreen></iframe>
+                                    <iframe src="https://www.youtube.com/embed/@slider.Iframe?playlist=@slider.Iframe&controls=0&autoplay=1&loop=1&rel=0&showinfo=0&mute=1 " frameborder="0" allow='autoplay' allowfullscreen></iframe>
+                                </div>
                             </div>
-                        </div>
+                        }
+                        else
+                        { <div class="video_background">
+                                <div class="video_foreground">
+
+                                    <iframe src="https://www.youtube.com/embed/@slider.ArabicIframe?playlist=@slider.ArabicIframe&controls=0&autoplay=1&loop=1&rel=0&showinfo=0&mute=1 " frameborder="0" allow='autoplay' allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+                        }
                         <div class="overlay">
                             <div class="container">
                                 <div class="row no-gutters slider-text align-items-center justify-content-center">

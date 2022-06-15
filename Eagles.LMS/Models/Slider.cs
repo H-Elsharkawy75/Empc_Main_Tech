@@ -47,6 +47,6 @@ namespace Eagles.LMS.Models
         public int UserEditId { get; set; }
 
         public string Link { get; set; }
-
+        public string ArabicIframe { get; set; }
     }
 }

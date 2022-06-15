@@ -79,7 +79,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        @if ((@item.Image != null) && (@item.Iframe == null))
+                                        @if ((@item.Image != null) && ((@item.Iframe == null)&&(item.ArabicIframe==null)))
                                         {
                                             <a href="@item.Image" class=" fancybox btnIconImages">
                                                 <i class="bx bx-image"></i>
@@ -87,9 +87,18 @@
                                         }
                                         else
                                         {
-                                            <a href="https://www.youtube.com/embed/@item.Iframe?autoplay=1" class="btnIconVideos" data-type="iframe" tabindex="0">
+                                            if (item.ArabicIframe == null)
+                                            {
+                                            <a href="https://www.youtube.com/embed/@item.ArabicIframe?autoplay=1" class="btnIconVideos" data-type="iframe" tabindex="0">
                                                 <i class="bx bx-play-circle"></i>
                                             </a>
+                                            }
+                                            else
+                                            {
+                                        <a href="https://www.youtube.com/embed/@item.Iframe?autoplay=1" class="btnIconVideos" data-type="iframe" tabindex="0">
+                                                <i class="bx bx-play-circle"></i>
+                                            </a>
+                                            }
                                         }
 
 

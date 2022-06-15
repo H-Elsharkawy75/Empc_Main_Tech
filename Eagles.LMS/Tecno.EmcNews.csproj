@@ -375,9 +375,13 @@
     <Compile Include="BLL\ClientsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
     <Compile Include="BLL\SettingsManager.cs" />
-    <Compile Include="Migrations\202206100035210_Annotations.cs" />
-    <Compile Include="Migrations\202206100035210_Annotations.designer.cs">
-      <DependentUpon>202206100035210_Annotations.cs</DependentUpon>
+    <Compile Include="Migrations\202206151955414_Updatemain1.cs" />
+    <Compile Include="Migrations\202206151955414_Updatemain1.designer.cs">
+      <DependentUpon>202206151955414_Updatemain1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206152006525_arabiciframe.cs" />
+    <Compile Include="Migrations\202206152006525_arabiciframe.designer.cs">
+      <DependentUpon>202206152006525_arabiciframe.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -838,8 +842,6 @@
     <Content Include="assets_NewDash\libs\spectrum-colorpicker2\spectrum.min.css" />
     <Content Include="assets_NewDash\libs\spectrum-colorpicker2\spectrum.min.js" />
     <Content Include="assets_NewDash\libs\summernote\summernote-bs4.min.html" />
-    <Content Include="assets_NewDash\libs\summernote\summernote.min.css" />
-    <Content Include="assets_NewDash\libs\summernote\summernote.min.js" />
     <Content Include="assets_NewDash\libs\sweetalert2\sweetalert2.min.css" />
     <Content Include="assets_NewDash\libs\sweetalert2\sweetalert2.min.js" />
     <Content Include="assets_NewDash\libs\table-edits\build\table-edits.min.js" />
@@ -1070,8 +1072,6 @@
     <Content Include="assets_NewPublic\libs\magnific-popup\jquery.magnific-popup.min.js" />
     <Content Include="assets_NewPublic\libs\magnific-popup\lightbox.init.js" />
     <Content Include="assets_NewPublic\libs\magnific-popup\magnific-popup.css" />
-    <Content Include="assets_NewPublic\libs\Summernots\summernote.min.css" />
-    <Content Include="assets_NewPublic\libs\Summernots\summernote.min.js" />
     <Content Include="assets_NewPublic\libs\VideoPopUp\css\jquery.fancybox.css" />
     <Content Include="assets_NewPublic\libs\VideoPopUp\js\jquery-plugin-collection.js" />
     <Content Include="assets_NewPublic\libs\VideoPopUp\js\script.js" />
@@ -1694,11 +1694,6 @@
     <Content Include="Areas\Admission\Views\Applications\Edit.cshtml" />
     <Content Include="Areas\Admission\Views\Applications\Index.cshtml" />
     <Content Include="Areas\Admission\Views\Brochures\Index.cshtml" />
-    <Content Include="assets_NewDash\libs\summernote\font\summernote.eot" />
-    <Content Include="assets_NewDash\libs\summernote\font\summernote.ttf" />
-    <Content Include="assets_NewDash\libs\summernote\font\summernote.woff" />
-    <Content Include="assets_NewDash\libs\summernote\font\summernote.woff2" />
-    <Content Include="assets_NewDash\libs\summernote\font\summernoted41d.eot" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2100,8 +2095,11 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206100035210_Annotations.resx">
-      <DependentUpon>202206100035210_Annotations.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206151955414_Updatemain1.resx">
+      <DependentUpon>202206151955414_Updatemain1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206152006525_arabiciframe.resx">
+      <DependentUpon>202206152006525_arabiciframe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -2130,9 +2128,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51329</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51881/</IISUrl>
+          <IISUrl>http://localhost:51855/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:51881/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:51855/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

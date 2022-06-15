@@ -168,11 +168,22 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
-                                            <label class="form-label"> Iframe Video [OPTINAL]</label>
+                                            <label class="form-label"> Iframe English Video [OPTINAL]</label>
                                             @Html.TextBoxFor(s => s.Iframe, null, new
                                        {
                                            @class = "form-control",
-                                           placeholder = "Iframe"
+                                           placeholder = "EnglishIframe"
+                                       })
+                                            @Html.ValidationMessageFor(s => s.Link)
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Iframe ArabicVideo [OPTINAL]</label>
+                                            @Html.TextBoxFor(s => s.ArabicIframe, null, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Arabic Iframe"
                                        })
                                             @Html.ValidationMessageFor(s => s.Link)
                                         </div>
