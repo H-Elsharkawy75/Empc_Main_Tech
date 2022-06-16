@@ -18,7 +18,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
         public ActionResult Index()
         {
 
-            return View(new UnitOfWork().SliderManager.GetAll().OrderByDescending(s => s.Order).ToList()); 
+            return View(new UnitOfWork().SliderManager.GetAll().OrderByDescending(s => s.Order).ToList());
         }
         public int GetUserId()
         {
@@ -42,7 +42,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
 
             RequestStatus requestStatus;
-            if ((string.IsNullOrEmpty(slider.Iframe)) && (uploadattachments != null && (!
+            if (((string.IsNullOrEmpty(slider.Iframe)) &&(string.IsNullOrEmpty(slider.ArabicIframe))) && (uploadattachments != null && (!
 
                     uploadattachments.ContentType.CheckImageExtention() && !
                     uploadattachments.ContentType.CheckVideoExtention())))
@@ -52,7 +52,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             }
             else
             {
-                if (string.IsNullOrEmpty(slider.Iframe))
+                if (string.IsNullOrEmpty(slider.Iframe) && string.IsNullOrEmpty(slider.ArabicIframe))
                 {
 
 
@@ -79,18 +79,34 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     slider.Image = "";
                     slider.IsImage = false;
                     //slider.Iframe = slider.Iframe.Split('&')[0].Split('=')[1].ToString();
-
-                    try
+                    if (!string.IsNullOrEmpty(slider.Iframe))
                     {
+                        try
+                        {
+                            slider.Iframe = slider.Iframe.Split('/').Last().ToString();
+                        }
+                        catch
+                        {
+                            requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                                  "Uncompatible IFrame Formtaing");
+                            return result;
+                        }
                         slider.Iframe = slider.Iframe.Split('/').Last().ToString();
                     }
-                    catch
+                    if (!string.IsNullOrEmpty(slider.ArabicIframe))
                     {
-                        requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
-                              "Uncompatible IFrame Formtaing");
-                        return result;
+                        try
+                        {
+                            slider.ArabicIframe = slider.ArabicIframe.Split('/').Last().ToString();
+                        }
+                        catch
+                        {
+                            requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                                  "Uncompatible IFrame Formtaing");
+                            return result;
+                        }
+                        slider.Iframe = slider.ArabicIframe.Split('/').Last().ToString();
                     }
-                    slider.Iframe = slider.Iframe.Split('/').Last().ToString();
                 }
 
 
@@ -137,7 +153,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             {
 
                 RequestStatus requestStatus;
-                if ((string.IsNullOrEmpty(slider.Iframe)) && (uploadattachments == null || uploadattachments.ContentLength == 0 || (!
+                if ((string.IsNullOrEmpty(slider.Iframe) && (string.IsNullOrEmpty(slider.ArabicIframe))) && (uploadattachments == null || uploadattachments.ContentLength == 0 || (!
 
                     //if (uploadattachments == null || uploadattachments.ContentLength == 0 || (!
                     uploadattachments.ContentType.CheckImageExtention() && !
@@ -148,11 +164,8 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 else
                 {
 
-                    if (string.IsNullOrEmpty(slider.Iframe))
+                    if (string.IsNullOrEmpty(slider.Iframe) && string.IsNullOrEmpty(slider.ArabicIframe))
                     {
-
-
-
 
                         string _rendom = new Random().Next(1, 99999999).ToString();
 
@@ -169,17 +182,37 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     {
                         slider.Image = "";
                         slider.IsImage = false;
-                        //slider.Iframe = slider.Iframe.Split('&')[0].Split('=')[1].ToString();
-                        try
+                        if (!string.IsNullOrEmpty(slider.Iframe))
                         {
-                            slider.Iframe = slider.Iframe.Split('/').Last().ToString();
-                        }
-                        catch
-                        {
-                            requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
-                                "Uncompatible IFrame Formtaing");
-                            return result;
 
+                            try
+                            {
+                                slider.Iframe = slider.Iframe.Split('/').Last().ToString();
+                            }
+                            catch
+                            {
+                                requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                                    "Uncompatible IFrame Formtaing");
+                                return result;
+
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(slider.ArabicIframe))
+                        {
+
+                            //slider.Iframe = slider.Iframe.Split('&')[0].Split('=')[1].ToString();
+                            try
+                            {
+                                slider.ArabicIframe = slider.ArabicIframe.Split('/').Last().ToString();
+                            }
+                            catch
+                            {
+                                requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                                    "Uncompatible IFrame Formtaing");
+                                return result;
+
+                            }
                         }
                     }
 

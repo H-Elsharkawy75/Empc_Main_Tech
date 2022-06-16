@@ -21,10 +21,16 @@
     }
     else
     {
-        videos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage).OrderByDescending(s => s.Order).ToList();
-        //very imp
-        //videos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage && s.AlbumId == Id).OrderByDescending(s => s.Order).ToList();
+        videos = ctx.GalaryManager.GetAll().Where(s => !s.IsImage && s.AlbumId == Id).OrderByDescending(s => s.Order).ToList();
 
+    }
+    if (en == true)
+    {
+        videos = videos.Where(s => s.TitleEnglish != null).ToList();
+    }
+    else
+    {
+        videos = videos.Where(s => s.TitleArabic != null).ToList();
     }
 }
 
