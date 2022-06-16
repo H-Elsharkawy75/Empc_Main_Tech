@@ -254,3 +254,8 @@ a:focus{
 .relatedwebsite .relatedCOntent .relateditem .rightside .wecont .btns a{
     float:right;
 }
+
+.mfp-counter {
+
+    direction: ltr !important;
+}
