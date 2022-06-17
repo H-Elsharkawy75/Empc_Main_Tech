@@ -231,64 +231,66 @@
 @if (setting.ShowServices)
 {
     <!--Start Services Sections-->
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row justify-content-center mb-3 pb-3">
-                <div class="col-md-12 heading-section text-center ftco-animate">
+    <section class="ftco-section" style="background-image: url(/assets_NewPublic/images/BG/ServiceBG.jpeg);">
+        <div class="overlay">
+            <div class="container">
+                <div class="row justify-content-center mb-3 pb-3">
+                    <div class="col-md-12 heading-section text-center ftco-animate">
 
-                    <!--                    <div class="red-line"></div>-->
-                    <h2 class="mb-4 headh2">@Resources.Global.services</h2>
-                    <p class="headp" style="display:none">
-                        @Resources.Global.ContPagrgraph
+                        <!--                    <div class="red-line"></div>-->
+                        <h2 class="mb-4 headh2">@Resources.Global.services</h2>
+                        <p class="headp" style="display:none">
+                            @Resources.Global.ContPagrgraph
 
-                    </p>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="Gallery-area22" class="our_feature_area">
-            <div class="container">
-                <div id="demo-default22" class="demo s_black_title" style="padding-top:0px">
-                    <div id="coverflow22">
-                        <ul class="flip-items">
+            <div id="Gallery-area22" class="our_feature_area">
+                <div class="container">
+                    <div id="demo-default22" class="demo s_black_title" style="padding-top:0px">
+                        <div id="coverflow22">
+                            <ul class="flip-items">
 
-                            @foreach (var service in services)
-                            {
-                                <li data-flip-title="Red">
-                                    <div class="servItem">
-                                        <div class="images">
-                                            <img src="@service.MainImage" style="width:350px ; height:350px">
+                                @foreach (var service in services)
+                                {
+                                    <li data-flip-title="Red">
+                                        <div class="servItem">
+                                            <div class="images">
+                                                <img src="@service.MainImage" style="width:350px ; height:350px">
+                                            </div>
+                                            <div class="titile">
+                                                <a href="/Home/ServicesDetails/@service.Id" class="titiflex">
+                                                    @if (en)
+                                                    {
+                                                        <h2>@service.TitleEnglish</h2>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h2>@service.TitleArabic</h2>
+                                                    }
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="titile">
-                                            <a href="/Home/ServicesDetails/@service.Id" class="titiflex">
-                                                @if (en)
-                                                {
-                                                    <h2>@service.TitleEnglish</h2>
-                                                }
-                                                else
-                                                {
-                                                    <h2>@service.TitleArabic</h2>
-                                                }
-                                            </a>
-                                        </div>
-                                    </div>
 
-                                </li>
+                                    </li>
 
 
-                            }
+                                }
 
 
 
 
 
-                        </ul>
+                            </ul>
+                        </div>
+
+                        <Div class="width-btn">
+                            <a href="#" class="btn btn-danger btn-block btn-theme"> Read More</a>
+                        </Div>
+                        <!--end width-btn-->
+
                     </div>
-
-                    <Div class="width-btn">
-                        <a href="#" class="btn btn-danger btn-block btn-theme"> Read More</a>
-                    </Div>
-                    <!--end width-btn-->
-
                 </div>
             </div>
         </div>
@@ -547,7 +549,7 @@
 
 
 
-<div class="NewStyleLocation newlocation" style="background-image: url(/assets_NewPublic/images/newimg/2.jpg)">
+<div class="NewStyleLocation newlocation" style="background-image: url(/assets_NewPublic/images/BG/LocationBG.jpeg)">
 
     <!--Start Services Sections-->
     <section class="ftco-section overlay">
@@ -677,7 +679,7 @@
         -->
     </div>
 
-    <div class="newSerivcess" style="background-image: url(/assets_NewPublic/images/newimg/2.jpg); display:none">
+    <div class="newSerivcess" style="background-image: url(/assets_NewPublic/images/BG/LocationBG.jpeg); display:none">
         <div class="overlay">
             <div class="container">
                 <div class="titile">
@@ -694,7 +696,7 @@
                                 <div class="servItem">
                                     <div class="ServCont">
                                         <div class="icon">
-                                            <img src="@location.IconImage">
+                                            @*<img src="@location.IconImage">*@
                                         </div>
                                         @if (en)
                                         {
@@ -741,7 +743,7 @@
 
 @if (setting.ShowNews)
 {
-    <section class="timelines" style="background-image: url(/assets_NewPublic/images/bg_2.jpg)">
+    <section class="timelines" style="background-image: url(/assets_NewPublic/images/BG/NewsBG.jpeg)">
 
         <div class="overlay">
             <div class="container">
@@ -1258,7 +1260,7 @@
 
 
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1726.7709238441291!2d31.21595155872192!3d30.049999200000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145841fe81fb8d79%3A0x7292c22730b866c5!2sMedia%20Services%20Center%20EMPC!5e0!3m2!1sen!2seg!4v1647522850851!5m2!1sen!2seg"
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                width="100%" height="100%" style="border:0;" allowfullscreen="" ></iframe>
 
 
 
