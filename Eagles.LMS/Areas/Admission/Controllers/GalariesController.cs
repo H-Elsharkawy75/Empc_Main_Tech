@@ -134,6 +134,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
                 }
                 galary.VideoIframe = galary.VideoIframe;
+                galary.ArabicVideoIframe = galary.ArabicVideoIframe;
                 int userId = GetUserId();
                 galary.UserEditId = userId;
                 galary.EditeTime = DateTime.Now;
@@ -472,7 +473,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
                     //slider.Iframe = slider.Iframe.Split('&')[0].Split('=')[1].ToString();
                     galary.VideoIframe = galary.VideoIframe;
-
+                    galary.ArabicVideoIframe=galary.ArabicVideoIframe;
                     int userId = GetUserId();
                     galary.UserCreateId = userId;
                     galary.CreateTime = DateTime.Now;

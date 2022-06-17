@@ -7,13 +7,13 @@ namespace Eagles.LMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class tetstsstssfgfdgf : IMigrationMetadata
+    public sealed partial class orderserviceandarabiciframe : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(tetstsstssfgfdgf));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(orderserviceandarabiciframe));
         
         string IMigrationMetadata.Id
         {
-            get { return "202206161329380_tetstsstssfgfdgf"; }
+            get { return "202206170721257_orderserviceandarabiciframe"; }
         }
         
         string IMigrationMetadata.Source

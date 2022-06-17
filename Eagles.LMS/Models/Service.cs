@@ -43,8 +43,8 @@ namespace Eagles.LMS.Models
 
         public List<ServiceImages> ServiceImages { get; set; }
 
-        //[Required]
-        //public int Order { get; set; }
+        [Required]
+        public int Order { get; set; }
 
         public DateTime CreateTime { get; set; }
         public int UserCreateId { get; set; }

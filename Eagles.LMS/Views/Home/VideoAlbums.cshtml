@@ -40,11 +40,11 @@
     var allvideos = new List<int?>();
     if (en == true)
     {
-        allvideos = allvideoslist.Where(s => s.TitleEnglish!= null).Select(s => s.AlbumId).ToList();
+        allvideos = allvideoslist.Where(s => s.VideoIframe!= null).Select(s => s.AlbumId).ToList();
     }
     else
     {
-        allvideos = allvideoslist.Where(s => s.TitleArabic != null).Select(s => s.AlbumId).ToList();
+        allvideos = allvideoslist.Where(s => s.ArabicVideoIframe != null).Select(s => s.AlbumId).ToList();
 
     }
     var albums_videos = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Order).Where(s => allvideos.Contains(s.Id)).ToList();
