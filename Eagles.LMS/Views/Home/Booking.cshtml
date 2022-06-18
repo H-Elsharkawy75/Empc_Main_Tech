@@ -7,6 +7,11 @@
 
 @section EndHeader{
     <link href="~/assets_2/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <style>
+        .stikeyHeader{
+            z-index:99;
+        }
+    </style>
 }
 
 <div class="header-bc">
@@ -64,7 +69,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>@Resources.Global.Name</label>
-                                            <input type="text" placeholder='@Resources.Global.Name' />
+                                            <input id="Careers_Name" type="text" placeholder='@Resources.Global.Name' />
                                         </div>
 
 
@@ -75,7 +80,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>@Resources.Global.dateOfBirth</label>
-                                            <input type="date" placeholder='@Resources.Global.dateOfBirth' />
+                                            <input id="Careers_DateOfBirth" type="date" placeholder='@Resources.Global.dateOfBirth' />
                                         </div>
                                     </div>
                                     <!--end col-6-->
@@ -83,14 +88,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>@Resources.Global.address</label>
-                                            <input type="text" placeholder='@Resources.Global.address' />
+                                            <input id="Careers_Address" type="text" placeholder='@Resources.Global.address' />
                                         </div>
                                     </div>
                                     <!--end col-6-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>@Resources.Global.certification</label>
-                                            <input type="text" placeholder='@Resources.Global.certification' />
+                                            <input id="Careers_Certification" type="text" placeholder='@Resources.Global.certification' />
                                         </div>
 
 
@@ -99,7 +104,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>@Resources.Global.certificationYeears</label>
-                                            <input type="text" placeholder='@Resources.Global.certificationYeears' />
+                                            <input id="Careers_CertificationYears" type="text" placeholder='@Resources.Global.certificationYeears' />
                                         </div>
 
 
@@ -109,7 +114,7 @@
                                             <label>@Resources.Global.ExperianceLevel</label>
                                             @*<input type="text" placeholder='@Resources.Global.ExperianceLevel' />*@
 
-                                            <select>
+                                            <select id="Careers_ExperianceLevel">
                                                 <option>@Resources.Global.SelectYear</option>
                                                 <option>@Resources.Global.from1to3</option>
                                                 <option>@Resources.Global.From3To5Years</option>
@@ -122,7 +127,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>@Resources.Global.JobName</label>
-                                            <input type="text" placeholder='@Resources.Global.JobName' />
+                                            <input id="Careers_JobName" type="text" placeholder='@Resources.Global.JobName' />
                                         </div>
 
 
@@ -138,7 +143,7 @@
                                                     <div class="btn btn-default image-preview-input">
                                                         <span class="glyphicon glyphicon-folder-open"></span>
                                                         <span class="image-preview-input-title">@Resources.Global.Browse</span>
-                                                        <input type="file" name="input-file-preview" /> <!-- rename it -->
+                                                        <input id="Careers_UploadCv" type="file" name="input-file-preview" /> <!-- rename it -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,7 +154,7 @@
 
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-black">@Resources.Global.Send</button>
+                                            <button id="Careers_SendForm" type="submit" class="btn btn-black">@Resources.Global.Send</button>
                                         </div>
                                     </div>
                                     <!--end col-12-->
@@ -502,7 +507,7 @@
 
             }
 
-            $("#BTN_SendBook").click(s => {
+            $("#Careers_SendForm").click(s => {
                 s.preventDefault();
                 let obj = {};
 
@@ -538,11 +543,15 @@
             function validateForm(obj) {
 
                 let flag = false,
-                    CompanyName = $("#Text_CompanyName").val(),
-                    CompanyEmail = $("#Text_CompanyEmail").val(),
-                    DataServicees = $("#Text_DataServicees").val(),
-                    SartTime = $("#Text_SartTime").val(),
-                    EndTime = $("#Text_EndTime").val(),
+                    _Careers_Name = $("#Careers_Name").val(),
+                    _Careers_DateOfBirth = $("#Careers_DateOfBirth").val(),
+                    _Careers_Address = $("#Careers_Address").val(),
+                    _Careers_Certification = $("#Careers_Certification").val(),
+                    _Careers_CertificationYears = $("#Careers_CertificationYears").val(),
+                    _Careers_ExperianceLevel = $("#Careers_ExperianceLevel").val(),
+                    Message = $("#Text_Message").val();
+                    Origin = $("#Text_Origin").val(),
+                    Message = $("#Text_Message").val();
                     Origin = $("#Text_Origin").val(),
                     Message = $("#Text_Message").val();
 

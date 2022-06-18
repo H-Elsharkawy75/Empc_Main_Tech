@@ -6520,6 +6520,7 @@ padding-top: 10%;
     border: 2px solid #f46a6a;
     color: #fff;
     font-size: 15px;
+    z-index:99999999999999;
 }
 
 .alert-success {
@@ -6527,6 +6528,7 @@ padding-top: 10%;
     border: 2px solid #34c38f !important;
     color: #fff;
     font-size: 15px;
+    z-index: 99999999999999;
 }
 
 
