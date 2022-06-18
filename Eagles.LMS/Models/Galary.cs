@@ -25,6 +25,7 @@ namespace Eagles.LMS.Models
         public bool IsImage { get;set; }
 
         public String VideoIframe { get; set; }
+        public string ArabicVideoIframe { get; set; }
 
         //public String VideoCover { get; set; }
         public DateTime CreateTime { get; set; }

@@ -375,21 +375,9 @@
     <Compile Include="BLL\ClientsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
     <Compile Include="BLL\SettingsManager.cs" />
-    <Compile Include="Migrations\202206151955414_Updatemain1.cs" />
-    <Compile Include="Migrations\202206151955414_Updatemain1.designer.cs">
-      <DependentUpon>202206151955414_Updatemain1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206152006525_arabiciframe.cs" />
-    <Compile Include="Migrations\202206152006525_arabiciframe.designer.cs">
-      <DependentUpon>202206152006525_arabiciframe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206161322023_tetstsstst.cs" />
-    <Compile Include="Migrations\202206161322023_tetstsstst.designer.cs">
-      <DependentUpon>202206161322023_tetstsstst.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206161329380_tetstsstssfgfdgf.cs" />
-    <Compile Include="Migrations\202206161329380_tetstsstssfgfdgf.designer.cs">
-      <DependentUpon>202206161329380_tetstsstssfgfdgf.cs</DependentUpon>
+    <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.cs" />
+    <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.designer.cs">
+      <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -909,9 +897,6 @@
     <Content Include="assets_NewPublic\fonts\lg.svg" />
     <Content Include="assets_NewPublic\images\1414555260_f023-128.png" />
     <Content Include="assets_NewPublic\images\bc-header.jpg" />
-    <Content Include="assets_NewPublic\images\BG\LocationBG.jpeg" />
-    <Content Include="assets_NewPublic\images\BG\NewsBG.jpeg" />
-    <Content Include="assets_NewPublic\images\BG\ServiceBG.jpeg" />
     <Content Include="assets_NewPublic\images\bg_1.jpg" />
     <Content Include="assets_NewPublic\images\bg_2.jpg" />
     <Content Include="assets_NewPublic\images\bg_3-small.jpg" />
@@ -2106,17 +2091,8 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206151955414_Updatemain1.resx">
-      <DependentUpon>202206151955414_Updatemain1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206152006525_arabiciframe.resx">
-      <DependentUpon>202206152006525_arabiciframe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206161322023_tetstsstst.resx">
-      <DependentUpon>202206161322023_tetstsstst.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206161329380_tetstsstssfgfdgf.resx">
-      <DependentUpon>202206161329380_tetstsstssfgfdgf.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206170721257_orderserviceandarabiciframe.resx">
+      <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

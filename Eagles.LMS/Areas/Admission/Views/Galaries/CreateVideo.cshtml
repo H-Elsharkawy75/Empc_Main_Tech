@@ -64,7 +64,7 @@
                                        {
                                            @class = "form-control",
                                            @placeholder = "Title Arabic",
-                                           @required = "required"
+                                           //@required = "required"
                                        })
                                             @Html.ValidationMessageFor(s => s.TitleArabic)
                                         </div>
@@ -76,7 +76,7 @@
                                        {
                                            @class = "form-control",
                                            @placeholder = "Title English",
-                                           @required= "required"
+                                           //@required= "required"
                                        })
                                             @Html.ValidationMessageFor(s => s.TitleEnglish)
                                         </div>
@@ -93,26 +93,39 @@
                                     </div>
 
                                     @*<div class="col-lg-16">
-                                            <div class="mb-3">
-                                                <a href="https://www.youtube.com/embed/NjIkTXmPycY?autoplay=1" class="video-btn" data-type="iframe" tabindex="0">
-                                                    Watch Our Video
-                                                </a>
-                                            </div>
-                                        </div>*@
+            <div class="mb-3">
+                <a href="https://www.youtube.com/embed/NjIkTXmPycY?autoplay=1" class="video-btn" data-type="iframe" tabindex="0">
+                    Watch Our Video
+                </a>
+            </div>
+        </div>*@
 
 
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
-                                            <label class="form-label">Video Link Iframe</label>
+                                            <label class="form-label">English Video Link Iframe</label>
                                             @Html.TextBoxFor(s => s.VideoIframe, new
                                        {
                                            @class = "form-control",
-                                           placeholder = "Title English",
-                                           required = "required"
+                                           placeholder = "English Video Iframe",
+                                           //required = "required"
                                        })
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Arabic Video Link Iframe</label>
+                                            @Html.TextBoxFor(s => s.ArabicVideoIframe, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Arabic Video Iframe",
+                                           //required = "required"
+                                       })
+                                        </div>
+                                    </div>
+
 
 
 
@@ -126,9 +139,9 @@
 
 
                                 </div>
-                            </div>
+                                    </div>
 
-                        </div>
+                                </div>
 
 
                     </div>

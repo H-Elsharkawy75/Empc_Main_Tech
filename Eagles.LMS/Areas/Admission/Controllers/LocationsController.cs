@@ -39,14 +39,14 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
 
             RequestStatus requestStatus;
-            if (iconImage != null && !
-                iconImage.ContentType.CheckImageExtention())
-            {
+            //if (iconImage != null && !
+            //    iconImage.ContentType.CheckImageExtention())
+            //{
 
-                requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
-            }
-            else
-            {
+            //    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
+            //}
+            //else
+            //{
                 if (mainImage == null || mainImage.ContentLength == 0 || !
                  mainImage.ContentType.CheckImageExtention())
                 {
@@ -78,10 +78,10 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
                     }
 
-                    if (iconImage != null)
-                    {
+                if (iconImage != null && iconImage.ContentLength > 0 && iconImage.ContentType.CheckImageExtention())
+                {
 
-                        _rendom = new Random().Next(1, 99999999).ToString();
+                    _rendom = new Random().Next(1, 99999999).ToString();
 
                         fileName = _rendom + Path.GetFileName(iconImage.FileName);
 
@@ -134,7 +134,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
 
 
-                }
+                //}
             }
 
             TempData["RequestStatus"] = requestStatus;
@@ -167,14 +167,14 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             {
 
                 RequestStatus requestStatus;
-                if (iconImage == null || iconImage.ContentLength == 0 || !
-                    iconImage.ContentType.CheckImageExtention())
-                {
-                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only In Location Icon ");
-                }
+                //if (iconImage == null || iconImage.ContentLength == 0 || !
+                //    iconImage.ContentType.CheckImageExtention())
+                //{
+                //    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only In Location Icon ");
+                //}
 
-                else
-                {
+                //else
+                //{
 
 
                     if (mainImage == null || mainImage.ContentLength == 0 || !
@@ -192,29 +192,34 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                         }
                         else
                         {
+                        // main
 
-                            // icon
-                            string _rendom = new Random().Next(1, 99999999).ToString();
+                       string _rendom = new Random().Next(1, 99999999).ToString();
+                        //fileName = _rendom + Path.GetFileName(mainImage.FileName);
+                        string extention = System.IO.Path.GetExtension(mainImage.FileName);
+                       var fileName = _rendom + extention;
 
-                            var fileName = _rendom + Path.GetFileName(iconImage.FileName);
 
-                            var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
+                        var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
+                        mainImage.SaveAs(path);
+
+                        location.MainImage = $"/attachments/{fileName}";
+
+
+                        // icon
+                        if (iconImage != null && iconImage.ContentLength > 0&&iconImage.ContentType.CheckImageExtention())
+                        {
+                             _rendom = new Random().Next(1, 99999999).ToString();
+
+                             fileName = _rendom + Path.GetFileName(iconImage.FileName);
+
+                             path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                             iconImage.SaveAs(path);
                             location.IconImage = $"/attachments/{fileName}";
+                        }
+                    
 
-                            // main
-
-                            _rendom = new Random().Next(1, 99999999).ToString();
-                            //fileName = _rendom + Path.GetFileName(mainImage.FileName);
-                            string extention = System.IO.Path.GetExtension(mainImage.FileName);
-                            fileName = _rendom + extention;
-
-
-                            path = Path.Combine(Server.MapPath("~/attachments"), fileName);
-                            mainImage.SaveAs(path);
-
-                            location.MainImage = $"/attachments/{fileName}";
-
+                  
 
 
 
@@ -263,7 +268,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                             }
                         }
 
-                    }
+                    //}
 
                 }
                 TempData["RequestStatus"] = requestStatus;

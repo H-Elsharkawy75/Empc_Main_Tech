@@ -47,7 +47,9 @@
                                     <th><p>#Order</p></th>
                                     <th> <p>Action</p> </th>
                                     <th> <p> Cover Img</p> </th>
-                                    <th> <p> Video</p> </th>
+                                    <th> <p> English Video</p> </th>
+                                    <th> <p> Arabic Video</p> </th>
+
                                     <th> <p>Album Name</p> </th>
 
                                     <th> <p>Title  Arabic</p> </th>
@@ -91,11 +93,22 @@
                                     </td>
                                     <td>
                                         @*<a href="@item.Image" class="btnIconImages" target="_blank">
-                <i class="bx bx-image"></i>
-            </a>*@
-                                        <a href="@item.VideoIframe" class="btnIconVideos" data-type="iframe" tabindex="0">
+            <i class="bx bx-image"></i>
+        </a>*@
+                                        @if (item.VideoIframe != null)
+                                        {
+                                            <a href="@item.VideoIframe" class="btnIconVideos" data-type="iframe" tabindex="0">
+                                                <i class="bx bx-play-circle"></i>
+                                            </a>
+                                        }
+                                        </td>  
+                                    <td>
+                                        @if (item.ArabicVideoIframe != null)
+                                        {
+                                         <a href="@item.ArabicVideoIframe" class="btnIconVideos" data-type="iframe" tabindex="0">
                                             <i class="bx bx-play-circle"></i>
                                         </a>
+                                        }
                                     </td>
                                     @if (item.Album != null)
                                     {

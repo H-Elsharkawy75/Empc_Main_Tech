@@ -98,7 +98,7 @@
                                        {
                                            @class = "form-control",
                                            placeholder = "Description English",
-                                           @required = "required"
+                                           //@required = "required"
                                        })
                                             @Html.ValidationMessageFor(s => s.ShortDescriptionArabic)
                                         </div>
@@ -110,7 +110,7 @@
                                        {
                                            @class = "form-control",
                                            placeholder = "Description English",
-                                           @required = "required"
+                                           //@required = "required"
                                        })
                                             @Html.ValidationMessageFor(s => s.ShortDescriptionEnglish)
                                         </div>
@@ -177,7 +177,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Location Type</label>
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="mb-3">
 
 
@@ -190,17 +190,17 @@
                                                    })
                                                         <label class="form-label" for="OutDoor">Out Door</label>
                                                     </div>
-                                                </div>
+                                                </div>*@
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="mb-3">
 
                                                         @Html.RadioButtonFor(s => s.Type, "ShootingAreas", new
                                                    {
                                                        @class = "form-check-input",
-                                                       placeholder = "ShootingAreas",
+                                                       placeholder = "Location Shooting Areas",
                                                        @id = "ShootingAreas"
                                                    })
-                                                        <label class="form-label" for="ShootingAreas">ShootingAreas</label>
+                                                        <label class="form-label" for="ShootingAreas">Location Shooting Areas</label>
                                                     </div>
                                                 </div>
                                             </div>

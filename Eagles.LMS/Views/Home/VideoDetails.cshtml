@@ -26,11 +26,11 @@
     }
     if (en == true)
     {
-        videos = videos.Where(s => s.TitleEnglish != null).ToList();
+        videos = videos.Where(s => s.VideoIframe != null).ToList();
     }
     else
     {
-        videos = videos.Where(s => s.TitleArabic != null).ToList();
+        videos = videos.Where(s => s.ArabicVideoIframe != null).ToList();
     }
 }
 
@@ -79,18 +79,26 @@
                         @foreach (var vidoe in videos)
                         {
 
-                            
+
 
 
 
 
                             <div class="item">
+                                @if(en)
+                                {
                                 <a href="#">
                                     <iframe class="" src="@vidoe.VideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </a>
-                                
+                                }
+                                else
+                                {
+                                <a href="#">
+                                    <iframe class="" src="@vidoe.ArabicVideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </a>
+                                }
                             </div>
-                            
+
                         }
 
                     </div>
@@ -102,20 +110,20 @@
 
 
                 @*@foreach (var Video in videos)
-                {
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="VedioIemGaleeary">
-                            <div class="images">
-                                <img src="~/assets_NewPublic/images/bg_2.jpg" />
-                            </div>
-                            <div class="buttonPopUp">
-                                <a href="@Video.Image" type="button" class="vediobtn" target="_blank">
-                                    <i class="fa fa-play" aria-hidden="true"></i>
-                                </a>
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="VedioIemGaleeary">
+                                <div class="images">
+                                    <img src="~/assets_NewPublic/images/bg_2.jpg" />
+                                </div>
+                                <div class="buttonPopUp">
+                                    <a href="@Video.Image" type="button" class="vediobtn" target="_blank">
+                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }*@
+                    }*@
 
             </div>
         </div>
@@ -126,18 +134,18 @@
 
 
 @*<div class="modal fade Vediomodal" id="VedioPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
 
-            <div class="modal-body">
-                <div class="vedioIframe">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/4AO7Pz-ArE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="modal-body">
+                    <div class="vedioIframe">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/4AO7Pz-ArE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-</div>*@
+    </div>*@

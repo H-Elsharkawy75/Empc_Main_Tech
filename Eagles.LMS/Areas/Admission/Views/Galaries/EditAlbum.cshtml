@@ -159,11 +159,19 @@
                                                         }
                                                         else
                                                         {
-
+                                                            if (item.VideoIframe != null)
+                                                            {
                                                             <a href="@item.VideoIframe" class="btnIconVideos" data-type="iframe" tabindex="0">
                                                                 <i class="bx bx-play-circle"></i>
-                                                            </a>
+                                                            </a> 
+                                                            }
 
+                                                            if (item.ArabicVideoIframe != null)
+                                                            {
+                                                            <a href="@item.ArabicVideoIframe" class="btnIconVideos" data-type="iframe" tabindex="0">
+                                                                <i class="bx bx-play-circle"></i>
+                                                            </a>
+                                                            }
                                                         }
                                                     </td>
 
