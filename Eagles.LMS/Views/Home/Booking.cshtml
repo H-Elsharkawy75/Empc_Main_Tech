@@ -115,10 +115,10 @@
                                             @*<input type="text" placeholder='@Resources.Global.ExperianceLevel' />*@
 
                                             <select id="Careers_ExperianceLevel">
-                                                <option>@Resources.Global.SelectYear</option>
-                                                <option>@Resources.Global.from1to3</option>
-                                                <option>@Resources.Global.From3To5Years</option>
-                                                <option>@Resources.Global.MoreThan5Years</option>
+                                                <option value="0">@Resources.Global.SelectYear</option>
+                                                <option value="1">@Resources.Global.from1to3</option>
+                                                <option value="2">@Resources.Global.From3To5Years</option>
+                                                <option value="3">@Resources.Global.MoreThan5Years</option>
                                             </select>
                                         </div>
 
@@ -510,10 +510,10 @@
             $("#Careers_SendForm").click(s => {
                 s.preventDefault();
                 let obj = {};
-
+                console.log(obj);
                 if (validateForm(obj)) {
                     var _url = "/api/GlobalServices/AddBooking";
-
+                    
 
                     $.ajax({
                         type: "POST",
@@ -534,12 +534,12 @@
 
 
             });
-            function validateEmail(email) {
-                var re = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            //function validateEmail(email) {
+            //    var re = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
-                return re.test(email);
-            }
+            //    return re.test(email);
+            //}
             function validateForm(obj) {
 
                 let flag = false,
@@ -548,68 +548,60 @@
                     _Careers_Address = $("#Careers_Address").val(),
                     _Careers_Certification = $("#Careers_Certification").val(),
                     _Careers_CertificationYears = $("#Careers_CertificationYears").val(),
-                    _Careers_ExperianceLevel = $("#Careers_ExperianceLevel").val(),
-                    Message = $("#Text_Message").val();
-                    Origin = $("#Text_Origin").val(),
-                    Message = $("#Text_Message").val();
-                    Origin = $("#Text_Origin").val(),
-                    Message = $("#Text_Message").val();
+                    _Careers_JobName = $("#Careers_JobName").val();
+                    //_Careers_ExperianceLevel = $("#Careers_ExperianceLevel").val(),
+                    //_Careers_UploadCv = $("#Careers_UploadCv").val();
 
 
-                if (CompanyName == "" || typeof (CompanyName) == 'undefined') {
-                    errorMessage("Please Enter The Your Company Name");
+                if (_Careers_Name == "" || typeof (_Careers_Name) == 'undefined') {
+                    errorMessage("Please Enter The Your Name");
                     return false;
                 }
-                if (CompanyEmail == "" || typeof (CompanyEmail) == 'undefined') {
-                    errorMessage("Please Enter Your Company Email");
+                if (_Careers_DateOfBirth == "" || typeof (_Careers_DateOfBirth) == 'undefined') {
+                    errorMessage("Please Enter Your Date Of Birth");
 
 
                     return false;
                 }
-                if (!validateEmail(CompanyEmail)) {
-
-                    errorMessage("Please Enter An Valid Email Address");
-                    return false;
-
-                }
-                if (DataServicees == "" || typeof (DataServicees) == 'undefined') {
-                    errorMessage("Please Enter Date Services");
+                
+                if (_Careers_Address == "" || typeof (_Careers_Address) == 'undefined') {
+                    errorMessage("Please Enter Address");
                     return false;
                 }
 
-                if (SartTime == "" || typeof (SartTime) == 'undefined') {
-                    errorMessage("Please Enter Start Time");
+                if (_Careers_Certification == "" || typeof (_Careers_Certification) == 'undefined') {
+                    errorMessage("Please Enter Certification");
                     return false;
                 }
-                if (EndTime == "" || typeof (EndTime) == 'undefined') {
-                    errorMessage("Please Enter End Time ");
+                if (_Careers_CertificationYears == "" || typeof (EndTime) == '_Careers_CertificationYears') {
+                    errorMessage("Please Enter Certification Years ");
                     return false;
                 }
-                if (Origin == "" || typeof (Origin) == 'undefined') {
-                    errorMessage("Please Enter Origin");
-                    return false;
-                }
-
-                if (Message == "" || typeof (Message) == 'undefined') {
-                    errorMessage("Please Enter Your Message");
+                if (_Careers_JobName == "" || typeof (_Careers_JobName) == 'undefined') {
+                    errorMessage("Please Enter Job Name");
                     return false;
                 }
 
-                var arr = $(".Text_ServiceType:checked").map(function () {
-                    return $(this).val();
-                });
+                
+                //if (!validateEmail(CompanyEmail)) {
+
+                //    errorMessage("Please Enter An Valid Email Address");
+                //    return false;
+
+                //}
+                //var arr = $(".Text_ServiceType:checked").map(function () {
+                //    return $(this).val();
+                //});
 
 
 
                 obj.Data = {
-                    CompanyName: CompanyName,
-                    CompanyEmail: CompanyEmail,
-                    DataServicees: DataServicees,
-                    SartTime: SartTime,
-                    EndTime: EndTime,
-                    Origin: Origin,
-                    Message: Message,
-                    ServiceTypes: arr
+                    Name: _Careers_Name,
+                    DateOfBirth: _Careers_DateOfBirth,
+                    Address: _Careers_Address,
+                    Certification: _Careers_Certification,
+                    GraduationYears: _Careers_CertificationYears,
+                    JobName: _Careers_JobName
 
                 }
                 return true;

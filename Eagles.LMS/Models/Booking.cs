@@ -16,18 +16,21 @@ namespace Eagles.LMS.Models
     {
         public int Id { get; set; }
 
-        public string CompanyName { get; set; }
-        public string CompanyEmail { get; set; }
+        public string Name { get; set; }
+        public string DateOfBirth { get; set; }
 
-        public string DataServicees { get; set; }
+        public string Address { get; set; }
 
-        public string SartTime { get; set; }
+        public string Certification { get; set; }
 
-        public string EndTime { get; set; }
+        public string GraduationYears { get; set; }
 
-        public string Origin { get; set; }
+        public string JobName { get; set; }
 
-        public string Message { get; set; }
+        
+        public string ExperianceLevel{ get; set; }
+
+        public string CVLink { get; set; }
 
         public List<BookingInServices> BookingInServices { get; set; }
        

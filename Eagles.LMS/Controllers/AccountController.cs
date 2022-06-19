@@ -61,42 +61,12 @@ namespace Eagles.LMS.Controllers
         }
 
 
-        public ActionResult Pending()
-        {
-            return View();
-
-        }
-
-
-        public ActionResult ForgetPassword()
-        {
-
-            return View();
-        }
 
 
 
-        public ActionResult ChooseTypecode()
-        {
 
-            return View();
-        }
-        public ActionResult ResetPassword()
-        {
-            var userFromSesstionToResetNumber = Session["USER_OTP_CODE_Mobile"];
-            if (userFromSesstionToResetNumber == null)
-                return RedirectToAction(nameof(Login)); 
 
-            ViewBag.Mobile = userFromSesstionToResetNumber.ToString();
 
-            return View();
-        }
-
-        public ActionResult Register()
-        {
-
-            return View();
-        }
         public ActionResult Logout()
         {
             Session["User_Key"] = null;
@@ -132,10 +102,7 @@ namespace Eagles.LMS.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-        public ActionResult AccountIsPending()
-        {
-            return View();
-        }
+
 
     }
 }

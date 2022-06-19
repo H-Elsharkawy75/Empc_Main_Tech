@@ -215,5 +215,29 @@ namespace Eagles.LMS.Web_Services
 
 
 
+
+        [HttpPost]
+        [Route("api/GlobalServices/AddCareer")]
+
+        public async Task<IHttpActionResult> AddCareer([FromBody] Career career)
+        {
+            var ctx = new UnitOfWork();
+            var careerr = ctx.CareerManager.Add(career);
+            if (career.Services != null && career.Services.Any())
+            {
+                foreach (var item in career.Services)
+                {
+                    ctx.CareerInServicesManager.Add(new CareerInServices
+                    {
+                        CareerServiceId = item,
+                        CareerId = career.Id
+
+                    });
+                }
+            }
+            return Ok();
+        }
+
+
     }
 }

@@ -36,6 +36,17 @@
 <html>
 
 <head>
+    <!-- Google Tag Manager -->
+    <script>
+    (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NZXWJ4K');</script>
+    <!-- End Google Tag Manager -->
 
     @*<title>@ViewBag.Title</title>*@
     <title>EMPC Main</title>
@@ -51,18 +62,7 @@
 
 
 
-    @*<link rel="stylesheet" href="~/assets_NewPublic/css/gallery-jquery.flipster.min.css">
-        <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/assets_NewPublic/css/ionicons.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/owl.carousel.min.css">
-        <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/font-awesome.min.css" />
-        <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/style.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/7ecf8dac4e.js" crossorigin="anonymous"></script>*@
+
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -76,7 +76,7 @@
     @*<link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">*@
     <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/style.css" />
     @*<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>*@
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>*@
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/7ecf8dac4e.js" crossorigin="anonymous"></script>
 
@@ -97,24 +97,43 @@
     @RenderSection("EndHeader", required: false)
 
     @*<script src="https://cdn.tiny.cloud/1/darv2hkyj2fhq6bcw9dvds7nq95xpa5p19zfb5q6ybjadm5z/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '.textarea',
-            height: 500,
-            plugins: [
-                'advlist autolink lists link image charmap print preview anchor  advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable ',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste imagetools wordcount',
-                'image code',
-            ],
-            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |  code',
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-        });
+        <script>
+            tinymce.init({
+                selector: '.textarea',
+                height: 500,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor  advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable ',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste imagetools wordcount',
+                    'image code',
+                ],
+                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |  code',
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+            });
 
-    </script>*@
+        </script>*@
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NMZMLZN763"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NMZMLZN763');
+    </script>
+
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZXWJ4K"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <nav class="navbar visible-xs">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -178,16 +197,7 @@
 
 
 
-                                @*<li><a href="ServicesDetail_Iams.html">Iaems</a></li>
-        <li><a href="TrainingCenterServices.html"> training Center</a></li>
-        <li><a href="CRC.html">CRC</a></li>
-        <li><a href="PreProduction.html"> Pre-Production</a></li>
-        <li><a href="postProduction.html">Post Production</a></li>
-        <li><a href="StudioServices.html"> Studios</a></li>
-        <li><a href="DolbyAtoms.html">Dolby Atoms</a></li>
-        <li><a href="Sound.html"> Sound Studio</a></li>
-        <li><a href="OBVan.html">O.B Van</a></li>
-        <li><a href="MovempinkHotelServices.html"> Mövenpick Hotel</a></li>*@
+
                             </ul>
                         </li>
                         @*<li><a href="/Home/Services">  @Resources.Global.services </a></li>*@
@@ -224,10 +234,10 @@
                                 for (int i = 0; i < _Applicaions.Count; i++)
                                 {
 
-                                    <li><a href="@_Applicaions[i].Link">@_Applicaions[i].TitleEnglish</a></li>
+                                    <li><a target="_blank" href="@_Applicaions[i].Link">@_Applicaions[i].TitleEnglish</a></li>
 
 
-                                    if (i == 4)
+                                    if (i == 7)
                                     {
                                         break;
                                     }
@@ -238,10 +248,10 @@
                                 for (int i = 0; i < _Applicaions.Count; i++)
                                 {
 
-                                    <li><a href="@_Applicaions[i].Link">@_Applicaions[i].TitleArabic</a></li>
+                                    <li><a target="_blank" href="@_Applicaions[i].Link">@_Applicaions[i].TitleArabic</a></li>
 
 
-                                    if (i == 4)
+                                    if (i == 7)
                                     {
                                         break;
                                     }
@@ -250,13 +260,6 @@
                             }
 
 
-
-
-                            @*<li><a href="#">VMS</a></li>
-                <li><a href="#"> Investor Realation</a></li>
-                <li><a href="#">Supplier Register</a></li>
-                <li><a href="#"> EMPC Filming Website</a></li>
-                <li><a href="#">EMPC News Website</a></li>*@
                         </ul>
                     </li>
 
@@ -271,7 +274,7 @@
 
                     }
 
-                    <li><a href="/Home/Booking">@Resources.Global.Careers</a></li>
+                    <li><a href="/Home/Careers">@Resources.Global.Careers</a></li>
                     @if (en)
                     {
                         <li><a href="/Home/ChangeLanguage?SelectedLanguage=ar-EG&redirect=@url">@Resources.Global.Arabic</a></li>
@@ -297,12 +300,7 @@
     {
         <div class="position-1">
             <ul>
-                @*<li>
-                        <a style="background: #af7a2c;width: 40px;display: block;height: 40px;">1</a>
-                    </li>
-                    <li>
-                        <a style="background: #1d1f4f;width: 40px;display: block;height: 40px;">1</a>
-                    </li>*@
+
 
                 @if (allSocialMedia != null && allSocialMedia.Any())
                 {
@@ -366,13 +364,6 @@
 
 
 
-                    <!--end Search-input-->
-                    @*<div class="language">
-
-
-                            <a class="img_lang" href="/Home/ChangeLanguage?SelectedLanguage=en&redirect=@url">@Resources.Global.English</a>
-                            <a class="img_lang" href="/Home/ChangeLanguage?SelectedLanguage=ar-EG&redirect=@url">@Resources.Global.Arabic</a>
-                        </div>*@
                     <div class="language">
                         @if (en)
                         {
@@ -399,7 +390,7 @@
                     <Div class="strip-white"></Div>
 
                     <div class="language lefr">
-                        <a href="/Home/Booking">
+                        <a href="/Home/Careers">
                             <p> @Resources.Global.Careers</p>
                         </a>
                     </div>
@@ -484,16 +475,6 @@
 
                                     <li><a href="/home/Services">@Resources.Global.ReadMore ...</a></li>
 
-                                    @*<li><a href="ServicesDetail_Iams.html">Iaems</a></li>
-        <li><a href="/Home/TrainingCenter"> training Center</a></li>
-        <li><a href="CRC.html">CRC</a></li>
-        <li><a href="PreProduction.html"> Pre-Production</a></li>
-        <li><a href="postProduction.html">Post Production</a></li>
-        <li><a href="/Home/StudiosServices">Studios </a></li>
-        <li><a href="DolbyAtoms.html">Dolby Atoms</a></li>
-        <li><a href="Sound.html"> Sound Studio</a></li>
-        <li><a href="OBVan.html">O.B Van</a></li>
-        <li><a href="MovempinkHotelServices.html"> Mövenpick Hotel</a></li>*@
                                 </ul>
                             </li>
                             @*<li><a href="/Home/Services">  @Resources.Global.services </a></li>*@
@@ -531,10 +512,10 @@
                                     for (int i = 0; i < _Applicaions.Count; i++)
                                     {
 
-                                        <li><a href="@_Applicaions[i].Link">@_Applicaions[i].TitleEnglish</a></li>
+                                        <li><a target="_blank" href="@_Applicaions[i].Link">@_Applicaions[i].TitleEnglish</a></li>
 
 
-                                        if (i == 4)
+                                        if (i == 7)
                                         {
                                             break;
                                         }
@@ -545,10 +526,10 @@
                                     for (int i = 0; i < _Applicaions.Count; i++)
                                     {
 
-                                        <li><a href="@_Applicaions[i].Link">@_Applicaions[i].TitleArabic</a></li>
+                                        <li><a target="_blank" href="@_Applicaions[i].Link">@_Applicaions[i].TitleArabic</a></li>
 
 
-                                        if (i == 4)
+                                        if (i == 7)
                                         {
                                             break;
                                         }
@@ -792,7 +773,7 @@
             style: 'carousel',
             spacing: -.5,
             nav: true,
-            
+
             buttons: true,
         });
     </script>

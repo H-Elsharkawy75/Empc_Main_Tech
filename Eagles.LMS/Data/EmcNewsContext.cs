@@ -58,7 +58,11 @@ namespace Eagles.LMS.Data
 
         public DbSet<Booking> Bookings { get; set; }
 
+        public DbSet<Career> Career { get; set; }
+
         public DbSet<BookingInServices> BookingInServices { get; set; }
+
+        public DbSet<CareerInServices> CareerInServices { get; set; }
 
         public DbSet<log> logs { get; set; }
 
