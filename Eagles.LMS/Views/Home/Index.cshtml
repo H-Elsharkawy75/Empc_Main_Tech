@@ -26,7 +26,20 @@
     var aboutUs = ctx.AboutUsManager.GetAll().FirstOrDefault();
     var _contactUs = ctx.ContactUsManager.GetAll().FirstOrDefault();
     var allSliders = new List<Slider>();
-    var services = new List<Service>();
+    var servic = ctx.ServiceManager.GetAll().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Order).ToList();
+    List<Service> services = new List<Service>();
+    foreach (var service in servic)
+    {
+        if (service.Order != null && service.Order != 0)
+        {
+            services.Insert(0, service);
+        }
+        else
+        {
+            //sevic.Insert(services.Count(), service);
+            services.Add(service);
+        }
+    }
     var _relatedWerbsites = new List<RelatedWebSite>();
     var _Clients = new List<Client>();
     var _galaries = new List<Album>();
@@ -37,8 +50,8 @@
 
     if (en == true)
     {
-        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.TitleEnglish != null).ToList();
-        services = ctx.ServiceManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Order).Where(s => s.TitleEnglish != null).ToList();
+        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.Iframe != null).ToList();
+        services = services.Where(s => s.TitleEnglish != null).ToList();
         _news = ctx.NewManager.GetAll().Where(s => s.ShowInHomePage && s.Status == EntityStatus.Approval).OrderByDescending(S => S.Order).Where(s => s.TitleEnglish != null).ToList();
         _locations = ctx.LocationManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).Where(s => s.TitleEnglish != null).ToList();
         //var _galaries = ctx.GalaryManager.GetAllBind().OrderBy(S => S.Order).ToList();
@@ -50,8 +63,8 @@
     }
     else
     {
-        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.TitleArabic != null).ToList();
-        services = ctx.ServiceManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Order).Where(s => s.TitleArabic != null).ToList();
+        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.ArabicIframe != null).ToList();
+        services = services.Where(s => s.TitleArabic != null).ToList();
         _news = ctx.NewManager.GetAll().Where(s => s.ShowInHomePage && s.Status == EntityStatus.Approval).OrderByDescending(S => S.Order).Where(s => s.TitleArabic != null).ToList();
         _locations = ctx.LocationManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).Where(s => s.TitleArabic != null).ToList();
         //var _galaries = ctx.GalaryManager.GetAllBind().OrderBy(S => S.Order).ToList();

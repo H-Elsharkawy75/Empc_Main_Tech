@@ -379,6 +379,10 @@
     <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.designer.cs">
       <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206171623424_servicenull.cs" />
+    <Compile Include="Migrations\202206171623424_servicenull.designer.cs">
+      <DependentUpon>202206171623424_servicenull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Application.cs" />
@@ -2093,6 +2097,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206170721257_orderserviceandarabiciframe.resx">
       <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206171623424_servicenull.resx">
+      <DependentUpon>202206171623424_servicenull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

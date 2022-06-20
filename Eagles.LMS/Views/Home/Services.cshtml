@@ -5,7 +5,21 @@
     UnitOfWork ctx = new UnitOfWork();
 
     //var services = ctx.ServiceManager.GetAll().OrderByDescending(s => s.Id).ToList();
-    var services = ctx.ServiceManager.GetAll().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).ToList();
+
+    var servic = ctx.ServiceManager.GetAll().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s=>s.Order).ToList();
+    List<Service> services = new List<Service>();
+    foreach(var service in servic)
+    {
+        if(service.Order!=null && service.Order!=0)
+        {
+            services.Insert(0, service);
+        }
+        else
+        {
+            //sevic.Insert(services.Count(), service);
+            services.Add(service);
+        }
+    }
     bool en = true;
 
     if (Request.Cookies["Language"] != null)

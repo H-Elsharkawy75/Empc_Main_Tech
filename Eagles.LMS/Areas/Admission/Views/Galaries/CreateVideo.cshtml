@@ -85,20 +85,36 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Album</label>
-                                            @Html.DropDownListFor(x => Model.AlbumId, new SelectList(alboums,
-                                           "Id", "TitleEnglish"), htmlAttributes: new { @class = "form-control select2" })
+                                            @*@Html.DropDownListFor(x => Model.AlbumId, new SelectList(alboums,
+                                                "Id", "TitleEnglish"), htmlAttributes: new { @class = "form-control select2" })*@
+                                            <select id="AlbumId"name="AlbumId" class="form-control select2" style="width:100%">
+
+                                                @foreach (var item in alboums)
+                                                {
+
+                                                    if (item.TitleArabic != null || item.TitleEnglish != null)
+                                                    {
+                                                        <option value="@item.Id">
+                                                        @if (item.TitleArabic == null)
+                                                        {@item.TitleEnglish}
+                                                        else
+                                                        { @item.TitleArabic}
+                                                    </option>
+                                                    }
+                                                }
+                                            </select>
 
 
                                         </div>
                                     </div>
 
                                     @*<div class="col-lg-16">
-            <div class="mb-3">
-                <a href="https://www.youtube.com/embed/NjIkTXmPycY?autoplay=1" class="video-btn" data-type="iframe" tabindex="0">
-                    Watch Our Video
-                </a>
-            </div>
-        </div>*@
+                                            <div class="mb-3">
+                                                <a href="https://www.youtube.com/embed/NjIkTXmPycY?autoplay=1" class="video-btn" data-type="iframe" tabindex="0">
+                                                    Watch Our Video
+                                                </a>
+                                            </div>
+                                        </div>*@
 
 
 
@@ -139,9 +155,9 @@
 
 
                                 </div>
-                                    </div>
+                            </div>
 
-                                </div>
+                        </div>
 
 
                     </div>
