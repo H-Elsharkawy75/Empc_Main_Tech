@@ -15,10 +15,24 @@ namespace Eagles.LMS.Web_Services
     {
         public string Mobile { get; set; }
         public string EmailAddress { get; set; }
+
         public string Password { get; set; }
+        public string oldpassword { get; set; }
         public string FullName { get; set; }
         public string GroupName { get; set; }
         public int? GroupId { get; set; }
+
+        public int ID { get; set; }
+
+
+    }
+    public class UserCheckPass
+    {
+        public string Mobile { get; set; }
+        public string EmailAddress { get; set; }
+        public string Password { get; set; }
+        public string FullName { get; set; }
+    
 
         public int ID { get; set; }
 
@@ -69,6 +83,45 @@ namespace Eagles.LMS.Web_Services
             user.EmailAddress = userDTO.EmailAddress;
             user.FullName = userDTO.FullName;
             user.GroupId = userDTO.GroupId;
+            if(!string.IsNullOrEmpty(userDTO.oldpassword))
+            {
+                if(ctx.UserManager.Verification(user.PasswordHash, user.PasswordSalt, userDTO.oldpassword))
+                {
+
+               
+            if (!string.IsNullOrEmpty(userDTO.Password))
+            {
+                byte[] passwordHash, passwordSalt;
+                ctx.UserManager.CreateUserPassword(out passwordHash, out passwordSalt, userDTO.Password);
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+            }
+                }
+                else
+                {
+                    return Json(new { Message = "Your Old Pass is Wrong", State = 200 });
+
+                }
+            }
+
+            ctx.UserManager.Edit(user);
+            return Json(new { Message = "successfully Users Updated", State = 200 });
+        }  
+        [HttpPost]
+        [Route("api/User/ChangePassword")]
+        public async Task<IHttpActionResult> ChangePassword(UserCheckPass userDTO)
+        {
+            UnitOfWork ctx = new UnitOfWork();
+            var oldUser = await ctx.UserManager.GetValidateUserBy(userDTO.EmailAddress, userDTO.Mobile, userDTO.ID);
+            if (oldUser.Item1 != null)
+            {
+                return BadRequest(oldUser.Item2);
+            }
+            var user = ctx.UserManager.GetById(userDTO.ID);
+            user.Mobile = userDTO.Mobile;
+            user.UserTybe =  UserTybe.Users;
+            user.EmailAddress = userDTO.EmailAddress;
+            user.FullName = userDTO.FullName;
             if (!string.IsNullOrEmpty(userDTO.Password))
             {
                 byte[] passwordHash, passwordSalt;
@@ -91,6 +144,7 @@ namespace Eagles.LMS.Web_Services
                 user.EmailAddress,
                 user.Mobile,
                 user.GroupId,
+              
                 IsTeacher = user.UserTybe == UserTybe.Teacher,
 
             });

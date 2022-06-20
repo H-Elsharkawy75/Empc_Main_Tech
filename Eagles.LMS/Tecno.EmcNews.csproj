@@ -371,33 +371,16 @@
     <Compile Include="BLL\BookingManager.cs" />
     <Compile Include="BLL\BookingServiceManager.cs" />
     <Compile Include="BLL\BrochuresManager.cs" />
+    <Compile Include="BLL\CareerInServicesManager.cs" />
+    <Compile Include="BLL\CareerServicesManager.cs" />
+    <Compile Include="BLL\CareersManager.cs" />
     <Compile Include="BLL\CitizensManager.cs" />
     <Compile Include="BLL\ClientsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
     <Compile Include="BLL\SettingsManager.cs" />
-    <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.cs" />
-    <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.designer.cs">
-      <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206171623424_servicenull.cs" />
-    <Compile Include="Migrations\202206171623424_servicenull.designer.cs">
-      <DependentUpon>202206171623424_servicenull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206180930157_careesrs.cs" />
-    <Compile Include="Migrations\202206180930157_careesrs.designer.cs">
-      <DependentUpon>202206180930157_careesrs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206181104210_careesdasdad.cs" />
-    <Compile Include="Migrations\202206181104210_careesdasdad.designer.cs">
-      <DependentUpon>202206181104210_careesdasdad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206190839350_removecarer.cs" />
-    <Compile Include="Migrations\202206190839350_removecarer.designer.cs">
-      <DependentUpon>202206190839350_removecarer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206191210501_sdfsdf.cs" />
-    <Compile Include="Migrations\202206191210501_sdfsdf.designer.cs">
-      <DependentUpon>202206191210501_sdfsdf.cs</DependentUpon>
+    <Compile Include="Migrations\202206201854444_career.cs" />
+    <Compile Include="Migrations\202206201854444_career.designer.cs">
+      <DependentUpon>202206201854444_career.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -406,6 +389,9 @@
     <Compile Include="Models\BookingInServices.cs" />
     <Compile Include="Models\BookingService.cs" />
     <Compile Include="Models\Brochure.cs" />
+    <Compile Include="Models\CareerInServices.cs" />
+    <Compile Include="Models\Careers.cs" />
+    <Compile Include="Models\CareerServices.cs" />
     <Compile Include="Models\Citizens.cs" />
     <Compile Include="Areas\Admission\Controllers\ContactUsController.cs" />
     <Compile Include="Areas\Admission\Controllers\GalariesController.cs" />
@@ -1696,6 +1682,8 @@
     <Content Include="Areas\Admission\Views\Applications\Edit.cshtml" />
     <Content Include="Areas\Admission\Views\Applications\Index.cshtml" />
     <Content Include="Areas\Admission\Views\Brochures\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\Users\ChangePassword.cshtml" />
+    <Content Include="Areas\Admission\Views\Users\_Changepass.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2096,8 +2084,8 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206170721257_orderserviceandarabiciframe.resx">
-      <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206201854444_career.resx">
+      <DependentUpon>202206201854444_career.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

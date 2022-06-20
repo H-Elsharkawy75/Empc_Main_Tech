@@ -32,12 +32,12 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="mb-3">
                             <label class="form-label">Old Password</label>
-                            <input ng-model="oldpassword" required id="passold" class="form-control" type="password" placeholder="Password">
+                            <input ng-model="oldpassword" required id="passold"  class="form-control" type="password" placeholder="Password">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="mb-3">
-                            <label class="form-label">Password</label>
+                            <label class="form-label">New Password</label>
                             <input ng-model="Password" required class="form-control" type="password" placeholder="Password">
                         </div>
                     </div>
@@ -62,13 +62,13 @@
                 </div>
             </div>
 
-<div class="col-lg-12">
-    <div class="mb-3">
-        <label class="form-label">Group</label>
-        <select ng-model="Group_dll" ng-options="date as date.Name for date in Groups track by date.Id" class="form-control select2">
-        </select>
-    </div>
-</div>
+            @*<div class="col-lg-12">
+                    <div class="mb-3">
+                        <label class="form-label">Group</label>
+                        <select ng-model="Group_dll" ng-options="date as date.Name for date in Groups track by date.Id" class="form-control select2">
+                        </select>
+                    </div>
+                </div>*@
 
         </div>
     </div>
@@ -217,3 +217,15 @@
 
     </div>
 </div>
+@section EndBody{
+
+    @*<script>
+        
+
+        window.onload = function () {
+
+                document.getElementById('passold').value = ''
+            };
+    
+    </script>*@
+}

@@ -36,6 +36,20 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 return HttpNotFound();
             ViewBag.UserId = id;
             return View();
+        } 
+        public ActionResult ChangePassword()
+        {
+            string id ="";
+            if (Session["User_Key"] != null)
+            {
+                 id = Session["User_Key"].ToString();
+
+            }
+            //var user = _ctx.UserManager.GetBy(int.Parse(id));
+            //if (user == null)
+            //    return HttpNotFound();
+            ViewBag.UserId = id;
+            return View();
         }
         [HttpPost]
         public ActionResult Delete(int id)

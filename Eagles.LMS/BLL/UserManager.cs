@@ -101,7 +101,7 @@ namespace Eagles.LMS.BLL
             }
         }
 
-        private bool Verification(byte[] passwordHash, byte[] passwordSalt, string password)
+        public bool Verification(byte[] passwordHash, byte[] passwordSalt, string password)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
