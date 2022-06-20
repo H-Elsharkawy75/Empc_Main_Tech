@@ -4391,7 +4391,7 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Location Shooting Areas.
+        ///   Looks up a localized string similar to Outdoor shooting areas.
         /// </summary>
         public static string ShootingAreas {
             get {

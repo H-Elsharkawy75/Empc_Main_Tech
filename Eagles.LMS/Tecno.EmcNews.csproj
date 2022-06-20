@@ -375,9 +375,29 @@
     <Compile Include="BLL\ClientsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
     <Compile Include="BLL\SettingsManager.cs" />
-    <Compile Include="Migrations\202206200632260_carrer.cs" />
-    <Compile Include="Migrations\202206200632260_carrer.designer.cs">
-      <DependentUpon>202206200632260_carrer.cs</DependentUpon>
+    <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.cs" />
+    <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.designer.cs">
+      <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206171623424_servicenull.cs" />
+    <Compile Include="Migrations\202206171623424_servicenull.designer.cs">
+      <DependentUpon>202206171623424_servicenull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206180930157_careesrs.cs" />
+    <Compile Include="Migrations\202206180930157_careesrs.designer.cs">
+      <DependentUpon>202206180930157_careesrs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206181104210_careesdasdad.cs" />
+    <Compile Include="Migrations\202206181104210_careesdasdad.designer.cs">
+      <DependentUpon>202206181104210_careesdasdad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206190839350_removecarer.cs" />
+    <Compile Include="Migrations\202206190839350_removecarer.designer.cs">
+      <DependentUpon>202206190839350_removecarer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206191210501_sdfsdf.cs" />
+    <Compile Include="Migrations\202206191210501_sdfsdf.designer.cs">
+      <DependentUpon>202206191210501_sdfsdf.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -875,6 +895,15 @@
     <Content Include="assets_NewPublic\fonts\lg.svg" />
     <Content Include="assets_NewPublic\images\1414555260_f023-128.png" />
     <Content Include="assets_NewPublic\images\bc-header.jpg" />
+    <Content Include="assets_NewPublic\images\BG\LocationBG.jpeg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\cam.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\NewBooking.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\NewGallaryBGIN.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\NewLocationBGin.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\NewNewsGBIN.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\ServiceNewGB.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NewsBG.jpeg" />
+    <Content Include="assets_NewPublic\images\BG\ServiceBG.jpeg" />
     <Content Include="assets_NewPublic\images\bg_1.jpg" />
     <Content Include="assets_NewPublic\images\bg_2.jpg" />
     <Content Include="assets_NewPublic\images\bg_3-small.jpg" />
@@ -2067,8 +2096,8 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206200632260_carrer.resx">
-      <DependentUpon>202206200632260_carrer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206170721257_orderserviceandarabiciframe.resx">
+      <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -9,6 +9,9 @@ using Eagles.LMS.BLL;
 using Eagles.LMS.DTO;
 using Eagles.LMS.Models;
 
+
+using System.IO;
+
 namespace Eagles.LMS.Controllers
 {
     public class HomeController : Controller
@@ -287,7 +290,47 @@ namespace Eagles.LMS.Controllers
             //return Redirect("/Admission");
             return View();
         }
+        [HttpPost]
+        public ActionResult Careers(Career _career, HttpPostedFileBase uploadattachments)
+        {
+            var _maxOrder = new UnitOfWork().CareerManager.GetAllBind();
+            ViewBag.MaxOrder = _maxOrder;
 
+
+            //_career.Status = EntityStatus.Approval;
+            ActionResult result = View(_career);
+
+            if (ModelState.IsValid)
+            {
+
+                RequestStatus requestStatus;
+                if (uploadattachments == null || uploadattachments.ContentLength == 0)
+                {
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
+                }
+                else
+                {
+                    string _rendom = System.Guid.NewGuid().ToString();
+                    //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
+                    string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
+                    var fileName = _rendom + extention;
+                    var path = Path.Combine(Server.MapPath("~/attachments/Careers"), fileName);
+                    uploadattachments.SaveAs(path);
+                    _career.CVLink = $"/attachments/Careers/{fileName}";
+
+                    var _ctx = new UnitOfWork();
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+
+                    
+                }
+                TempData["RequestStatus"] = requestStatus;
+
+
+
+            }
+            return result;
+
+        }
         public ActionResult ChangeLanguage(string SelectedLanguage, string redirect)
         {
 
