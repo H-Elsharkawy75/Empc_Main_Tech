@@ -282,6 +282,12 @@ namespace Eagles.LMS.Controllers
         }
 
 
+        public ActionResult Careers()
+        {
+            //return Redirect("/Admission");
+            return View();
+        }
+
         public ActionResult ChangeLanguage(string SelectedLanguage, string redirect)
         {
 

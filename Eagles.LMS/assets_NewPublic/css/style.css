@@ -4865,6 +4865,7 @@ transform: rotate(35deg);
         align-items: center;
         background: radial-gradient(circle, rgb(11 53 65 / 85%) 50%, rgb(0 0 0 / 95%) 100%);
         background: radial-gradient(circle, rgb(92 92 92 / 85%) 50%, rgb(66 66 66 / 95%) 100%);
+        background: radial-gradient(circle, rgb(0 0 0 / 78%) 50%, rgb(0 0 0 / 85%) 100%);
     }
 
 .newlocation .newlocConte{
@@ -6520,6 +6521,7 @@ padding-top: 10%;
     border: 2px solid #f46a6a;
     color: #fff;
     font-size: 15px;
+    z-index:99999999999999;
 }
 
 .alert-success {
@@ -6527,6 +6529,7 @@ padding-top: 10%;
     border: 2px solid #34c38f !important;
     color: #fff;
     font-size: 15px;
+    z-index: 99999999999999;
 }
 
 

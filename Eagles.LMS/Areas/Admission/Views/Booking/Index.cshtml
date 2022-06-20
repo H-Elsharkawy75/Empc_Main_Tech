@@ -13,7 +13,7 @@
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                 <h4 class="mb-sm-0 font-size-18">
-                    Booking
+                    Careers
                 </h4>
 
 
@@ -32,15 +32,15 @@
                         <table id="table_Slider" class=" table table-bordered tableOtherdite">
                             <thead class="DarkThead">
                                 <tr>
-                                    <th> <p>Company Name</p> </th>
-                                    <th> <p>Company Email </p></th>
-                                    <th> <p>Date of Services </p></th>
-                                    <th> <p>Start Time</p> </th>
-                                    <th> <p>End Time </p></th>
-                                    <th> <p>Origin  </p></th>
+                                    <th> <p> Name</p> </th>
+                                    <th> <p>Date Of Birth </p></th>
+                                    <th> <p>Address </p></th>
+                                    <th> <p>Certification</p> </th>
+                                    <th> <p>Graduation Years </p></th>
+                                    <th> <p>Experiance Level  </p></th>
 
-                                    <th> <p>Message </p></th>
-                                    <th> <p>Services </p></th>
+                                    <th> <p>Job Name </p></th>
+                                    <th> <p>Cv </p></th>
 
 
                                 </tr>
@@ -49,32 +49,31 @@
 
                             <tbody>
 
-                                <tr>
+                             
                                     @foreach (var item in Model)
                                     {
                                         bookingInServices = ctx.BookingInServicesManager.GetAllIncluded(item.Id);
 
                                     <tr>
-                                        <td> <p>@item.CompanyName</p> </td>
-                                        <td> <p>@item.CompanyEmail</p> </td>
-                                        <td> <p>@item.DataServicees</p> </td>
-                                        <td> <p>@item.SartTime</p> </td>
-                                        <td> <p>@item.EndTime</p> </td>
-                                        <td> <p>@item.Origin</p> </td>
-                                        <td> <p>@item.Message</p> </td>
+                                        <td> <p>@item.Name</p> </td>
+                                        <td> <p>@item.DateOfBirth</p> </td>
+                                        <td> <p>@item.Address</p> </td>
+                                        <td> <p>@item.Certification</p> </td>
+                                        <td> <p>@item.GraduationYears</p> </td>
+                                        <td> <p>@item.ExperianceLevel</p> </td>
+                                        <td> <p>@item.JobName</p> </td>
+                                        <td> <p>@item.CVLink</p> </td>
 
-
-
-                                        <td>
-                                            @if (bookingInServices != null && bookingInServices.Any())
-                                            {
-                                                foreach (var book_services in bookingInServices)
-                                                {
-                                                    <span>@book_services.BookingService.Name</span>
-                                                    <span> - </span>
-                                                }
-                                            }
-                                        </td>
+                                        @*<td>
+                        @if (bookingInServices != null && bookingInServices.Any())
+                        {
+                            foreach (var book_services in bookingInServices)
+                            {
+                                <span>@book_services.BookingService.Name</span>
+                                <span> - </span>
+                            }
+                        }
+                    </td>*@
 
 
                                     </tr>

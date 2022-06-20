@@ -1147,9 +1147,6 @@
                         @for (int i = 0; i < _relatedWerbsites.Count; i++)
                         {
 
-
-
-
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 relatedCOntentItemSec">
                                 <div class="relateditem">
                                     <div class="leftside">
@@ -1171,7 +1168,7 @@
                                                     <p>@Html.Raw(@_relatedWerbsites[i].DescriptionArabic)</p>
                                                 }
                                                 <div class="btns">
-                                                    <a href="@_relatedWerbsites[i].Link" class="theme-btn" tabindex="0"> @Resources.Global.MoreDetails</a>
+                                                    <a href="@_relatedWerbsites[i].Link" target="_blank" class="theme-btn" tabindex="0"> @Resources.Global.MoreDetails</a>
                                                 </div>
                                             </div>
 

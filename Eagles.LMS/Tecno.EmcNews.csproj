@@ -361,6 +361,7 @@
     <Compile Include="Areas\Admission\Controllers\ApplicationsController.cs" />
     <Compile Include="Areas\Admission\Controllers\BookingController.cs" />
     <Compile Include="Areas\Admission\Controllers\BrochuresController.cs" />
+    <Compile Include="Areas\Admission\Controllers\CareerController.cs" />
     <Compile Include="Areas\Admission\Controllers\CitizensController.cs" />
     <Compile Include="Areas\Admission\Controllers\ClientsController.cs" />
     <Compile Include="Areas\Admission\Controllers\LogsController.cs" />
@@ -371,6 +372,9 @@
     <Compile Include="BLL\BookingManager.cs" />
     <Compile Include="BLL\BookingServiceManager.cs" />
     <Compile Include="BLL\BrochuresManager.cs" />
+    <Compile Include="BLL\CareerServicesManager.cs" />
+    <Compile Include="BLL\CareerInServicesManager.cs" />
+    <Compile Include="BLL\CareersManager.cs" />
     <Compile Include="BLL\CitizensManager.cs" />
     <Compile Include="BLL\ClientsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
@@ -383,6 +387,22 @@
     <Compile Include="Migrations\202206171623424_servicenull.designer.cs">
       <DependentUpon>202206171623424_servicenull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206180930157_careesrs.cs" />
+    <Compile Include="Migrations\202206180930157_careesrs.designer.cs">
+      <DependentUpon>202206180930157_careesrs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206181104210_careesdasdad.cs" />
+    <Compile Include="Migrations\202206181104210_careesdasdad.designer.cs">
+      <DependentUpon>202206181104210_careesdasdad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206190839350_removecarer.cs" />
+    <Compile Include="Migrations\202206190839350_removecarer.designer.cs">
+      <DependentUpon>202206190839350_removecarer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206191210501_sdfsdf.cs" />
+    <Compile Include="Migrations\202206191210501_sdfsdf.designer.cs">
+      <DependentUpon>202206191210501_sdfsdf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Application.cs" />
@@ -390,6 +410,9 @@
     <Compile Include="Models\BookingInServices.cs" />
     <Compile Include="Models\BookingService.cs" />
     <Compile Include="Models\Brochure.cs" />
+    <Compile Include="Models\CareerInServices.cs" />
+    <Compile Include="Models\Careers.cs" />
+    <Compile Include="Models\CareerServices.cs" />
     <Compile Include="Models\Citizens.cs" />
     <Compile Include="Areas\Admission\Controllers\ContactUsController.cs" />
     <Compile Include="Areas\Admission\Controllers\GalariesController.cs" />
@@ -428,7 +451,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="BLL\AboutUsManager.cs" />
     <Compile Include="Data\EmcNewsContext.cs" />
     <Compile Include="BLL\GalaryManager.cs" />
@@ -557,33 +579,14 @@
     <Content Include="assets_2\staticFiles\publickpage_style\Student_Responsev.css" />
     <Content Include="assets_2\staticFiles\publickpage_style\stydents.css" />
     <Content Include="assets_2\staticFiles\publickpage_style\Stydents_rtl.css" />
-    <Content Include="assets_2\staticFiles\publick new images\1.png" />
-    <Content Include="assets_2\staticFiles\publick new images\2.png" />
-    <Content Include="assets_2\staticFiles\publick new images\about.png" />
-    <Content Include="assets_2\staticFiles\publick new images\arrow.png" />
-    <Content Include="assets_2\staticFiles\publick new images\DropLinkshort.png" />
-    <Content Include="assets_2\staticFiles\publick new images\DropLinkshort2.png" />
-    <Content Include="assets_2\staticFiles\publick new images\footer_background.png" />
-    <Content Include="assets_2\staticFiles\publick new images\h1-birds.png" />
-    <Content Include="assets_2\staticFiles\publick new images\imac-macintosh-computer.png" />
-    <Content Include="assets_2\staticFiles\publick new images\imac-mock-up-png.png" />
-    <Content Include="assets_2\staticFiles\publick new images\inner.png" />
-    <Content Include="assets_2\staticFiles\publick new images\mobile_1.png" />
-    <Content Include="assets_2\staticFiles\publick new images\mobile_2.png" />
-    <Content Include="assets_2\staticFiles\publick new images\multimedia.png" />
-    <Content Include="assets_2\staticFiles\publick new images\unnamed.jpg" />
-    <Content Include="assets_2\staticFiles\publick new images\user.png" />
-    <Content Include="assets_2\staticFiles\publick new images\video.png" />
     <Content Include="assets_2\staticFiles\publickpage_style\videojs-mobile-ui.min.js" />
     <Content Include="assets_2\staticFiles\publickpage_style\videoJs.js" />
     <Content Include="assets_2\staticFiles\QRImg\download.png" />
     <Content Include="assets_2\staticFiles\QRImg\jquery.min.js" />
     <Content Include="assets_2\staticFiles\QRImg\qrcode.js" />
     <Content Include="assets_2\staticFiles\QRImg\qrcode.min.js" />
-    <Content Include="assets_2\VedieoPlugin\1.mp4" />
     <Content Include="assets_2\VedieoPlugin\demo.js" />
     <Content Include="assets_2\VedieoPlugin\explore.jpg" />
-    <Content Include="assets_2\VedieoPlugin\explore.mp4" />
     <Content Include="assets_2\VedieoPlugin\hwshamposter.png" />
     <Content Include="assets_2\VedieoPlugin\mediaelement-and-player.js" />
     <Content Include="assets_2\VedieoPlugin\mediaelementplayer.css" />
@@ -591,7 +594,6 @@
     <Content Include="assets_2\VedieoPlugin\popcorn.footnote.js" />
     <Content Include="assets_2\VedieoPlugin\popcorn.js" />
     <Content Include="assets_2\VedieoPlugin\popcorn.subtitle.js" />
-    <Content Include="assets_2\VedieoPlugin\trailer.mp4" />
     <Content Include="assets_2\VedieoPlugin\vidcha.js" />
     <Content Include="assets_NewDash\css\app-dark.min.css" />
     <Content Include="assets_NewDash\css\app-rtl.min.css" />
@@ -707,7 +709,6 @@
     <Content Include="assets_NewDash\js\pages\form-validation.init.js" />
     <Content Include="assets_NewDash\js\pages\form-wizard.init.js" />
     <Content Include="assets_NewDash\js\pages\form-xeditable.init.js" />
-    <Content Include="assets_NewDash\js\pages\gmaps.init.js" />
     <Content Include="assets_NewDash\js\pages\ico-landing.init.js" />
     <Content Include="assets_NewDash\js\pages\jquery-knob.init.js" />
     <Content Include="assets_NewDash\js\pages\leaflet-map.init.js" />
@@ -802,7 +803,6 @@
     <Content Include="assets_NewDash\libs\flot-charts\jquery.flot.stack.js" />
     <Content Include="assets_NewDash\libs\flot-charts\jquery.flot.time.js" />
     <Content Include="assets_NewDash\libs\flot.curvedLines\curvedLines.html" />
-    <Content Include="assets_NewDash\libs\gmaps\gmaps.min.js" />
     <Content Include="assets_NewDash\libs\inputmask\min\jquery.inputmask.bundle.min.js" />
     <Content Include="assets_NewDash\libs\ion-rangeslider\css\ion.rangeSlider.min.css" />
     <Content Include="assets_NewDash\libs\ion-rangeslider\js\ion.rangeSlider.min.js" />
@@ -1508,7 +1508,6 @@
     <Content Include="Areas\Admission\Views\Home\constviewdatatable.cshtml" />
     <Content Include="Areas\Admission\Views\Home\ResetPrintpage.cshtml" />
     <Content Include="Areas\Admission\Views\Home\A4Printpge.cshtml" />
-    <Content Include="assets_2\VedieoPlugin\trailer.ogv" />
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -1694,6 +1693,7 @@
     <Content Include="Areas\Admission\Views\Applications\Edit.cshtml" />
     <Content Include="Areas\Admission\Views\Applications\Index.cshtml" />
     <Content Include="Areas\Admission\Views\Brochures\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\Career\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1964,15 +1964,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts_2\Scripts.zip" />
-    <Content Include="Views\EducationalGrades\Index.cshtml" />
-    <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\System\Unauthorized.cshtml" />
     <Content Include="Views\Error.cshtml" />
-    <Content Include="Views\Account\Pending.cshtml" />
-    <Content Include="Views\QRCODE\ShowQuestionAnswer.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\Locations.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
@@ -1999,6 +1993,7 @@
     <Content Include="Views\Home\Brouchour.cshtml" />
     <Content Include="Views\Home\LocationOutdoor.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
+    <Content Include="Views\Home\Careers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2018,6 +2013,7 @@
     <Folder Include="Services\" />
     <Folder Include="Sheets\" />
     <Folder Include="uploads\NewFolder1\" />
+    <Folder Include="Views\Careers\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
@@ -2077,7 +2073,6 @@
     <Content Include="StaticFiles\fonts\ionicons.eot" />
     <Content Include="StaticFiles\fonts\ionicons.ttf" />
     <Content Include="StaticFiles\fonts\ionicons.woff" />
-    <Content Include="Views\Account\AccountIsPending.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -2097,9 +2092,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206170721257_orderserviceandarabiciframe.resx">
       <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206171623424_servicenull.resx">
-      <DependentUpon>202206171623424_servicenull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
