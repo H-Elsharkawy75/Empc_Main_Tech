@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Careers";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
 }
 
 
@@ -58,119 +59,120 @@
         <div class="col-lg-12">
             <div class="row">
 
+                @using (Html.BeginForm("Careers", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    <div class="col-lg-12">
+                        <div class="CitizenFormSend">
+                            <div class="container sendmessage">
+                                <form action="#" method="post">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>@Resources.Global.Name</label>
+                                                <input id="Careers_Name" type="text" placeholder='@Resources.Global.Name' />
+                                            </div>
 
 
-                <div class="col-lg-12">
-                    <div class="CitizenFormSend">
-                        <div class="container sendmessage">
-                            <form action="#" method="post">
-                                <div class="row">
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>@Resources.Global.Name</label>
-                                            <input id="Careers_Name" type="text" placeholder='@Resources.Global.Name' />
+                                        </div>
+                                        <!--end col-6-->
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>@Resources.Global.dateOfBirth</label>
+                                                <input id="Careers_DateOfBirth" type="date" placeholder='@Resources.Global.dateOfBirth' />
+                                            </div>
+                                        </div>
+                                        <!--end col-6-->
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>@Resources.Global.address</label>
+                                                <input id="Careers_Address" type="text" placeholder='@Resources.Global.address' />
+                                            </div>
+                                        </div>
+                                        <!--end col-6-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>@Resources.Global.certification</label>
+                                                <input id="Careers_Certification" type="text" placeholder='@Resources.Global.certification' />
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>@Resources.Global.certificationYeears</label>
+                                                <input id="Careers_CertificationYears" type="text" placeholder='@Resources.Global.certificationYeears' />
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>@Resources.Global.ExperianceLevel</label>
+                                                @*<input type="text" placeholder='@Resources.Global.ExperianceLevel' />*@
+
+                                                <select id="Careers_ExperianceLevel" required>
+                                                    <option value="">@Resources.Global.SelectYear</option>
+                                                    <option value="From 1 To 3">@Resources.Global.from1to3</option>
+                                                    <option value="From 3 To 5 Years">@Resources.Global.From3To5Years</option>
+                                                    <option value="More Than 5 Years">@Resources.Global.MoreThan5Years</option>
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>@Resources.Global.JobName</label>
+                                                <input id="Careers_JobName" type="text" placeholder='@Resources.Global.JobName' />
+                                            </div>
+
+
                                         </div>
 
 
-
-                                    </div>
-                                    <!--end col-6-->
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>@Resources.Global.dateOfBirth</label>
-                                            <input id="Careers_DateOfBirth" type="date" placeholder='@Resources.Global.dateOfBirth' />
-                                        </div>
-                                    </div>
-                                    <!--end col-6-->
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>@Resources.Global.address</label>
-                                            <input id="Careers_Address" type="text" placeholder='@Resources.Global.address' />
-                                        </div>
-                                    </div>
-                                    <!--end col-6-->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>@Resources.Global.certification</label>
-                                            <input id="Careers_Certification" type="text" placeholder='@Resources.Global.certification' />
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>@Resources.Global.certificationYeears</label>
-                                            <input id="Careers_CertificationYears" type="text" placeholder='@Resources.Global.certificationYeears' />
-                                        </div>
-
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>@Resources.Global.ExperianceLevel</label>
-                                            @*<input type="text" placeholder='@Resources.Global.ExperianceLevel' />*@
-
-                                            <select id="Careers_ExperianceLevel" required>
-                                                <option  value="" >@Resources.Global.SelectYear</option>
-                                                <option value="From 1 To 3">@Resources.Global.from1to3</option>
-                                                <option value="From 3 To 5 Years">@Resources.Global.From3To5Years</option>
-                                                <option value="More Than 5 Years">@Resources.Global.MoreThan5Years</option>
-                                            </select>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>@Resources.Global.JobName</label>
-                                            <input id="Careers_JobName" type="text" placeholder='@Resources.Global.JobName' />
-                                        </div>
-
-
-                                    </div>
-
-
-                                    <div class="col-xs-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>@Resources.Global.CV </label>
-                                            <div class="input-group image-preview">
-                                                <input type="text" class=" image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
-                                                <div class="input-group-btn">
-                                                    <div class="btn btn-default image-preview-input">
-                                                        <span class="glyphicon glyphicon-folder-open"></span>
-                                                        <span class="image-preview-input-title">@Resources.Global.Browse</span>
-                                                        <input id="Careers_UploadCv" type="file" name="input-file-preview" /> <!-- rename it -->
+                                        <div class="col-xs-6 col-md-6">
+                                            <div class="form-group">
+                                                <label>@Resources.Global.CV </label>
+                                                <div class="input-group image-preview">
+                                                    <input type="text" class=" image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                                    <div class="input-group-btn">
+                                                        <div class="btn btn-default image-preview-input">
+                                                            <span class="glyphicon glyphicon-folder-open"></span>
+                                                            <span class="image-preview-input-title">@Resources.Global.Browse</span>
+                                                            <input id="Careers_UploadCv" type="file" name="input-file-preview" /> <!-- rename it -->
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
 
-                                    </div>
 
-
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <button id="Careers_SendForm" type="submit" class="btn btn-black">@Resources.Global.Send</button>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <button id="Careers_SendForm" type="submit" class="btn btn-black">@Resources.Global.Send</button>
+                                            </div>
                                         </div>
+                                        <!--end col-12-->
+
+
                                     </div>
-                                    <!--end col-12-->
+                                    <!--end row-->
 
+                                </form>
 
-                                </div>
-                                <!--end row-->
-
-                            </form>
-
+                            </div>
+                            <!--end container-->
                         </div>
-                        <!--end container-->
                     </div>
-                </div>
 
-
+                }
 
             </div>
         </div>
@@ -194,6 +196,30 @@
     <script src="~/assets_2/vendors/base/vendors.bundle.js" type="text/javascript"></script>
     <script src="~/assets_2/default/base/Scripts.bundle.js" type="text/javascript"></script>
     <script src="~/assets_2/plugins/extended/bootstrap-notify.js" type="text/javascript"></script>
+
+
+
+    @if (requestStatus != null)
+    {
+
+        <script>
+
+              notify = $.notify({
+                  message: '@requestStatus.Message',
+
+              }, {
+
+                      type: '@requestStatus.Status' == 'Created' ? "success" :"danger",
+                      animate: {
+                          enter: 'animated flipInY',
+                          exit: 'animated flipOutX',
+                      }
+                  });
+        </script>
+
+        TempData.Remove("RequestStatus");
+    }
+
 
     <script>
         $(() => {
@@ -252,9 +278,10 @@
                     _Careers_DateOfBirth = $("#Careers_DateOfBirth").val(),
                     _Careers_Address = $("#Careers_Address").val(),
                     _Careers_Certification = $("#Careers_Certification").val(),
-                    _Careers_CertificationYears = $("#Careers_CertificationYears").val(), 
+                    _Careers_CertificationYears = $("#Careers_CertificationYears").val(),
                     _Careers_ExperianceLevel = $("#Careers_ExperianceLevel").val(),
                     _Careers_JobName = $("#Careers_JobName").val();
+                _Careers_UploadCv = $("#Careers_UploadCv").val();
 
 
                 if (_Careers_Name == "" || typeof (_Careers_Name) == 'undefined') {
@@ -289,7 +316,10 @@
                     errorMessage("Please Select Experiance Level");
                     return false;
                 }
-
+                if (Careers_UploadCv.value == "" || typeof (Careers_UploadCv) == 'undefined') {
+                    errorMessage("Please Upload file");
+                    return false;
+                }
 
 
                 obj.Data = {
@@ -299,7 +329,8 @@
                     Certification: _Careers_Certification,
                     GraduationYears: _Careers_CertificationYears,
                     JobName: _Careers_JobName,
-                    ExperianceLevel: _Careers_ExperianceLevel
+                    ExperianceLevel: _Careers_ExperianceLevel,
+                    CVLink: _Careers_UploadCv
 
                 }
                 return true;

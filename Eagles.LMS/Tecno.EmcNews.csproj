@@ -881,6 +881,15 @@
     <Content Include="assets_NewPublic\fonts\lg.svg" />
     <Content Include="assets_NewPublic\images\1414555260_f023-128.png" />
     <Content Include="assets_NewPublic\images\bc-header.jpg" />
+    <Content Include="assets_NewPublic\images\BG\LocationBG.jpeg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\cam.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\NewBooking.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\NewGallaryBGIN.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\NewLocationBGin.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\NewNewsGBIN.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NEWBG\ServiceNewGB.jpg" />
+    <Content Include="assets_NewPublic\images\BG\NewsBG.jpeg" />
+    <Content Include="assets_NewPublic\images\BG\ServiceBG.jpeg" />
     <Content Include="assets_NewPublic\images\bg_1.jpg" />
     <Content Include="assets_NewPublic\images\bg_2.jpg" />
     <Content Include="assets_NewPublic\images\bg_3-small.jpg" />
