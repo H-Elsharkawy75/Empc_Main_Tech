@@ -7,13 +7,13 @@ namespace Eagles.LMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class servicenull : IMigrationMetadata
+    public sealed partial class carrer : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(servicenull));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(carrer));
         
         string IMigrationMetadata.Id
         {
-            get { return "202206171623424_servicenull"; }
+            get { return "202206200632260_carrer"; }
         }
         
         string IMigrationMetadata.Source

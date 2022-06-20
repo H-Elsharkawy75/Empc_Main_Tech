@@ -361,7 +361,6 @@
     <Compile Include="Areas\Admission\Controllers\ApplicationsController.cs" />
     <Compile Include="Areas\Admission\Controllers\BookingController.cs" />
     <Compile Include="Areas\Admission\Controllers\BrochuresController.cs" />
-    <Compile Include="Areas\Admission\Controllers\CareerController.cs" />
     <Compile Include="Areas\Admission\Controllers\CitizensController.cs" />
     <Compile Include="Areas\Admission\Controllers\ClientsController.cs" />
     <Compile Include="Areas\Admission\Controllers\LogsController.cs" />
@@ -372,36 +371,13 @@
     <Compile Include="BLL\BookingManager.cs" />
     <Compile Include="BLL\BookingServiceManager.cs" />
     <Compile Include="BLL\BrochuresManager.cs" />
-    <Compile Include="BLL\CareerServicesManager.cs" />
-    <Compile Include="BLL\CareerInServicesManager.cs" />
-    <Compile Include="BLL\CareersManager.cs" />
     <Compile Include="BLL\CitizensManager.cs" />
     <Compile Include="BLL\ClientsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
     <Compile Include="BLL\SettingsManager.cs" />
-    <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.cs" />
-    <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.designer.cs">
-      <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206171623424_servicenull.cs" />
-    <Compile Include="Migrations\202206171623424_servicenull.designer.cs">
-      <DependentUpon>202206171623424_servicenull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206180930157_careesrs.cs" />
-    <Compile Include="Migrations\202206180930157_careesrs.designer.cs">
-      <DependentUpon>202206180930157_careesrs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206181104210_careesdasdad.cs" />
-    <Compile Include="Migrations\202206181104210_careesdasdad.designer.cs">
-      <DependentUpon>202206181104210_careesdasdad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206190839350_removecarer.cs" />
-    <Compile Include="Migrations\202206190839350_removecarer.designer.cs">
-      <DependentUpon>202206190839350_removecarer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206191210501_sdfsdf.cs" />
-    <Compile Include="Migrations\202206191210501_sdfsdf.designer.cs">
-      <DependentUpon>202206191210501_sdfsdf.cs</DependentUpon>
+    <Compile Include="Migrations\202206200632260_carrer.cs" />
+    <Compile Include="Migrations\202206200632260_carrer.designer.cs">
+      <DependentUpon>202206200632260_carrer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -410,9 +386,6 @@
     <Compile Include="Models\BookingInServices.cs" />
     <Compile Include="Models\BookingService.cs" />
     <Compile Include="Models\Brochure.cs" />
-    <Compile Include="Models\CareerInServices.cs" />
-    <Compile Include="Models\Careers.cs" />
-    <Compile Include="Models\CareerServices.cs" />
     <Compile Include="Models\Citizens.cs" />
     <Compile Include="Areas\Admission\Controllers\ContactUsController.cs" />
     <Compile Include="Areas\Admission\Controllers\GalariesController.cs" />
@@ -451,6 +424,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="BLL\AboutUsManager.cs" />
     <Compile Include="Data\EmcNewsContext.cs" />
     <Compile Include="BLL\GalaryManager.cs" />
@@ -1693,7 +1667,6 @@
     <Content Include="Areas\Admission\Views\Applications\Edit.cshtml" />
     <Content Include="Areas\Admission\Views\Applications\Index.cshtml" />
     <Content Include="Areas\Admission\Views\Brochures\Index.cshtml" />
-    <Content Include="Areas\Admission\Views\Career\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1993,7 +1966,6 @@
     <Content Include="Views\Home\Brouchour.cshtml" />
     <Content Include="Views\Home\LocationOutdoor.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
-    <Content Include="Views\Home\Careers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2004,6 +1976,8 @@
     <Folder Include="Areas\Admission\UploadedFiles\UserImages\" />
     <Folder Include="assets_2\app\custom\" />
     <Folder Include="assets_2\plugins\calculator\" />
+    <Folder Include="assets_2\staticFiles\publick new images\" />
+    <Folder Include="assets_NewDash\libs\gmaps\" />
     <Folder Include="assets_NewPublic\libs\VideoPopUp\images\" />
     <Folder Include="attachments\PriviteVideos\" />
     <Folder Include="DTO\ViewModels\" />
@@ -2013,8 +1987,11 @@
     <Folder Include="Services\" />
     <Folder Include="Sheets\" />
     <Folder Include="uploads\NewFolder1\" />
-    <Folder Include="Views\Careers\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\EducationalGrades\" />
+    <Folder Include="Views\Error\" />
+    <Folder Include="Views\QRCODE\" />
+    <Folder Include="Views\System\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admission\Views\web.config">
@@ -2090,8 +2067,8 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206170721257_orderserviceandarabiciframe.resx">
-      <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206200632260_carrer.resx">
+      <DependentUpon>202206200632260_carrer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
