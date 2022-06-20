@@ -99,7 +99,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
 
         [HttpPost]
-        public ActionResult EditVideo(Galary galary, HttpPostedFileBase uploadattachments)
+        public ActionResult EditVideo(Galary galary, int? AlbumId, HttpPostedFileBase uploadattachments)
         {
 
             ActionResult result = View(galary);
@@ -138,6 +138,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 int userId = GetUserId();
                 galary.UserEditId = userId;
                 galary.EditeTime = DateTime.Now;
+                galary.AlbumId = AlbumId;
 
 
                 var ctx = new UnitOfWork();
@@ -433,7 +434,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateVideo(Galary galary, HttpPostedFileBase uploadattachments)
+        public ActionResult CreateVideo(Galary galary,int? AlbumId, HttpPostedFileBase uploadattachments)
         {
 
             ActionResult result = View(galary);
@@ -469,7 +470,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     uploadattachments.SaveAs(path);
                     galary.Image = $"/attachments/{fileName}";
                     galary.IsImage = false;
-
+                    galary.AlbumId = AlbumId;
 
                     //slider.Iframe = slider.Iframe.Split('&')[0].Split('=')[1].ToString();
                     galary.VideoIframe = galary.VideoIframe;

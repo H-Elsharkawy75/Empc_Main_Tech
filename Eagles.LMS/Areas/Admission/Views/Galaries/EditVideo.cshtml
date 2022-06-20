@@ -83,9 +83,37 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Album</label>
-                                            @Html.DropDownListFor(x => Model.AlbumId, new SelectList(alboums,
-                                           "Id", "TitleEnglish"), htmlAttributes: new { @class = "form-control select2" })
+                                            <select id="AlbumId" name="AlbumId" class="form-control select2" style="width:100%">
 
+                                                @foreach (var item in alboums)
+                                                {
+                                                    //if ((!string.IsNullOrEmpty(item.TitleArabic) && !string.IsNullOrEmpty(item.TitleEnglish)) ||
+                                                    //    (!string.IsNullOrWhiteSpace(item.TitleArabic) && !string.IsNullOrWhiteSpace(item.TitleEnglish)))
+
+                                                    //{
+                                                    if (item.TitleArabic != null || item.TitleEnglish != null)
+                                                    {
+                                                        if (item.Id == Model.AlbumId)
+                                                        {
+                                                            <option value="@item.Id" selected>
+                                                                @if (item.TitleArabic == null)
+                                                                {@item.TitleEnglish}
+                                                            else
+                                                            { @item.TitleArabic}
+                                                            </option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Id">
+                                                                @if (item.TitleArabic == null)
+                                                                {@item.TitleEnglish}
+                                                            else
+                                                            { @item.TitleArabic}
+                                                            </option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
 
                                         </div>
                                     </div>
@@ -116,7 +144,7 @@
                                            placeholder = "English Iframe Video"
                                        })
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Arabic Video Link Iframe</label>
@@ -155,7 +183,7 @@
                                     </video>
 
                                 </div>
-                              
+
                             </div>
 
                         </div>

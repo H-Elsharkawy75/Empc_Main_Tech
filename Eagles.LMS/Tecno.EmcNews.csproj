@@ -383,6 +383,10 @@
     <Compile Include="Migrations\202206170721257_orderserviceandarabiciframe.designer.cs">
       <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206171623424_servicenull.cs" />
+    <Compile Include="Migrations\202206171623424_servicenull.designer.cs">
+      <DependentUpon>202206171623424_servicenull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202206180930157_careesrs.cs" />
     <Compile Include="Migrations\202206180930157_careesrs.designer.cs">
       <DependentUpon>202206180930157_careesrs.cs</DependentUpon>
@@ -2088,18 +2092,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206170721257_orderserviceandarabiciframe.resx">
       <DependentUpon>202206170721257_orderserviceandarabiciframe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206180930157_careesrs.resx">
-      <DependentUpon>202206180930157_careesrs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206181104210_careesdasdad.resx">
-      <DependentUpon>202206181104210_careesdasdad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206190839350_removecarer.resx">
-      <DependentUpon>202206190839350_removecarer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206191210501_sdfsdf.resx">
-      <DependentUpon>202206191210501_sdfsdf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

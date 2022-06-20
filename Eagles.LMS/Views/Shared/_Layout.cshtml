@@ -24,8 +24,30 @@
 
     var _contactUs = ctx.ContactUsManager.GetAll().FirstOrDefault();
     //var _services = ctx.ServiceManager.GetAll().OrderByDescending(s => s.Id).ToList();
-    var _services = ctx.ServiceManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).ToList();
 
+    var servic = ctx.ServiceManager.GetAll().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Order).ToList();
+    List<Service> _services = new List<Service>();
+    foreach (var service in servic)
+    {
+        if (service.Order != null && service.Order != 0)
+        {
+            _services.Insert(0, service);
+        }
+        else
+        {
+            //sevic.Insert(services.Count(), service);
+            _services.Add(service);
+        }
+    }
+    if (en == true)
+    {
+        _services = _services.Where(s => s.TitleEnglish != null).ToList();
+    }
+    else
+    {
+        _services = _services.Where(s => s.TitleArabic != null).ToList();
+
+    }
     var _Applicaions = ctx.ApplicationManager.GetAll().OrderByDescending(s => s.Id).ToList();
     var _galaries = ctx.GalaryManager.GetAll().Where(s => s.IsImage).OrderByDescending(s => s.Order).ToList();
     var allSocialMedia = ctx.SocialMediaManager.GetAll().ToList();
