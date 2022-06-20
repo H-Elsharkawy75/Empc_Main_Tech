@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class servicenull : DbMigration
+    public partial class dsddui : DbMigration
     {
         public override void Up()
         {
