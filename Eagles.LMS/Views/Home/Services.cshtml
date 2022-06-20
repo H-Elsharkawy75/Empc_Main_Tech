@@ -42,112 +42,119 @@
     </style>
 }
 <div class="header-bc">
-    <div class="container">
-        <div class="row">
 
-            <div class="col-md-6">
+    <div class="ClassImaesBG">
+        <img src="~/assets_NewPublic/images/bg/NEWBG/ServiceNewGB.jpg" />
+    </div>
 
-                <div class="title-header">
+    <div class="PageTitleCOnt">
+        <div class="container">
+            <div class="row">
 
-                    <h3>@Resources.Global.services</h3>
+                <div class="col-md-6">
 
-                    <div class="breadcrumbs">
-                        <ul>
-                            <li><a href="/Home">@Resources.Global.Home</a> > </li>
-                            <li>@Resources.Global.services</li>
-                        </ul>
+                    <div class="title-header">
+
+                        <h3>@Resources.Global.services</h3>
+
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="/Home">@Resources.Global.Home</a> > </li>
+                                <li>@Resources.Global.services</li>
+                            </ul>
+                        </div>
+                        <!--end breadcrumb-->
+
                     </div>
-                    <!--end breadcrumb-->
+                    <!--end title-header-->
 
                 </div>
-                <!--end title-header-->
+                <!--end col-6-->
+
+
 
             </div>
-            <!--end col-6-->
-
-
-
+            <!--end row-->
         </div>
-        <!--end row-->
+        <!--end container-->
+        </div>
     </div>
-    <!--end container-->
-</div>
-<!--end header-bc-->
+    <!--end header-bc-->
 
 
 
-<div class="news" style="">
-    <div class="container">
-        <Div class="row otherrowService">
+    <div class="news" style="">
+        <div class="container">
+            <Div class="row otherrowService">
 
 
-            @foreach (var service in services)
-            {
-                <div class=" othercoolService">
-                    <a class="new new-responsive" href="/Home/ServicesDetails/@service.Id">
-                        <img src="@service.MainImage" class="img-responsive img-services" />
-                        @if (en)
-                        {
+                @foreach (var service in services)
+                {
+                    <div class=" othercoolService">
+                        <a class="new new-responsive" href="/Home/ServicesDetails/@service.Id">
+                            <img src="@service.MainImage" class="img-responsive img-services" />
+                            @if (en)
+                            {
 
 
-                            <h3>@service.TitleEnglish</h3>
+                                <h3>@service.TitleEnglish</h3>
 
-                        }
-                        else
-                        {
+                            }
+                            else
+                            {
 
-                            <h3>@service.TitleArabic</h3>
+                                <h3>@service.TitleArabic</h3>
 
-                        }
-                    </a>
+                            }
+                        </a>
+                    </div>
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="col-lg-12">
+                    <nav class="nav-services" aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    2
+                                    <span class="sr-only">(current)</span>
+                                </span>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+
                 </div>
 
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="col-lg-12">
-                <nav class="nav-services" aria-label="...">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <span class="page-link">Previous</span>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active">
-                            <span class="page-link">
-                                2
-                                <span class="sr-only">(current)</span>
-                            </span>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-
-
-            </div>
-
-        </Div>
-        <!--end row-->
+            </Div>
+            <!--end row-->
+        </div>
+        <!--end continer-->
     </div>
-    <!--end continer-->
-</div>
-<!--end news-->
+    <!--end news-->
 
 
 
@@ -164,49 +171,49 @@
 
 
 
-<div class="servpagenew" style="display:none">
-    <div class="container">
-        <div class="row">
-            @foreach (var service in services)
-            {
+    <div class="servpagenew" style="display:none">
+        <div class="container">
+            <div class="row">
+                @foreach (var service in services)
+                {
 
 
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="servItemnew">
-                        <div>
-                            <div class="images">
-                                <img src="@service.MainImage">
-                            </div>
-                            <div class="discription">
-                                @if (en)
-                                {
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="servItemnew">
+                            <div>
+                                <div class="images">
+                                    <img src="@service.MainImage">
+                                </div>
+                                <div class="discription">
+                                    @if (en)
+                                    {
 
 
-                                    <h2>@service.TitleEnglish</h2>
-                                    <div class="ContentPargraph">
-                                        <p>@Html.Raw(@service.DescriptionEnglish)</p>
-                                    </div>
+                                        <h2>@service.TitleEnglish</h2>
+                                        <div class="ContentPargraph">
+                                            <p>@Html.Raw(@service.DescriptionEnglish)</p>
+                                        </div>
 
-                                }
-                                else
-                                {
+                                    }
+                                    else
+                                    {
 
-                                    <h2>@service.TitleArabic</h2>
-                                    <div class="ContentPargraph">
-                                        <p>@Html.Raw(@service.DescriptionArabic)</p>
-                                    </div>
+                                        <h2>@service.TitleArabic</h2>
+                                        <div class="ContentPargraph">
+                                            <p>@Html.Raw(@service.DescriptionArabic)</p>
+                                        </div>
 
-                                }
-                                <a href="/Home/ServicesDetails/@service.Id"> @Resources.Global.ReadMore</a>
+                                    }
+                                    <a href="/Home/ServicesDetails/@service.Id"> @Resources.Global.ReadMore</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
 
+            </div>
         </div>
     </div>
-</div>
 
 
 
