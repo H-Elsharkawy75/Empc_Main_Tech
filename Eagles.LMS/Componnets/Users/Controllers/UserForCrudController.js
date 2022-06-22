@@ -141,7 +141,15 @@
 
                     // get all safes    
                     usersFactory.UpdateUser(user).then(function success(response) {
-                        n.pushNotification("success", "Updated Successfully");
+                        debugger;
+                        if (response.data.Message == "Your Old Pass is Wrong") {
+
+                            n.pushNotification("danger", "Your Old Password Is Wrong");
+                        }
+                        else {
+                            n.pushNotification("success", "Update User Successfully");
+
+                        }
 
                     }, function error(error) {
 
