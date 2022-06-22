@@ -65,11 +65,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     if (mainImage != null)
                     {
 
-                        _rendom = new Random().Next(1, 99999999).ToString();
+                        //_rendom = new Random().Next(1, 99999999).ToString();
 
                         //fileName = _rendom + Path.GetFileName(mainImage.FileName);
                         string extention = System.IO.Path.GetExtension(mainImage.FileName);
-                        fileName = _rendom + extention;
+                        fileName = Guid.NewGuid() + extention;
 
 
                         path = Path.Combine(Server.MapPath("~/attachments"), fileName);
@@ -81,9 +81,9 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 if (iconImage != null && iconImage.ContentLength > 0 && iconImage.ContentType.CheckImageExtention())
                 {
 
-                    _rendom = new Random().Next(1, 99999999).ToString();
+                    //_rendom = new Random().Next(1, 99999999).ToString();
 
-                        fileName = _rendom + Path.GetFileName(iconImage.FileName);
+                        fileName = Guid.NewGuid() + Path.GetFileName(iconImage.FileName);
 
                         path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                         iconImage.SaveAs(path);
@@ -109,11 +109,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     {
                         foreach (var item in uploadattachments_multi)
                         {
-                            _rendom = new Random().Next(1, 99999999).ToString();
+                            //_rendom = new Random().Next(1, 99999999).ToString();
 
                             //fileName = _rendom + Path.GetFileName(item.FileName);
                             string extention = System.IO.Path.GetExtension(item.FileName);
-                            fileName = _rendom + extention;
+                            fileName = Guid.NewGuid() + extention;
 
                             path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                             item.SaveAs(path);
@@ -194,10 +194,10 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                         {
                         // main
 
-                       string _rendom = new Random().Next(1, 99999999).ToString();
+                       //string _rendom = new Random().Next(1, 99999999).ToString();
                         //fileName = _rendom + Path.GetFileName(mainImage.FileName);
                         string extention = System.IO.Path.GetExtension(mainImage.FileName);
-                       var fileName = _rendom + extention;
+                       var fileName = Guid.NewGuid() + extention;
 
 
                         var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
@@ -209,9 +209,9 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                         // icon
                         if (iconImage != null && iconImage.ContentLength > 0&&iconImage.ContentType.CheckImageExtention())
                         {
-                             _rendom = new Random().Next(1, 99999999).ToString();
+                             //_rendom = new Random().Next(1, 99999999).ToString();
 
-                             fileName = _rendom + Path.GetFileName(iconImage.FileName);
+                             fileName = Guid.NewGuid() + Path.GetFileName(iconImage.FileName);
 
                              path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                             iconImage.SaveAs(path);
@@ -248,11 +248,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                             {
                                 foreach (var item in uploadattachments_multi)
                                 {
-                                    _rendom = new Random().Next(1, 99999999).ToString();
+                                    //_rendom = new Random().Next(1, 99999999).ToString();
 
                                     //fileName = _rendom + Path.GetFileName(item.FileName);
                                     extention = System.IO.Path.GetExtension(item.FileName);
-                                    fileName = _rendom + extention;
+                                    fileName = Guid.NewGuid() + extention;
 
                                     path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                                     item.SaveAs(path);

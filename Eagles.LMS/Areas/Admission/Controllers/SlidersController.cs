@@ -60,11 +60,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     if (uploadattachments != null)
                     {
 
-                        string _rendom = new Random().Next(1, 99999999).ToString();
+                        //string _rendom = new Random().Next(1, 99999999).ToString();
 
                         //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                        var fileName = _rendom + extention;
+                        var fileName = Guid.NewGuid() + extention;
 
                         var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                         uploadattachments.SaveAs(path);
@@ -167,11 +167,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     if (string.IsNullOrEmpty(slider.Iframe) && string.IsNullOrEmpty(slider.ArabicIframe))
                     {
 
-                        string _rendom = new Random().Next(1, 99999999).ToString();
+                        //string _rendom = new Random().Next(1, 99999999).ToString();
 
                         //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                        var fileName = _rendom + extention;
+                        var fileName = Guid.NewGuid() + extention;
 
                         var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                         uploadattachments.SaveAs(path);

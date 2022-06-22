@@ -87,11 +87,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     if (uploadattachments != null)
                     {
 
-                        _rendom = new Random().Next(1, 99999999).ToString();
+                        //_rendom = new Random().Next(1, 99999999).ToString();
 
                         //fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                        fileName = _rendom + extention;
+                        fileName = Guid.NewGuid() + extention;
 
                         path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                         uploadattachments.SaveAs(path);
@@ -117,11 +117,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     {
                         foreach (var item in uploadattachments_multi)
                         {
-                            _rendom = new Random().Next(1, 99999999).ToString();
+                            //_rendom = new Random().Next(1, 99999999).ToString();
 
                             //fileName = _rendom + Path.GetFileName(item.FileName);
                             string extention = System.IO.Path.GetExtension(item.FileName);
-                            fileName = _rendom + extention;
+                            fileName = Guid.NewGuid() + extention;
 
                             path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                             item.SaveAs(path);
@@ -185,11 +185,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     }
                     else
                     {
-                        string _rendom = new Random().Next(1, 99999999).ToString();
+                        //string _rendom = new Random().Next(1, 99999999).ToString();
 
                         //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                        var fileName = _rendom + extention;
+                        var fileName = Guid.NewGuid() + extention;
 
                         var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                         uploadattachments.SaveAs(path);
@@ -216,11 +216,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                         {
                             foreach (var item in uploadattachments_multi)
                             {
-                                _rendom = new Random().Next(1, 99999999).ToString();
+                                //_rendom = new Random().Next(1, 99999999).ToString();
 
                                 //fileName = _rendom + Path.GetFileName(item.FileName);
                                  extention = System.IO.Path.GetExtension(item.FileName);
-                                 fileName = _rendom + extention;
+                                 fileName = Guid.NewGuid() + extention;
 
                                 path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                                 item.SaveAs(path);

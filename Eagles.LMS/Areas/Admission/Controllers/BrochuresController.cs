@@ -50,9 +50,9 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 if (uploadattachments != null)
                 {
 
-                    string _rendom = new Random().Next(1, 99999999).ToString();
+                    //string _rendom = new Random().Next(1, 99999999).ToString();
 
-                    var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
+                    var fileName = Guid.NewGuid() + Path.GetFileName(uploadattachments.FileName);
 
                     var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                     uploadattachments.SaveAs(path);
@@ -140,9 +140,9 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 if (uploadattachments != null)
                 {
 
-                    string _rendom = new Random().Next(1, 99999999).ToString();
+                    //string _rendom = new Random().Next(1, 99999999).ToString();
 
-                    var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
+                    var fileName = Guid.NewGuid() + Path.GetFileName(uploadattachments.FileName);
 
                     var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                     uploadattachments.SaveAs(path);
@@ -206,9 +206,9 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
 
 
-                    string _rendom = new Random().Next(1, 99999999).ToString();
+                    //string _rendom = new Random().Next(1, 99999999).ToString();
 
-                    var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
+                    var fileName = Guid.NewGuid() + Path.GetFileName(uploadattachments.FileName);
 
                     var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                     uploadattachments.SaveAs(path);
