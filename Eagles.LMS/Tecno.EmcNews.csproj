@@ -361,6 +361,7 @@
     <Compile Include="Areas\Admission\Controllers\ApplicationsController.cs" />
     <Compile Include="Areas\Admission\Controllers\BookingController.cs" />
     <Compile Include="Areas\Admission\Controllers\BrochuresController.cs" />
+    <Compile Include="Areas\Admission\Controllers\CareerController.cs" />
     <Compile Include="Areas\Admission\Controllers\CitizensController.cs" />
     <Compile Include="Areas\Admission\Controllers\ClientsController.cs" />
     <Compile Include="Areas\Admission\Controllers\LogsController.cs" />
@@ -378,9 +379,9 @@
     <Compile Include="BLL\ClientsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
     <Compile Include="BLL\SettingsManager.cs" />
-    <Compile Include="Migrations\202206201854444_career.cs" />
-    <Compile Include="Migrations\202206201854444_career.designer.cs">
-      <DependentUpon>202206201854444_career.cs</DependentUpon>
+    <Compile Include="Migrations\202206261708383_husseonpull.cs" />
+    <Compile Include="Migrations\202206261708383_husseonpull.designer.cs">
+      <DependentUpon>202206261708383_husseonpull.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -1684,6 +1685,7 @@
     <Content Include="Areas\Admission\Views\Brochures\Index.cshtml" />
     <Content Include="Areas\Admission\Views\Users\ChangePassword.cshtml" />
     <Content Include="Areas\Admission\Views\Users\_Changepass.cshtml" />
+    <Content Include="Areas\Admission\Views\Career\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1983,6 +1985,9 @@
     <Content Include="Views\Home\Brouchour.cshtml" />
     <Content Include="Views\Home\LocationOutdoor.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
+    <Content Include="Views\Home\Careers.cshtml" />
+    <Content Include="Views\Home\CareethankPage.cshtml" />
+    <Content Include="Views\Home\ContactThankPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2084,8 +2089,8 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206201854444_career.resx">
-      <DependentUpon>202206201854444_career.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206261708383_husseonpull.resx">
+      <DependentUpon>202206261708383_husseonpull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

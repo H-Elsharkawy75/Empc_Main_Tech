@@ -284,44 +284,98 @@ namespace Eagles.LMS.Controllers
             return View();
         }
 
-
+        public int GetUserId()
+        {
+            var userFromSesstion = HttpContext.Session["User_Key"];
+            return Convert.ToInt32(userFromSesstion);
+        }
         public ActionResult Careers()
         {
             //return Redirect("/Admission");
             return View();
         }
+        //[HttpPost]
+        //public ActionResult Careers(Career _career, HttpPostedFileBase uploadattachments)
+        //{
+        //    var _maxOrder = new UnitOfWork().CareerManager.GetAllBind();
+        //    ViewBag.MaxOrder = _maxOrder;
+
+
+        //    //_career.Status = EntityStatus.Approval;
+        //    ActionResult result = View(_career);
+
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        RequestStatus requestStatus;
+        //        if (uploadattachments == null || uploadattachments.ContentLength == 0)
+        //        {
+        //            requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
+        //        }
+        //        else
+        //        {
+        //            string _rendom = System.Guid.NewGuid().ToString();
+        //            //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
+        //            string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
+        //            var fileName = _rendom + extention;
+        //            var path = Path.Combine(Server.MapPath("~/attachments/Careers"), fileName);
+        //            uploadattachments.SaveAs(path);
+        //            _career.CVLink = $"/attachments/Careers/{fileName}";
+
+        //            var _ctx = new UnitOfWork();
+        //            requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+
+                    
+        //        }
+        //        TempData["RequestStatus"] = requestStatus;
+
+
+
+        //    }
+        //    return result;
+
+        //}
+
         [HttpPost]
-        public ActionResult Careers(Career _career, HttpPostedFileBase uploadattachments)
+        public ActionResult Careers(Career career, HttpPostedFileBase uploadattachments)
         {
-            var _maxOrder = new UnitOfWork().CareerManager.GetAllBind();
-            ViewBag.MaxOrder = _maxOrder;
 
-
-            //_career.Status = EntityStatus.Approval;
-            ActionResult result = View(_career);
+            ActionResult result = View(career);
 
             if (ModelState.IsValid)
             {
 
                 RequestStatus requestStatus;
-                if (uploadattachments == null || uploadattachments.ContentLength == 0)
+                if (uploadattachments == null || uploadattachments.ContentLength == 0 )
                 {
                     requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
                 }
                 else
                 {
-                    string _rendom = System.Guid.NewGuid().ToString();
+                    //string _rendom = new Random().Next(1, 99999999).ToString();
+
                     //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                     string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                    var fileName = _rendom + extention;
+                    var fileName = Guid.NewGuid() + extention;
                     var path = Path.Combine(Server.MapPath("~/attachments/Careers"), fileName);
                     uploadattachments.SaveAs(path);
-                    _career.CVLink = $"/attachments/Careers/{fileName}";
+                    career.CVLink = $"/attachments/Careers/{fileName}";
+                    int userId = GetUserId();
 
-                    var _ctx = new UnitOfWork();
+                    var ctx = new UnitOfWork();
+                    career = ctx.CareerManager.Add(career);
+                    ctx.logManager.Add(new log
+                    {
+                        UserId = userId,
+                        ActionTime = DateTime.Now,
+                        EntityId = career.Id,
+                        TableName = "Career",
+                    });
                     requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+                    result = RedirectToAction(nameof(career));
 
-                    
+
+
                 }
                 TempData["RequestStatus"] = requestStatus;
 
@@ -331,6 +385,25 @@ namespace Eagles.LMS.Controllers
             return result;
 
         }
+
+
+
+        public ActionResult CareethankPage()
+        {
+            return View();
+        }
+        public ActionResult ContactThankPage()
+        {
+            return View();
+        }
+
+
+
+
+
+
+
+
         public ActionResult ChangeLanguage(string SelectedLanguage, string redirect)
         {
 

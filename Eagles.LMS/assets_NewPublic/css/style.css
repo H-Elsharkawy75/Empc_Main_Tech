@@ -7474,7 +7474,31 @@ height: auto;
     }
 
 
+.ThankingPage {
+    background: #f9f9f9;
+    height: 300px;
+    display: flex;
+    align-items: center;
+}
 
+    .ThankingPage .ThankinContent {
+    }
+
+        .ThankingPage .ThankinContent .AlertThank {
+            background-color: #1d1f4f !important;
+            border: 2px solid #1d1f4f !important;
+            padding: 15px 50px;
+            width: max-content;
+            text-align: center;
+            display: block;
+            margin: auto;
+        }
+
+            .ThankingPage .ThankinContent .AlertThank p {
+                color: #fff;
+                font-size: 25px;
+                margin: 0;
+            }
 
 
 
