@@ -727,7 +727,13 @@ left: 760px;
 }
 
 .position-1 ul li a {
-	color:black;
+	color:#fff;
+    display:block;
+    width:45px;
+    height:45px;
+    line-height:45px;
+    text-align:center;
+    font-size:18px;
 }
 
 .position-1 ul li a img {
