@@ -11,6 +11,12 @@
     }
 }
 
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Agenda, Agenda details " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+}
+
 <div class="header-bc">
     <div class="container">
         <div class="row">
@@ -86,19 +92,19 @@
 
 
 
-@*<div class="item active">
-                            <img src="~/assets_NewPublic/images/bg_1.jpg" alt="...">
+                        @*<div class="item active">
+                                <img src="~/assets_NewPublic/images/bg_1.jpg" alt="...">
 
-                        </div>
-                        <div class="item">
-                            <img src="~/assets_NewPublic/images/bg_3.jpg" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="~/assets_NewPublic/images/bg_3.jpg" alt="...">
 
-                        </div>
+                            </div>
 
-                        <div class="item">
-                            <img src="~/assets_NewPublic/images/bg_3.jpg" alt="...">
+                            <div class="item">
+                                <img src="~/assets_NewPublic/images/bg_3.jpg" alt="...">
 
-                        </div>*@
+                            </div>*@
 
                     </div>
 
@@ -124,12 +130,12 @@
                         {
                             <h1 class="Date"><span><i class="fa fa-calendar"></i></span> @Model.CreateTime.ToShortDateString()</h1>
                         }
-                
-                    <p>
-                        @Html.Raw(@Model.DescriptionEnglish)
-                    </p>
-                
-                        
+
+                        <p>
+                            @Html.Raw(@Model.DescriptionEnglish)
+                        </p>
+
+
                     }
                     else
                     {
@@ -140,12 +146,12 @@
                             <h1 class="Date"><span><i class="fa fa-calendar"></i></span> @Model.CreateTime.ToShortDateString()</h1>
                         }
 
-                
-                    <p>
-                        @Html.Raw(@Model.DescriptionArabic)
-                    </p>
-               
-                        
+
+                        <p>
+                            @Html.Raw(@Model.DescriptionArabic)
+                        </p>
+
+
                     }
 
 
@@ -153,14 +159,14 @@
 
 
                     @*<div class="share-face">
-            <p> Share</p>
+                            <p> Share</p>
 
-            <a href="https://facebook.com/sharer/sharer.php?u=" target="_blank" rel="nofollow" class="fa fa-facebook"></a>
-            <a href="https://twitter.com/intent/tweet/?text=&amp;url=" target="_blank" rel="nofollow" class="fa fa-twitter"></a>
-            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=&amp;title=&amp;summary=&amp;source=" target="_blank" rel="nofollow" class="fa fa-linkedin"></a>
-            <a href="https://pinterest.com/pin/create/button/?url=&amp;media=&amp;description=" target="_blank" rel="nofollow" class="fa fa-pinterest"></a>
-            <a href="https://reddit.com/submit/?url=&amp;resubmit=true&amp;title=" target="_blank" rel="nofollow" class="fa fa-reddit"></a>
-        </div>*@
+                            <a href="https://facebook.com/sharer/sharer.php?u=" target="_blank" rel="nofollow" class="fa fa-facebook"></a>
+                            <a href="https://twitter.com/intent/tweet/?text=&amp;url=" target="_blank" rel="nofollow" class="fa fa-twitter"></a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=&amp;title=&amp;summary=&amp;source=" target="_blank" rel="nofollow" class="fa fa-linkedin"></a>
+                            <a href="https://pinterest.com/pin/create/button/?url=&amp;media=&amp;description=" target="_blank" rel="nofollow" class="fa fa-pinterest"></a>
+                            <a href="https://reddit.com/submit/?url=&amp;resubmit=true&amp;title=" target="_blank" rel="nofollow" class="fa fa-reddit"></a>
+                        </div>*@
                     <!--end share-->
 
 
@@ -168,8 +174,6 @@
                 <!--end data-new-->
             </div>
             <!--end new-description-->
-
-
             <!--<div class="cleaner-h3"></div>
 
 
@@ -205,33 +209,26 @@
                         </div>
 
                     </div>-->
-                    <!--end share-->
-
-                    <!--<div class="description">
-                        <a class="but-new" href="/Home/NewsDetails">
-                            <h4>Lebanese Minister of Information Visits EMPC</h4>
-
-
-                            <p>
-                                H.E professor Majid Abdullah El.Khasabi, the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation,
-                                in the presence of H.E Mr. Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.H.E professor Majid Abdullah El.Khasabi,
-                                the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation, in the presence of H.E Mr.
-                                Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.
-                            </p>
-
-                        </a>
-                    </div>-->
-                    <!--end description-->
+            <!--end share-->
+            <!--<div class="description">
+                <a class="but-new" href="/Home/NewsDetails">
+                    <h4>Lebanese Minister of Information Visits EMPC</h4>
 
 
-                <!--</div>-->
-                <!--end new-desc-->
+                    <p>
+                        H.E professor Majid Abdullah El.Khasabi, the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation,
+                        in the presence of H.E Mr. Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.H.E professor Majid Abdullah El.Khasabi,
+                        the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation, in the presence of H.E Mr.
+                        Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.
+                    </p>
 
+                </a>
+            </div>-->
+            <!--end description-->
+            <!--</div>-->
+            <!--end new-desc-->
             <!--</div>-->
             <!--end col-4-->
-
-
-
             <!--<div class="col-md-4">
 
                 <div class="new-des">
@@ -253,32 +250,26 @@
                         </div>
 
                     </div>-->
-                    <!--end share-->
-
-                    <!--<div class="description">
-                        <a class="but-new" href="/Home/NewsDetails">
-                            <h4>Lebanese Minister of Information Visits EMPC</h4>
-
-
-                            <p>
-                                H.E professor Majid Abdullah El.Khasabi, the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation,
-                                in the presence of H.E Mr. Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.H.E professor Majid Abdullah El.Khasabi,
-                                the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation, in the presence of H.E Mr.
-                                Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.
-                            </p>
-
-                        </a>
-                    </div>-->
-                    <!--end description-->
+            <!--end share-->
+            <!--<div class="description">
+                <a class="but-new" href="/Home/NewsDetails">
+                    <h4>Lebanese Minister of Information Visits EMPC</h4>
 
 
-                <!--</div>-->
-                <!--end new-desc-->
+                    <p>
+                        H.E professor Majid Abdullah El.Khasabi, the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation,
+                        in the presence of H.E Mr. Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.H.E professor Majid Abdullah El.Khasabi,
+                        the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation, in the presence of H.E Mr.
+                        Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.
+                    </p>
 
+                </a>
+            </div>-->
+            <!--end description-->
+            <!--</div>-->
+            <!--end new-desc-->
             <!--</div>-->
             <!--end col-4-->
-
-
             <!--<div class="col-md-4">
 
                 <div class="new-des">
@@ -300,28 +291,24 @@
                         </div>
 
                     </div>-->
-                    <!--end share-->
-
-                    <!--<div class="description">
-                        <a class="but-new" href="/Home/NewsDetails">
-                            <h4>Lebanese Minister of Information Visits EMPC</h4>
-
-
-                            <p>
-                                H.E professor Majid Abdullah El.Khasabi, the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation,
-                                in the presence of H.E Mr. Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.H.E professor Majid Abdullah El.Khasabi,
-                                the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation, in the presence of H.E Mr.
-                                Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.
-                            </p>
-
-                        </a>
-                    </div>-->
-                    <!--end description-->
+            <!--end share-->
+            <!--<div class="description">
+                <a class="but-new" href="/Home/NewsDetails">
+                    <h4>Lebanese Minister of Information Visits EMPC</h4>
 
 
-                <!--</div>-->
-                <!--end new-desc-->
+                    <p>
+                        H.E professor Majid Abdullah El.Khasabi, the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation,
+                        in the presence of H.E Mr. Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.H.E professor Majid Abdullah El.Khasabi,
+                        the Saudi minister of commerce and the appointed minister of information visited EMPC this evening. Osama Heikal, EMPC chairman welcomed the Saudi minister and the accompanying delegation, in the presence of H.E Mr.
+                        Osama Nokhali, the Saudi Ambassador in Cairo, General Ahmed Anis, Nile Sat chairman and Mr. Hussein Zein, president of the National Authority of Information.
+                    </p>
 
+                </a>
+            </div>-->
+            <!--end description-->
+            <!--</div>-->
+            <!--end new-desc-->
             <!--</div>-->
             <!--end col-4-->
 

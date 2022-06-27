@@ -13,7 +13,7 @@
 
     }
 
-    var _date = ViewBag.Date ;
+    var _date = ViewBag.Date;
 
     List<Agenda> _Agendas;
 
@@ -32,7 +32,7 @@
 
     //
 
- 
+
     if (en == true)
     {
         _Agendas = _Agendas.Where(s => s.TitleEnglish != null).ToList();
@@ -42,6 +42,12 @@
         _Agendas = _Agendas.Where(s => s.TitleArabic != null).ToList();
     }
 
+}
+
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Agenda " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
 }
 
 @section EndHeader{

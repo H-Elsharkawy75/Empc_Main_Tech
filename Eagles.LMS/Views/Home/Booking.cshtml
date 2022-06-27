@@ -4,12 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Booking " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+}
 @section EndHeader{
     <link href="~/assets_2/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />
     <style>
-        .stikeyHeader{
-            z-index:99;
+        .stikeyHeader {
+            z-index: 99;
         }
     </style>
 }
@@ -513,7 +517,7 @@
                 console.log(obj);
                 if (validateForm(obj)) {
                     var _url = "/api/GlobalServices/AddBooking";
-                    
+
 
                     $.ajax({
                         type: "POST",
@@ -549,8 +553,8 @@
                     _Careers_Certification = $("#Careers_Certification").val(),
                     _Careers_CertificationYears = $("#Careers_CertificationYears").val(),
                     _Careers_JobName = $("#Careers_JobName").val();
-                    //_Careers_ExperianceLevel = $("#Careers_ExperianceLevel").val(),
-                    //_Careers_UploadCv = $("#Careers_UploadCv").val();
+                //_Careers_ExperianceLevel = $("#Careers_ExperianceLevel").val(),
+                //_Careers_UploadCv = $("#Careers_UploadCv").val();
 
 
                 if (_Careers_Name == "" || typeof (_Careers_Name) == 'undefined') {
@@ -563,7 +567,7 @@
 
                     return false;
                 }
-                
+
                 if (_Careers_Address == "" || typeof (_Careers_Address) == 'undefined') {
                     errorMessage("Please Enter Address");
                     return false;
@@ -582,7 +586,7 @@
                     return false;
                 }
 
-                
+
                 //if (!validateEmail(CompanyEmail)) {
 
                 //    errorMessage("Please Enter An Valid Email Address");

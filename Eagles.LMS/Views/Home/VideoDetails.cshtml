@@ -34,6 +34,11 @@
     }
 }
 
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Videos, Videos Album, Album, Detaisl " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+}
 
 @section EndHeader{
     <style>
@@ -85,17 +90,17 @@
 
 
                             <div class="item">
-                                @if(en)
+                                @if (en)
                                 {
-                                <a href="#">
-                                    <iframe class="" src="@vidoe.VideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </a>
+                                    <a href="#">
+                                        <iframe class="" src="@vidoe.VideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </a>
                                 }
                                 else
                                 {
-                                <a href="#">
-                                    <iframe class="" src="@vidoe.ArabicVideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </a>
+                                    <a href="#">
+                                        <iframe class="" src="@vidoe.ArabicVideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </a>
                                 }
                             </div>
 

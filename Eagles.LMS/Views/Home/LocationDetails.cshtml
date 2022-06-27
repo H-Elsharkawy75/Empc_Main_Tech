@@ -10,7 +10,11 @@
 
     }
 }
-
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, location, location Details " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+}
 
 @section EndHeader{
     <link href="~/assets_NewPublic/libs/magnific-popup/magnific-popup.css" rel="stylesheet" />
@@ -32,9 +36,7 @@
             color: #af7a2c;
             border-bottom: 1px solid #fff0;
             font-weight: 500;
-
-}
-
+        }
     </style>
 
 }
@@ -82,184 +84,184 @@
             <!--end row-->
         </div>
         <!--end container-->
-        </div>
     </div>
-    <!--end header-bc-->
+</div>
+<!--end header-bc-->
 
 
 
-    <div class="news servicesDetails">
-        <div class="container">
-            <div class="row">
+<div class="news servicesDetails">
+    <div class="container">
+        <div class="row">
 
-                <div class="new-description pad-bottm">
+            <div class="new-description pad-bottm">
 
-                    <div class="images">
-                        <img src="@Model.MainImage" class="img-responsive" />
+                <div class="images">
+                    <img src="@Model.MainImage" class="img-responsive" />
+                </div>
+
+
+                <div class="data-new">
+                    @if (en)
+                    {
+                        <h3> @Model.TitleEnglish</h3>
+                        <h2 class="Date">
+                            <span><i class="fas fa-map-marker-alt"></i></span>
+                            @Model.AddressEnglish
+                        </h2>
+                        <div class="ServDiscription">
+                            <p>@Html.Raw(@Model.DescriptionEnglish)</p>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <h3> @Model.TitleArabic</h3>
+                        <h2 class="Date">
+                            <span><i class="fas fa-map-marker-alt"></i></span>
+                            @Model.AddressArabic
+                        </h2>
+
+                        <div class="ServDiscription">
+                            <p>@Html.Raw(@Model.DescriptionArabic)</p>
+                        </div>
+
+
+                    }
+
+
+
+                    <div class="MoreImages">
+                        <h3>MorePhoto</h3>
+
+                        <div class="MorGallaryImg">
+                            <div class="carousel-GallaryItems owl-carousel zoom-gallery">
+                                @if (Model.LocationImages != null && Model.LocationImages.Any())
+                                {
+                                    foreach (var item in Model.LocationImages)
+                                    {
+
+                                        <div class="item">
+                                            <div class="imagesItem">
+                                                <a href="@item.Path">
+                                                    <img src="@item.Path">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="LocationVideo mt-5">
+                        @if (@Model.LocationVideo != null)
+                        {
+                            <div class="imagessSec">
+                                <div class="vedio">
+                                    <iframe src="@Model.LocationVideo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        }
                     </div>
 
 
-                    <div class="data-new">
-                        @if (en)
-                        {
-                            <h3> @Model.TitleEnglish</h3>
-                            <h2 class="Date">
-                                <span><i class="fas fa-map-marker-alt"></i></span>
-                                @Model.AddressEnglish
-                            </h2>
-                            <div class="ServDiscription">
-                                <p>@Html.Raw(@Model.DescriptionEnglish)</p>
-                            </div>
-
-                        }
-                        else
-                        {
-                            <h3> @Model.TitleArabic</h3>
-                            <h2 class="Date">
-                                <span><i class="fas fa-map-marker-alt"></i></span>
-                                @Model.AddressArabic
-                            </h2>
-
-                            <div class="ServDiscription">
-                                <p>@Html.Raw(@Model.DescriptionArabic)</p>
-                            </div>
-
-
-                        }
+                </div>
+                <!--end data-new-->
+            </div>
+            <!--end new-description-->
 
 
 
-                        <div class="MoreImages">
-                            <h3>MorePhoto</h3>
-
-                            <div class="MorGallaryImg">
-                                <div class="carousel-GallaryItems owl-carousel zoom-gallery">
-                                    @if (Model.LocationImages != null && Model.LocationImages.Any())
-                                    {
-                                        foreach (var item in Model.LocationImages)
-                                        {
-
-                                            <div class="item">
-                                                <div class="imagesItem">
-                                                    <a href="@item.Path">
-                                                        <img src="@item.Path">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        }
-                                    }
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</div>
+<!--end news-->
 
 
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="LocationVideo mt-5">
-                            @if (@Model.LocationVideo != null)
+
+
+
+
+
+
+
+
+
+
+
+<div class="threecitizenimgadetails servicesDetails" style="display:none">
+    <div class="overlay">
+        <div class="container">
+            <div class="ciciccont">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="tititlelocation">
+                            @if (en)
                             {
-                                <div class="imagessSec">
-                                    <div class="vedio">
-                                        <iframe src="@Model.LocationVideo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div>
-                                </div>
+                                <h2>@Model.TitleEnglish</h2>
+                            }
+                            else
+                            {
+                                <h2>@Model.TitleArabic</h2>
+
                             }
                         </div>
+                        <div class="bigimg images" style="margin-bottom: 30px;">
+                            <!-- <img src="images/f1c.jpeg">-->
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
-
-                    </div>
-                    <!--end data-new-->
-                </div>
-                <!--end new-description-->
-
-
-
-            </div>
-            <!--end row-->
-        </div>
-        <!--end container-->
-    </div>
-    <!--end news-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="threecitizenimgadetails servicesDetails" style="display:none">
-        <div class="overlay">
-            <div class="container">
-                <div class="ciciccont">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="tititlelocation">
-                                @if (en)
-                                {
-                                    <h2>@Model.TitleEnglish</h2>
-                                }
-                                else
-                                {
-                                    <h2>@Model.TitleArabic</h2>
-
-                                }
-                            </div>
-                            <div class="bigimg images" style="margin-bottom: 30px;">
-                                <!-- <img src="images/f1c.jpeg">-->
-                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active">
-                                            <img src="" alt="...">
-                                        </div>
-
-
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="" alt="...">
                                     </div>
 
-
-                                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
-                                <!--
-                                    <div class="imagessSec">
-                                        <img src="images/bg_1.jpg">
-                                    </div>
-                                -->
-
-
-                                <div class="discription">
 
                                 </div>
 
 
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            <!--
+                                <div class="imagessSec">
+                                    <img src="images/bg_1.jpg">
+                                </div>
+                            -->
+
+
+                            <div class="discription">
 
                             </div>
+
+
+
                         </div>
-
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
-    @section EndBody{
-        <script src="~/assets_NewPublic/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
-        <script src="~/assets_NewPublic/libs/magnific-popup/lightbox.init.js"></script>
-        <script>
-            $('.carousel').carousel()
-        </script>
-    }
+@section EndBody{
+    <script src="~/assets_NewPublic/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets_NewPublic/libs/magnific-popup/lightbox.init.js"></script>
+    <script>
+        $('.carousel').carousel()
+    </script>
+}

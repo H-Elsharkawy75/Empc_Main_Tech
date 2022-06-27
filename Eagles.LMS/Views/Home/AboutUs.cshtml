@@ -3,12 +3,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
+
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, About us, who ew are, About main " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+}
+
 @using Eagles.LMS.BLL
 @using Eagles.LMS.App_GlobalResources
 
 @{
     UnitOfWork ctx = new UnitOfWork();
-    var teams=new  List<Team>();
+    var teams = new List<Team>();
     var setting = ctx.SettingsManager.GetAll().FirstOrDefault();
     var aboutUs = ctx.AboutUsManager.GetAll().FirstOrDefault();
     bool en = true;
@@ -20,7 +27,7 @@
     }
     if (en == true)
     {
-        teams   = ctx.TeamManager.GetAllBind().OrderByDescending(s => s.Id).Where(s=>s.NameEnglish!=null).ToList();
+        teams = ctx.TeamManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.NameEnglish != null).ToList();
     }
     else
     {
@@ -41,13 +48,14 @@
             border-bottom: 1px solid #fff0;
             font-weight: 500;
         }
-        .gallery-section{
-            margin-top:0;
+
+        .gallery-section {
+            margin-top: 0;
         }
+
             .gallery-section h2.headh2 {
                 color: #000;
             }
-
     </style>
 }
 

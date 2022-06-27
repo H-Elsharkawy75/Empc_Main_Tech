@@ -40,7 +40,7 @@
     var allvideos = new List<int?>();
     if (en == true)
     {
-        allvideos = allvideoslist.Where(s => s.VideoIframe!= null).Select(s => s.AlbumId).ToList();
+        allvideos = allvideoslist.Where(s => s.VideoIframe != null).Select(s => s.AlbumId).ToList();
     }
     else
     {
@@ -50,6 +50,12 @@
     var albums_videos = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Order).Where(s => allvideos.Contains(s.Id)).ToList();
 
     var Id = ViewBag.Id;
+}
+
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Videos, Videos Album, Album " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
 }
 
 

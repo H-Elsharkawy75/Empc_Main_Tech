@@ -23,7 +23,11 @@
     }
     var Id = ViewBag.Id;
 }
-
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, areas locations, locations " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+}
 <div class="header-bc">
     <div class="container">
         <div class="row">
@@ -54,27 +58,27 @@
             {
 
 
-            <div class="col-md-6 newsServicesCoool">
-                <a class="new new-small small-location location-new" href="/Home/LocationDetails/@location.Id">
-                    <img src="@location.MainImage" class="img-responsive img-services" />
-                    <h3>
-                        @if (en)
-                        {
-                        <span>
-                            @location.TitleEnglish
-                        </span>
+                <div class="col-md-6 newsServicesCoool">
+                    <a class="new new-small small-location location-new" href="/Home/LocationDetails/@location.Id">
+                        <img src="@location.MainImage" class="img-responsive img-services" />
+                        <h3>
+                            @if (en)
+                            {
+                                <span>
+                                    @location.TitleEnglish
+                                </span>
 
-                        }
-                        else
-                        {
-                        <span>
-                            @location.TitleArabic
-                        </span>
-                        }
-                        <p>></p>
-                    </h3>
-                </a>
-            </div>
+                            }
+                            else
+                            {
+                                <span>
+                                    @location.TitleArabic
+                                </span>
+                            }
+                            <p>></p>
+                        </h3>
+                    </a>
+                </div>
             }
 
 
@@ -82,31 +86,31 @@
 
 
             @*@foreach (var location in locations)
-            {
+                {
 
 
-            <div class="col-md-6 newsServicesCoool">
-                <a class="new new-small small-location location-new" href="/Home/LocationDetails/@location.Id">
-                    <img src="@location.MainImage" class="img-responsive img-services" />
-                    <h3>
-                        @if (en)
-                        {
-                        <span>
-                            @location.TitleEnglish
-                        </span>
+                <div class="col-md-6 newsServicesCoool">
+                    <a class="new new-small small-location location-new" href="/Home/LocationDetails/@location.Id">
+                        <img src="@location.MainImage" class="img-responsive img-services" />
+                        <h3>
+                            @if (en)
+                            {
+                            <span>
+                                @location.TitleEnglish
+                            </span>
 
-                        }
-                        else
-                        {
-                        <span>
-                            @location.TitleArabic
-                        </span>
-                        }
-                        <p>></p>
-                    </h3>
-                </a>
-            </div>
-            }*@
+                            }
+                            else
+                            {
+                            <span>
+                                @location.TitleArabic
+                            </span>
+                            }
+                            <p>></p>
+                        </h3>
+                    </a>
+                </div>
+                }*@
 
 
 

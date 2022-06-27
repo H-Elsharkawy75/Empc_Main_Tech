@@ -8,7 +8,7 @@
     var albums = new List<Album>();
     //var vidoes = ctx.GalaryManager.GetAll().Where(s =>! s.IsImage).OrderBy(s => s.Order).ToList();
 
-    List <Galary> active_galary;
+    List<Galary> active_galary;
     bool en = true;
 
     if (Request.Cookies["Language"] != null)
@@ -17,9 +17,9 @@
 
     }
     var albumimage = ctx.GalaryManager.GetAll().Where(s => s.IsImage).Select(s => s.AlbumId).Distinct();
-    if(en==true)
+    if (en == true)
     {
-        albums = ctx.AlbumManager.GetAll().Where(s=>albumimage.Contains(s.Id)).Where(s=>s.TitleEnglish!=null).OrderByDescending(s => s.Order).ToList();
+        albums = ctx.AlbumManager.GetAll().Where(s => albumimage.Contains(s.Id)).Where(s => s.TitleEnglish != null).OrderByDescending(s => s.Order).ToList();
     }
     else
     {
@@ -28,6 +28,12 @@
     var Id = ViewBag.Id;
 }
 
+
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Albums " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+}
 
 @section EndHeader {
     @*<link href="~/assets_NewPublic/css/lightgallery.css" rel="stylesheet">*@
