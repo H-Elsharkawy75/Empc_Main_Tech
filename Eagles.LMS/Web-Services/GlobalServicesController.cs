@@ -222,7 +222,7 @@ namespace Eagles.LMS.Web_Services
         public async Task<IHttpActionResult> AddCareer([FromBody] Career career)
         {
             var ctx = new UnitOfWork();
-            var careerr = ctx.CareerManager.Add(career);
+            var book = ctx.CareerManager.Add(career);
             if (career.Services != null && career.Services.Any())
             {
                 foreach (var item in career.Services)
@@ -235,6 +235,18 @@ namespace Eagles.LMS.Web_Services
                     });
                 }
             }
+            //try send email
+            try
+            {
+                //new SendEmail().SendMail(new EmailDTO { To = book.CompanyEmail, Message = book.Message + "<br />" + "<b style='font-size:12px; line-height:1.5'>Company Name:</b>" + booking.CompanyName + "<br />" + "<b style='font-size:12px; line-height:1.5'>Booking Start time:</b>" + book.SartTime + "<br />" + "<b style='font-size:12px; line-height:1.5'>Booking End Time :</b>" + book.EndTime + "<br />" + "<b style='font-size:12px; line-height:1.5'>Orgin:</b>" + book.Origin + "<br />" + "<b style='font-size:12px; line-height:1.5'>Booking Services:</b>" + ServicesNames, From = "web@empcnews.com", Subject = "New Booking" });
+                new SendEmail().SendMail(new EmailDTO { To = book.Name, Message = "book.Message" + "<br />" + "<b style='font-size:12px; line-height:1.5'>Company Name:</b>" + "booking.CompanyName" + "<br />" + "<b style='font-size:12px; line-height:1.5'>Booking Start time:</b>" + "book.SartTime" + "<br />" + "<b style='font-size:12px; line-height:1.5'>Booking End Time :</b>" + "book.EndTime" + "<br />" + "<b style='font-size:12px; line-height:1.5'>Orgin:</b>" + "book.Origin" + "<br />" + "<b style='font-size:12px; line-height:1.5'>Career Services:</b>", From = "web@empcnews.com", Subject = "New Career" });
+                //new SendEmail().SendMail(new EmailDTO { To = book.CompanyEmail, Message = book.Message + "\n" + "Company Name:" + booking.CompanyName + "\n" + "Booking Start time:" + book.SartTime + "\n" + "Booking End Time :" + book.EndTime + "\n" + "Orgin:" + book.Origin + "\n" + "Booking Services:" + ServicesNames, From = "web@empcnews.com", Subject = "New Booking" });
+            }
+            catch
+            {
+
+            }
+
             return Ok();
         }
 

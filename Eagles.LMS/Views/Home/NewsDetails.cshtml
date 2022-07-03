@@ -228,6 +228,9 @@
 
 
                         <h3>@Model.TitleEnglish</h3>
+                        <div class="DtateNews">
+                            <p><span><i class="far fa-calendar-alt" aria-hidden="true"></i></span>@Model.NewsDate.ToShortDateString()</p>
+                        </div>
                         <div class="ServDiscription">
                             <p>@Html.Raw(@Model.DescriptionEnglish)</p>
                         </div>
@@ -236,6 +239,9 @@
                     {
 
                         <h3>@Model.TitleArabic</h3>
+                        <div class="DtateNews">
+                            <p><span><i class="far fa-calendar-alt" aria-hidden="true"></i></span>@Model.NewsDate.ToShortDateString()</p>
+                        </div>
                         <div class="ServDiscription">
                             <p>@Html.Raw(@Model.DescriptionArabic)</p>
                         </div>
@@ -297,10 +303,10 @@
 
 
                     @*<div class="newsIfrmanes">
-                            <div class="FramContent">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/IUgS8Tck8eM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>*@
+            <div class="FramContent">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/IUgS8Tck8eM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>*@
 
                 </div>
                 <!--end data-new-->

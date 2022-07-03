@@ -11,6 +11,7 @@ using Eagles.LMS.Models;
 
 
 using System.IO;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Eagles.LMS.Controllers
 {
@@ -294,6 +295,64 @@ namespace Eagles.LMS.Controllers
             //return Redirect("/Admission");
             return View();
         }
+
+        public ActionResult Lastcareer()
+        {
+            return View();
+
+        }
+        [HttpPost]
+
+        public ActionResult Lastcareer(Career career, HttpPostedFileBase uploadattachments)
+        {
+
+            ActionResult result = View(career);
+
+
+            if (ModelState.IsValid)
+            {
+
+                RequestStatus requestStatus;
+                if (uploadattachments == null || uploadattachments.ContentLength == 0)
+                {
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
+                }
+                else
+                {
+                    //string _rendom = new Random().Next(1, 99999999).ToString();
+
+                    //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
+                    string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
+                    var fileName = Guid.NewGuid() + extention;
+                    var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
+                    uploadattachments.SaveAs(path);
+                    career.CVLink = $"/attachments/{fileName}";
+                    int userId = GetUserId();
+
+                    var ctx = new UnitOfWork();
+                    //career = ctx.CareerManager.Add(Career);
+                    ctx.logManager.Add(new log
+                    {
+                        UserId = userId,
+                        ActionTime = DateTime.Now,
+                        EntityId = career.Id,
+                        TableName = "Career",
+                    });
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+                    result = RedirectToAction(nameof(career));
+
+
+
+
+                }
+                TempData["RequestStatus"] = requestStatus;
+
+
+
+
+            }
+            return result;
+        }
         //[HttpPost]
         //public ActionResult Careers(Career _career, HttpPostedFileBase uploadattachments)
         //{
@@ -325,7 +384,7 @@ namespace Eagles.LMS.Controllers
         //            var _ctx = new UnitOfWork();
         //            requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
 
-                    
+
         //        }
         //        TempData["RequestStatus"] = requestStatus;
 
@@ -335,44 +394,142 @@ namespace Eagles.LMS.Controllers
         //    return result;
 
         //}
+        public class Newcareer
+        {
+            public int Id { get; set; }
 
+            public string Name { get; set; }
+            public string DateOfBirth { get; set; }
+
+            public string Address { get; set; }
+
+            public string Certification { get; set; }
+
+            public string GraduationYears { get; set; }
+
+            public string JobName { get; set; }
+
+            public string ExperianceLevel { get; set; }
+
+            public string CVLink { get; set; }
+
+            public List<CareerInServices> CareerInServices { get; set; }
+
+            [NotMapped]
+            public int[] Services { get; set; }
+            public HttpFileCollectionBase NewfileData { get; set; }
+
+        }
+
+        //[HttpPost]
+        //public ActionResult Careerss(/*[System.Web.Http.FromBody] Newcareer career*/)
+        //{
+        //    Career career = new Career();
+
+
+        //        ActionResult result = View(career);
+        //    if (Request.Files.Count > 0)
+        //    {
+
+        //            //  Get all files from Request object  
+        //            HttpFileCollectionBase files = Request.Files;
+        //        for (int i = 0; i < files.Count; i++)
+        //        {
+        //            //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
+        //            //string filename = Path.GetFileName(Request.Files[i].FileName);  
+
+        //            HttpPostedFileBase uploadattachments = files[i];
+        //            //var files = Request.Files;
+        //            //for (int i = 0; i < files.Count; i++)
+        //            //{
+        //            //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
+        //            //string filename = Path.GetFileName(Request.Files[i].FileName);  
+
+        //            //HttpPostedFileBase uploadattachments = files[i];
+        //            if (ModelState.IsValid)
+        //            {
+
+        //                RequestStatus requestStatus;
+        //                if (uploadattachments == null || uploadattachments.ContentLength == 0)
+        //                {
+        //                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
+        //                }
+        //                else
+        //                {
+        //                    //string _rendom = new Random().Next(1, 99999999).ToString();
+
+        //                    //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
+        //                    string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
+        //                    var fileName = Guid.NewGuid() + extention;
+        //                    var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
+        //                    uploadattachments.SaveAs(path);
+        //                    career.CVLink = $"/attachments/{fileName}";
+        //                    int userId = GetUserId();
+
+        //                    var ctx = new UnitOfWork();
+        //                    //career = ctx.CareerManager.Add(Career);
+        //                    ctx.logManager.Add(new log
+        //                    {
+        //                        UserId = userId,
+        //                        ActionTime = DateTime.Now,
+        //                        EntityId = career.Id,
+        //                        TableName = "Career",
+        //                    });
+        //                    requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+        //                    result = RedirectToAction(nameof(career));
+
+
+
+
+        //                }
+        //                TempData["RequestStatus"] = requestStatus;
+        //            }
+        //        }
+
+
+
+        //    }
+        //        return result;
+
+        //     }  
         [HttpPost]
         public ActionResult Careers(Career career, HttpPostedFileBase uploadattachments)
         {
 
             ActionResult result = View(career);
 
+
             if (ModelState.IsValid)
             {
 
                 RequestStatus requestStatus;
-                if (uploadattachments == null || uploadattachments.ContentLength == 0 )
+                if (uploadattachments == null || uploadattachments.ContentLength == 0)
                 {
-                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Plz Upload The Attachment");
                 }
                 else
                 {
+
+                    string folderName = "careers";
+
+                    // To create a string that specifies the path to a subfolder under your
+                    // top-level folder, add a name for the subfolder to folderName.
+                    string pathString = System.IO.Path.Combine(Server.MapPath("~/attachments"), folderName);
+                    System.IO.Directory.CreateDirectory(pathString);
+
                     //string _rendom = new Random().Next(1, 99999999).ToString();
 
                     //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                     string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
                     var fileName = Guid.NewGuid() + extention;
-                    var path = Path.Combine(Server.MapPath("~/attachments/Careers"), fileName);
+                    var path = Path.Combine(Server.MapPath("~/attachments/careers"), fileName);
                     uploadattachments.SaveAs(path);
-                    career.CVLink = $"/attachments/Careers/{fileName}";
-                    int userId = GetUserId();
+                    career.CVLink = $"/attachments/careers/{fileName}";
 
                     var ctx = new UnitOfWork();
-                    career = ctx.CareerManager.Add(career);
-                    ctx.logManager.Add(new log
-                    {
-                        UserId = userId,
-                        ActionTime = DateTime.Now,
-                        EntityId = career.Id,
-                        TableName = "Career",
-                    });
+                    ctx.CareerManager.Add(career);
+
                     requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
-                    result = RedirectToAction(nameof(career));
 
 
 
@@ -381,12 +538,10 @@ namespace Eagles.LMS.Controllers
 
 
 
+
             }
             return result;
-
         }
-
-
 
         public ActionResult CareethankPage()
         {

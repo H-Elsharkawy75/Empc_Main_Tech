@@ -5894,16 +5894,24 @@ border: 1px solid #f1f1f1;
 
     .servicesDetails .ServDiscription {
     }
-.servicesDetails .ServDiscription p{
-        font-size: 15px;
-    line-height: 25px;
-    color: #5a5a60;
-}
+        .servicesDetails .ServDiscription p {
+            font-size: 15px !important;
+            line-height: 25px !important;
+            color: #5a5a60 !important;
+        }
+        .servicesDetails .ServDiscription p span {
+            font-size: 15px !important;
+            line-height: 25px !important;
+            color: #5a5a60 !important;
+        }
+        .servicesDetails .ServDiscription span {
+            font-size: 15px !important;
+            line-height: 25px !important;
+            color: #5a5a60 !important;
+        }
 
-
-.servicesDetails .MoreImages{
-    
-}
+    .servicesDetails .MoreImages {
+    }
 .servicesDetails .MoreImages h3{
     
 }
@@ -6754,6 +6762,7 @@ padding-top: 10%;
         display: block;
         width: 80%;
         margin: auto;
+        margin-top:40px;
         position:relative;
     }
         .mainImgGallary .imageGalalallala .images {
@@ -7514,7 +7523,18 @@ height: auto;
 
 
 
+.DtateNews{
 
+}
+    .DtateNews p {
+        margin: 0;
+        color: #484848;
+        font-size: 15px;
+    }
+        .DtateNews p span {
+            color: #af7a2c;
+            margin: 0 3px;
+        }
 
 
 

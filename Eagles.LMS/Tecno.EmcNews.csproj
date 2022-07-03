@@ -379,9 +379,13 @@
     <Compile Include="BLL\ClientsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
     <Compile Include="BLL\SettingsManager.cs" />
-    <Compile Include="Migrations\202206261708383_husseonpull.cs" />
-    <Compile Include="Migrations\202206261708383_husseonpull.designer.cs">
-      <DependentUpon>202206261708383_husseonpull.cs</DependentUpon>
+    <Compile Include="Migrations\202206291205079_frtintiacv.cs" />
+    <Compile Include="Migrations\202206291205079_frtintiacv.designer.cs">
+      <DependentUpon>202206291205079_frtintiacv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206291219417_firtsCVUPlod.cs" />
+    <Compile Include="Migrations\202206291219417_firtsCVUPlod.designer.cs">
+      <DependentUpon>202206291219417_firtsCVUPlod.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -2089,8 +2093,11 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206261708383_husseonpull.resx">
-      <DependentUpon>202206261708383_husseonpull.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206291205079_frtintiacv.resx">
+      <DependentUpon>202206291205079_frtintiacv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206291219417_firtsCVUPlod.resx">
+      <DependentUpon>202206291219417_firtsCVUPlod.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

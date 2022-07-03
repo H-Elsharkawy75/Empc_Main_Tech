@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class husseonpull : DbMigration
+    public partial class firtsCVUPlod : DbMigration
     {
         public override void Up()
         {

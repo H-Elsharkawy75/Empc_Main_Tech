@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
 }
+@model Career
 @section metatags{
     <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Career" />
     <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
@@ -74,7 +75,11 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@Resources.Global.Name</label>
-                                                <input id="Careers_Name" type="text" placeholder='@Resources.Global.Name' />
+                                                @Html.TextBoxFor(s => s.Name, null, new
+                                                                                   {
+                                                                                       @class = "form-control",
+                                                                                       placeholder = "Order"
+                                                                                   })
                                             </div>
 
 
@@ -85,7 +90,12 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@Resources.Global.dateOfBirth</label>
-                                                <input id="Careers_DateOfBirth" type="date" placeholder='@Resources.Global.dateOfBirth' />
+                                                @Html.TextBoxFor(s => s.DateOfBirth, null, new
+                                                                                   {
+                                                                                       @class = "form-control",
+                                                                                       placeholder = "Order",
+                                                                                       @type = "date"
+                                                                                   })
                                             </div>
                                         </div>
                                         <!--end col-6-->
@@ -93,14 +103,22 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@Resources.Global.address</label>
-                                                <input id="Careers_Address" type="text" placeholder='@Resources.Global.address' />
+                                                @Html.TextBoxFor(s => s.Address, null, new
+                                                                                   {
+                                                                                       @class = "form-control",
+                                                                                       placeholder = "Order"
+                                                                                   })
                                             </div>
                                         </div>
                                         <!--end col-6-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@Resources.Global.certification</label>
-                                                <input id="Careers_Certification" type="text" placeholder='@Resources.Global.certification' />
+                                                @Html.TextBoxFor(s => s.Certification, null, new
+                                                                                   {
+                                                                                       @class = "form-control",
+                                                                                       placeholder = "Order"
+                                                                                   })
                                             </div>
 
 
@@ -109,7 +127,11 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@Resources.Global.certificationYeears</label>
-                                                <input id="Careers_CertificationYears" type="text" placeholder='@Resources.Global.certificationYeears' />
+                                                @Html.TextBoxFor(s => s.GraduationYears, null, new
+                                                                                   {
+                                                                                       @class = "form-control",
+                                                                                       placeholder = "Order"
+                                                                                   })
                                             </div>
 
 
@@ -132,7 +154,11 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@Resources.Global.JobName</label>
-                                                <input id="Careers_JobName" type="text" placeholder='@Resources.Global.JobName' />
+                                                @Html.TextBoxFor(s => s.JobName, null, new
+                                                                                   {
+                                                                                       @class = "form-control",
+                                                                                       placeholder = "Order"
+                                                                                   })
                                             </div>
 
 
@@ -148,7 +174,7 @@
                                                         <div class="btn btn-default image-preview-input">
                                                             <span class="glyphicon glyphicon-folder-open"></span>
                                                             <span class="image-preview-input-title">@Resources.Global.Browse</span>
-                                                            <input id="Careers_UploadCv" type="file" name="input-file-preview" /> <!-- rename it -->
+                                                            <input id="Careers_UploadCv" name="uploadattachments" type="file" @*name="input-file-preview"*@ /> <!-- rename it -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -179,6 +205,7 @@
 
             </div>
         </div>
+        @*<button id="Sends" class="btn btn-black">@Resources.Global.Send</button>*@
 
 
 
@@ -236,37 +263,56 @@
 
                     }
                 });
-
             }
-
-            $("#Careers_SendForm").click(s => {
+            $("#Careers_SssendForm").click(s => {
                 s.preventDefault();
                 let obj = {};
                 console.log(obj);
                 if (validateForm(obj)) {
-                    var _url = "/api/GlobalServices/AddCareer";
+                    debugger
+                    var _url = "/Home/Careerss";
+                    var formdata = new FormData(); //FormData object
+                    var fileUpload = $('#Careers_UploadCv').get(0);
+                    var files = fileUpload.files;
+                    var fileData = new FormData();
 
+                    // Looping over all files and add it to FormData object
+                    for (var i = 0; i < files.length; i++) {
+                        fileData.append(files[i].name, files[i]);
+                    }
 
+                    // Adding one more key to FormData object
+                    fileData.append('username', 'Manas');
+                    var filesNEwInput = document.getElementById('Careers_UploadCv').files[0];
+                    //var fileInput = document.getElementById('Careers_UploadCv');
+
+                    //Iterating through each files selected in fileInput
+                    //for (i = 0; i < fileInput.files.length; i++) {
+                    //    //Appending each file to FormData object
+                    //    formdata.append(fileInput.files[i].name, fileInput.files[i]);
+                    //}
+
+                    //var AttachCareer=JSON.stringify(obj.Data);
+                    var AttachCareer = JSON.stringify(formdata);
                     $.ajax({
-                        type: "POST",
+                        type: "post",
                         url: _url,
-                        contentType: "application/json",
-                        data: JSON.stringify(obj.Data),
+                        //contenttype: "application/json",
+                        //data: 'uploadattachments='+AttachCareer ,
+                        contentType: false, // Not to set any content header
+                        processData: false, // Not to process data  ,
+
+                        data: fileData,
                         success(resonse) {
                             alert("sent succesfully");
                             location.reload();
                         }, error(error) {
-
                             errorMessage(error.responseJSON.Message);
-
                         }
                     })
+
                 }
-
-
-
             });
-
             function validateForm(obj) {
 
                 let flag = false,
