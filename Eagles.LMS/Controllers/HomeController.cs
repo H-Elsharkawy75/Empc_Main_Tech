@@ -8,10 +8,16 @@ using System.Web.Mvc;
 using Eagles.LMS.BLL;
 using Eagles.LMS.DTO;
 using Eagles.LMS.Models;
+using System.Net;
+using System.Net.Http;
+
+
+
 
 
 using System.IO;
 using System.ComponentModel.DataAnnotations.Schema;
+using Eagles.LMS.Helper;
 
 namespace Eagles.LMS.Controllers
 {
@@ -263,16 +269,110 @@ namespace Eagles.LMS.Controllers
             //return Redirect("/Admission");
             return View();
         }
-        public ActionResult ContactUs()
-        {
-            //return Redirect("/Admission");
-            return View();
-        }
+
         public ActionResult ContactUsHome()
         {
             //return Redirect("/Admission");
             return View();
         }
+
+        [HttpPost]
+        public ActionResult ContactUsHome(ContactUsRequist contat, HttpPostedFileBase uploadattachments)
+        {
+
+            ActionResult result = View(contat);
+
+            if (ModelState.IsValid)
+            {
+                RequestStatus requestStatus;
+                if (uploadattachments != null)
+                {
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Plz Upload The Attachment");
+                }
+                else
+                {
+                    var ctx = new UnitOfWork();
+                    ctx.ContactUsRquistManager.Add(contat);
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+
+                    try
+                    {
+                        SendEmail sendEmail = new SendEmail();
+                        sendEmail.SendMail(new EmailDTO
+                        {
+                            To = "To Email",
+                            Message = "<b style='font-size:12px; line-height:1.5'>FirstName :</b>" + contat.FirstName + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>LastName :</b>" + contat.LastName + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Email :</b>" + contat.Email + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Phone :</b>" + contat.Phone + "<br />"+
+                            "<b style='font-size:12px; line-height:1.5'>Message:</b>" + contat.Message + "<br />" +
+                            "<br />",
+                            From = "web@empcnews.com",
+                            Subject = "New Contact Requist"
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    return Redirect("/Home/ContactThankPage");
+
+                }
+                TempData["RequestStatus"] = requestStatus;
+            }
+            return result;
+
+        }
+
+
+
+
+
+        public ActionResult Board()
+        {
+            //return Redirect("/Admission");
+            return View();
+        }
+        public ActionResult BoardDetails(int? id)
+        {
+
+            if (id == null)
+            {
+
+                return View("NotFound");
+
+            }
+            if (id == 0)
+                return View("NotFound");
+
+            var board = new Board();
+            bool en = true;
+
+            if (Request.Cookies["Language"] != null)
+            {
+                en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+            }
+            if (en == true)
+            {
+                board = new UnitOfWork().BoardManager.GetAll().Where(s => s.NameEnglish != null).FirstOrDefault(s => s.Id == id);
+            }
+            else
+            {
+                board = new UnitOfWork().BoardManager.GetAll().Where(s => s.NameArabic != null).FirstOrDefault(s => s.Id == id);
+            }
+            if (board == null)
+                return View("NotFound");
+
+
+            return View(board);
+        }
+
+
+
+
+
 
         public ActionResult Brouchour()
         {
@@ -497,7 +597,7 @@ namespace Eagles.LMS.Controllers
         {
 
             ActionResult result = View(career);
-
+            string SiteDomainURL = System.Configuration.ConfigurationManager.AppSettings["SiteDomainURL"];
 
             if (ModelState.IsValid)
             {
@@ -516,10 +616,6 @@ namespace Eagles.LMS.Controllers
                     // top-level folder, add a name for the subfolder to folderName.
                     string pathString = System.IO.Path.Combine(Server.MapPath("~/attachments"), folderName);
                     System.IO.Directory.CreateDirectory(pathString);
-
-                    //string _rendom = new Random().Next(1, 99999999).ToString();
-
-                    //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                     string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
                     var fileName = Guid.NewGuid() + extention;
                     var path = Path.Combine(Server.MapPath("~/attachments/careers"), fileName);
@@ -527,21 +623,52 @@ namespace Eagles.LMS.Controllers
                     career.CVLink = $"/attachments/careers/{fileName}";
 
                     var ctx = new UnitOfWork();
+                    career.CreatedTime = DateTime.Now;
                     ctx.CareerManager.Add(career);
+
 
                     requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
 
+                    try
+                    {
+                        SendEmail sendEmail = new SendEmail();
+                        sendEmail.SendMail(new EmailDTO
+                        {
+                            To = "To Email",
+                            Message = "<b style='font-size:12px; line-height:1.5'><br/><br/>Name:</b>" + career.Name + "<br />" + "<b style='font-size:12px; line-height:1.5'>Date Of Birth:</b>" + career.DateOfBirth + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Address :</b>" + career.Address + "<br />" +
+                            "<b style='font-size:12px; line-height:1.5'>Certification:</b>" + career.Certification + "<br />" +
+                            "<b style='font-size:12px; line-height:1.5'>Graduation Years:</b>" + career.GraduationYears + "<br />" +
+                            "<b style='font-size:12px; line-height:1.5'>Experiance Level:</b>" + career.ExperianceLevel + "<br />" +
+                            "<b style='font-size:12px; line-height:1.5'>Job Name:</b>" + career.ExperianceLevel + "<br />" +
+                            "<b style='font-size:12px; line-height:1.5'>Job Name:</b>" + career.JobName + "<br />" +
+                            "<b style='font-size:12px; line-height:1.5'>Attachment link:  </b><a href='" + SiteDomainURL + career.CVLink + "'>" + SiteDomainURL + career.CVLink + "</a><br />",
+                            From = "web@empcnews.com",
+                            Subject = "New Career"
+                        });
+                    }
+                    catch (Exception ex)
+                    {
 
+                    }
+                    return Redirect("/Home/CareethankPage");
 
                 }
                 TempData["RequestStatus"] = requestStatus;
 
 
-
+                //added by Me
+                
 
             }
             return result;
+
         }
+
+
+
+
+
 
         public ActionResult CareethankPage()
         {

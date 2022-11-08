@@ -27,12 +27,18 @@ namespace Eagles.LMS.Data
 
         public DbSet<Album> Albums { get; set; }
 
+        public DbSet<ContactUsRequist> ContactUsRequist { get; set; }
+
+        public DbSet<SEO> SEO { get; set; }
+        public DbSet<Board> Board { get; set; }
         public DbSet<SocialMedia> SocialMedia { get; set; }
 
         public DbSet<NewImages> NewImages { get; set; }
         public DbSet<Agenda> Agenda { get; set; }
         public DbSet<AgendaImages> AgendaImages { get; set; }
         public DbSet<Group> Groups { get; set; }
+
+        public DbSet<Jobs> Jobs { get; set; }
 
         public DbSet<UserForLogin> UserForLogins { get; set; }
 

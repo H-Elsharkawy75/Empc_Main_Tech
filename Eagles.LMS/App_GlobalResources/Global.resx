@@ -1708,7 +1708,7 @@ We will be proud of your full score.</value>
     <value>Your Code</value>
   </data>
   <data name="Arabic" xml:space="preserve">
-    <value>Arabic</value>
+    <value>العربية</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -1865,7 +1865,7 @@ EXCITED ABOUT</value>
     <value>Locations</value>
   </data>
   <data name="MeetOurTeam" xml:space="preserve">
-    <value>Meet Our Team</value>
+    <value>Board of Directors</value>
   </data>
   <data name="MoreDetails" xml:space="preserve">
     <value>More Details</value>
@@ -1958,7 +1958,7 @@ EXCITED ABOUT</value>
     <value>Certification</value>
   </data>
   <data name="certificationYeears" xml:space="preserve">
-    <value>Graduation Years</value>
+    <value>Graduation Year</value>
   </data>
   <data name="CV" xml:space="preserve">
     <value>CV</value>
@@ -1967,7 +1967,7 @@ EXCITED ABOUT</value>
     <value>Date Of Birth</value>
   </data>
   <data name="ExperianceLevel" xml:space="preserve">
-    <value>Experiance Level</value>
+    <value>Experience Level</value>
   </data>
   <data name="from1to3" xml:space="preserve">
     <value>From 1 To 3 Years</value>
@@ -1992,5 +1992,17 @@ EXCITED ABOUT</value>
   </data>
   <data name="YourMessage" xml:space="preserve">
     <value>Your Message</value>
+  </data>
+  <data name="BoardChairs" xml:space="preserve">
+    <value>Board Chairs</value>
+  </data>
+  <data name="ContactMe" xml:space="preserve">
+    <value>Contact Me</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Education</value>
+  </data>
+  <data name="JobAppliedFor" xml:space="preserve">
+    <value>Job Applied For</value>
   </data>
 </root>

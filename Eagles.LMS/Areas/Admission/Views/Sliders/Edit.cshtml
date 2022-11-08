@@ -183,7 +183,17 @@
                                             }
                                             else
                                             {
-                                                <a href="https://www.youtube.com/embed/@Model.Iframe?autoplay=1" class="video-btn btn btn-info" data-type="iframe" tabindex="0">Open Video</a>
+
+                                                if (!string.IsNullOrEmpty(Model.Iframe))
+                                                {
+                                                    <a href="https://www.youtube.com/embed/@Model.Iframe?autoplay=1" class="video-btn btn btn-info" data-type="iframe" tabindex="0">Open English Video</a>
+
+                                                }
+                                                if(!string.IsNullOrEmpty(@Model.ArabicIframe))
+                                                {
+                                                    <a href="https://www.youtube.com/embed/@Model.ArabicIframe?autoplay=1" class="video-btn btn btn-info" data-type="iframe" tabindex="0">Open Arabic Video</a>
+
+                                                }
                                             }
                                         }
                                     </div>

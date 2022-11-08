@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Services";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
     UnitOfWork ctx = new UnitOfWork();
-
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
     //var services = ctx.ServiceManager.GetAll().OrderByDescending(s => s.Id).ToList();
 
     var servic = ctx.ServiceManager.GetAll().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Order).ToList();
@@ -37,10 +37,13 @@
 
     }
 }
+@section PageTitle{
+    <title>@SEO.ServicesPageTitle</title>
+}
 @section metatags{
-    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Services " />
-    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+    <meta name="keywords" content="@SEO.ServicesPageMetaKeywords " />
+    <meta name="description" id="metaDesc" content="@SEO.ServicesPageMetaDescription" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.ServicesPageCanonicalUrl" />
 }
 
 @section EndHeader{
@@ -142,7 +145,7 @@
 
 
 
-            <div class="col-lg-12">
+            @*<div class="col-lg-12">
                 <nav class="nav-services" aria-label="...">
                     <ul class="pagination">
                         <li class="page-item disabled">
@@ -163,7 +166,7 @@
                 </nav>
 
 
-            </div>
+            </div>*@
 
         </Div>
         <!--end row-->

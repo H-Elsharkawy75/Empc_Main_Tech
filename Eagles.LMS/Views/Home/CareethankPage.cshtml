@@ -1,14 +1,19 @@
 ﻿
 @{
-    ViewBag.Title = "CareethankPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
+    UnitOfWork ctx = new UnitOfWork();
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
 }
 
-@*@section metatags{
-        <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, " />
-        <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-        <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
-    }*@
+@section PageTitle{
+    <title>@SEO.CareersPageTitle</title>
+}
+@section metatags{
+    <meta name="keywords" content="@SEO.CareersPageMetaKeywords " />
+    <meta name="description" id="metaDesc" content="@SEO.CareersPageMetaDescription" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.CareersPageCanonicalUrl" />
+}
 
 
 <div class="header-bc">

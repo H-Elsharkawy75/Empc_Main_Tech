@@ -29,12 +29,15 @@ namespace Eagles.LMS.Models
 
         public string ExperianceLevel { get; set; }
 
+        //public string ExperianceLevel { get; set; }
         public string CVLink { get; set; }
 
         public List<CareerInServices> CareerInServices { get; set; }
 
         [NotMapped]
         public int[] Services { get; set; }
+
+        public DateTime CreatedTime { get; set; }
 
     }
 

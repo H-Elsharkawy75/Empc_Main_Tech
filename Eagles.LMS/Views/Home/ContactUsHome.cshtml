@@ -1,7 +1,7 @@
-﻿
+﻿@model ContactUsRequist
 @{
-    ViewBag.Title = "ContactUsHome";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
     bool en = true;
 
     if (Request.Cookies["Language"] != null)
@@ -10,15 +10,19 @@
 
     }
     UnitOfWork ctx = new UnitOfWork();
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
 
     var _contactUs = ctx.ContactUsManager.GetAll().FirstOrDefault();
 }
 
 
+@section PageTitle{
+    <title>@SEO.ContactUsPageTitle</title>
+}
 @section metatags{
-    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Contact us " />
-    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+    <meta name="keywords" content="@SEO.ContactUsPageMetaKeywords " />
+    <meta name="description" id="metaDesc" content="@SEO.ContactUsPageMetaDescription" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.ContactUsPageCanonicalUrl" />
 }
 
 @section EndHeader{
@@ -159,28 +163,134 @@
 
         <div class="cleaner-h2"></div>
 
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-md-6">
-                    <input type="text" id="Text_FirstName" placeholder='@Resources.Global.FirstName' />
-                </div>
-                <div class="col-md-6">
-                    <input type="text" id="Text_LastName" placeholder='@Resources.Global.LastName' />
-                </div>
-                <div class="col-md-6">
-                    <input type="text" id="Text_Email" placeholder='@Resources.Global.Email' />
-                </div>
-                <div class="col-md-6">
-                    <input type="text" id="Text_Phone" placeholder='@Resources.Global.Hattef' />
-                </div>
-                <div class="col-md-12">
-                    <textarea id="Text_Message" placeholder='@Resources.Global.YourMessage'></textarea>
-                </div>
-                <div class="col-lg-12">
-                    <a id="BTN_SendMessage" class="btn btn-black " style="color:#fff">@Resources.Global.Send</a>
-                </div>
+
+        @using (Html.BeginForm("ContactUsHome", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="col-lg-12">
+
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(s => s.FirstName, null, new
+                           {
+                               @class = "",
+                               placeholder = @Resources.Global.FirstName,
+                               @required = "rquired"
+                           })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(s => s.LastName, null, new
+                           {
+                               @class = "",
+                               placeholder = @Resources.Global.LastName,
+                               @required = "rquired"
+                           })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(s => s.Email, null, new
+                           {
+                               @class = "",
+                               placeholder = @Resources.Global.Email,
+                               @required = "rquired",
+                               Type = "email"
+                           })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(s => s.Phone, null, new
+                           {
+                               @class = "",
+                               placeholder = @Resources.Global.phone,
+                               @required = "rquired"
+                           })
+                        </div>
+
+                        <div class="col-md-12">
+                            @Html.TextAreaFor(s => s.Message, new
+                       {
+                           @class = "",
+                           placeholder = @Resources.Global.YourMessage
+                       })
+                        </div>
+
+
+                        @*<div class="col-md-6">
+                                <input type="text" id="Text_LastName" placeholder='@Resources.Global.LastName' />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="Text_Email" placeholder='@Resources.Global.Email' />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="Text_Phone" placeholder='@Resources.Global.Hattef' />
+                            </div>
+                            <div class="col-md-12">
+                                <textarea id="Text_Message" placeholder='@Resources.Global.YourMessage'></textarea>
+                            </div>
+                            <div class="col-lg-12">
+                                <a id="BTN_SendMessage" class="btn btn-black " style="color:#fff">@Resources.Global.Send</a>
+                            </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+                        @*<div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Resources.Global.FirstName</label>
+
+                                </div>
+                            </div>*@
+
+
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <button id="Careers_SendForm" type="submit" class="btn btn-black">@Resources.Global.Send</button>
+                            </div>
+                        </div>
+                        <!--end col-12-->
+
+
+                    </div>
+                    <!--end row-->
+
+                </form>
+
+
             </div>
-        </div>
+
+        }
+
+
+        @*<div class="col-lg-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" id="Text_FirstName" placeholder='@Resources.Global.FirstName' />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="Text_LastName" placeholder='@Resources.Global.LastName' />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="Text_Email" placeholder='@Resources.Global.Email' />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="Text_Phone" placeholder='@Resources.Global.Hattef' />
+                    </div>
+                    <div class="col-md-12">
+                        <textarea id="Text_Message" placeholder='@Resources.Global.YourMessage'></textarea>
+                    </div>
+                    <div class="col-lg-12">
+                        <a id="BTN_SendMessage" class="btn btn-black " style="color:#fff">@Resources.Global.Send</a>
+                    </div>
+                </div>
+            </div>*@
 
 
 
@@ -204,9 +314,14 @@
     -->
 
 
+<!--
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1726.7709238441291!2d31.21595155872192!3d30.049999200000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145841fe81fb8d79%3A0x7292c22730b866c5!2sMedia%20Services%20Center%20EMPC!5e0!3m2!1sen!2seg!4v1647522850851!5m2!1sen!2seg"
             width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
+-->
 
+<!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13822.334720113951!2d31.43418945!3d29.9913924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1635321981691!5m2!1sar!2seg" width="100%" height="450" style="border:0;" allowfullscreen=""></iframe>-->
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.483567264462!2d31.0162038!3d29.9655299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145850de313fc431%3A0xcc3136a98fa3c2fd!2sEMPC%20TV!5e0!3m2!1sen!2seg!4v1667854294294!5m2!1sen!2seg" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 
 </section>
@@ -218,6 +333,182 @@
     <script src="~/assets_2/vendors/base/vendors.bundle.js" type="text/javascript"></script>
     <script src="~/assets_2/default/base/Scripts.bundle.js" type="text/javascript"></script>
     <script src="~/assets_2/plugins/extended/bootstrap-notify.js" type="text/javascript"></script>
+
+
+    @if (requestStatus != null)
+    {
+
+        <script>
+
+    notify = $.notify({
+        message: '@requestStatus.Message',
+
+    }, {
+
+        type: '@requestStatus.Status' == 'Created' ? "success" : "danger",
+        animate: {
+            enter: 'animated flipInY',
+            exit: 'animated flipOutX',
+        }
+    });
+        </script>
+
+        TempData.Remove("RequestStatus");
+    }
+
+
+
+
+    <script>
+        $(() => {
+            function errorMessage(error) {
+                $.notifyClose();
+                $.notify({
+                    title: "Error:",
+                    message: error,
+
+                }, {
+                    allow_dismiss: true,
+                    showProgressbar: false,
+                    type: "danger",
+                    mouse_over: null,
+                    animate: {
+                        enter: 'animated flipInY',
+                        exit: 'animated flipOutX',
+
+                    }
+                });
+            }
+            $("#Careers_SssendForm").click(s => {
+                s.preventDefault();
+                let obj = {};
+                console.log(obj);
+                if (validateForm(obj)) {
+                    debugger
+                    var _url = "/Home/Careerss";
+                    var formdata = new FormData(); //FormData object
+                    var fileUpload = $('#Careers_UploadCv').get(0);
+                    var files = fileUpload.files;
+                    var fileData = new FormData();
+
+                    // Looping over all files and add it to FormData object
+                    for (var i = 0; i < files.length; i++) {
+                        fileData.append(files[i].name, files[i]);
+                    }
+
+                    // Adding one more key to FormData object
+                    fileData.append('username', 'Manas');
+                    var filesNEwInput = document.getElementById('Careers_UploadCv').files[0];
+                    //var fileInput = document.getElementById('Careers_UploadCv');
+
+                    //Iterating through each files selected in fileInput
+                    //for (i = 0; i < fileInput.files.length; i++) {
+                    //    //Appending each file to FormData object
+                    //    formdata.append(fileInput.files[i].name, fileInput.files[i]);
+                    //}
+
+                    //var AttachCareer=JSON.stringify(obj.Data);
+                    var AttachCareer = JSON.stringify(formdata);
+                    $.ajax({
+                        type: "post",
+                        url: _url,
+                        //contenttype: "application/json",
+                        //data: 'uploadattachments='+AttachCareer ,
+                        contentType: false, // Not to set any content header
+                        processData: false, // Not to process data  ,
+
+                        data: fileData,
+                        success(resonse) {
+                            alert("sent succesfully");
+                            location.reload();
+                        }, error(error) {
+                            errorMessage(error.responseJSON.Message);
+                        }
+                    })
+
+                }
+            });
+            function validateForm(obj) {
+
+                let flag = false,
+                    _Careers_Name = $("#Careers_Name").val(),
+                    _Careers_DateOfBirth = $("#Careers_DateOfBirth").val(),
+                    _Careers_Address = $("#Careers_Address").val(),
+                    _Careers_Certification = $("#Careers_Certification").val(),
+                    _Careers_CertificationYears = $("#Careers_CertificationYears").val(),
+                    _Careers_ExperianceLevel = $("#Careers_ExperianceLevel").val(),
+                    _Careers_JobName = $("#Careers_JobName").val();
+                _Careers_UploadCv = $("#Careers_UploadCv").val();
+
+
+                if (_Careers_Name == "" || typeof (_Careers_Name) == 'undefined') {
+                    errorMessage("Please Enter The Your Name");
+                    return false;
+                }
+                if (_Careers_DateOfBirth == "" || typeof (_Careers_DateOfBirth) == 'undefined') {
+                    errorMessage("Please Enter Your Date Of Birth");
+
+
+                    return false;
+                }
+
+                if (_Careers_Address == "" || typeof (_Careers_Address) == 'undefined') {
+                    errorMessage("Please Enter Address");
+                    return false;
+                }
+
+                if (_Careers_Certification == "" || typeof (_Careers_Certification) == 'undefined') {
+                    errorMessage("Please Enter Certification");
+                    return false;
+                }
+                if (_Careers_CertificationYears == "" || typeof (_Careers_CertificationYears) == 'undefined') {
+                    errorMessage("Please Enter Certification Years ");
+                    return false;
+                }
+                if (_Careers_JobName == "" || typeof (_Careers_JobName) == 'undefined') {
+                    errorMessage("Please Enter Job Name");
+                    return false;
+                }
+                if (Careers_ExperianceLevel.value == "" || typeof (Careers_ExperianceLevel) == 'undefined') {
+                    errorMessage("Please Select Experiance Level");
+                    return false;
+                }
+                if (Careers_UploadCv.value == "" || typeof (Careers_UploadCv) == 'undefined') {
+                    errorMessage("Please Upload file");
+                    return false;
+                }
+
+
+                obj.Data = {
+                    Name: _Careers_Name,
+                    DateOfBirth: _Careers_DateOfBirth,
+                    Address: _Careers_Address,
+                    Certification: _Careers_Certification,
+                    GraduationYears: _Careers_CertificationYears,
+                    JobName: _Careers_JobName,
+                    ExperianceLevel: _Careers_ExperianceLevel,
+                    CVLink: _Careers_UploadCv
+
+                }
+                return true;
+
+
+            }
+        })
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <script>

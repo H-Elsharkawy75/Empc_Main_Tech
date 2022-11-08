@@ -359,15 +359,20 @@
     <Compile Include="Areas\Admission\Controllers\AboutUSController.cs" />
     <Compile Include="Areas\Admission\Controllers\AgendaController.cs" />
     <Compile Include="Areas\Admission\Controllers\ApplicationsController.cs" />
+    <Compile Include="Areas\Admission\Controllers\BoardController.cs" />
     <Compile Include="Areas\Admission\Controllers\BookingController.cs" />
     <Compile Include="Areas\Admission\Controllers\BrochuresController.cs" />
     <Compile Include="Areas\Admission\Controllers\CareerController.cs" />
     <Compile Include="Areas\Admission\Controllers\CitizensController.cs" />
     <Compile Include="Areas\Admission\Controllers\ClientsController.cs" />
+    <Compile Include="Areas\Admission\Controllers\ContactUsRequistController.cs" />
+    <Compile Include="Areas\Admission\Controllers\JobsController.cs" />
     <Compile Include="Areas\Admission\Controllers\LogsController.cs" />
+    <Compile Include="Areas\Admission\Controllers\SEOController.cs" />
     <Compile Include="Areas\Admission\Controllers\SettingsController.cs" />
     <Compile Include="BLL\AlbumManager.cs" />
     <Compile Include="BLL\ApplicationManager.cs" />
+    <Compile Include="BLL\BoardManager.cs" />
     <Compile Include="BLL\BookingInServicesManager.cs" />
     <Compile Include="BLL\BookingManager.cs" />
     <Compile Include="BLL\BookingServiceManager.cs" />
@@ -377,19 +382,47 @@
     <Compile Include="BLL\CareersManager.cs" />
     <Compile Include="BLL\CitizensManager.cs" />
     <Compile Include="BLL\ClientsManager.cs" />
+    <Compile Include="BLL\ContactUsRequistManager.cs" />
+    <Compile Include="BLL\JobsManager.cs" />
     <Compile Include="BLL\logManager.cs" />
+    <Compile Include="BLL\SEOManager.cs" />
     <Compile Include="BLL\SettingsManager.cs" />
-    <Compile Include="Migrations\202206291205079_frtintiacv.cs" />
-    <Compile Include="Migrations\202206291205079_frtintiacv.designer.cs">
-      <DependentUpon>202206291205079_frtintiacv.cs</DependentUpon>
+    <Compile Include="Migrations\202207061640182_ContatctRequist.cs" />
+    <Compile Include="Migrations\202207061640182_ContatctRequist.designer.cs">
+      <DependentUpon>202207061640182_ContatctRequist.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202206291219417_firtsCVUPlod.cs" />
-    <Compile Include="Migrations\202206291219417_firtsCVUPlod.designer.cs">
-      <DependentUpon>202206291219417_firtsCVUPlod.cs</DependentUpon>
+    <Compile Include="Migrations\202207171251513_AddSEO.cs" />
+    <Compile Include="Migrations\202207171251513_AddSEO.designer.cs">
+      <DependentUpon>202207171251513_AddSEO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207171345511_UpdateSEO1.cs" />
+    <Compile Include="Migrations\202207171345511_UpdateSEO1.designer.cs">
+      <DependentUpon>202207171345511_UpdateSEO1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207250832241_AddBoard.cs" />
+    <Compile Include="Migrations\202207250832241_AddBoard.designer.cs">
+      <DependentUpon>202207250832241_AddBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207251019321_UpdateBoard.cs" />
+    <Compile Include="Migrations\202207251019321_UpdateBoard.designer.cs">
+      <DependentUpon>202207251019321_UpdateBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207251525165_AddcreatetimeCareer.cs" />
+    <Compile Include="Migrations\202207251525165_AddcreatetimeCareer.designer.cs">
+      <DependentUpon>202207251525165_AddcreatetimeCareer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207251605538_Jobs.cs" />
+    <Compile Include="Migrations\202207251605538_Jobs.designer.cs">
+      <DependentUpon>202207251605538_Jobs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211021804462_ShowBoard.cs" />
+    <Compile Include="Migrations\202211021804462_ShowBoard.designer.cs">
+      <DependentUpon>202211021804462_ShowBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingInServices.cs" />
     <Compile Include="Models\BookingService.cs" />
@@ -462,9 +495,11 @@
     <Compile Include="Models\AgendaImages.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\ContactUsRequist.cs" />
     <Compile Include="Models\Galary.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupPriviage.cs" />
+    <Compile Include="Models\Jobs.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\LocationImages.cs" />
     <Compile Include="Models\log.cs" />
@@ -473,6 +508,7 @@
     <Compile Include="Models\Privilage.cs" />
     <Compile Include="Models\PrivilageRoute.cs" />
     <Compile Include="Models\RelatedWebSite.cs" />
+    <Compile Include="Models\SEO.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ServiceImages.cs" />
     <Compile Include="Models\Setting.cs" />
@@ -884,7 +920,10 @@
     <Content Include="assets_NewPublic\fonts\ionicons\css\ionicons.min.css" />
     <Content Include="assets_NewPublic\fonts\ionicons\fonts\ionicons.svg" />
     <Content Include="assets_NewPublic\fonts\lg.svg" />
+    <Content Include="assets_NewPublic\images\1.jpg" />
     <Content Include="assets_NewPublic\images\1414555260_f023-128.png" />
+    <Content Include="assets_NewPublic\images\About1.jpeg" />
+    <Content Include="assets_NewPublic\images\About2.jpeg" />
     <Content Include="assets_NewPublic\images\bc-header.jpg" />
     <Content Include="assets_NewPublic\images\BG\LocationBG.jpeg" />
     <Content Include="assets_NewPublic\images\BG\NEWBG\cam.jpg" />
@@ -953,6 +992,8 @@
     <Content Include="assets_NewPublic\images\icons\vision.png" />
     <Content Include="assets_NewPublic\images\icons\youtube-logo.png" />
     <Content Include="assets_NewPublic\images\logo.png" />
+    <Content Include="assets_NewPublic\images\Map.png" />
+    <Content Include="assets_NewPublic\images\map2.jpeg" />
     <Content Include="assets_NewPublic\images\Mask_Group_18.png" />
     <Content Include="assets_NewPublic\images\Mask_Group_28.png" />
     <Content Include="assets_NewPublic\images\Mask_Group_32%402x.png" />
@@ -1690,6 +1731,14 @@
     <Content Include="Areas\Admission\Views\Users\ChangePassword.cshtml" />
     <Content Include="Areas\Admission\Views\Users\_Changepass.cshtml" />
     <Content Include="Areas\Admission\Views\Career\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\ContactUsRequist\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\SEO\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\Board\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\Board\Edit.cshtml" />
+    <Content Include="Areas\Admission\Views\Board\Create.cshtml" />
+    <Content Include="Areas\Admission\Views\Jobs\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\Jobs\Edit.cshtml" />
+    <Content Include="Areas\Admission\Views\Jobs\Create.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1992,6 +2041,8 @@
     <Content Include="Views\Home\Careers.cshtml" />
     <Content Include="Views\Home\CareethankPage.cshtml" />
     <Content Include="Views\Home\ContactThankPage.cshtml" />
+    <Content Include="Views\Home\Board.cshtml" />
+    <Content Include="Views\Home\BoardDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2093,11 +2144,29 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206291205079_frtintiacv.resx">
-      <DependentUpon>202206291205079_frtintiacv.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207061640182_ContatctRequist.resx">
+      <DependentUpon>202207061640182_ContatctRequist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206291219417_firtsCVUPlod.resx">
-      <DependentUpon>202206291219417_firtsCVUPlod.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207171251513_AddSEO.resx">
+      <DependentUpon>202207171251513_AddSEO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207171345511_UpdateSEO1.resx">
+      <DependentUpon>202207171345511_UpdateSEO1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207250832241_AddBoard.resx">
+      <DependentUpon>202207250832241_AddBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207251019321_UpdateBoard.resx">
+      <DependentUpon>202207251019321_UpdateBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207251525165_AddcreatetimeCareer.resx">
+      <DependentUpon>202207251525165_AddcreatetimeCareer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207251605538_Jobs.resx">
+      <DependentUpon>202207251605538_Jobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211021804462_ShowBoard.resx">
+      <DependentUpon>202211021804462_ShowBoard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

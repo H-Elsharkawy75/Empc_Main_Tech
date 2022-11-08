@@ -1,0 +1,825 @@
+﻿@model SEO
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admission/Views/Shared/_Layout.cshtml";
+    var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
+    var ctx = new Eagles.LMS.BLL.UnitOfWork();
+}
+
+
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">Update SEO</h4>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/Admission">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    @using (Html.BeginForm("Index", "SEO", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(s => s.Id)
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Who Last Edit</h4>
+                    <div class="card-body">
+                        <div class="">
+                            @try
+                            {
+                                <div class="alert alert-success" role="alert">
+                                    <h4 style="margin:0; color:#fff">Last User Edited : <span class="alert-link">@ctx.UserManager.GetBy(Model.UserEditId).FullName</span> Last Edited Time : <span class="alert-link">@Model.EditeTime</span></h4>
+                                </div>
+                            }
+                            catch { }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Shard SEO Google Tags</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Google Tage Manager (After open head Tag)</label>
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(s => s.GoogleTageManager, new
+                           {
+                               @class = "form-control TextArea_Control ",
+                               placeholder = "Google Tage Manager "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Google Tage Analitics (Before Close /head Tag)</label>
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(s => s.GoogleTageAnalitics, new
+                           {
+                               @class = "form-control TextArea_Control ",
+                               placeholder = "Google Tage Analitics "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Google Tage Search (After open body Tag)</label>
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(s => s.GoogleTageSearch, new
+                           {
+                               @class = "form-control TextArea_Control ",
+                               placeholder = "Google Tage Search "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Home Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.HomePageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.HomPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.HomPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.HomPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">About US Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AboutUsPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AboutUsPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AboutUsPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AboutUsPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Location OutDoor Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.OutDoorLocationsPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.OutDoorLocationsPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.OutDoorLocationsPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.OutDoorLocationsPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Location Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.LocationsPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.LocationsPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.LocationsPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.LocationsPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Services Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.ServicesPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.ServicesPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.ServicesPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.ServicesPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">News Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.NewsPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.NewsPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.NewsPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.NewsPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Agenda Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AgendaPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AgendaPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AgendaPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AgendaPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Albums Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AlbumsPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AlbumsPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AlbumsPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.AlbumsPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Video Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.VideoPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.VideoPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.VideoPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.VideoPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Picture Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.PicturePageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.PicturePageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.PicturePageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.PicturePageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Citizen Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.CitizenPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.CitizenPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.CitizenPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.CitizenPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Contact US Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.ContactUsPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.ContactUsPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.ContactUsPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.ContactUsPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-title btn-dark m-0 text-white p-3">Career Page</h4>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Page Title</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.CareersPageTitle, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Page Title "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta keywords</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.CareersPageMetaKeywords, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta keywords "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Meta Description</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.CareersPageMetaDescription, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Meta Description "
+                           })
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label"> Canonical Url</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(s => s.CareersPageCanonicalUrl, new
+                           {
+                               @class = "form-control ",
+                               placeholder = "Canonical Url "
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <!-- end row -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="foooterbuttons">
+                            <button type="submit" class="btn btn-success waves-effect waves-light">
+                                <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    }
+
+</div>
+
+
+
+
+
+
+
+@section EndBody{
+
+
+    @if (requestStatus != null)
+    {
+
+        <script>
+
+              notify = $.notify({
+                  message: '@requestStatus.Message',
+
+              }, {
+
+                  type: '@requestStatus.Status' == 'Edited' ? "success" :"danger",
+                      animate: {
+                          enter: 'animated flipInY',
+                          exit: 'animated flipOutX',
+                      }
+                  });
+        </script>
+
+
+        TempData.Remove("RequestStatus");
+
+    }
+}

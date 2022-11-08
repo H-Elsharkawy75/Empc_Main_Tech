@@ -4,7 +4,6 @@
 @using Eagles.LMS.App_GlobalResources
 
 @{
-    ViewBag.Title = "Home";
     string host = Request.Url.Host;
 
     bool en = true;
@@ -16,11 +15,7 @@
     }
 }
 
-@section metatags{
-    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main " />
-    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
-}
+
 
 
 @using Eagles.LMS.BLL
@@ -29,6 +24,7 @@
 @{
     UnitOfWork ctx = new UnitOfWork();
     var setting = ctx.SettingsManager.GetAll().FirstOrDefault();
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
     var aboutUs = ctx.AboutUsManager.GetAll().FirstOrDefault();
     var _contactUs = ctx.ContactUsManager.GetAll().FirstOrDefault();
     var allSliders = new List<Slider>();
@@ -56,9 +52,9 @@
 
     if (en == true)
     {
-        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.Iframe != null).ToList();
+        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.TitleEnglish != null).ToList();
         services = services.Where(s => s.TitleEnglish != null).ToList();
-        _news = ctx.NewManager.GetAll().Where(s => s.ShowInHomePage && s.Status == EntityStatus.Approval).OrderByDescending(S => S.Order).Where(s => s.TitleEnglish != null).ToList();
+        _news = ctx.NewManager.GetAll().Where(s => s.ShowInHomePage && s.Status == EntityStatus.Approval).OrderBy(S => S.Order).Where(s => s.TitleEnglish != null).ToList();
         _locations = ctx.LocationManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).Where(s => s.TitleEnglish != null).ToList();
         //var _galaries = ctx.GalaryManager.GetAllBind().OrderBy(S => S.Order).ToList();
 
@@ -69,9 +65,9 @@
     }
     else
     {
-        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.ArabicIframe != null).ToList();
+        allSliders = ctx.SliderManager.GetAllBind().OrderBy(S => S.Order).Where(s => s.TitleArabic != null).ToList();
         services = services.Where(s => s.TitleArabic != null).ToList();
-        _news = ctx.NewManager.GetAll().Where(s => s.ShowInHomePage && s.Status == EntityStatus.Approval).OrderByDescending(S => S.Order).Where(s => s.TitleArabic != null).ToList();
+        _news = ctx.NewManager.GetAll().Where(s => s.ShowInHomePage && s.Status == EntityStatus.Approval).OrderBy(S => S.Order).Where(s => s.TitleArabic != null).ToList();
         _locations = ctx.LocationManager.GetAllBind().Where(s => s.Status == EntityStatus.Approval).OrderByDescending(s => s.Id).Where(s => s.TitleArabic != null).ToList();
         //var _galaries = ctx.GalaryManager.GetAllBind().OrderBy(S => S.Order).ToList();
         _galaries = _galaries = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Id).Where(s => allPictures.Contains(s.Id) && s.TitleArabic != null).ToList();
@@ -80,6 +76,15 @@
     }
 }
 
+
+@section PageTitle{
+    <title>@SEO.HomePageTitle</title>
+}
+@section metatags{
+    <meta name="description" id="metaDesc" content="@SEO.HomPageMetaDescription" />
+    <meta name="keywords" content="@SEO.HomPageMetaKeywords " />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.HomPageCanonicalUrl" />
+}
 
 @section EndHeader{
     <style>
@@ -106,15 +111,8 @@
         <div class="home-slider owl-carousel">
 
 
-
-
-
-
             @foreach (var slider in allSliders)
             {
-
-
-
                 if (slider.IsImage)
                 {
 
@@ -172,72 +170,154 @@
 
 
 
-                    <div class="slider-item">
-                        @*<video id="video" preload autoplay width="100%" muted>
-                                <source src="@slider.Image" type='video/mp4' />
-                            </video>*@
-                        @if (en)
+                    if (en)
+                    {
+                        if (!string.IsNullOrEmpty(slider.Iframe))
                         {
+                            <div class="slider-item">
+                                @*<video id="video" preload autoplay width="100%" muted>
+                                        <source src="@slider.Image" type='video/mp4' />
+                                    </video>*@
+                                @if (en)
+                                {
 
-                            <div class="video_background">
-                                <div class="video_foreground">
 
-                                    <iframe src="https://www.youtube.com/embed/@slider.Iframe?playlist=@slider.Iframe&controls=0&autoplay=1&loop=1&rel=0&showinfo=0&mute=1 " frameborder="0" allow='autoplay' allowfullscreen></iframe>
-                                </div>
-                            </div>
-                        }
-                        else
-                        { <div class="video_background">
-                                <div class="video_foreground">
+                                    <div class="video_background">
+                                        <div class="video_foreground">
 
-                                    <iframe src="https://www.youtube.com/embed/@slider.ArabicIframe?playlist=@slider.ArabicIframe&controls=0&autoplay=1&loop=1&rel=0&showinfo=0&mute=1 " frameborder="0" allow='autoplay' allowfullscreen></iframe>
-                                </div>
-                            </div>
+                                            <iframe src="https://www.youtube.com/embed/@slider.Iframe?playlist=@slider.Iframe&controls=1&autoplay=1&loop=1&rel=0&showinfo=0&mute=1 " frameborder="0" allow='autoplay' allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                { <div class="video_background">
+                                        <div class="video_foreground">
 
-                        }
-                        <div class="overlay">
-                            <div class="container">
-                                <div class="row no-gutters slider-text align-items-center justify-content-center">
-                                    <div class="col-md-12 ftco-animate">
-                                        <div class="text w-100 ">
+                                            <iframe src="https://www.youtube.com/embed/@slider.ArabicIframe?playlist=@slider.ArabicIframe&controls=1&autoplay=1&loop=1&rel=0&showinfo=0&mute=1 " frameborder="0" allow='autoplay' allowfullscreen></iframe>
+                                        </div>
+                                    </div>
 
-                                            @if (en)
-                                            {
-                                                if (!string.IsNullOrEmpty(slider.TitleEnglish))
-                                                {
-                                                    <h1 class="mb-3">@Html.Raw(@slider.TitleEnglish)</h1>
-                                                }
-                                                if (!string.IsNullOrEmpty(slider.DescriptionEnglish))
-                                                {
-                                                    <h2>@slider.DescriptionEnglish</h2>
-                                                }
-                                                @*if (!string.IsNullOrEmpty(slider.Link))
+                                }
+                                <div class="overlay">
+                                    <div class="container">
+                                        <div class="row no-gutters slider-text align-items-center justify-content-center">
+                                            <div class="col-md-12 ftco-animate">
+                                                <div class="text w-100 ">
+
+                                                    @if (en)
                                                     {
-                                                        <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
-                                                    }*@
-                                            }
-                                            else
-                                            {
-                                                if (!string.IsNullOrEmpty(slider.TitleArabic))
-                                                {
-                                                    <h1 class="mb-3">@Html.Raw(@slider.TitleArabic)</h1>
-                                                }
-                                                if (!string.IsNullOrEmpty(slider.DescriptionArabic))
-                                                {
-                                                    <h2>@slider.DescriptionArabic</h2>
-
-                                                }
-                                                @*if (!string.IsNullOrEmpty(slider.Link))
+                                                        if (!string.IsNullOrEmpty(slider.TitleEnglish))
+                                                        {
+                                                            <h1 class="mb-3">@Html.Raw(@slider.TitleEnglish)</h1>
+                                                        }
+                                                        if (!string.IsNullOrEmpty(slider.DescriptionEnglish))
+                                                        {
+                                                            <h2>@slider.DescriptionEnglish</h2>
+                                                        }
+                                                        @*if (!string.IsNullOrEmpty(slider.Link))
+                                                            {
+                                                                <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
+                                                            }*@
+                                                    }
+                                                    else
                                                     {
-                                                        <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
-                                                    }*@
-                                            }
+                                                        if (!string.IsNullOrEmpty(slider.TitleArabic))
+                                                        {
+                                                            <h1 class="mb-3">@Html.Raw(@slider.TitleArabic)</h1>
+                                                        }
+                                                        if (!string.IsNullOrEmpty(slider.DescriptionArabic))
+                                                        {
+                                                            <h2>@slider.DescriptionArabic</h2>
+
+                                                        }
+                                                        @*if (!string.IsNullOrEmpty(slider.Link))
+                                                            {
+                                                                <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
+                                                            }*@
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        }
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(slider.ArabicIframe))
+                        {
+                            <div class="slider-item">
+                                @*<video id="video" preload autoplay width="100%" muted>
+                                        <source src="@slider.Image" type='video/mp4' />
+                                    </video>*@
+                                @if (en)
+                                {
+
+
+                                    <div class="video_background">
+                                        <div class="video_foreground">
+
+                                            <iframe src="https://www.youtube.com/embed/@slider.Iframe?playlist=@slider.Iframe&controls=0&autoplay=1&loop=1&rel=0&showinfo=0&mute=1 " frameborder="0" allow='autoplay' allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                { <div class="video_background">
+                                        <div class="video_foreground">
+
+                                            <iframe src="https://www.youtube.com/embed/@slider.ArabicIframe?playlist=@slider.ArabicIframe&controls=0&autoplay=1&loop=1&rel=0&showinfo=0&mute=1 " frameborder="0" allow='autoplay' allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+
+                                }
+                                <div class="overlay">
+                                    <div class="container">
+                                        <div class="row no-gutters slider-text align-items-center justify-content-center">
+                                            <div class="col-md-12 ftco-animate">
+                                                <div class="text w-100 ">
+
+                                                    @if (en)
+                                                    {
+                                                        if (!string.IsNullOrEmpty(slider.TitleEnglish))
+                                                        {
+                                                            <h1 class="mb-3">@Html.Raw(@slider.TitleEnglish)</h1>
+                                                        }
+                                                        if (!string.IsNullOrEmpty(slider.DescriptionEnglish))
+                                                        {
+                                                            <h2>@slider.DescriptionEnglish</h2>
+                                                        }
+                                                        @*if (!string.IsNullOrEmpty(slider.Link))
+                                                            {
+                                                                <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
+                                                            }*@
+                                                    }
+                                                    else
+                                                    {
+                                                        if (!string.IsNullOrEmpty(slider.TitleArabic))
+                                                        {
+                                                            <h1 class="mb-3">@Html.Raw(@slider.TitleArabic)</h1>
+                                                        }
+                                                        if (!string.IsNullOrEmpty(slider.DescriptionArabic))
+                                                        {
+                                                            <h2>@slider.DescriptionArabic</h2>
+
+                                                        }
+                                                        @*if (!string.IsNullOrEmpty(slider.Link))
+                                                            {
+                                                                <a href="@slider.Link" target="_blank" class="RerdrrdMore">@Resources.Global.watchMore</a>
+                                                            }*@
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
                 }
             }
 
@@ -316,7 +396,7 @@
     </section>
     <!-- End services section -->
 
-    <section class="locations " style="display:none">
+    @*<section class="locations " style="display:none">
 
 
         <div class="opacity-groub"></div>
@@ -327,7 +407,6 @@
 
                 <div class="col-md-12 heading-section text-center ftco-animate">
 
-                    <!--                    <div class="red-line"></div>-->
 
                     <h2 class="mb-4 headh2">@Resources.Global.services</h2>
 
@@ -339,7 +418,6 @@
 
 
                 </div>
-                <!--end col-12-->
 
 
 
@@ -385,7 +463,6 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <!--end img-div-->
 
                                 </div>
 
@@ -409,13 +486,12 @@
 
 
             </div>
-            <!--end row-->
         </div>
-        <!--end container-->
 
 
-    </section>
-    <!-- End services section  locationServices-->
+    </section>*@
+
+
 }
 
 
@@ -457,9 +533,9 @@
                             }
                         </div>
 
-                        <Div class="width-btn-who">
+                        <div class="width-btn-who hidden-xs">
                             <a href="/Home/AboutUs" class="btn btn-danger btn-block btn-theme"> @Resources.Global.ReadMore</a>
-                        </Div>
+                        </div>
                         <!--end width-btn-->
 
 
@@ -474,15 +550,17 @@
                             </div>
                             <div class="buttonpopupvedio" style="display:none">
                                 @*<button type="button" class="btnvediopopup" data-toggle="modal" data-target="#VedioPopup">
-                                        <i class="fas fa-play"></i>
-                                    </button>*@
+                    <i class="fas fa-play"></i>
+                </button>*@
                                 <a href="@aboutUs.YouTubeFrame" class="btnvediopopup" data-type="iframe" tabindex="0">
                                     <i class="fas fa-play"></i>
                                 </a>
                             </div>
                         </div>
 
-
+                        <div class="width-btn-who visible-xs">
+                            <a href="/Home/AboutUs" class="btn btn-danger btn-block btn-theme"> @Resources.Global.ReadMore</a>
+                        </div>
 
                     </div>
 
@@ -499,7 +577,7 @@
 
 
 
-    <section class="who" style="display:none">
+    @*<section class="who" style="display:none">
         <div class="container">
             <div class="row">
 
@@ -520,13 +598,9 @@
                     <div class="border-top-1"></div>
 
                 </div>
-                <!--end col-6-->
 
 
                 <div class="col-md-6 col-sm-12 col-xs-12">
-
-
-                    <!--                    <div class="red-line1"></div>-->
 
                     <div class="overflowheightabout">
                         @if (en)
@@ -552,18 +626,15 @@
                     <Div class="width-btn-who">
                         <a href="/Home/AboutUs" class="btn btn-danger btn-block btn-theme"> @Resources.Global.ReadMore</a>
                     </Div>
-                    <!--end width-btn-->
-
 
                 </div>
 
 
             </div>
-            <!--end row-->
         </div>
-        <!--end conatiner-->
-    </section>
-    <!--end who-->
+    </section>*@
+
+
 }
 
 
@@ -581,7 +652,7 @@
                                 <div class="LocDiscForflex">
                                     <h2>@Resources.Global.Locations</h2>
                                     <p style="display:none">@Resources.Global.ContPagrgraph</p>
-                                    <a href="/Home/Locations" style="margin-top:30px;" class="ReadMore">@Resources.Global.ReadMore</a>
+                                    <a href="/Home/Locations" style="margin-top:30px;" class="ReadMore hidden-xs">@Resources.Global.ReadMore</a>
                                 </div>
                             </div>
                         </div>
@@ -617,6 +688,13 @@
                                     }
                                 </ul>
                             </div>
+
+
+                            <div class="LocDataDeis">
+                                <div class="LocDiscForflex">
+                                    <a href="/Home/Locations" style="margin-top:30px;" class="ReadMore visible-xs">@Resources.Global.ReadMore</a>
+                                </div>
+                            </div>
                         </div>
 
 
@@ -642,7 +720,7 @@
 
 @if (setting.ShowLocations)
 {
-    <div class="newlocation" style="background-image: url(/assets_NewPublic/images/newimg/2.jpg); display:none">
+    @* Old <div class="newlocation" style="background-image: url(/assets_NewPublic/images/newimg/2.jpg); display:none">
 
         <div class="overlay">
             <div class="container-fluid">
@@ -689,16 +767,10 @@
                 </div>
             </div>
         </div>
-        <!--
-                        <div class="dasdasd">
-                    <video preload autoplay width="100%" muted>
-                        <source id='mp4' src="images/test.mp4" type='video/mp4' />
-                    </video>
-                </div>
-        -->
-    </div>
 
-    <div class="newSerivcess" style="background-image: url(/assets_NewPublic/images/BG/LocationBG.jpeg); display:none">
+    </div>*@
+
+    @* Old <div class="newSerivcess" style="background-image: url(/assets_NewPublic/images/BG/LocationBG.jpeg); display:none">
         <div class="overlay">
             <div class="container">
                 <div class="titile">
@@ -715,7 +787,6 @@
                                 <div class="servItem">
                                     <div class="ServCont">
                                         <div class="icon">
-                                            @*<img src="@location.IconImage">*@
                                         </div>
                                         @if (en)
                                         {
@@ -757,7 +828,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
+
+
 }
 
 @if (setting.ShowNews)
@@ -769,7 +842,6 @@
                 <div class="row justify-content-center mb-3 pb-3">
                     <div class="col-md-12 heading-section text-center ftco-animate">
 
-                        <!--                    <div class="red-line"></div>-->
                         <h2 class="mb-4 headh2">@Resources.Global.Latestnews</h2>
                         <p class="headp" style="display:none">@Resources.Global.ContPagrgraph</p>
                     </div>
@@ -793,7 +865,6 @@
                                         <div class="imagsBG" style="background-image: url( @_news[i].MainImage )"></div>
                                     </div>
 
-                                    @*<img src="" class="img-responsive news-img" />*@
 
 
                                     @if (@_news[i].CreatedTime != null)
@@ -840,7 +911,6 @@
                     }
 
 
-                    <!--end col-6-->
 
 
 
@@ -850,15 +920,13 @@
 
 
                 </div>
-                <!--end row-->
             </div>
-            <!--end conatiner-->
         </div>
 
 
     </section>
 
-    <div class="newNewsSec" style="display:none">
+    @*<div class="newNewsSec" style="display:none">
         <div class="overlay">
             <div class="container">
                 <div class="titile">
@@ -874,7 +942,6 @@
                 </div>
                 <div class="NewNewsCont">
                     <div class="row otherrow">
-                        @*@foreach (var _new in _news)*@
                         @for (int i = 0; i < _news.Count; i++)
                         {
 
@@ -923,13 +990,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
 }
 
 @if (setting.ShowGalaryPhotos)
 {
-    <section class="gallery-section GallaryHome-section ">
+    @*<section class="gallery-section GallaryHome-section " style="display:none">
 
 
         <div class="container">
@@ -938,7 +1005,6 @@
                 <div class="row ftco-animate">
                     <div class="col-md-12 heading-section text-center ftco-animate">
 
-                        <!--                    <div class="red-line"></div>-->
                         <h2 class="mb-4 headh2">@Resources.Global.Gallery</h2>
                         <p class="headp" style="display:none">@Resources.Global.ContPagrgraph</p>
                     </div>
@@ -987,17 +1053,16 @@
 
         </div>
 
-    </section>
+    </section>*@
 
 
 
 
 
-    <div class="newLatestNews" style="display:none">
+    @* Old <div class="newLatestNews" style="display:none">
         <div class="overlay">
             <div class=" text-center ftco-animate">
 
-                <!--                    <div class="red-line"></div>-->
 
                 <h2 class="mb-4 headh2"> @Resources.Global.Gallery</h2>
                 <p class="headp">@Resources.Global.ContPagrgraph</p>
@@ -1007,28 +1072,7 @@
 
 
                     <div class="row otherrow">
-                        @*@foreach (var galary in _galaries)
-                                    {
-                                        <div class=" othercoll">
-                                            <div class="imagesmnewscont smallImages">
-                                                <div class="imags ">
-                                                    <img src="@galary.Image">
-                                                </div>
-                                                <div class="discription">
-                                                    @if (en)
-                                                    {
-                                                        <a href="/Home/Picture/@galary.Id">@galary.TitleEnglish</a>
-                            location
-                                                    }
-                                                    else
-                                                    {
-                                                        <a href="/Home/Picture/@galary.Id">@galary.TitleArabic</a>
-
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }*@
+       
 
                         @for (int i = 0; i < _galaries.Count; i++)
                         {
@@ -1063,16 +1107,15 @@
 
 
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
+
+
+
 }
-<div class="Custommr" style="display:none">
+@*<div class="Custommr" style="display:none">
     <div class="overlay">
         <div class="titile">
             <h2 class="mb-4 headh2">@Resources.Global.Clients</h2>
@@ -1134,7 +1177,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 @if (setting.ShowRelatedWebSites)
 {
@@ -1204,7 +1247,7 @@
 @if (setting.ShowContactUs)
 {
 
-    <section class="map-loading">
+ @*  <section class="map-loading" style="display:none">
 
         <div class="opacity-map">
 
@@ -1212,7 +1255,6 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <!--                        <div class="red-line"></div>-->
 
                         <h2 class="mb-4 headh2"> @Resources.Global.ContactUs</h2>
 
@@ -1236,7 +1278,6 @@
                             }
 
                         </div>
-                        <!--end location-map-->
 
                         <div class="cleaner-h3"></div>
 
@@ -1247,7 +1288,6 @@
                             <p>@_contactUs.Phone</p>
 
                         </div>
-                        <!--end location-map-->
 
                         <div class="cleaner-h3"></div>
 
@@ -1257,7 +1297,6 @@
                             <p>@_contactUs.Email</p>
 
                         </div>
-                        <!--end location-map-->
 
 
                     </div>
@@ -1275,12 +1314,20 @@
         -->
 
 
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1726.7709238441291!2d31.21595155872192!3d30.049999200000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145841fe81fb8d79%3A0x7292c22730b866c5!2sMedia%20Services%20Center%20EMPC!5e0!3m2!1sen!2seg!4v1647522850851!5m2!1sen!2seg"
-                width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
+        <div class="imagessMAP">
+
+            <img src="~/assets_NewPublic/images/Map.png" />
+        </div>
+
+
+
+        <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1726.7709238441291!2d31.21595155872192!3d30.049999200000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145841fe81fb8d79%3A0x7292c22730b866c5!2sMedia%20Services%20Center%20EMPC!5e0!3m2!1sen!2seg!4v1647522850851!5m2!1sen!2seg"
+                width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>-->
 
 
 
     </section>
+     *@
 }
 
 
@@ -1318,23 +1365,6 @@
 
 
 
-
-<div class="modal fade Vediomodal" id="VedioPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-
-            <div class="modal-body">
-                <div class="vedioIframe">
-                    <iframe width="560" height="315" src="@aboutUs.YouTubeFrame" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 
 

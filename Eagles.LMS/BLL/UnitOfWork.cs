@@ -57,6 +57,13 @@ namespace Eagles.LMS.BLL
         public BookingManager BookingManager { get { return new BookingManager(ctx); } }
 
         public CareerManager CareerManager { get { return new CareerManager(ctx); } }
+
+        public SEOManager SEOManager { get { return new SEOManager(ctx); } }
+
+        public JobsManager JobsManager { get { return new JobsManager(ctx); } }
+
+        public BoardManager BoardManager { get { return new BoardManager(ctx); } }
+        public ContactUsRquistManager ContactUsRquistManager { get { return new ContactUsRquistManager(ctx); } }
         public BookingInServicesManager BookingInServicesManager { get { return new BookingInServicesManager(ctx); } }
 
         public CareerInServicesManager CareerInServicesManager { get { return new CareerInServicesManager(ctx); } }

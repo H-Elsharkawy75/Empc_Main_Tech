@@ -105,7 +105,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                                   "Uncompatible IFrame Formtaing");
                             return result;
                         }
-                        slider.Iframe = slider.ArabicIframe.Split('/').Last().ToString();
+                        slider.ArabicIframe = slider.ArabicIframe.Split('/').Last().ToString();
                     }
                 }
 

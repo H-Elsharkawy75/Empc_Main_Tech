@@ -1664,7 +1664,7 @@
     <value>العربيه</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>الانجليزيه</value>
+    <value>English</value>
   </data>
   <data name="BacktoHome" xml:space="preserve">
     <value>العوده الى الرئيسيه</value>
@@ -1817,7 +1817,7 @@
     <value>المواقع</value>
   </data>
   <data name="MeetOurTeam" xml:space="preserve">
-    <value>التق بفريقنا</value>
+    <value>مجلس الإدارة</value>
   </data>
   <data name="MoreDetails" xml:space="preserve">
     <value>المزيد من التفاصيل</value>
@@ -1850,7 +1850,7 @@
     <value>مشاهدة المزيد</value>
   </data>
   <data name="applications" xml:space="preserve">
-    <value>التطبيقات</value>
+    <value>خدمة العملاء</value>
   </data>
   <data name="Careers" xml:space="preserve">
     <value>الوظائف</value>
@@ -1886,7 +1886,7 @@
     <value>اقرء التفاصيل</value>
   </data>
   <data name="ShootingAreas" xml:space="preserve">
-    <value>مواقع التصوير المفتوحة</value>
+    <value>مناطق التصوير المفتوحة</value>
   </data>
   <data name="Mission" xml:space="preserve">
     <value>المهمه</value>
@@ -1947,5 +1947,17 @@
   </data>
   <data name="YourMessage" xml:space="preserve">
     <value>رسالتك</value>
+  </data>
+  <data name="ContactMe" xml:space="preserve">
+    <value>تواصل معى</value>
+  </data>
+  <data name="BoardChairs" xml:space="preserve">
+    <value>رؤساء مجلس الإدارة</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>التعليم</value>
+  </data>
+  <data name="JobAppliedFor" xml:space="preserve">
+    <value>الوظيفه النتقدم اليها</value>
   </data>
 </root>

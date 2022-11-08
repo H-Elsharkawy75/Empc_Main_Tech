@@ -141,31 +141,32 @@
 		});
       
       
-      $('.carousel-team').owlCarousel({
-			center: false,
-			 autoplay: true,
-			loop: true,
-			margin: 30,
-			stagePadding: 0,
-			nav: true,
-			 dots: false,
-			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
-			responsive:{
-				0:{
-					items: 1,
-                    nav: true,
-				},
-				600:{
-					items: 2,
-                    nav: true,
-				},
-				1000:{
-					items: 4,
-                    nav: true,
-				}
+  //    $('.carousel-team').owlCarousel({
+		//  center: false,
+		//  rtl: true,
+		//  autoplay: true,
+		//  loop: false,
+		//	margin: 30,
+		//	stagePadding: 0,
+		//	nav: true,
+		//	 dots: false,
+		//	navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
+		//	responsive:{
+		//		0:{
+		//			items: 1,
+  //                  nav: true,
+		//		},
+		//		600:{
+		//			items: 2,
+  //                  nav: true,
+		//		},
+		//		1000:{
+		//			items: 4,
+  //                  nav: true,
+		//		}
 				
-			}
-		});
+		//	}
+		//});
       
       $('.carousel-vedios').owlCarousel({
 			center: false,

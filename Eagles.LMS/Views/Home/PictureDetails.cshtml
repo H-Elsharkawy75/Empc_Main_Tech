@@ -1,8 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "PictureDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
     UnitOfWork ctx = new UnitOfWork();
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
     bool en = true;
 
     if (Request.Cookies["Language"] != null)
@@ -13,10 +13,13 @@
     var Id = ViewBag.Id;
 }
 
+@section PageTitle{
+    <title>@SEO.PicturePageTitle</title>
+}
 @section metatags{
-    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Picture, Picture Album, Details, Album " />
-    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+    <meta name="keywords" content="@SEO.PicturePageMetaKeywords " />
+    <meta name="description" id="metaDesc" content="@SEO.PicturePageMetaDescription" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.PicturePageCanonicalUrl" />
 }
 
 @section EndHeader{

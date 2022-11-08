@@ -1,14 +1,8 @@
 ﻿@{
-    ViewBag.Title = "AboutUs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 
-@section metatags{
-    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, About us, who ew are, About main " />
-    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
-}
 
 @using Eagles.LMS.BLL
 @using Eagles.LMS.App_GlobalResources
@@ -16,7 +10,9 @@
 @{
     UnitOfWork ctx = new UnitOfWork();
     var teams = new List<Team>();
+    var board = new List<Board>();
     var setting = ctx.SettingsManager.GetAll().FirstOrDefault();
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
     var aboutUs = ctx.AboutUsManager.GetAll().FirstOrDefault();
     bool en = true;
 
@@ -28,15 +24,27 @@
     if (en == true)
     {
         teams = ctx.TeamManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.NameEnglish != null).ToList();
+        board = ctx.BoardManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.NameEnglish != null).ToList();
     }
     else
     {
         teams = ctx.TeamManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.NameArabic != null).ToList();
+        board = ctx.BoardManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.NameArabic != null).ToList();
     }
 
 
 
 }
+
+@section PageTitle{
+    <title>@SEO.AboutUsPageTitle</title>
+}
+@section metatags{
+    <meta name="keywords" content="@SEO.AboutUsPageMetaKeywords " />
+    <meta name="description" id="metaDesc" content="@SEO.AboutUsPageMetaDescription" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.AboutUsPageCanonicalUrl" />
+}
+
 @section EndHeader{
     <style>
         .news {
@@ -99,10 +107,11 @@
 
             <div class="col-md-6">
 
-                <img src="~/assets_NewPublic/images/bg_2.jpg" class="img-responsive img-about" />
+
+                <img src="~/assets_NewPublic/images/About1.jpeg" class="img-responsive img-about" />
             </div>
             <div class="col-md-6">
-                <img src="~/assets_NewPublic/images/bg_2.jpg" class="img-responsive img-about" />
+                <img src="~/assets_NewPublic/images/About2.jpeg" class="img-responsive img-about" />
             </div>
 
 
@@ -259,6 +268,94 @@
 </Div>
 <!--end about-bk-->
 
+
+@if (setting.ShowBoard)
+{
+    <div class="gallery-section testimony-section ">
+        <div class="team-section">
+            <h2 class="mb-4 headh2">@Resources.Global.BoardChairs</h2>
+            <div class="container">
+                <div class="row ftco-animate">
+                    <div class="col-md-12">
+                        <div class="carousel-team owl-carousel ftco-owl">
+
+                            @foreach (var _board in board)
+                            {
+
+                                if (!string.IsNullOrEmpty(_board.JobDescriptionArabic) && !string.IsNullOrEmpty(_board.JobDescriptionEnglish))
+                                {
+
+                                    <div class="item">
+                                        <div class="testimony-wrap teamItem">
+                                            <a href="/Home/BoardDetails/@_board.Id">
+
+                                                <img src="@_board.Image" class="img-responsive" />
+                                                <div class="text">
+                                                    @if (en)
+                                                    {
+                                                        <p class="mb-1 name">@_board.NameEnglish</p>
+                                                        <p class="job">@_board.JobTitleEnglish</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="mb-1 name">@_board.NameArabic</p>
+                                                        <p class="job">@_board.JobTitleArabic</p>
+                                                    }
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="item">
+                                        <div class="testimony-wrap teamItem">
+                                            <a>
+
+                                                <img src="@_board.Image" class="img-responsive" />
+                                                <div class="text">
+                                                    @if (en)
+                                                    {
+                                                        <p class="mb-1 name">@_board.NameEnglish</p>
+                                                        <p class="job">@_board.JobTitleEnglish</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="mb-1 name">@_board.NameArabic</p>
+                                                        <p class="job">@_board.JobTitleArabic</p>
+                                                    }
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                }
+
+
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+
+
+
+
+
+
+
+
+
 @if (setting.ShowTeams)
 {
 
@@ -291,10 +388,7 @@
 
 
                                                     <p class="mb-1 name">@team.NameEnglish</p>
-
-
                                                     <p class="job">@team.JobTitleEnglish</p>
-                                                    @*<p class="job">@team.JobDescriptionEnglish</p>*@
 
                                                 }
                                                 else
@@ -303,7 +397,6 @@
 
 
                                                     <p class="job">@team.JobTitleArabic</p>
-                                                    @*<p class="job">@team.JobDescriptionEnglish</p>*@
                                                 }
                                             </div>
                                         </div>
@@ -335,6 +428,12 @@
 
 
 }
+
+
+
+
+
+
 
 @*<div class="vedioAboutSc" style="background-image: url(@aboutUs.Image)">*@
 <div class="vedioAboutSc" style="background-image: url(/assets_NewPublic/images/f14.jpeg); display:none">
@@ -391,3 +490,76 @@
         </div>
     </div>
 </div>
+
+
+
+
+@section EndBody{
+
+    @if (en)
+    {
+        <script>
+            $('.carousel-team').owlCarousel({
+                center: false,
+                rtl: false,
+                autoplay: true,
+                loop: false,
+                margin: 15,
+                stagePadding: 0,
+                nav: true,
+                dots: false,
+                navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
+                responsive:
+                {
+                    0: {
+                        items: 1,
+                        nav: true,
+                    },
+                    600: {
+                        items: 2,
+                        nav: true,
+                    },
+                    1000: {
+                        items: 5,
+                        nav: true,
+                    }
+
+                }
+            });
+        </script>
+
+    }
+    else
+    {
+        <script>
+            $('.carousel-team').owlCarousel({
+                center: false,
+                rtl: true,
+                autoplay: true,
+                loop: false,
+                margin: 15,
+                stagePadding: 0,
+                nav: true,
+                dots: false,
+                navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
+                responsive:
+                {
+                    0: {
+                        items: 1,
+                        nav: true,
+                    },
+                    600: {
+                        items: 2,
+                        nav: true,
+                    },
+                    1000: {
+                        items: 5,
+                        nav: true,
+                    }
+
+                }
+            });
+        </script>
+    }
+
+}

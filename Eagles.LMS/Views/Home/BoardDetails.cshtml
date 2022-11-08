@@ -1,0 +1,125 @@
+﻿@model Board
+@{
+    ViewBag.Title = "BoardDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    UnitOfWork ctx = new UnitOfWork();
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
+    bool en = true;
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+}
+
+@section metatags{
+    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Booking " />
+    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
+    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+}
+@section EndHeader{
+
+}
+
+<div class="header-bc">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="title-header">
+
+                    <h3>@Resources.Global.BoardChairs</h3>
+
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="#">@Resources.Global.Home</a> > </li>
+                            <li>@Resources.Global.BoardChairs</li>
+                        </ul>
+                    </div>
+                    <!--end breadcrumb-->
+                </div>
+                <!--end title-header-->
+            </div>
+            <!--end col-6-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</div>
+<!--end header-bc-->
+<!-- Team Details -->
+<section class="team-details section-padding2" style="margin:50px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-60">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img src="@Model.Image" class="img-fluid" alt="" />
+                        </div>
+                        <div class="col-md-7">
+                            <div class="text-content v-middle TamDetailsCont">
+                                <div class="forflex">
+                                    @if (en)
+                                    {
+                                        <h3>@Model.NameEnglish</h3>
+                                        <h2>@Model.JobTitleEnglish</h2>
+                                        <p>@Html.Raw(@Model.JobDescriptionEnglish)</p>
+                                    }
+                                    else
+                                    {
+                                        <h3>@Model.NameArabic</h3>
+                                        <h2>@Model.JobTitleArabic</h2>
+                                        <p>@Html.Raw(@Model.JobDescriptionArabic)</p>
+                                    }
+
+                                    <div class="team-details-info">
+                                        <ul class="info-list clearfix">
+                                            @if (!string.IsNullOrEmpty(Model.Phone))
+                                            {
+                                                <li>
+                                                    <div class="list-title">@Resources.Global.ContactMe :</div>
+                                                    <div class="list-description"><a href="tel:@Model.Phone" tabindex="0">@Model.Phone</a></div>
+                                                </li>
+                                            }
+                                            @if (!string.IsNullOrEmpty(Model.Email))
+                                            {
+                                        <li>
+                                            <div class="list-title">@Resources.Global.Email :</div>
+                                            <div class="list-description"><a href="mailto:@Model.Email">@Model.Email</a></div>
+                                        </li>
+                                            }
+
+                                            
+                                        </ul>
+                                    </div>
+                                    <ul class="social-icons square">
+                                        @if (!string.IsNullOrEmpty(Model.FaceLink))
+                                        {
+                                            <li> <a href="@Model.FaceLink" target="_blank"><i class="fab fa-facebook-f"></i></a> </li>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.twiterLink))
+                                        {
+                                            <li> <a href="@Model.twiterLink" target="_blank"><i class="fab fa-twitter"></i></a> </li>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.LinkedInLink))
+                                        {
+                                            <li> <a href="@Model.LinkedInLink" target="_blank"><i class="fab fa-linkedin-in"></i></a> </li>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.GoogleLink))
+                                        {
+                                            <li> <a href="@Model.GoogleLink" target="_blank"><i class="fab fa-google-plus-g"></i></a> </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Team Member -->

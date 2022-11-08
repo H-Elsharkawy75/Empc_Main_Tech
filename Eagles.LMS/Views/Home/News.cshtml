@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "News";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
     UnitOfWork ctx = new UnitOfWork();
-
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
     //var _news = ctx.NewManager.GetAll().OrderByDescending(s => s.NewsDate).ToList();
     bool en = true;
 
@@ -30,16 +30,18 @@
         .menu li a.active-a6 {
             color: #af7a2c;
             border-bottom: 1px solid #fff0;
-            font-weight: 500;
+         
         }
     </style>
 }
 
-
+@section PageTitle{
+    <title>@SEO.NewsPageTitle</title>
+}
 @section metatags{
-    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main " />
-    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+    <meta name="keywords" content="@SEO.NewsPageMetaKeywords " />
+    <meta name="description" id="metaDesc" content="@SEO.NewsPageMetaDescription" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.NewsPageCanonicalUrl" />
 }
 
 

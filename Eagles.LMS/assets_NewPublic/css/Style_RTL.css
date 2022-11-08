@@ -16,7 +16,7 @@
     float: left !important;
 }
 .owl-carousel .owl-stage-outer {
-    direction: ltr;
+/*    direction: ltr;*/
 }
 .owl-carousel.home-slider .slider-item .overlay {
     padding: 0 70px 0 10px;
@@ -258,4 +258,31 @@ a:focus{
 .mfp-counter {
 
     direction: ltr !important;
+}
+
+.team-details .content .info-list li {
+    float: right;
+}
+
+
+/*.team-section .owl-carousel .owl-item {
+    min-height: 1px;
+    float: right;
+    -webkit-backface-visibility: hidden;
+    -webkit-touch-callout: none;
+}*/
+
+.owl-carousel .owl-stage-outer {
+    position: relative;
+    overflow: hidden;
+    -webkit-transform: translate3d(0,0,0);
+    direction: inherit;
+
+}
+.owl-carousel.home-slider {
+    direction: ltr;
+}
+
+.servicesDetails .ServDiscription * {
+    font-family: 'Cairo' !important;
 }

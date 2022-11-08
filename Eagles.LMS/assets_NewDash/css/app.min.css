@@ -5514,7 +5514,10 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination li {
     right: auto !important;
 }
 
-
+.navbar-header .dropdown-menu-end[style] {
+    left: auto !important;
+    right: 0 !important;
+}
 
 
 
@@ -5632,4 +5635,19 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination li {
     overflow: auto;
     word-wrap: break-word;
     height: 365px;
+}
+
+
+.FontCairo {
+    font-family: 'Cairo';
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #2a3042;
+    border-color: #2a3042;
+}
+
+.TextArea_Control {
+    min-height: 180px !important;
 }

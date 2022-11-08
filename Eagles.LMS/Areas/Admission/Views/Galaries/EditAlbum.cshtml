@@ -77,17 +77,18 @@
                                             @Html.ValidationMessageFor(s => s.TitleEnglish)
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        @if (Model != null && Model.Image != null)
-                                        {
-                                            <img style="max-width: auto; height: 210px " src="@Model.Image" />
-                                        }
-                                    </div>
+                                    <div class="col-lg-6 col-md-1 col-sm-6 col-xs-12"></div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label for="formFile" class="form-label">Image <span class="extiniosType">(jpg, png, peg, gif, jpg)</span><span class="extiniosType">(W:1420px, H:870px)</span></label>
                                             <input class="form-control" name="uploadattachments" type="file" id="uploadattachments">
                                         </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        @if (Model != null && Model.Image != null)
+                                        {
+                                            <img style="max-width: auto; height: 210px " src="@Model.Image" />
+                                        }
                                     </div>
 
 
@@ -136,6 +137,7 @@
                                                             </button>
                                                             <div class="dropdown-menu dropdown-menu-end">
                                                                 <a class="dropdown-item align-middle " href="/Admission/Galaries/Edit/@item.Id"><i class="bx bx-edit font-size-16 me-1"></i>@Resources.Global.Edit</a>
+                                                                <a class="dropdown-item text-danger align-middle btn_delete" data-id="@item.Id" href="#"><i class="bx bx-trash font-size-16 me-1"></i>@Resources.Global.Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -161,16 +163,16 @@
                                                         {
                                                             if (item.VideoIframe != null)
                                                             {
-                                                            <a href="@item.VideoIframe" class="btnIconVideos" data-type="iframe" tabindex="0">
-                                                                <i class="bx bx-play-circle"></i>
-                                                            </a> 
+                                                                <a href="@item.VideoIframe" class="btnIconVideos" data-type="iframe" tabindex="0">
+                                                                    <i class="bx bx-play-circle"></i>
+                                                                </a>
                                                             }
 
                                                             if (item.ArabicVideoIframe != null)
                                                             {
-                                                            <a href="@item.ArabicVideoIframe" class="btnIconVideos" data-type="iframe" tabindex="0">
-                                                                <i class="bx bx-play-circle"></i>
-                                                            </a>
+                                                                <a href="@item.ArabicVideoIframe" class="btnIconVideos" data-type="iframe" tabindex="0">
+                                                                    <i class="bx bx-play-circle"></i>
+                                                                </a>
                                                             }
                                                         }
                                                     </td>
@@ -228,6 +230,33 @@
 
 
 @section EndBody{
+
+    <script>
+        $(function () {
+
+  $("body").on("click", ".btn_delete", (s) => {
+                let self = $(s.currentTarget),
+                    entityId = self.attr('data-id');
+                bootbox.confirm("@Resources.Global.ConfirmDeleteoperation !", function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Admission/Galaries/Delete/" + entityId+"",
+                            success: (response) => {
+                                toastr.success('@Resources.Global.Theunithasbeensuccessfullydeleted', { timeOut: 10000 });
+                                self.closest('tr').remove();
+                            }, error: (error) => {
+                                // unauthorize
+                                let errorMessage = manageAjaxError(error);
+                                pushNotification("danger", errorMessage);
+                            }
+                        });
+                    }
+                })
+            });
+        });
+    </script>
+
 
     @if (requestStatus != null)
     {

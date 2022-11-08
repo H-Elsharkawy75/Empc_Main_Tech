@@ -27,7 +27,7 @@ namespace Eagles.LMS.Models
         public bool ShowSliders { get; set; }
         public bool ShowSocialMedias { get; set; }
         public bool ShowTeams { get; set; }
-
+        public bool ShowBoard { get; set; }
         public string MegaTags { get; set; }
 
 

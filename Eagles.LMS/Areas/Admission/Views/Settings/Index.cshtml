@@ -222,6 +222,20 @@
                                             @Html.ValidationMessageFor(s => s.ShowTeams)
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Show Board</label>
+                                            @Html.CheckBoxFor(s => s.ShowBoard, new
+                                       {
+                                           @class = "",
+                                           placeholder = "Show Board"
+                                       })
+                                            @Html.ValidationMessageFor(s => s.ShowBoard)
+                                        </div>
+                                    </div>
+
+                                    
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Mega-Tags</label>
@@ -234,7 +248,7 @@
                                         </div>
 
 
-                                       
+
                                     </div>
 
 

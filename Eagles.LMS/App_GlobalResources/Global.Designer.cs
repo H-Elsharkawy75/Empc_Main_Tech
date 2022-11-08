@@ -699,7 +699,7 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arabic.
+        ///   Looks up a localized string similar to العربية.
         /// </summary>
         public static string Arabic {
             get {
@@ -834,6 +834,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Board Chairs.
+        /// </summary>
+        public static string BoardChairs {
+            get {
+                return ResourceManager.GetString("BoardChairs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Booking.
         /// </summary>
         public static string Booking {
@@ -906,7 +915,7 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Graduation Years.
+        ///   Looks up a localized string similar to Graduation Year.
         /// </summary>
         public static string certificationYeears {
             get {
@@ -1154,6 +1163,15 @@ namespace Eagles.LMS.App_GlobalResources {
         public static string ContactListAndEmail {
             get {
                 return ResourceManager.GetString("ContactListAndEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Me.
+        /// </summary>
+        public static string ContactMe {
+            get {
+                return ResourceManager.GetString("ContactMe", resourceCulture);
             }
         }
         
@@ -1726,6 +1744,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Education.
+        /// </summary>
+        public static string Education {
+            get {
+                return ResourceManager.GetString("Education", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
@@ -1870,7 +1897,7 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Experiance Level.
+        ///   Looks up a localized string similar to Experience Level.
         /// </summary>
         public static string ExperianceLevel {
             get {
@@ -2554,6 +2581,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Job Applied For.
+        /// </summary>
+        public static string JobAppliedFor {
+            get {
+                return ResourceManager.GetString("JobAppliedFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Job Name.
         /// </summary>
         public static string JobName {
@@ -2852,7 +2888,7 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meet Our Team.
+        ///   Looks up a localized string similar to Board of Directors.
         /// </summary>
         public static string MeetOurTeam {
             get {

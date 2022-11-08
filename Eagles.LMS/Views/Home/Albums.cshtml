@@ -1,10 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "Albums";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     UnitOfWork ctx = new UnitOfWork();
-
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
     var albums = new List<Album>();
     //var vidoes = ctx.GalaryManager.GetAll().Where(s =>! s.IsImage).OrderBy(s => s.Order).ToList();
 
@@ -29,10 +29,13 @@
 }
 
 
+@section PageTitle{
+    <title>@SEO.AlbumsPageTitle</title>
+}
 @section metatags{
-    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Albums " />
-    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+    <meta name="keywords" content="@SEO.AlbumsPageMetaKeywords " />
+    <meta name="description" id="metaDesc" content="@SEO.AlbumsPageMetaDescription" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.AlbumsPageCanonicalUrl" />
 }
 
 @section EndHeader {

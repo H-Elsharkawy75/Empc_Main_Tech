@@ -1,7 +1,9 @@
 ﻿@model Location
 @{
-    ViewBag.Title = "LocationDetails";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
+    UnitOfWork ctx = new UnitOfWork();
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
     bool en = true;
 
     if (Request.Cookies["Language"] != null)
@@ -10,10 +12,13 @@
 
     }
 }
+@section PageTitle{
+    <title>@SEO.LocationsPageTitle</title>
+}
 @section metatags{
-    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, location, location Details " />
-    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+    <meta name="keywords" content="@SEO.LocationsPageMetaKeywords, @Model.TitleEnglish, @Model.TitleArabic " />
+    <meta name="description" id="metaDesc" content="@SEO.LocationsPageMetaDescription, @Model.TitleEnglish, @Model.TitleArabic" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.LocationsPageCanonicalUrl" />
 }
 
 @section EndHeader{
@@ -132,7 +137,7 @@
 
 
                     <div class="MoreImages">
-                        <h3>MorePhoto</h3>
+                        <h3>@Resources.Global.MorePhoto</h3>
 
                         <div class="MorGallaryImg">
                             <div class="carousel-GallaryItems owl-carousel zoom-gallery">

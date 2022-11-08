@@ -1,13 +1,27 @@
-﻿@{
-    ViewBag.Title = "Careers";
+﻿
+@model Career
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
+    UnitOfWork ctx = new UnitOfWork();
+    var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
+    var jobs = new Eagles.LMS.BLL.UnitOfWork().JobsManager.GetAllBind();
+    bool en = true;
+
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
 }
-@model Career
+
+@section PageTitle{
+    <title>@SEO.CareersPageTitle</title>
+}
 @section metatags{
-    <meta name="keywords" id="metaKeyword" content="empcnews, news, Home, empc, main, Career" />
-    <meta name="description" id="metaDesc" content="Non-stop news coverage of the most important local and international events" />
-    <link rel="canonical" id="canonicalUrl" href="https://www.empcnews.com" />
+    <meta name="keywords" content="@SEO.CareersPageMetaKeywords " />
+    <meta name="description" id="metaDesc" content="@SEO.CareersPageMetaDescription" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.CareersPageCanonicalUrl" />
 }
 
 @section EndHeader{
@@ -76,26 +90,27 @@
                                             <div class="form-group">
                                                 <label>@Resources.Global.Name</label>
                                                 @Html.TextBoxFor(s => s.Name, null, new
-                                                                                   {
-                                                                                       @class = "form-control",
-                                                                                       placeholder = "Order"
-                                                                                   })
+                                           {
+                                               @class = "form-control",
+                                               placeholder = @Resources.Global.Name
+                                           })
                                             </div>
 
 
 
                                         </div>
                                         <!--end col-6-->
+                            
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@Resources.Global.dateOfBirth</label>
                                                 @Html.TextBoxFor(s => s.DateOfBirth, null, new
-                                                                                   {
-                                                                                       @class = "form-control",
-                                                                                       placeholder = "Order",
-                                                                                       @type = "date"
-                                                                                   })
+                                           {
+                                               @class = "form-control",
+                                               placeholder = @Resources.Global.dateOfBirth,
+                                               @type = "date"
+                                           })
                                             </div>
                                         </div>
                                         <!--end col-6-->
@@ -104,21 +119,21 @@
                                             <div class="form-group">
                                                 <label>@Resources.Global.address</label>
                                                 @Html.TextBoxFor(s => s.Address, null, new
-                                                                                   {
-                                                                                       @class = "form-control",
-                                                                                       placeholder = "Order"
-                                                                                   })
+                                           {
+                                               @class = "form-control",
+                                               placeholder = @Resources.Global.address
+                                           })
                                             </div>
                                         </div>
                                         <!--end col-6-->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>@Resources.Global.certification</label>
+                                                <label>@Resources.Global.Education</label>
                                                 @Html.TextBoxFor(s => s.Certification, null, new
-                                                                                   {
-                                                                                       @class = "form-control",
-                                                                                       placeholder = "Order"
-                                                                                   })
+                                           {
+                                               @class = "form-control",
+                                               placeholder = @Resources.Global.Education
+                                           })
                                             </div>
 
 
@@ -128,37 +143,84 @@
                                             <div class="form-group">
                                                 <label>@Resources.Global.certificationYeears</label>
                                                 @Html.TextBoxFor(s => s.GraduationYears, null, new
-                                                                                   {
-                                                                                       @class = "form-control",
-                                                                                       placeholder = "Order"
-                                                                                   })
+                                           {
+                                               @class = "form-control",
+                                               placeholder = @Resources.Global.certificationYeears
+                                           })
                                             </div>
 
 
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>@Resources.Global.ExperianceLevel</label>
-                                                @*<input type="text" placeholder='@Resources.Global.ExperianceLevel' />*@
 
-                                                <select id="Careers_ExperianceLevel" required>
-                                                    <option value="">@Resources.Global.SelectYear</option>
-                                                    <option value="From 1 To 3">@Resources.Global.from1to3</option>
-                                                    <option value="From 3 To 5 Years">@Resources.Global.From3To5Years</option>
-                                                    <option value="More Than 5 Years">@Resources.Global.MoreThan5Years</option>
-                                                </select>
+
+                                        @*<div class="col-md-6">
+            <div class="form-group">
+                <label>@Resources.Global.JobAppliedFor</label>
+                @Html.DropDownList("F00", new SelectList(jobs.Select(x => new { Value = x.Id, Text = x.NameEnglish }), "Value", "Text"))
+            </div>
+
+
+        </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+                                        @if(en)
+                                        {
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>@Resources.Global.ExperianceLevel</label>
+
+
+
+                                                    @Html.DropDownListFor(model => model.ExperianceLevel,
+                                                      new List<SelectListItem> {
+                                                           new SelectListItem { Value = "" , Text = "Select Year" },
+                                                           new SelectListItem { Value = "Fresh Graduate" , Text = "Fresh Graduate" },
+                                                           new SelectListItem { Value = "From 1 To 3" , Text = "From 1 To 3" },
+                                                           new SelectListItem { Value = "From 3 To 5 Years" , Text = "From 3 To 5 Years" },
+                                                           new SelectListItem { Value = "More Than 5 Years" , Text = "More Than 5 Years" }
+                                                        },
+                                                      new { @class = "myselect", @required = "required", @id = "ExperianceLevelID" })
+                                                </div>
                                             </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>@Resources.Global.ExperianceLevel</label>
 
 
-                                        </div>
+
+                                                    @Html.DropDownListFor(model => model.ExperianceLevel,
+                                                      new List<SelectListItem> {
+                                                           new SelectListItem { Value = "" , Text = "اختر " },
+                                                           new SelectListItem { Value = "Fresh Graduate" , Text = "حديث التخرج" },
+                                                           new SelectListItem { Value = "From 1 To 3" , Text = "من سنه الى 3 سنين" },
+                                                           new SelectListItem { Value = "From 3 To 5 Years" , Text = "من 3 الى 5 سنين" },
+                                                           new SelectListItem { Value = "More Than 5 Years" , Text = "اكثر من 5 سنين" }
+                                                        },
+                                                      new { @class = "myselect", @required = "required", @id = "ExperianceLevelID" })
+                                                </div>
+                                            </div>
+                                        }
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@Resources.Global.JobName</label>
                                                 @Html.TextBoxFor(s => s.JobName, null, new
-                                                                                   {
-                                                                                       @class = "form-control",
-                                                                                       placeholder = "Order"
-                                                                                   })
+                                           {
+                                               @class = "form-control",
+                                               placeholder = @Resources.Global.JobName
+                                           })
                                             </div>
 
 
@@ -384,7 +446,27 @@
 
 
 
+    @*<script type="text/javascript">
+            function validate() {
+                var NewsDate = document.getElementById('ExperianceLevelID').value;
+                if (NewsDate == "") {
 
+                    notify = $.notify({
+                        message: 'Pls Enter Date',
+
+                    }, {
+
+                        type: 'NewsDate' == 'Created' ? "success" : "danger",
+                        animate: {
+                            enter: 'animated flipInY',
+                            exit: 'animated flipOutX',
+                        }
+                    });
+
+                    return false;
+                }
+            }
+        </script>*@
 
 
 
