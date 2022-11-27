@@ -29,13 +29,27 @@
 }
 
 
-@section PageTitle{
-    <title>@SEO.AlbumsPageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.AlbumsPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.AlbumsPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.AlbumsPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.AlbumsPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.AlbumsPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.AlbumsPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.AlbumsPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.AlbumsPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.AlbumsPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.AlbumsPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.AlbumsPageCanonicalUrl" />
+    }
 }
 
 @section EndHeader {

@@ -13,39 +13,39 @@
 
     @*<link href="~/assets_NewDash/libs/Line Control text Editor/editor.css" rel="stylesheet" />*@
     <style>
-/*        .dropdown-menu > li > a {
-            cursor: pointer;
-            display: block;
-            width: 100%;
-            padding: 0 10px;
-            height: 30px;
-            line-height: 30px;
-            color: #000;
-            font-size: 15px;
-        }
+        /*        .dropdown-menu > li > a {
+                    cursor: pointer;
+                    display: block;
+                    width: 100%;
+                    padding: 0 10px;
+                    height: 30px;
+                    line-height: 30px;
+                    color: #000;
+                    font-size: 15px;
+                }
 
-        .line-control-status-bar {
-            display: none
-        }
+                .line-control-status-bar {
+                    display: none
+                }
 
-        .line-control-menu-bar {
-            border-radius: 0px 0px 0 0;
-            padding-bottom: 0;
-            background: #2a3042;
-        }
+                .line-control-menu-bar {
+                    border-radius: 0px 0px 0 0;
+                    padding-bottom: 0;
+                    background: #2a3042;
+                }
 
-            .line-control-menu-bar a.btn {
-                position: relative;
-                margin-bottom: 3px;
-                color: #fff;
-                outline: 0 !important;
-                box-shadow: none;
-            }
+                    .line-control-menu-bar a.btn {
+                        position: relative;
+                        margin-bottom: 3px;
+                        color: #fff;
+                        outline: 0 !important;
+                        box-shadow: none;
+                    }
 
-        .Editor-editor {
-            outline: 0;
-        }
-*/
+                .Editor-editor {
+                    outline: 0;
+                }
+        */
 
         .richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li.inline a {
             display: block;
@@ -54,6 +54,7 @@
             width: 30px;
             height: 30px;
         }
+
         .richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li a {
             display: block !important;
             padding: 0 !important;
@@ -62,15 +63,16 @@
             height: 40px;
             line-height: 40px !important;
         }
+
         .richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown {
             list-style: none;
             height: 300px;
             overflow: auto;
             overflow-x: hidden;
         }
-        .richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li a span{
-         
-        }
+
+            .richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li a span {
+            }
     </style>
 
 }
@@ -166,18 +168,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="mb-3">
-                                            <label class="form-label"> Iframe English Video [OPTINAL]</label>
-                                            @Html.TextBoxFor(s => s.Iframe, null, new
-                                       {
-                                           @class = "form-control",
-                                           placeholder = "EnglishIframe"
-                                       })
-                                            @Html.ValidationMessageFor(s => s.Link)
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="mb-3">
+                                                <label class="form-label"> Iframe English Video [OPTINAL]</label>
+                                                @Html.TextBoxFor(s => s.Iframe, null, new
+                                           {
+                                               @class = "form-control",
+                                               placeholder = "EnglishIframe"
+                                           })
+                                                @Html.ValidationMessageFor(s => s.Link)
+                                            </div>
+                                        </div>*@
+                                    @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label"> Iframe ArabicVideo [OPTINAL]</label>
                                             @Html.TextBoxFor(s => s.ArabicIframe, null, new
@@ -187,7 +189,7 @@
                                        })
                                             @Html.ValidationMessageFor(s => s.Link)
                                         </div>
-                                    </div>
+                                    </div>*@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Order</label>
@@ -207,6 +209,20 @@
                                     </div>
 
 
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Video EN <span class="extiniosType">(MP4)</span></label>
+                                            <input class="form-control" name="Video_EN_uploadattachments" type="file" id="Video_EN_uploadattachments">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Video AR <span class="extiniosType">(MP4)</span></label>
+                                            <input class="form-control" name="Video_AR_uploadattachments" type="file" id="Video_AR_uploadattachments">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -222,7 +238,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="foooterbuttons">
-                            <button type="submit" class="btn btn-success waves-effect waves-light">
+                            <button type="submit" OnClick="return validate();" class="btn btn-success waves-effect waves-light">
                                 <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
                             </button>
                             <a href="/Admission/Sliders" class="btn btn-danger waves-effect waves-light">
@@ -240,24 +256,9 @@
 
 
 @section EndBody{
-    @*<script src="~/assets_NewDash/libs/Line Control text Editor/editor.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".txtEditorline").Editor();
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(".txtEditorline2").Editor();
-        });
-    </script>*@
 
-    <script>
-            $(function (e) {
-                $('.TextEditor1').richText();
-                $('.TextEditor2').richText();
-            });
-        </script>
+
+
 
 
 
@@ -281,4 +282,73 @@
 
         TempData.Remove("RequestStatus");
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+
+        function validate() {
+            var Video_EN_uploadattachments = document.getElementById('Video_EN_uploadattachments');
+            if ($(Video_EN_uploadattachments)[0].files[0] != null) {
+                var numb = $(Video_EN_uploadattachments)[0].files[0].size / 1024 / 1024;
+                numb = numb.toFixed(2);
+                if (numb > 10) {
+                    /*       alert('to big, maximum is 2MiB. You file size is: ' + numb + ' MiB');*/
+                    notify = $.notify({
+                        message: 'English Video Slider Is To Big, Maximum Size To Upload Is 10 MiB. Your Video Size Is: ' + numb + ' MiB',
+
+                    }, {
+
+                        type: '' == 'Created' ? "success" : "danger",
+                        animate: {
+                            enter: 'animated flipInY',
+                            exit: 'animated flipOutX',
+                        }
+                    });
+                    return false;
+                }
+            }
+
+            var Video_AR_uploadattachments = document.getElementById('Video_AR_uploadattachments');
+            if ($(Video_AR_uploadattachments)[0].files[0] != null) {
+                var numbTwo = $(Video_AR_uploadattachments)[0].files[0].size / 1024 / 1024;
+                numbTwo = numbTwo.toFixed(2);
+                if (numbTwo > 10) {
+                    notify = $.notify({
+                        message: 'Arabic Video Slider Is To Big, Maximum Size To Upload Is 10 MiB. Your Video Size Is: ' + numbTwo + ' MiB',
+
+                    }, {
+
+                        type: '' == 'Created' ? "success" : "danger",
+                        animate: {
+                            enter: 'animated flipInY',
+                            exit: 'animated flipOutX',
+                        }
+                    });
+                    return false;
+                }
+            }
+
+
+
+
+
+
+
+        }
+
+
+    </script>
+
+
 }

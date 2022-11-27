@@ -63,6 +63,7 @@ namespace Eagles.LMS.BLL
         public JobsManager JobsManager { get { return new JobsManager(ctx); } }
 
         public BoardManager BoardManager { get { return new BoardManager(ctx); } }
+        public BoardTapsManager BoardTapsManager { get { return new BoardTapsManager(ctx); } }
         public ContactUsRquistManager ContactUsRquistManager { get { return new ContactUsRquistManager(ctx); } }
         public BookingInServicesManager BookingInServicesManager { get { return new BookingInServicesManager(ctx); } }
 

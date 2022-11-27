@@ -5520,12 +5520,24 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination li {
 }
 
 
+.fancybox-type-iframe .fancybox-inner video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.fancybox-outer, .fancybox-inner {
+    position: relative;
+    min-height: 400px;
+}
 
 
+.VideoPreview {
+    display: block;
+    width: 350px;
+}
 
-
-
-
+.VideoPreview video{
+}
 
 
 

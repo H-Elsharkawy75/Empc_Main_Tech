@@ -32,6 +32,11 @@ namespace Eagles.LMS.Controllers
             return View();
         }
 
+        public ActionResult NewHome()
+        {
+            return View();
+        }
+
         public ActionResult AboutUs()
         {
             //return Redirect("/Admission");

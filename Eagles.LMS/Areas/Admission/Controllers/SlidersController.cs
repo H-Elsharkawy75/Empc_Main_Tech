@@ -35,17 +35,19 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             return View(slider);
         }
         [HttpPost]
-        public ActionResult Edit(Slider slider, HttpPostedFileBase uploadattachments)
+        public ActionResult Edit(Slider slider, HttpPostedFileBase uploadattachments, HttpPostedFileBase Video_EN_uploadattachments, HttpPostedFileBase Video_AR_uploadattachments)
         {
 
             ActionResult result = View(slider);
 
 
             RequestStatus requestStatus;
-            if (((string.IsNullOrEmpty(slider.Iframe)) &&(string.IsNullOrEmpty(slider.ArabicIframe))) && (uploadattachments != null && (!
+            if (((string.IsNullOrEmpty(slider.Iframe)) &&(string.IsNullOrEmpty(slider.ArabicIframe))) && 
+                (uploadattachments != null && (! uploadattachments.ContentType.CheckImageExtention() && ! uploadattachments.ContentType.CheckVideoExtention())) &&
+                (Video_EN_uploadattachments != null && (!Video_EN_uploadattachments.ContentType.CheckImageExtention() && !Video_EN_uploadattachments.ContentType.CheckVideoExtention())) &&
+                (Video_AR_uploadattachments != null && (!Video_AR_uploadattachments.ContentType.CheckImageExtention() && !Video_AR_uploadattachments.ContentType.CheckVideoExtention()))
 
-                    uploadattachments.ContentType.CheckImageExtention() && !
-                    uploadattachments.ContentType.CheckVideoExtention())))
+                    )
             {
 
                 requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
@@ -59,10 +61,6 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
                     if (uploadattachments != null)
                     {
-
-                        //string _rendom = new Random().Next(1, 99999999).ToString();
-
-                        //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
                         var fileName = Guid.NewGuid() + extention;
 
@@ -76,37 +74,61 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 }
                 else
                 {
-                    slider.Image = "";
-                    slider.IsImage = false;
-                    //slider.Iframe = slider.Iframe.Split('&')[0].Split('=')[1].ToString();
-                    if (!string.IsNullOrEmpty(slider.Iframe))
+
+                    if (Video_EN_uploadattachments != null)
                     {
-                        try
-                        {
-                            slider.Iframe = slider.Iframe.Split('/').Last().ToString();
-                        }
-                        catch
-                        {
-                            requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
-                                  "Uncompatible IFrame Formtaing");
-                            return result;
-                        }
-                        slider.Iframe = slider.Iframe.Split('/').Last().ToString();
+                        string extention = System.IO.Path.GetExtension(Video_EN_uploadattachments.FileName);
+                        var fileName = Guid.NewGuid() + extention;
+
+                        var path = Path.Combine(Server.MapPath("~/attachments/Videos"), fileName);
+                        Video_EN_uploadattachments.SaveAs(path);
+                        slider.Iframe = $"/attachments/Videos/{fileName}";
+
                     }
-                    if (!string.IsNullOrEmpty(slider.ArabicIframe))
+
+                    if (Video_AR_uploadattachments != null)
                     {
-                        try
-                        {
-                            slider.ArabicIframe = slider.ArabicIframe.Split('/').Last().ToString();
-                        }
-                        catch
-                        {
-                            requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
-                                  "Uncompatible IFrame Formtaing");
-                            return result;
-                        }
-                        slider.ArabicIframe = slider.ArabicIframe.Split('/').Last().ToString();
+                        string extention = System.IO.Path.GetExtension(Video_AR_uploadattachments.FileName);
+                        var fileName = Guid.NewGuid() + extention;
+
+                        var path = Path.Combine(Server.MapPath("~/attachments/Videos"), fileName);
+                        Video_AR_uploadattachments.SaveAs(path);
+                        slider.ArabicIframe = $"/attachments/Videos/{fileName}";
+
                     }
+
+
+
+                    //slider.Image = "";
+                    //slider.IsImage = false;
+                    //if (!string.IsNullOrEmpty(slider.Iframe))
+                    //{
+                    //    try
+                    //    {
+                    //        slider.Iframe = slider.Iframe.Split('/').Last().ToString();
+                    //    }
+                    //    catch
+                    //    {
+                    //        requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                    //              "Uncompatible IFrame Formtaing");
+                    //        return result;
+                    //    }
+                    //    slider.Iframe = slider.Iframe.Split('/').Last().ToString();
+                    //}
+                    //if (!string.IsNullOrEmpty(slider.ArabicIframe))
+                    //{
+                    //    try
+                    //    {
+                    //        slider.ArabicIframe = slider.ArabicIframe.Split('/').Last().ToString();
+                    //    }
+                    //    catch
+                    //    {
+                    //        requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                    //              "Uncompatible IFrame Formtaing");
+                    //        return result;
+                    //    }
+                    //    slider.ArabicIframe = slider.ArabicIframe.Split('/').Last().ToString();
+                    //}
                 }
 
 
@@ -126,7 +148,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 });
 
                 requestStatus = new ManageRequestStatus().GetStatus(Status.Edited);
-
+                result = RedirectToAction(nameof(Edit));
 
 
             }
@@ -144,32 +166,36 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Slider slider, HttpPostedFileBase uploadattachments)
+        public ActionResult Create(Slider slider, HttpPostedFileBase uploadattachments, HttpPostedFileBase Video_EN_uploadattachments, HttpPostedFileBase Video_AR_uploadattachments)
         {
 
             ActionResult result = View(slider);
 
             if (ModelState.IsValid)
             {
-
                 RequestStatus requestStatus;
-                if ((string.IsNullOrEmpty(slider.Iframe) && (string.IsNullOrEmpty(slider.ArabicIframe))) && (uploadattachments == null || uploadattachments.ContentLength == 0 || (!
+                if (
+                    (string.IsNullOrEmpty(slider.Iframe) && (string.IsNullOrEmpty(slider.ArabicIframe))) &&
+                    (uploadattachments == null || uploadattachments.ContentLength == 0 ||
+                    (!uploadattachments.ContentType.CheckImageExtention() && !uploadattachments.ContentType.CheckVideoExtention())) &&
 
-                    //if (uploadattachments == null || uploadattachments.ContentLength == 0 || (!
-                    uploadattachments.ContentType.CheckImageExtention() && !
-                    uploadattachments.ContentType.CheckVideoExtention())))
+                    (Video_EN_uploadattachments == null || Video_EN_uploadattachments.ContentLength == 0 ||
+                    (!Video_EN_uploadattachments.ContentType.CheckImageExtention() && !Video_EN_uploadattachments.ContentType.CheckVideoExtention())) &&
+
+                    (Video_AR_uploadattachments == null || Video_AR_uploadattachments.ContentLength == 0 ||
+                    (!Video_AR_uploadattachments.ContentType.CheckImageExtention() && !Video_AR_uploadattachments.ContentType.CheckVideoExtention()))
+
+                    )
                 {
                     requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Or Video Only");
                 }
+                
                 else
                 {
 
-                    if (string.IsNullOrEmpty(slider.Iframe) && string.IsNullOrEmpty(slider.ArabicIframe))
+                    if (uploadattachments != null)
                     {
 
-                        //string _rendom = new Random().Next(1, 99999999).ToString();
-
-                        //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
                         var fileName = Guid.NewGuid() + extention;
 
@@ -180,40 +206,65 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     }
                     else
                     {
-                        slider.Image = "";
-                        slider.IsImage = false;
-                        if (!string.IsNullOrEmpty(slider.Iframe))
+
+                        if (Video_EN_uploadattachments != null)
                         {
+                            string extention = System.IO.Path.GetExtension(Video_EN_uploadattachments.FileName);
+                            var fileName = Guid.NewGuid() + extention;
 
-                            try
-                            {
-                                slider.Iframe = slider.Iframe.Split('/').Last().ToString();
-                            }
-                            catch
-                            {
-                                requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
-                                    "Uncompatible IFrame Formtaing");
-                                return result;
+                            var path = Path.Combine(Server.MapPath("~/attachments/Videos"), fileName);
+                            Video_EN_uploadattachments.SaveAs(path);
+                            slider.Iframe = $"/attachments/Videos/{fileName}";
 
-                            }
                         }
 
-                        if (!string.IsNullOrEmpty(slider.ArabicIframe))
+                        if (Video_AR_uploadattachments != null)
                         {
+                            string extention = System.IO.Path.GetExtension(Video_AR_uploadattachments.FileName);
+                            var fileName = Guid.NewGuid() + extention;
 
-                            //slider.Iframe = slider.Iframe.Split('&')[0].Split('=')[1].ToString();
-                            try
-                            {
-                                slider.ArabicIframe = slider.ArabicIframe.Split('/').Last().ToString();
-                            }
-                            catch
-                            {
-                                requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
-                                    "Uncompatible IFrame Formtaing");
-                                return result;
+                            var path = Path.Combine(Server.MapPath("~/attachments/Videos"), fileName);
+                            Video_AR_uploadattachments.SaveAs(path);
+                            slider.ArabicIframe = $"/attachments/Videos/{fileName}";
 
-                            }
                         }
+
+
+
+
+
+                        //slider.Image = "";
+                        //slider.IsImage = false;
+                        //if (!string.IsNullOrEmpty(slider.Iframe))
+                        //{
+
+                        //    try
+                        //    {
+                        //        slider.Iframe = slider.Iframe.Split('/').Last().ToString();
+                        //    }
+                        //    catch
+                        //    {
+                        //        requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                        //            "Uncompatible IFrame Formtaing");
+                        //        return result;
+
+                        //    }
+                        //}
+
+                        //if (!string.IsNullOrEmpty(slider.ArabicIframe))
+                        //{
+                        //    try
+                        //    {
+                        //        slider.ArabicIframe = slider.ArabicIframe.Split('/').Last().ToString();
+                        //    }
+                        //    catch
+                        //    {
+                        //        requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                        //            "Uncompatible IFrame Formtaing");
+                        //        return result;
+
+                        //    }
+                        //}
                     }
 
                     int userId = GetUserId();

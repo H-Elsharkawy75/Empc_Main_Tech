@@ -36,14 +36,30 @@
 
 }
 
-@section PageTitle{
-    <title>@SEO.AboutUsPageTitle</title>
+
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.AboutUsPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.AboutUsPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.AboutUsPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.AboutUsPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.AboutUsPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.AboutUsPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.AboutUsPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.AboutUsPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.AboutUsPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.AboutUsPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.AboutUsPageCanonicalUrl" />
+    }
 }
+
 
 @section EndHeader{
     <style>
@@ -279,10 +295,20 @@
                     <div class="col-md-12">
                         <div class="carousel-team owl-carousel ftco-owl">
 
+
+
+
                             @foreach (var _board in board)
                             {
 
-                                if (!string.IsNullOrEmpty(_board.JobDescriptionArabic) && !string.IsNullOrEmpty(_board.JobDescriptionEnglish))
+                                if (!string.IsNullOrEmpty(@_board.JobDescriptionArabic)
+                                    || !string.IsNullOrEmpty(@_board.JobDescriptionEnglish)
+                                    || !string.IsNullOrEmpty(@_board.Email)
+                                    || !string.IsNullOrEmpty(@_board.FaceLink)
+                                    || !string.IsNullOrEmpty(@_board.GoogleLink)
+                                    || !string.IsNullOrEmpty(@_board.LinkedInLink)
+                                    || !string.IsNullOrEmpty(@_board.twiterLink)
+                                    || !string.IsNullOrEmpty(@_board.Phone))
                                 {
 
                                     <div class="item">

@@ -1,0 +1,146 @@
+﻿@model List<BoardTaps>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admission/Views/Shared/_Layout.cshtml";
+    int index = 1;
+    var ctx = new Eagles.LMS.BLL.UnitOfWork();
+    var BoardId = ViewBag.Id;
+}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">
+                    <a href="/Admission/BoardTaps/Create/@BoardId" class="btn btn-success waves-effect waves-light"> <i class="bx bx-plus font-size-16 align-middle me-2"></i> Add Tap</a>
+                </h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/Admission">Home</a></li>
+                        <li class="breadcrumb-item active">Board Taps</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive" style="padding-bottom:30px;">
+
+                        <table id="table_Slider" class=" table table-bordered tableOtherdite">
+                            <thead class="DarkThead">
+                                <tr>
+                                    <th> <p>Action</p> </th>
+                                    <th> <p>Taps</p> </th>
+                                    <th> <p>Title Arabic</p> </th>
+                                    <th> <p>title English</p> </th>
+                                    <th> <p> Description Arabic</p> </th>
+                                    <th> <p> Description English</p> </th>
+
+                                    <th> <p>User Created</p> </th>
+                                    <th> <p>Created Time</p> </th>
+
+                                    <th> <p>Last User Edited</p> </th>
+                                    <th> <p>Last Edited Time</p> </th>
+
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn nav-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="bx bx-dots-horizontal-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item align-middle " href="/Admission/BoardTaps/Edit/@item.Id"><i class="bx bx-edit font-size-16 me-1"></i>@Resources.Global.Edit</a>
+                                                    <a class="dropdown-item text-danger align-middle btn_delete" data-id="@item.Id" href="#"><i class="bx bx-trash font-size-16 me-1"></i>@Resources.Global.Delete</a>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                       
+                                        <td>
+                                            <a class="btn btn-info" href="/Admission/BoardTaps/Index/@item.Id">
+                                                Taps
+                                            </a>
+                                        </td>
+
+                                        <td><p class="FontArabic">@item.Title_AR</p></td>
+                                        <td><p>@item.Title_EN</p></td>
+
+                                        <td><p class="FontArabic">@Html.Raw(item.Description_AR)</p></td>
+                                        <td><p>@Html.Raw(@item.Description_EN)</p></td>
+                                        <td><p>@ctx.UserManager.GetBy(item.UserCreateId).FullName</p></td>
+                                        <td><p>@item.CreateTime</p></td>
+                                        <td><p>@ctx.UserManager.GetBy(item.UserEditId).FullName</p></td>
+                                        <td><p>@item.EditeTime</p></td>
+
+                                    </tr>
+                                    {
+                                        index += 1;
+                                    }
+                                }
+
+                            </tbody>
+
+
+
+
+
+                        </table>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div> <!-- end col -->
+
+    </div>
+
+</div>
+
+
+
+@section EndBody{
+    <script>
+        $(function () {
+
+  $("body").on("click", ".btn_delete", (s) => {
+                let self = $(s.currentTarget),
+                    entityId = self.attr('data-id');
+                bootbox.confirm("@Resources.Global.ConfirmDeleteoperation !", function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Admission/BoardTaps/Delete/" + entityId+"",
+                            success: (response) => {
+                                toastr.success('@Resources.Global.Theunithasbeensuccessfullydeleted', '', { timeOut: 10000 });
+                                self.closest('tr').remove();
+                            }, error: (error) => {
+                                // unauthorize
+                                let errorMessage = manageAjaxError(error);
+                                pushNotification("danger", errorMessage);
+                            }
+                        });
+                    }
+                })
+            });
+        });
+    </script>
+
+}

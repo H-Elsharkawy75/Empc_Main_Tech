@@ -34,15 +34,28 @@
     }
 }
 
-@section PageTitle{
-    <title>@SEO.VideoPageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.VideoPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.VideoPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.VideoPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.VideoPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.VideoPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.VideoPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.VideoPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.VideoPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.VideoPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.VideoPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.VideoPageCanonicalUrl" />
+    }
 }
-
 @section EndHeader{
     <style>
         .menu li a.active-a5 {
@@ -96,14 +109,21 @@
                                 @if (en)
                                 {
                                     <a href="#">
-                                        <iframe class="" src="@vidoe.VideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe src="https://www.youtube.com/embed/@vidoe.VideoIframe?playlist=@vidoe.VideoIframe&controls=1&autoplay=0&loop=1&rel=0&showinfo=0&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </a>
+
+                                    @*<a href="#">
+                                            <iframe class="" src="@vidoe.VideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </a>*@
                                 }
                                 else
                                 {
                                     <a href="#">
-                                        <iframe class="" src="@vidoe.ArabicVideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe src="https://www.youtube.com/embed/@vidoe.ArabicVideoIframe?playlist=@vidoe.ArabicVideoIframe&controls=1&autoplay=0&loop=1&rel=0&showinfo=0&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </a>
+                                    @*<a href="#">
+                                            <iframe class="" src="@vidoe.ArabicVideoIframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </a>*@
                                 }
                             </div>
 

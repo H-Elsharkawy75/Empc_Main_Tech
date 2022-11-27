@@ -48,6 +48,7 @@
         }
     </style>
 }
+@if (en) {
 @section PageTitle{
     <title>@SEO.LocationsPageTitle</title>
 }
@@ -55,6 +56,17 @@
     <meta name="keywords" content="@SEO.LocationsPageMetaKeywords " />
     <meta name="description" id="metaDesc" content="@SEO.LocationsPageMetaDescription" />
     <link rel="canonical" id="canonicalUrl" href="@SEO.LocationsPageCanonicalUrl" />
+}
+}
+else {
+@section PageTitle{
+    <title>@SEO.LocationsPageTitle_AR</title>
+}
+@section metatags{
+    <meta name="keywords" content="@SEO.LocationsPageMetaKeywords_AR " />
+    <meta name="description" id="metaDesc" content="@SEO.LocationsPageMetaDescription_AR" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.LocationsPageCanonicalUrl" />
+}
 }
 
 

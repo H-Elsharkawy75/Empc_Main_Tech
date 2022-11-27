@@ -43,13 +43,27 @@
 
 }
 
-@section PageTitle{
-    <title>@SEO.AgendaPageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.AgendaPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.AgendaPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.AgendaPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.AgendaPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.AgendaPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.AgendaPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.AgendaPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.AgendaPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.AgendaPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.AgendaPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.AgendaPageCanonicalUrl" />
+    }
 }
 
 @section EndHeader{

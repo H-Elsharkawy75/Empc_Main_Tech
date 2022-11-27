@@ -12,13 +12,27 @@
     }
 }
 
-@section PageTitle{
-    <title>@SEO.NewsPageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.NewsPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@Model.TitleEnglish, @Model.TitleArabic, @SEO.NewsPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@Model.TitleEnglish, @Model.TitleArabic, @SEO.NewsPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.NewsPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@Model.TitleEnglish, @Model.TitleArabic, @SEO.NewsPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@Model.TitleEnglish, @Model.TitleArabic, @SEO.NewsPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.NewsPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.NewsPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@Model.TitleEnglish, @Model.TitleArabic, @SEO.NewsPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@Model.TitleEnglish, @Model.TitleArabic, @SEO.NewsPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.NewsPageCanonicalUrl" />
+    }
 }
 
 

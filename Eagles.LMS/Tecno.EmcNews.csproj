@@ -360,6 +360,7 @@
     <Compile Include="Areas\Admission\Controllers\AgendaController.cs" />
     <Compile Include="Areas\Admission\Controllers\ApplicationsController.cs" />
     <Compile Include="Areas\Admission\Controllers\BoardController.cs" />
+    <Compile Include="Areas\Admission\Controllers\BoardTapsController.cs" />
     <Compile Include="Areas\Admission\Controllers\BookingController.cs" />
     <Compile Include="Areas\Admission\Controllers\BrochuresController.cs" />
     <Compile Include="Areas\Admission\Controllers\CareerController.cs" />
@@ -373,6 +374,7 @@
     <Compile Include="BLL\AlbumManager.cs" />
     <Compile Include="BLL\ApplicationManager.cs" />
     <Compile Include="BLL\BoardManager.cs" />
+    <Compile Include="BLL\BoardTapsManager.cs" />
     <Compile Include="BLL\BookingInServicesManager.cs" />
     <Compile Include="BLL\BookingManager.cs" />
     <Compile Include="BLL\BookingServiceManager.cs" />
@@ -419,10 +421,23 @@
     <Compile Include="Migrations\202211021804462_ShowBoard.designer.cs">
       <DependentUpon>202211021804462_ShowBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211221503576_UpdateSEOAR.cs" />
+    <Compile Include="Migrations\202211221503576_UpdateSEOAR.designer.cs">
+      <DependentUpon>202211221503576_UpdateSEOAR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211271054146_BoardTaps.cs" />
+    <Compile Include="Migrations\202211271054146_BoardTaps.designer.cs">
+      <DependentUpon>202211271054146_BoardTaps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211271112241_OrderBoardTaps.cs" />
+    <Compile Include="Migrations\202211271112241_OrderBoardTaps.designer.cs">
+      <DependentUpon>202211271112241_OrderBoardTaps.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Board.cs" />
+    <Compile Include="Models\BoardTaps.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingInServices.cs" />
     <Compile Include="Models\BookingService.cs" />
@@ -893,6 +908,7 @@
     <Content Include="assets_NewDash\libs\wysiwyag\richtext.css" />
     <Content Include="assets_NewDash\user-add.png" />
     <Content Include="assets_NewDash\Vedios\1.mp4" />
+    <Content Include="assets_NewPublic\1.mp4" />
     <Content Include="assets_NewPublic\css\bootstrab-last.css" />
     <Content Include="assets_NewPublic\css\bootstrap.min.css" />
     <Content Include="assets_NewPublic\css\font-awesome.min.css" />
@@ -939,6 +955,8 @@
     <Content Include="assets_NewPublic\images\bg_3-small.jpg" />
     <Content Include="assets_NewPublic\images\bg_3.jpg" />
     <Content Include="assets_NewPublic\images\buying4.png" />
+    <Content Include="assets_NewPublic\images\down-arrow.png" />
+    <Content Include="assets_NewPublic\images\down-arrowDark.png" />
     <Content Include="assets_NewPublic\images\f14.jpeg" />
     <Content Include="assets_NewPublic\images\f15c.jpeg" />
     <Content Include="assets_NewPublic\images\f18c.jpeg" />
@@ -1739,6 +1757,9 @@
     <Content Include="Areas\Admission\Views\Jobs\Index.cshtml" />
     <Content Include="Areas\Admission\Views\Jobs\Edit.cshtml" />
     <Content Include="Areas\Admission\Views\Jobs\Create.cshtml" />
+    <Content Include="Areas\Admission\Views\BoardTaps\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\BoardTaps\Edit.cshtml" />
+    <Content Include="Areas\Admission\Views\BoardTaps\Create.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2043,6 +2064,8 @@
     <Content Include="Views\Home\ContactThankPage.cshtml" />
     <Content Include="Views\Home\Board.cshtml" />
     <Content Include="Views\Home\BoardDetails.cshtml" />
+    <Content Include="Views\Home\IndexTwo.cshtml" />
+    <Content Include="Views\Home\NewHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2167,6 +2190,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211021804462_ShowBoard.resx">
       <DependentUpon>202211021804462_ShowBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211221503576_UpdateSEOAR.resx">
+      <DependentUpon>202211221503576_UpdateSEOAR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211271054146_BoardTaps.resx">
+      <DependentUpon>202211271054146_BoardTaps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211271112241_OrderBoardTaps.resx">
+      <DependentUpon>202211271112241_OrderBoardTaps.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

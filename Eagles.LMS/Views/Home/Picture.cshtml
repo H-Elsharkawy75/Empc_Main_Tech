@@ -38,13 +38,27 @@
     }
 }
 
-@section PageTitle{
-    <title>@SEO.PicturePageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.PicturePageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.PicturePageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.PicturePageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.PicturePageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.PicturePageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.PicturePageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.PicturePageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.PicturePageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.PicturePageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.PicturePageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.PicturePageCanonicalUrl" />
+    }
 }
 
 

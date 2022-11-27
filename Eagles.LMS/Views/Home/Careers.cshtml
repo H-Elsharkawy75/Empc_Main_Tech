@@ -15,13 +15,27 @@
     }
 }
 
-@section PageTitle{
-    <title>@SEO.CareersPageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.CareersPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.CareersPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.CareersPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.CareersPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.CareersPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.CareersPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.CareersPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.CareersPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.CareersPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.CareersPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.CareersPageCanonicalUrl" />
+    }
 }
 
 @section EndHeader{
@@ -100,7 +114,7 @@
 
                                         </div>
                                         <!--end col-6-->
-                            
+
 
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -154,16 +168,13 @@
 
 
                                         @*<div class="col-md-6">
-            <div class="form-group">
-                <label>@Resources.Global.JobAppliedFor</label>
-                @Html.DropDownList("F00", new SelectList(jobs.Select(x => new { Value = x.Id, Text = x.NameEnglish }), "Value", "Text"))
-            </div>
+                                                <div class="form-group">
+                                                    <label>@Resources.Global.JobAppliedFor</label>
+                                                    @Html.DropDownList("F00", new SelectList(jobs.Select(x => new { Value = x.Id, Text = x.NameEnglish }), "Value", "Text"))
+                                                </div>
 
 
-        </div>*@
-
-
-
+                                            </div>*@
 
 
 
@@ -173,7 +184,10 @@
 
 
 
-                                        @if(en)
+
+
+
+                                        @if (en)
                                         {
                                             <div class="col-md-6">
                                                 <div class="form-group">

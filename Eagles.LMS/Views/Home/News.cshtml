@@ -30,18 +30,31 @@
         .menu li a.active-a6 {
             color: #af7a2c;
             border-bottom: 1px solid #fff0;
-         
         }
     </style>
 }
 
-@section PageTitle{
-    <title>@SEO.NewsPageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.NewsPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.NewsPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.NewsPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.NewsPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.NewsPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.NewsPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.NewsPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.NewsPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.NewsPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.NewsPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.NewsPageCanonicalUrl" />
+    }
 }
 
 

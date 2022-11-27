@@ -99,7 +99,7 @@
         display: inline-block;
         vertical-align: baseline;
         display: block;
-        width: 303%
+        width: 100%
     }
 
     .nav .open > a,
@@ -204,12 +204,12 @@
     }
 
     .owl-carousel.home-slider .slider-item {
-        height: calc(50vh - 150px)
+        height: 1
     }
 
     .owl-carousel.home-slider {
         position: relative;
-        height: calc(50vh - 150px);
+        height: 1;
         z-index: 0
     }
 
@@ -685,11 +685,13 @@
 
 
 
-
+    .video_background{
+        top:0;
+    }
 
     .video_background .video_foreground iframe {
         position: absolute;
-        top: -145px;
+        top: -120px;
         left: 0;
         width: 100%;
         height: 200%;
@@ -717,5 +719,11 @@
         font-size: 17px !important;
         line-height: 31px !important;
         text-align: inherit !important;
+    }
+    .border-top-1 {
+        border: 2px solid #af7a2c;
+    }
+    .owl-carousel.home-slider{
+     height: 235px;
     }
     }

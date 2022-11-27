@@ -63,6 +63,8 @@
         {
             @Html.HiddenFor(s => s.Id)
             @Html.HiddenFor(s => s.Image)
+            @Html.HiddenFor(s => s.Iframe)
+            @Html.HiddenFor(s => s.ArabicIframe)
             @Html.HiddenFor(s => s.IsImage)
             @Html.HiddenFor(s => s.UserCreateId)
             @Html.HiddenFor(s => s.CreateTime)
@@ -134,27 +136,28 @@
                                             @Html.ValidationMessageFor(s => s.Link)
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">  Iframe English Video [OPTINAL]</label>
-                                            @Html.TextBoxFor(s => s.Iframe, null, new
-                                       {
-                                           @class = "form-control",
-                                           placeholder = "English Iframe"
-                                       })
-                                            @Html.ValidationMessageFor(s => s.Link)
-                                        </div>
-                                    </div>   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="mb-3">
-                                            <label class="form-label"> Iframe Arabic Video [OPTINAL]</label>
-                                            @Html.TextBoxFor(s => s.ArabicIframe, null, new
-                                       {
-                                           @class = "form-control",
-                                           placeholder = "Arabic Iframe"
-                                       })
-                                            @Html.ValidationMessageFor(s => s.Link)
-                                        </div>
-                                    </div>
+                                    @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">  Iframe English Video [OPTINAL]</label>
+                                                @Html.TextBoxFor(s => s.Iframe, null, new
+                                           {
+                                               @class = "form-control",
+                                               placeholder = "English Iframe"
+                                           })
+                                                @Html.ValidationMessageFor(s => s.Link)
+                                            </div>
+                                        </div>*@
+                                    @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="mb-3">
+                                                <label class="form-label"> Iframe Arabic Video [OPTINAL]</label>
+                                                @Html.TextBoxFor(s => s.ArabicIframe, null, new
+                                           {
+                                               @class = "form-control",
+                                               placeholder = "Arabic Iframe"
+                                           })
+                                                @Html.ValidationMessageFor(s => s.Link)
+                                            </div>
+                                        </div>*@
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
@@ -173,30 +176,62 @@
                                             <input class="form-control" name="uploadattachments" type="file" id="uploadattachments">
                                         </div>
                                     </div>
-
                                     <div class="col-lg-12 col-md-12">
-                                        @if (Model != null && Model.Image != null)
-                                        {
-                                            if (Model.IsImage)
+                                        <div class="mb-3">
+                                            @if (Model != null && Model.Image != null)
                                             {
                                                 <img style="max-width: auto; height: 210px " src="@Model.Image" />
                                             }
-                                            else
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Video EN <span class="extiniosType">(MP4)</span></label>
+                                            <input class="form-control" name="Video_EN_uploadattachments" type="file" id="Video_EN_uploadattachments">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="mb-3">
+                                            @if (Model != null && Model.Iframe != null)
                                             {
-
-                                                if (!string.IsNullOrEmpty(Model.Iframe))
-                                                {
-                                                    <a href="https://www.youtube.com/embed/@Model.Iframe?autoplay=1" class="video-btn btn btn-info" data-type="iframe" tabindex="0">Open English Video</a>
-
-                                                }
-                                                if(!string.IsNullOrEmpty(@Model.ArabicIframe))
-                                                {
-                                                    <a href="https://www.youtube.com/embed/@Model.ArabicIframe?autoplay=1" class="video-btn btn btn-info" data-type="iframe" tabindex="0">Open Arabic Video</a>
-
-                                                }
+                                                <div class="VideoPreview">
+                                                    <video controls width="100%">
+                                                        <source src="@Model.Iframe" type="video/mp4" />
+                                                    </video>
+                                                </div>
+                                                @*<a href="@Model.Iframe" class="video-btn btn btn-info" data-type="iframe" tabindex="0">Open English Video</a>*@
                                             }
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Video AR <span class="extiniosType">(MP4)</span></label>
+                                            <input class="form-control" name="Video_AR_uploadattachments" type="file" id="Video_AR_uploadattachments">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        @if (Model != null && Model.ArabicIframe != null)
+                                        {
+
+                                        <div class="VideoPreview">
+                                            <video controls width="100%">
+                                                <source src="@Model.ArabicIframe" type="video/mp4" />
+                                            </video>
+                                        </div>
+
+
+                                            @*<a href="@Model.ArabicIframe" class="video-btn btn btn-info" data-type="iframe" tabindex="0">Open Arabic Video</a>*@
+
+
+
+
                                         }
                                     </div>
+
+
+
+
 
 
 
@@ -216,7 +251,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="foooterbuttons">
-                            <button type="submit" class="btn btn-success waves-effect waves-light">
+                            <button type="submit" OnClick="return validate();" class="btn btn-success waves-effect waves-light">
                                 <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
                             </button>
                             <a href="/Admission/Sliders" class="btn btn-danger waves-effect waves-light">
@@ -263,4 +298,63 @@
 
         TempData.Remove("RequestStatus");
     }
+
+
+    <script type="text/javascript">
+
+
+        function validate() {
+            var Video_EN_uploadattachments = document.getElementById('Video_EN_uploadattachments');
+            if ($(Video_EN_uploadattachments)[0].files[0] != null) {
+                var numb = $(Video_EN_uploadattachments)[0].files[0].size / 1024 / 1024;
+                numb = numb.toFixed(2);
+                if (numb > 10) {
+                    /*       alert('to big, maximum is 2MiB. You file size is: ' + numb + ' MiB');*/
+                    notify = $.notify({
+                        message: 'English Video Slider Is To Big, Maximum Size To Upload Is 10 MiB. Your Video Size Is: ' + numb + ' MiB',
+
+                    }, {
+
+                        type: '' == 'Created' ? "success" : "danger",
+                        animate: {
+                            enter: 'animated flipInY',
+                            exit: 'animated flipOutX',
+                        }
+                    });
+                    return false;
+                }
+            }
+
+            var Video_AR_uploadattachments = document.getElementById('Video_AR_uploadattachments');
+            if ($(Video_AR_uploadattachments)[0].files[0] != null) {
+                var numbTwo = $(Video_AR_uploadattachments)[0].files[0].size / 1024 / 1024;
+                numbTwo = numbTwo.toFixed(2);
+                if (numbTwo > 10) {
+                    notify = $.notify({
+                        message: 'Arabic Video Slider Is To Big, Maximum Size To Upload Is 10 MiB. Your Video Size Is: ' + numbTwo + ' MiB',
+
+                    }, {
+
+                        type: '' == 'Created' ? "success" : "danger",
+                        animate: {
+                            enter: 'animated flipInY',
+                            exit: 'animated flipOutX',
+                        }
+                    });
+                    return false;
+                }
+            }
+
+
+
+
+
+
+
+        }
+
+
+    </script>
+
+
 }

@@ -4,15 +4,35 @@
     var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
     UnitOfWork ctx = new UnitOfWork();
     var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
+    bool en = true;
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
 }
 
-@section PageTitle{
-    <title>@SEO.ContactUsPageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.ContactUsPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.ContactUsPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.ContactUsPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.ContactUsPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.ContactUsPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.ContactUsPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.ContactUsPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.ContactUsPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.ContactUsPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.ContactUsPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.ContactUsPageCanonicalUrl" />
+    }
 }
 
 
@@ -47,7 +67,7 @@
     <div class="container">
         <div class="ThankinContent">
             <div class="AlertThank">
-                <p>Thank You..., Your Request Is Submited Successfuly</p>
+                <p>Thank You..., Your Request Is Submitted Successfully</p>
             </div>
         </div>
     </div>

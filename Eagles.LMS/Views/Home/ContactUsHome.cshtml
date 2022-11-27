@@ -16,6 +16,7 @@
 }
 
 
+@if (en) {
 @section PageTitle{
     <title>@SEO.ContactUsPageTitle</title>
 }
@@ -23,6 +24,17 @@
     <meta name="keywords" content="@SEO.ContactUsPageMetaKeywords " />
     <meta name="description" id="metaDesc" content="@SEO.ContactUsPageMetaDescription" />
     <link rel="canonical" id="canonicalUrl" href="@SEO.ContactUsPageCanonicalUrl" />
+}
+}
+else {
+@section PageTitle{
+    <title>@SEO.ContactUsPageTitle_AR</title>
+}
+@section metatags{
+    <meta name="keywords" content="@SEO.ContactUsPageMetaKeywords_AR " />
+    <meta name="description" id="metaDesc" content="@SEO.ContactUsPageMetaDescription_AR" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.ContactUsPageCanonicalUrl" />
+}
 }
 
 @section EndHeader{
@@ -312,16 +324,13 @@
             <iframe class="possition" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13822.334720113951!2d31.43418945!3d29.9913924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1634508265298!5m2!1sar!2seg" width="100%" height="630" style="border:0;"
                 allowfullscreen="" loading="lazy"></iframe>
     -->
+    <!--
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1726.7709238441291!2d31.21595155872192!3d30.049999200000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145841fe81fb8d79%3A0x7292c22730b866c5!2sMedia%20Services%20Center%20EMPC!5e0!3m2!1sen!2seg!4v1647522850851!5m2!1sen!2seg"
+                width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
+    -->
+    <!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13822.334720113951!2d31.43418945!3d29.9913924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1635321981691!5m2!1sar!2seg" width="100%" height="450" style="border:0;" allowfullscreen=""></iframe>-->
 
-
-<!--
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1726.7709238441291!2d31.21595155872192!3d30.049999200000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145841fe81fb8d79%3A0x7292c22730b866c5!2sMedia%20Services%20Center%20EMPC!5e0!3m2!1sen!2seg!4v1647522850851!5m2!1sen!2seg"
-            width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
--->
-
-<!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13822.334720113951!2d31.43418945!3d29.9913924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1635321981691!5m2!1sar!2seg" width="100%" height="450" style="border:0;" allowfullscreen=""></iframe>-->
-
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.483567264462!2d31.0162038!3d29.9655299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145850de313fc431%3A0xcc3136a98fa3c2fd!2sEMPC%20TV!5e0!3m2!1sen!2seg!4v1667854294294!5m2!1sen!2seg" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.483567264462!2d31.0162038!3d29.9655299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145850de313fc431%3A0xcc3136a98fa3c2fd!2sEMPC%20TV!5e0!3m2!1sen!2seg!4v1667854294294!5m2!1sen!2seg" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 
 </section>

@@ -133,8 +133,41 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     galary.Image = $"/attachments/{fileName}";
 
                 }
-                galary.VideoIframe = galary.VideoIframe;
-                galary.ArabicVideoIframe = galary.ArabicVideoIframe;
+
+                if (!string.IsNullOrEmpty(galary.VideoIframe))
+                {
+
+                    try
+                    {
+                        galary.VideoIframe = galary.VideoIframe.Split('/').Last().ToString();
+                    }
+                    catch
+                    {
+                        requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                            "Uncompatible IFrame Formtaing");
+                        return result;
+
+                    }
+                }
+                if (!string.IsNullOrEmpty(galary.ArabicVideoIframe))
+                {
+                    try
+                    {
+                        galary.ArabicVideoIframe = galary.ArabicVideoIframe.Split('/').Last().ToString();
+                    }
+                    catch
+                    {
+                        requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                            "Uncompatible IFrame Formtaing");
+                        return result;
+
+                    }
+                }
+                //slider.Iframe = slider.Iframe.Split('&')[0].Split('=')[1].ToString();
+
+                //galary.VideoIframe = galary.VideoIframe;
+                //galary.ArabicVideoIframe=galary.ArabicVideoIframe;
+                
                 int userId = GetUserId();
                 galary.UserEditId = userId;
                 galary.EditeTime = DateTime.Now;
@@ -473,8 +506,42 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     galary.AlbumId = AlbumId;
 
                     //slider.Iframe = slider.Iframe.Split('&')[0].Split('=')[1].ToString();
-                    galary.VideoIframe = galary.VideoIframe;
-                    galary.ArabicVideoIframe=galary.ArabicVideoIframe;
+                    //galary.VideoIframe = galary.VideoIframe.Split('/').Last().ToString();
+                    ////galary.VideoIframe = galary.VideoIframe;
+                    ////galary.ArabicVideoIframe=galary.ArabicVideoIframe;
+                    //galary.ArabicVideoIframe = galary.ArabicVideoIframe.Split('/').Last().ToString();
+
+                    if (!string.IsNullOrEmpty(galary.VideoIframe))
+                    {
+
+                        try
+                        {
+                            galary.VideoIframe = galary.VideoIframe.Split('/').Last().ToString();
+                        }
+                        catch
+                        {
+                            requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                                "Uncompatible IFrame Formtaing");
+                            return result;
+
+                        }
+                    }
+                    if (!string.IsNullOrEmpty(galary.ArabicVideoIframe))
+                    {
+                        try
+                        {
+                            galary.ArabicVideoIframe = galary.ArabicVideoIframe.Split('/').Last().ToString();
+                        }
+                        catch
+                        {
+                            requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError,
+                                "Uncompatible IFrame Formtaing");
+                            return result;
+
+                        }
+                    }
+
+
                     int userId = GetUserId();
                     galary.UserCreateId = userId;
                     galary.CreateTime = DateTime.Now;

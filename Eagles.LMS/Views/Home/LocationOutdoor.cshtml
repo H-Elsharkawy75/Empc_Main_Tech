@@ -23,13 +23,27 @@
     var Id = ViewBag.Id;
 }
 
-@section PageTitle{
-    <title>@SEO.OutDoorLocationsPageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.OutDoorLocationsPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.OutDoorLocationsPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.OutDoorLocationsPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.OutDoorLocationsPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.OutDoorLocationsPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.OutDoorLocationsPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.OutDoorLocationsPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.OutDoorLocationsPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.OutDoorLocationsPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.OutDoorLocationsPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.OutDoorLocationsPageCanonicalUrl" />
+    }
 }
 
 <div class="header-bc">

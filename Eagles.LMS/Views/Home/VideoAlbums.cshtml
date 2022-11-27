@@ -47,11 +47,12 @@
         allvideos = allvideoslist.Where(s => s.ArabicVideoIframe != null).Select(s => s.AlbumId).ToList();
 
     }
-    var albums_videos = ctx.AlbumManager.GetAll().OrderByDescending(s => s.Order).Where(s => allvideos.Contains(s.Id)).ToList();
+    var albums_videos = ctx.AlbumManager.GetAll().OrderBy(s => s.Order).Where(s => allvideos.Contains(s.Id)).ToList();
 
     var Id = ViewBag.Id;
 }
 
+@if (en) {
 @section PageTitle{
     <title>@SEO.VideoPageTitle</title>
 }
@@ -59,6 +60,16 @@
     <meta name="keywords" content="@SEO.VideoPageMetaKeywords " />
     <meta name="description" id="metaDesc" content="@SEO.VideoPageMetaDescription" />
     <link rel="canonical" id="canonicalUrl" href="@SEO.VideoPageCanonicalUrl" />
+}
+}else {
+@section PageTitle{
+    <title>@SEO.VideoPageTitle_AR</title>
+}
+@section metatags{
+    <meta name="keywords" content="@SEO.VideoPageMetaKeywords_AR " />
+    <meta name="description" id="metaDesc" content="@SEO.VideoPageMetaDescription_AR" />
+    <link rel="canonical" id="canonicalUrl" href="@SEO.VideoPageCanonicalUrl" />
+}
 }
 
 

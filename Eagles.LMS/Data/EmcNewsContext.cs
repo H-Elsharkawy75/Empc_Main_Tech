@@ -31,6 +31,7 @@ namespace Eagles.LMS.Data
 
         public DbSet<SEO> SEO { get; set; }
         public DbSet<Board> Board { get; set; }
+        public DbSet<BoardTaps> BoardTaps { get; set; }
         public DbSet<SocialMedia> SocialMedia { get; set; }
 
         public DbSet<NewImages> NewImages { get; set; }

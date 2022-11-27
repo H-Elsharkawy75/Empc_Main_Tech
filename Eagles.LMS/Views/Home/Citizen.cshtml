@@ -22,13 +22,27 @@
     }
 }
 
-@section PageTitle{
-    <title>@SEO.CitizenPageTitle</title>
+@if (en)
+{
+    @section PageTitle{
+        <title>@SEO.CitizenPageTitle</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.CitizenPageMetaKeywords " />
+        <meta name="description" id="metaDesc" content="@SEO.CitizenPageMetaDescription" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.CitizenPageCanonicalUrl" />
+    }
 }
-@section metatags{
-    <meta name="keywords" content="@SEO.CitizenPageMetaKeywords " />
-    <meta name="description" id="metaDesc" content="@SEO.CitizenPageMetaDescription" />
-    <link rel="canonical" id="canonicalUrl" href="@SEO.CitizenPageCanonicalUrl" />
+else
+{
+    @section PageTitle{
+        <title>@SEO.CitizenPageTitle_AR</title>
+    }
+    @section metatags{
+        <meta name="keywords" content="@SEO.CitizenPageMetaKeywords_AR " />
+        <meta name="description" id="metaDesc" content="@SEO.CitizenPageMetaDescription_AR" />
+        <link rel="canonical" id="canonicalUrl" href="@SEO.CitizenPageCanonicalUrl" />
+    }
 }
 @section EndHeader{
     <style>
