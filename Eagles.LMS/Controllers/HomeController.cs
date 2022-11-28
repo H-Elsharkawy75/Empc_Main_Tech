@@ -341,6 +341,7 @@ namespace Eagles.LMS.Controllers
         }
         public ActionResult BoardDetails(int? id)
         {
+            ViewBag.id = id;
 
             if (id == null)
             {
