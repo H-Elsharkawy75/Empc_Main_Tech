@@ -4,7 +4,9 @@
     Layout = "~/Areas/Admission/Views/Shared/_Layout.cshtml";
     var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
     //var Boarders = new Eagles.LMS.BLL.UnitOfWork().BoardManager.GetAllBind();
-    var Taps = new Eagles.LMS.BLL.UnitOfWork().BoardTapsManager.GetAllBind();
+    var Taps = new Eagles.LMS.BLL.UnitOfWork().BoardTapsManager.GetAllBind().Where(a => a.Parent_Id == 0).ToList();
+    Taps.Add(new BoardTaps { Id = 0, Title_EN = "No Perant" });
+    Taps = Taps.OrderBy(a => a.Id).ToList();
     var Id = ViewBag.Id;
 
 }
@@ -95,9 +97,8 @@
                                         <div class="mb-3">
                                             <label class="form-label">Select Tap</label>
                                             @Html.DropDownListFor(x => Model.Parent_Id,
-                                            
+
                                             new SelectList(Taps,"Id", "Title_EN"),
-                                            "Select Parent",
                                             htmlAttributes: new { @class = "form-control select2" })
                                         </div>
                                     </div>

@@ -15,10 +15,20 @@ namespace Eagles.LMS.Areas.Admission.Controllers
     public class BoardTapsController : Controller
     {
         // GET: Admission/BoardTaps
-        public ActionResult Index(int id)
+        public ActionResult Index(int id,int? tab_id = 0)
         {
-            ViewBag.Id = id;
-            return View(new UnitOfWork().BoardTapsManager.GetAll().Where(s => s.Board_Id == id).OrderBy(s =>s.Order).ToList());
+            if (tab_id != null && tab_id != 0)
+            {
+                ViewBag.Id = id;
+                ViewBag.Tab_Id = tab_id;
+                return View(new UnitOfWork().BoardTapsManager.GetAll().Where(s => s.Board_Id == id && s.Parent_Id == tab_id).OrderBy(s => s.Order).ToList());
+            }
+            else
+            {
+                ViewBag.Id = id;
+                return View(new UnitOfWork().BoardTapsManager.GetAll().Where(s => s.Board_Id == id && s.Parent_Id == 0).OrderBy(s => s.Order).ToList());
+            }
+            
         }
         public int GetUserId()
         {
@@ -154,7 +164,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 });
 
                 requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
-                result = RedirectToAction(nameof(Create));
+                result = RedirectToAction("Index", new { id = _taps.Board_Id, tab_id = _taps.Parent_Id });
 
 
 
