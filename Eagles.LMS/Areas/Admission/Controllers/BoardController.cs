@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -33,7 +34,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             return View(_board);
         }
         [HttpPost]
-        public ActionResult Edit(Board board, HttpPostedFileBase uploadattachments)
+        public ActionResult Edit(Board board, HttpPostedFileBase uploadattachments, HttpPostedFileBase CV_uploadattachments)
         {
 
             ActionResult result = View(board);
@@ -48,8 +49,6 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             }
             else
             {
-
-
                 if (uploadattachments != null)
                 {
 
@@ -65,22 +64,44 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
                 }
 
-                int userId = GetUserId();
-                board.UserEditId = userId;
-                board.EditeTime = DateTime.Now;
-                var ctx = new UnitOfWork();
-                ctx.BoardManager.UpdateWithSave(board);
-
-                ctx.logManager.Add(new log
+                if (CV_uploadattachments != null && !CV_uploadattachments.ContentType.CheckDocumentsExtention())
                 {
-                    UserId = userId,
-                    ActionTime = DateTime.Now,
-                    EntityId = board.Id,
-                    TableName = "Board",
-                    Action = "Edit:Board"
-                });
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment CV PDF Not supported ,Plz Upload PDF Only");
+                }
+                else
+                {
 
-                requestStatus = new ManageRequestStatus().GetStatus(Status.Edited);
+                    
+
+                    if (CV_uploadattachments != null)
+                    {
+                        string extentionCV = System.IO.Path.GetExtension(CV_uploadattachments.FileName);
+                        var fileNameCV = Guid.NewGuid() + extentionCV;
+                        var pathCV = Path.Combine(Server.MapPath("~/attachments"), fileNameCV);
+                        CV_uploadattachments.SaveAs(pathCV);
+                        board.CV_Link = $"/attachments/{fileNameCV}";
+                    }
+
+                    int userId = GetUserId();
+                    board.UserEditId = userId;
+                    board.EditeTime = DateTime.Now;
+                    var ctx = new UnitOfWork();
+                    ctx.BoardManager.UpdateWithSave(board);
+
+                    ctx.logManager.Add(new log
+                    {
+                        UserId = userId,
+                        ActionTime = DateTime.Now,
+                        EntityId = board.Id,
+                        TableName = "Board",
+                        Action = "Edit:Board"
+                    });
+
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.Edited);
+
+                }
+
+
 
 
 
@@ -99,7 +120,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Board board, HttpPostedFileBase uploadattachments)
+        public ActionResult Create(Board board, HttpPostedFileBase uploadattachments, HttpPostedFileBase CV_uploadattachments)
         {
 
             ActionResult result = View(board);
@@ -127,24 +148,46 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                     uploadattachments.SaveAs(path);
                     board.Image = $"/attachments/{fileName}";
-                    int userId = GetUserId();
-                    board.UserCreateId = userId;
-                    board.CreateTime = DateTime.Now;
-                    board.UserEditId = userId;
-                    board.EditeTime = DateTime.Now;
 
-                    var ctx = new UnitOfWork();
-                    board = ctx.BoardManager.Add(board);
-                    ctx.logManager.Add(new log
+
+                    //if(CV_uploadattachments != null && !CV_uploadattachments.ContentType.CheckDocumentsExtention())
+                    if (CV_uploadattachments != null && !CV_uploadattachments.ContentType.CheckDocumentsExtention())
                     {
-                        UserId = userId,
-                        ActionTime = DateTime.Now,
-                        EntityId = board.Id,
-                        TableName = "Board",
-                        Action = "Create:Board"
-                    });
-                    requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
-                    result = RedirectToAction(nameof(Create));
+                        requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment CV PDF Not supported ,Plz Upload PDF Only");
+                    }
+                    else
+                    {
+                        if (CV_uploadattachments != null)
+                        {
+                            string extentionCV = System.IO.Path.GetExtension(CV_uploadattachments.FileName);
+                            var fileNameCV = Guid.NewGuid() + extentionCV;
+                            var pathCV = Path.Combine(Server.MapPath("~/attachments"), fileNameCV);
+                            CV_uploadattachments.SaveAs(pathCV);
+                            board.CV_Link = $"/attachments/{fileNameCV}";
+                        }
+
+                        int userId = GetUserId();
+                        board.UserCreateId = userId;
+                        board.CreateTime = DateTime.Now;
+                        board.UserEditId = userId;
+                        board.EditeTime = DateTime.Now;
+
+                        var ctx = new UnitOfWork();
+                        board = ctx.BoardManager.Add(board);
+                        ctx.logManager.Add(new log
+                        {
+                            UserId = userId,
+                            ActionTime = DateTime.Now,
+                            EntityId = board.Id,
+                            TableName = "Board",
+                            Action = "Create:Board"
+                        });
+                        requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+                        result = RedirectToAction(nameof(Create));
+
+                    }
+
+
 
 
 
@@ -162,10 +205,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
         public ActionResult Delete(int id)
         {
             UnitOfWork ctx = new UnitOfWork();
+     
             var entity = ctx.BoardManager.GetBy(id);
             ctx.logManager.Add(new log
             {
-                UserId = id,
+                UserId = GetUserId(),
                 ActionTime = DateTime.Now,
                 EntityId = id,
                 TableName = "Board",

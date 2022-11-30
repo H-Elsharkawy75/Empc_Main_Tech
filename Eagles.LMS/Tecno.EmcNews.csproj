@@ -433,6 +433,10 @@
     <Compile Include="Migrations\202211271112241_OrderBoardTaps.designer.cs">
       <DependentUpon>202211271112241_OrderBoardTaps.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211301400055_UpdateBoardCV.cs" />
+    <Compile Include="Migrations\202211301400055_UpdateBoardCV.designer.cs">
+      <DependentUpon>202211301400055_UpdateBoardCV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Application.cs" />
@@ -2199,6 +2203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211271112241_OrderBoardTaps.resx">
       <DependentUpon>202211271112241_OrderBoardTaps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211301400055_UpdateBoardCV.resx">
+      <DependentUpon>202211301400055_UpdateBoardCV.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

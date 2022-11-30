@@ -14,6 +14,8 @@ namespace Eagles.LMS.Models
         public int Id { get; set; }
 
         public string Image { get; set; }
+
+        public string CV_Link { get; set; }
         public string NameArabic { get; set; }
         public string NameEnglish { get; set; }
         public string JobTitleArabic { get; set; }

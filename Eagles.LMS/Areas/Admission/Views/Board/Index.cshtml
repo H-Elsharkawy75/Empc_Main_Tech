@@ -41,6 +41,7 @@
                                 <tr>
                                     <th> <p>Action</p> </th>
                                     <th> <p>Images</p> </th>
+                                    <th> <p>CV</p> </th>
                                     <th> <p>Taps</p> </th>
                                     <th> <p>Name Arabic</p> </th>
                                     <th> <p>Name English</p> </th>
@@ -71,7 +72,7 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <a class="dropdown-item align-middle " href="/Admission/Board/Edit/@item.Id"><i class="bx bx-edit font-size-16 me-1"></i>@Resources.Global.Edit</a>
-                                                <a class="dropdown-item text-danger align-middle btn_delete" data-id="@item.Id" href="#"><i class="bx bx-trash font-size-16 me-1"></i>@Resources.Global.Delete</a>
+                                                <a class="dropdown-item text-danger align-middle btn_delete" data-id="@item.Id"><i class="bx bx-trash font-size-16 me-1"></i>@Resources.Global.Delete</a>
 
                                             </div>
                                         </div>
@@ -81,11 +82,22 @@
                                             <i class="bx bx-image"></i>
                                         </a>
                                     </td>
-                                    <td>
-                                        <a class="btn btn-info" href="/Admission/BoardTaps/Index/@item.Id">
-                                            Taps
-                                        </a>
-                                    </td>
+                                    @if (!string.IsNullOrEmpty(item.CV_Link))
+                                    {
+                                        <td>
+                                            <a class="btn btn-info" href="/Admission/BoardTaps/Index/@item.Id">
+                                                Taps
+                                            </a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <p>No PDF Uploaded</p>
+                                        </td>
+                                    }
+
+                                    
 
                                     <td><p class="FontArabic">@item.NameArabic</p></td>
                                     <td><p>@item.NameEnglish</p></td>

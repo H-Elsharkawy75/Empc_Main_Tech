@@ -63,17 +63,23 @@ namespace Eagles.LMS
 
         static string[] imgs_ex = { "jpg", "peg", "png", "gif", "jpeg" };
         static string[] video_ex = { "m4v", "avi", "mpg", "mp4" };
+        static string[] documents_ex = { "pdf" };
 
         public static bool CheckImageExtention(this string ex)
         {
             ex = ex.Replace("image/", "");
             return imgs_ex.Contains(ex.ToLower());
         }
-        public static bool CheckVideoExtention(this string ex)
+        public static bool CheckVideoExtention(this string exv)
         {
-            ex = ex.Replace(".", "").Replace("video/", "");
-            bool flag = video_ex.Contains(ex.ToLower());
-
+            exv = exv.Replace("video/", "").Replace("video/", "");
+            bool flag = video_ex.Contains(exv.ToLower());
+            return flag;
+        }
+        public static bool CheckDocumentsExtention(this string exp)
+        {
+            exp = exp.Replace("Documents/", "").Replace("application/", "");
+            bool flag = documents_ex.Contains(exp.ToLower());
             return flag;
         }
 
