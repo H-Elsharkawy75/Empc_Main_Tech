@@ -41,8 +41,9 @@
                                 <tr>
                                     <th> <p>Action</p> </th>
                                     <th> <p>Images</p> </th>
-                                    <th> <p>CV</p> </th>
+
                                     <th> <p>Taps</p> </th>
+                                    <th> <p>CV</p> </th>
                                     <th> <p>Name Arabic</p> </th>
                                     <th> <p>Name English</p> </th>
                                     <th> <p>Job Title Arabic</p> </th>
@@ -82,22 +83,27 @@
                                             <i class="bx bx-image"></i>
                                         </a>
                                     </td>
+                                    <td>
+                                        <a class="btn btn-info" href="/Admission/BoardTaps/Index/@item.Id">
+                                            Taps
+                                        </a>
+                                    </td>
                                     @if (!string.IsNullOrEmpty(item.CV_Link))
                                     {
                                         <td>
-                                            <a class="btn btn-info" href="/Admission/BoardTaps/Index/@item.Id">
-                                                Taps
+                                            <a style="display:block; width:max-content" class="btn btn-info" target="_blank" href="@item.CV_Link">
+                                                Show CV
                                             </a>
                                         </td>
                                     }
                                     else
                                     {
                                         <td>
-                                            <p>No PDF Uploaded</p>
+                                            <p>No CV Uploaded</p>
                                         </td>
                                     }
 
-                                    
+
 
                                     <td><p class="FontArabic">@item.NameArabic</p></td>
                                     <td><p>@item.NameEnglish</p></td>
@@ -141,7 +147,7 @@
     <script>
         $(function () {
 
-  $("body").on("click", ".btn_delete", (s) => {
+            $("body").on("click", ".btn_delete", (s) => {
                 let self = $(s.currentTarget),
                     entityId = self.attr('data-id');
                 bootbox.confirm("@Resources.Global.ConfirmDeleteoperation !", function (flag) {

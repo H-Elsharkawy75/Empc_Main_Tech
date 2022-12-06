@@ -66,9 +66,12 @@
                             <img src="@Model.Image" class="img-fluid" alt="" />
 
 
-                            <div class="DaenloadCV">
-                                <a href="@Model.CV_Link" target="_blank" ><i class="fa fa-download"></i> Dowenload CV</a>
-                            </div>
+                            @if (!string.IsNullOrEmpty(@Model.CV_Link))
+                            {
+                                <div class="DaenloadCV">
+                                    <a href="@Model.CV_Link" target="_blank"><i class="fa fa-download"></i> @Resources.Global.DowenloadCV</a>
+                                </div>
+                            }
                         </div>
                         <div class="col-md-7">
                             <div class="text-content v-middle TamDetailsCont">

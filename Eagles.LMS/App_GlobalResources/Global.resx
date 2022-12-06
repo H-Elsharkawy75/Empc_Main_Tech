@@ -2005,4 +2005,7 @@ EXCITED ABOUT</value>
   <data name="JobAppliedFor" xml:space="preserve">
     <value>Job Applied For</value>
   </data>
+  <data name="DowenloadCV" xml:space="preserve">
+    <value>Dowenload CV</value>
+  </data>
 </root>

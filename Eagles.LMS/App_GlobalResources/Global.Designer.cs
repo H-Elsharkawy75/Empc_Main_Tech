@@ -1627,6 +1627,15 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dowenload CV.
+        /// </summary>
+        public static string DowenloadCV {
+            get {
+                return ResourceManager.GetString("DowenloadCV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download The.
         /// </summary>
         public static string DownloadThe {

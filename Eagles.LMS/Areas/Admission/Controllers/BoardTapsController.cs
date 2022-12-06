@@ -42,6 +42,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
         public ActionResult Edit(int id)
         {
+            ViewBag.Id = id;
             var taps = new UnitOfWork().BoardTapsManager.GetBy(id);
             if (taps == null)
                 return HttpNotFound();

@@ -85,20 +85,20 @@
                                     </div>
 
                                     @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Select Board </label>
-                                            @Html.DropDownListFor(x => Model.Board_Id, new SelectList(Boarders,
-                                           "Id", "NameEnglish"), htmlAttributes: new { @class = "form-control select2" })
+                                            <div class="mb-3">
+                                                <label class="form-label">Select Board </label>
+                                                @Html.DropDownListFor(x => Model.Board_Id, new SelectList(Boarders,
+                                               "Id", "NameEnglish"), htmlAttributes: new { @class = "form-control select2" })
 
 
-                                        </div>
-                                    </div>*@
+                                            </div>
+                                        </div>*@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Select Tap</label>
                                             @Html.DropDownListFor(x => Model.Parent_Id,
 
-                                            new SelectList(Taps,"Id", "Title_EN"),
+                                            new SelectList(Taps, "Id", "Title_EN"),
                                             htmlAttributes: new { @class = "form-control select2" })
                                         </div>
                                     </div>
@@ -109,7 +109,8 @@
                                             {
                                                 @class = "form-control",
                                                 placeholder = "Order",
-                                                @required = "@required"
+                                                @id = "OrderID",
+                                                @required = "required"
                                             })
                                         </div>
                                     </div>
@@ -124,13 +125,11 @@
                     </div>
                 </div>
             </div> <!-- end col -->
-
-
             <div class="col-lg-12 col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="foooterbuttons">
-                            <button type="submit" class="btn btn-success waves-effect waves-light">
+                            <button type="submit" class="btn btn-success waves-effect waves-light" onclick="return ValidOrder()">
                                 <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
                             </button>
                             <a href="/Admission/BoardTaps/Index/@Id" class="btn btn-danger waves-effect waves-light">
@@ -151,6 +150,29 @@
 
 
 
+    
+
+    <script>
+        function ValidOrder() {
+            var NewsDate = document.getElementById('OrderID').value;
+            if (NewsDate == "") {
+
+                notify = $.notify({
+                    message: 'Please Enter Order',
+
+                }, {
+
+                    type: '' == 'Created' ? "success" : "danger",
+                    animate: {
+                        enter: 'animated flipInY',
+                        exit: 'animated flipOutX',
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
+    
 
     @if (requestStatus != null)
     {

@@ -286,3 +286,33 @@ a:focus{
 .servicesDetails .ServDiscription * {
     font-family: 'Cairo' !important;
 }
+
+
+.accordion .accordion-item .accordion-header .accordion-button {
+    font-size: 15px;
+    height: 45px;
+    border: 0px solid #eee;
+    border-radius: 0;
+    border-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.accordion-button::after {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-left: 0;
+    content: "";
+    background-image: url(../images/down-arrowDark.png);
+    background-repeat: no-repeat;
+    background-size: 16px;
+    -webkit-transition: -webkit-transform .2s ease-in-out;
+    transition: -webkit-transform .2s ease-in-out;
+    transition: transform .2s ease-in-out;
+    transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+    float: left;
+    left: 0;
+    position: relative;
+}

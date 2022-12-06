@@ -1960,4 +1960,7 @@
   <data name="JobAppliedFor" xml:space="preserve">
     <value>الوظيفه النتقدم اليها</value>
   </data>
+  <data name="DowenloadCV" xml:space="preserve">
+    <value>تحميل السيرة الذاتية</value>
+  </data>
 </root>
