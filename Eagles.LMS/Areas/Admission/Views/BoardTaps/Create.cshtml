@@ -7,7 +7,8 @@
     var Taps = new Eagles.LMS.BLL.UnitOfWork().BoardTapsManager.GetAllBind().Where(a => a.Parent_Id == 0).ToList();
     Taps.Add(new BoardTaps { Id = 0, Title_EN = "No Perant" });
     Taps = Taps.OrderBy(a => a.Id).ToList();
-    var Id = ViewBag.Id;
+    int Board_Id = ViewBag.Id;
+    int Tab_Id = ViewBag.Tab_Id;
 
 }
 
@@ -33,6 +34,12 @@
     <div class="row">
         @using (Html.BeginForm("Create", "BoardTaps", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+            @*@Model.Board_Id = @Board_Id;
+            @Model.Parent_Id = @Tab_Id;*@
+
+            @*@Html.HiddenFor(s => s.Parent_Id = @Tab_Id);
+            @Html.HiddenFor(s => s.Board_Id = @Board_Id);*@
+
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -93,7 +100,7 @@
 
                                             </div>
                                         </div>*@
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Select Tap</label>
                                             @Html.DropDownListFor(x => Model.Parent_Id,
@@ -101,7 +108,7 @@
                                             new SelectList(Taps, "Id", "Title_EN"),
                                             htmlAttributes: new { @class = "form-control select2" })
                                         </div>
-                                    </div>
+                                    </div>*@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Order</label>
@@ -132,7 +139,7 @@
                             <button type="submit" class="btn btn-success waves-effect waves-light" onclick="return ValidOrder()">
                                 <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
                             </button>
-                            <a href="/Admission/BoardTaps/Index/@Id" class="btn btn-danger waves-effect waves-light">
+                            <a href="@Url.Action("Index", "BoardTaps", new { @id = @Board_Id, @tab_id = @Tab_Id})" class="btn btn-danger waves-effect waves-light">
                                 <i class="fa fa-backspace back font-size-16 align-middle me-2"></i> @Resources.Global.Back
                             </a>
                         </div>

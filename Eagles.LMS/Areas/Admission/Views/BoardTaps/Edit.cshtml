@@ -35,8 +35,8 @@
         {
             @Html.HiddenFor(s => s.Id)
             @Html.HiddenFor(s => s.CreateTime)
-            @*@Html.HiddenFor(s => s.Parent_Id)*@
-            @*@Html.HiddenFor(s => s.Board_Id)*@
+            @Html.HiddenFor(s => s.Parent_Id)
+            @Html.HiddenFor(s => s.Board_Id)
             @Html.HiddenFor(s => s.UserCreateId)
             <div class="col-12">
                 <div class="card">
@@ -98,7 +98,7 @@
 
                                         </div>
                                     </div>*@
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Select Tap</label>
                                             @Html.DropDownListFor(x => Model.Parent_Id,
@@ -106,7 +106,7 @@
                                             new SelectList(Taps, "Id", "Title_EN"),
                                             htmlAttributes: new { @class = "form-control select2" })
                                         </div>
-                                    </div>
+                                    </div>*@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Order</label>
@@ -136,7 +136,7 @@
                             <button type="submit" class="btn btn-success waves-effect waves-light">
                                 <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
                             </button>
-                            <a href="/Admission/Board/index/@Model.Parent_Id" class="btn btn-danger waves-effect waves-light">
+                            <a href="@Url.Action("Index", "BoardTaps", new { @id = Model.Board_Id, @tab_id = Model.Parent_Id})" class="btn btn-danger waves-effect waves-light">
                                 <i class="fa fa-backspace back font-size-16 align-middle me-2"></i> @Resources.Global.Back
                             </a>
                         </div>
@@ -165,7 +165,7 @@
 
               }, {
 
-                  type: '@requestStatus.Status' == 'Created' ? "success" :"success",
+                  type: '@requestStatus.Status' == 'Edited' ? "success" :"success",
                       animate: {
                           enter: 'animated flipInY',
                           exit: 'animated flipOutX',

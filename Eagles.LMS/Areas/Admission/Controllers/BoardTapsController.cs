@@ -46,17 +46,18 @@ namespace Eagles.LMS.Areas.Admission.Controllers
         public ActionResult Edit(int id)
         {
             ViewBag.Id = id;
-            //Session["board_Id"] = id;
             var taps = new UnitOfWork().BoardTapsManager.GetBy(id);
+            
             if (taps == null)
                 return HttpNotFound();
-            return View(taps);
+            else
+            {
+                return View(taps);
+            }
         }
         [HttpPost]
         public ActionResult Edit(BoardTaps _taps, HttpPostedFileBase uploadattachments)
         {
-
-            //_taps.Board_Id = (int)Session["board_Id"];
             ActionResult result = View(_taps);
             var ctx = new UnitOfWork();
             RequestStatus requestStatus;
@@ -68,10 +69,6 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             }
             else
             {
-
-
-              
-
                 int userId = GetUserId();
                 _taps.UserEditId = userId;
                 _taps.EditeTime = DateTime.Now;
@@ -109,10 +106,12 @@ namespace Eagles.LMS.Areas.Admission.Controllers
         }
 
 
-        public ActionResult Create(int id)
+        public ActionResult Create(int id, int tab_id = 0)
         {
             ViewBag.Id = id;
-            Session["board_Id"] = id;
+            ViewBag.Tab_Id = tab_id;
+            Session["Tab_Id"] = tab_id;
+            Session["Board_Id"] = id;
             //return View(new BoardTaps { Board_Id = id });
             return View();
         }
@@ -120,33 +119,13 @@ namespace Eagles.LMS.Areas.Admission.Controllers
         public ActionResult Create(BoardTaps _taps, HttpPostedFileBase uploadattachments)
         {
 
-
+            _taps.Board_Id = (int)Session["Board_Id"];
+            _taps.Parent_Id = (int)Session["Tab_Id"];
             ActionResult result = View(_taps);
-            _taps.Board_Id = (int)Session["board_Id"];
-
             if (ModelState.IsValid)
             {
 
                 RequestStatus requestStatus;
-                //if (uploadattachments == null || uploadattachments.ContentLength == 0 || !
-                //    uploadattachments.ContentType.CheckImageExtention())
-                //{
-                //    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
-                //}
-                //else
-                //{
-
-
-
-
-                //string _rendom = new Random().Next(1, 99999999).ToString();
-
-                //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
-                //string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                //var fileName = _rendom + extention;
-                //var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
-                //uploadattachments.SaveAs(path);
-                //addsnews.Image = $"/attachments/{fileName}";
                 int userId = GetUserId();
                 _taps.UserCreateId = userId;
                 _taps.CreateTime = DateTime.Now;
@@ -170,8 +149,8 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 });
 
                 requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
-                result = RedirectToAction("Create", new { id = _taps.Board_Id });
-                //result = RedirectToAction("Index", new { id = _taps.Board_Id, tab_id = _taps.Parent_Id });
+                //result = RedirectToAction("Create", new { id = _taps.Board_Id });
+                result = RedirectToAction("Index", new { id = _taps.Board_Id, tab_id = _taps.Parent_Id });
 
 
 
