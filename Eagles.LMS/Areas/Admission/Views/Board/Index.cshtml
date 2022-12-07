@@ -48,8 +48,8 @@
                                     <th> <p>Name English</p> </th>
                                     <th> <p>Job Title Arabic</p> </th>
                                     <th> <p>Job Title English</p> </th>
-                                    <th> <p>Job Description Arabic</p> </th>
-                                    <th> <p>Job Description English</p> </th>
+                                    @*<th> <p>Job Description Arabic</p> </th>
+                                    <th> <p>Job Description English</p> </th>*@
 
                                     <th> <p>User Created</p> </th>
                                     <th> <p>Created Time</p> </th>
@@ -120,8 +120,8 @@
                                     <td><p>@item.NameEnglish</p></td>
                                     <td><p class=" FontArabic"> @item.JobTitleArabic</p></td>
                                     <td><p>@item.JobTitleEnglish</p></td>
-                                    <td><p class="FontArabic">@Html.Raw(item.JobDescriptionArabic)</p></td>
-                                    <td><p>@Html.Raw(@item.JobDescriptionEnglish)</p></td>
+                                    @*<td><p class="FontArabic">@Html.Raw(item.JobDescriptionArabic)</p></td>
+                                    <td><p>@Html.Raw(@item.JobDescriptionEnglish)</p></td>*@
                                     <td><p>@ctx.UserManager.GetBy(item.UserCreateId).FullName</p></td>
                                     <td><p>@item.CreateTime</p></td>
                                     <td><p>@ctx.UserManager.GetBy(item.UserEditId).FullName</p></td>

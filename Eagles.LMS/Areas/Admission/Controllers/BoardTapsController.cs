@@ -46,6 +46,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
         public ActionResult Edit(int id)
         {
             ViewBag.Id = id;
+            //Session["board_Id"] = id;
             var taps = new UnitOfWork().BoardTapsManager.GetBy(id);
             if (taps == null)
                 return HttpNotFound();
@@ -55,6 +56,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
         public ActionResult Edit(BoardTaps _taps, HttpPostedFileBase uploadattachments)
         {
 
+            //_taps.Board_Id = (int)Session["board_Id"];
             ActionResult result = View(_taps);
             var ctx = new UnitOfWork();
             RequestStatus requestStatus;
@@ -168,7 +170,8 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 });
 
                 requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
-                result = RedirectToAction("Index", new { id = _taps.Board_Id, tab_id = _taps.Parent_Id });
+                result = RedirectToAction("Create", new { id = _taps.Board_Id });
+                //result = RedirectToAction("Index", new { id = _taps.Board_Id, tab_id = _taps.Parent_Id });
 
 
 

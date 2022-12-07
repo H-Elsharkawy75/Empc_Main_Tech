@@ -35,6 +35,8 @@
         {
             @Html.HiddenFor(s => s.Id)
             @Html.HiddenFor(s => s.CreateTime)
+            @*@Html.HiddenFor(s => s.Parent_Id)*@
+            @*@Html.HiddenFor(s => s.Board_Id)*@
             @Html.HiddenFor(s => s.UserCreateId)
             <div class="col-12">
                 <div class="card">
@@ -134,7 +136,7 @@
                             <button type="submit" class="btn btn-success waves-effect waves-light">
                                 <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
                             </button>
-                            <a href="/Admission/Board/index" class="btn btn-danger waves-effect waves-light">
+                            <a href="/Admission/Board/index/@Model.Parent_Id" class="btn btn-danger waves-effect waves-light">
                                 <i class="fa fa-backspace back font-size-16 align-middle me-2"></i> @Resources.Global.Back
                             </a>
                         </div>
@@ -163,7 +165,7 @@
 
               }, {
 
-                      type: '@requestStatus.Status' == 'Created' ? "success" :"danger",
+                  type: '@requestStatus.Status' == 'Created' ? "success" :"success",
                       animate: {
                           enter: 'animated flipInY',
                           exit: 'animated flipOutX',

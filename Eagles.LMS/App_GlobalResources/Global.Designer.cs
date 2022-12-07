@@ -3005,7 +3005,7 @@ namespace Eagles.LMS.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mulimedia.
+        ///   Looks up a localized string similar to Multimedia.
         /// </summary>
         public static string Mulimedia {
             get {
