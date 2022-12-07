@@ -83,11 +83,22 @@
                                             <i class="bx bx-image"></i>
                                         </a>
                                     </td>
-                                    <td>
-                                        <a class="btn btn-info" href="/Admission/BoardTaps/Index/@item.Id">
-                                            Taps
-                                        </a>
-                                    </td>
+                                    
+                                    @if (!string.IsNullOrEmpty(item.CV_Link))
+                                    {
+                                        <td>
+                                            <a class="btn btn-info" href="/Admission/BoardTaps/Index/@item.Id">
+                                                Taps
+                                            </a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <p>No CV Uploaded</p>
+                                        </td>
+                                    }
+
                                     @if (!string.IsNullOrEmpty(item.CV_Link))
                                     {
                                         <td>

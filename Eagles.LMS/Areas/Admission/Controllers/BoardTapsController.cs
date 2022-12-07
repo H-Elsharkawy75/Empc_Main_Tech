@@ -21,11 +21,14 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             {
                 ViewBag.Id = id;
                 ViewBag.Tab_Id = tab_id;
+                ViewBag.AddTabs = false;
                 return View(new UnitOfWork().BoardTapsManager.GetAll().Where(s => s.Board_Id == id && s.Parent_Id == tab_id).OrderBy(s => s.Order).ToList());
             }
             else
             {
                 ViewBag.Id = id;
+                ViewBag.Tab_Id = tab_id;
+                ViewBag.AddTabs = true;
                 return View(new UnitOfWork().BoardTapsManager.GetAll().Where(s => s.Board_Id == id && s.Parent_Id == 0).OrderBy(s => s.Order).ToList());
             }
             
@@ -187,20 +190,28 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
             var user = ctx.UserManager.GetById(GetUserId());
 
-
-
-            ctx.BoardTapsManager.Delete(entity);
-            ctx.logManager.Add(new log
+            if (ctx.BoardTapsManager.GetAll().Any(a => a.Parent_Id == id))
             {
-                UserId = GetUserId(),
-                ActionTime = DateTime.Now,
-                EntityId = id,
-                TableName = "BoardTaps",
-                Action = "Delete:BoardTaps",
+                return Json(new { success = false, error = "You can not delete this tap because it contains sub taps." }, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                ctx.BoardTapsManager.Delete(entity);
+
+                ctx.logManager.Add(new log
+                {
+                    UserId = GetUserId(),
+                    ActionTime = DateTime.Now,
+                    EntityId = id,
+                    TableName = "BoardTaps",
+                    Action = "Delete:BoardTaps",
 
 
-            });
-            return Json(JsonRequestBehavior.AllowGet);
+                });
+                return Json(JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
 

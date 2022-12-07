@@ -5,6 +5,8 @@
     int index = 1;
     var ctx = new Eagles.LMS.BLL.UnitOfWork();
     var BoardId = ViewBag.Id;
+    int _tabId = ViewBag.Tab_Id;
+    bool _addTabs = ViewBag.AddTabs;
 }
 
 <div class="container-fluid">
@@ -14,7 +16,17 @@
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                 <h4 class="mb-sm-0 font-size-18">
-                    <a href="/Admission/BoardTaps/Create/@BoardId" class="btn btn-success waves-effect waves-light"> <i class="bx bx-plus font-size-16 align-middle me-2"></i> Add Tap</a>
+                    <a href="/Admission/BoardTaps/Create/@BoardId" class="btn btn-success waves-effect waves-light">
+                        <i class="bx bx-plus font-size-16 align-middle me-2"></i>
+                        @if (_tabId == 0)
+                        {
+                            @("Add Tap");
+                        }
+                        else
+                        {
+                            @("Add Sub Tap");
+                        }
+                    </a>
                 </h4>
 
                 <div class="page-title-right">
@@ -39,7 +51,10 @@
                             <thead class="DarkThead">
                                 <tr>
                                     <th> <p>Action</p> </th>
-                                    <th> <p>Taps</p> </th>
+                                    @if (_addTabs)
+                                    {
+                                      <th> <p>Sub Taps</p> </th>
+                                    }
                                     <th> <p>Title Arabic</p> </th>
                                     <th> <p>title English</p> </th>
                                     <th> <p> Description Arabic</p> </th>
@@ -73,14 +88,19 @@
                                         </div>
                                     </td>
 
-                                    <td>
-                                        <a class="btn btn-info" href="@Url.Action("Index", "BoardTaps", new { @id = item.Board_Id, @tab_id = item.Id})">
-                                            Taps
-                                        </a>
-                                    </td>
+                                    @if (_addTabs)
+                                    {
+                                        <td>
+                                            <a class="btn btn-info" href="@Url.Action("Index", "BoardTaps", new { @id = item.Board_Id, @tab_id = item.Id})">
+                                                Sub Taps
+                                            </a>
+                                        </td>
+                                    }
 
                                     
-                                   
+
+
+
 
                                     <td><p class="FontArabic">@item.Title_AR</p></td>
                                     <td><p>@item.Title_EN</p></td>
@@ -132,9 +152,15 @@
                             type: "POST",
                             url: "/Admission/BoardTaps/Delete/" + entityId+"",
                             success: (response) => {
-                                toastr.success('@Resources.Global.Theunithasbeensuccessfullydeleted', '', { timeOut: 10000 });
-                                self.closest('tr').remove();
-                            }, error: (error) => {
+                                debugger;
+                                if (response.success)
+                                {
+                                    toastr.success('@Resources.Global.Theunithasbeensuccessfullydeleted', '', { timeOut: 10000 });
+                                    self.closest('tr').remove();
+                                } else {
+                                    pushNotification("danger", response.error);
+                                }
+                            },error: (error) => {
                                 // unauthorize
                                 let errorMessage = manageAjaxError(error);
                                 pushNotification("danger", errorMessage);
