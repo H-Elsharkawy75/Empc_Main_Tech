@@ -14,6 +14,7 @@
     var setting = ctx.SettingsManager.GetAll().FirstOrDefault();
     var SEO = ctx.SEOManager.GetAll().FirstOrDefault();
     var aboutUs = ctx.AboutUsManager.GetAll().FirstOrDefault();
+    var allTaps = ctx.BoardTapsManager.GetAll().ToList();
     bool en = true;
 
     if (Request.Cookies["Language"] != null)
@@ -307,7 +308,8 @@ else
                                     || !string.IsNullOrEmpty(@_board.GoogleLink)
                                     || !string.IsNullOrEmpty(@_board.LinkedInLink)
                                     || !string.IsNullOrEmpty(@_board.twiterLink)
-                                    || !string.IsNullOrEmpty(@_board.Phone))
+                                    || !string.IsNullOrEmpty(@_board.Phone)
+                                    || allTaps.Any(a => a.Board_Id == _board.Id))
                                 {
 
                                     <div class="item">

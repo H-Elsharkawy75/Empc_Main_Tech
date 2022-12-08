@@ -57,8 +57,8 @@
                                     }
                                     <th> <p>Title Arabic</p> </th>
                                     <th> <p>title English</p> </th>
-                                    <th> <p> Description Arabic</p> </th>
-                                    <th> <p> Description English</p> </th>
+                                    @*<th> <p> Description Arabic</p> </th>
+                                    <th> <p> Description English</p> </th>*@
 
                                     <th> <p>User Created</p> </th>
                                     <th> <p>Created Time</p> </th>
@@ -91,7 +91,7 @@
                                     @if (_addTabs)
                                     {
                                         <td>
-                                            <a class="btn btn-info" href="@Url.Action("Index", "BoardTaps", new { @id = item.Board_Id, @tab_id = item.Id})">
+                                            <a style="width:max-content" class="btn btn-info" href="@Url.Action("Index", "BoardTaps", new { @id = item.Board_Id, @tab_id = item.Id})">
                                                 Sub Taps
                                             </a>
                                         </td>
@@ -105,8 +105,8 @@
                                     <td><p class="FontArabic">@item.Title_AR</p></td>
                                     <td><p>@item.Title_EN</p></td>
 
-                                    <td><p class="FontArabic">@Html.Raw(item.Description_AR)</p></td>
-                                    <td><p>@Html.Raw(@item.Description_EN)</p></td>
+                                    @*<td><p class="FontArabic">@Html.Raw(item.Description_AR)</p></td>
+                                    <td><p>@Html.Raw(@item.Description_EN)</p></td>*@
                                     <td><p>@ctx.UserManager.GetBy(item.UserCreateId).FullName</p></td>
                                     <td><p>@item.CreateTime</p></td>
                                     <td><p>@ctx.UserManager.GetBy(item.UserEditId).FullName</p></td>
